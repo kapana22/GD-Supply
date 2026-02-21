@@ -21,7 +21,7 @@ export function About({
   values: Value[];
 }) {
   return (
-    <section className="fade-up relative py-[60px] md:py-[100px]">
+    <section className="relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
@@ -100,3 +100,4 @@ export function About({
     </section>
   );
 }
+

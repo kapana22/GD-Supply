@@ -6,6 +6,7 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "images.ctfassets.net" },
       { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "static.wixstatic.com" },
     ],
   },
 };

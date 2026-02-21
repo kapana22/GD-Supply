@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -145,7 +145,7 @@ export function ContactSection() {
                   name="service"
                   required
                   defaultValue=""
-                  className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] font-semibold text-white outline-none transition focus:border-primary-green focus:bg-primary-green/5"
+                  className="gd-select w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] font-semibold text-white outline-none transition focus:border-primary-green focus:bg-primary-green/5"
                 >
                   <option value="" disabled>
                     {t("fields.service")}
@@ -176,7 +176,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={state === "loading"}
-                  className="w-full rounded-[10px] bg-primary-green px-6 py-4 text-base font-semibold text-white shadow-glow-green transition hover:brightness-110 disabled:opacity-60"
+                  className="btn-primary w-full rounded-[10px] px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
                 >
                   {state === "loading"
                     ? "იგზავნება..."
@@ -335,3 +335,4 @@ function LinkedInIcon() {
     </svg>
   );
 }
+

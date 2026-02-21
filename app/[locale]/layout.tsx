@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -53,7 +53,7 @@ export default async function LocaleLayout({
         <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(900px_600px_at_60%_0%,rgba(23,109,72,0.20),transparent_60%)] opacity-70" />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Navbar />
-          <div className="relative">{children}</div>
+          <div className="relative pt-[84px]">{children}</div>
           <Footer />
           <WhatsAppButton />
           <MobileCallBar />
@@ -62,3 +62,4 @@ export default async function LocaleLayout({
     </html>
   );
 }
+

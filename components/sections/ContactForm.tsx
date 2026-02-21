@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -57,7 +57,7 @@ export function ContactForm() {
           </label>
           <select
             name="service"
-            className="w-full rounded-2xl border border-white/10 bg-gd-panel/70 px-4 py-3 text-sm font-semibold text-white shadow-inner shadow-black/30 outline-none"
+            className="gd-select w-full rounded-2xl border border-white/10 bg-gd-panel/70 px-4 py-3 text-sm font-semibold text-white shadow-inner shadow-black/30 outline-none"
             defaultValue=""
             required
           >
@@ -97,7 +97,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={state === "loading"}
-          className="inline-flex items-center justify-center rounded-full bg-primary-green px-6 py-3 text-sm font-semibold text-white shadow-glow-green transition hover:translate-y-0.5 disabled:opacity-60"
+          className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-glow-green disabled:opacity-60"
         >
           {state === "loading"
             ? "იგზავნება..."
@@ -135,4 +135,5 @@ function Input({
     </div>
   );
 }
+
 

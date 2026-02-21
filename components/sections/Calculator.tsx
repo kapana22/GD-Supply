@@ -1,9 +1,10 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useCountUp } from "@/hooks/useCountUp";
+import FadeUp from "@/components/FadeUp";
 
 type ServiceKey = "flat_roof" | "terrace" | "foundation" | "pool" | "industrial_floor";
 type Location = "tbilisi" | "region" | "mountain";
@@ -32,12 +33,8 @@ const LOCATION_FACTOR: Record<Location, number> = {
   mountain: 1.2,
 };
 
-function formatNumber(n: number) {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function formatGel(n: number) {
-  return `${formatNumber(n)} ₾`;
+function formatNumber(value: number) {
+  return value.toLocaleString("en-US");
 }
 
 export function Calculator() {
@@ -51,6 +48,8 @@ export function Calculator() {
   const [service, setService] = useState<ServiceKey>("flat_roof");
   const [area, setArea] = useState(250);
   const [location, setLocation] = useState<Location>("tbilisi");
+  const resultRef = useRef<HTMLDivElement | null>(null);
+  const resultVisible = useInView(resultRef, { once: true, amount: 0.35 });
 
   const result = useMemo(() => {
     const base = PRICES_GEL_PER_M2[service];
@@ -64,35 +63,40 @@ export function Calculator() {
     return { perMin, perMax, totalMin, totalMax };
   }, [area, location, service]);
 
+  const animatedPerMin = useCountTransition(result.perMin, resultVisible, 800);
+  const animatedPerMax = useCountTransition(result.perMax, resultVisible, 900);
+  const animatedTotalMin = useCountTransition(result.totalMin, resultVisible, 900);
+  const animatedTotalMax = useCountTransition(result.totalMax, resultVisible, 1000);
+
   return (
-    <section id="calculator" className="fade-up relative py-[60px] md:py-[100px]">
+    <section id="calculator" className="relative py-[60px] md:py-[100px]">
       <div className="pointer-events-none absolute inset-0 bg-gd-surface" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.10] bg-dots [background-size:18px_18px]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_520px_at_20%_20%,rgba(23,109,72,0.18),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="mb-10 md:mb-12">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-            {tNav("calculator")}
-          </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-[40px] md:leading-[1.1]">
-            {t("title")}
-          </h2>
+        <FadeUp>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">{tNav("calculator")}</p>
+        </FadeUp>
+        <FadeUp delay={0.1}>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-[40px] md:leading-[1.1]">{t("title")}</h2>
+        </FadeUp>
+        <FadeUp delay={0.2}>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
-        </div>
+        </FadeUp>
 
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="rounded-xl border border-white/10 bg-primary-navy/35 p-6 shadow-elevated backdrop-blur md:p-8">
             <div className="grid gap-5">
               <Field label={t("fields.service")}>
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value as ServiceKey)}
-                  className="w-full rounded border border-white/10 bg-black/25 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/30"
+                  className="gd-select w-full rounded border border-white/10 bg-black/25 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/30"
                 >
-                  {SERVICE_KEYS.map((k, idx) => (
-                    <option key={k} value={k}>
-                      {serviceLabels?.[idx] ?? k}
+                  {SERVICE_KEYS.map((key, idx) => (
+                    <option key={key} value={key}>
+                      {serviceLabels?.[idx] ?? key}
                     </option>
                   ))}
                 </select>
@@ -119,11 +123,11 @@ export function Calculator() {
                 <select
                   value={location}
                   onChange={(e) => setLocation(e.target.value as Location)}
-                  className="w-full rounded border border-white/10 bg-black/25 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/30"
+                  className="gd-select w-full rounded border border-white/10 bg-black/25 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/30"
                 >
-                  {LOCATION_KEYS.map((k, idx) => (
-                    <option key={k} value={k}>
-                      {locationLabels?.[idx] ?? k}
+                  {LOCATION_KEYS.map((key, idx) => (
+                    <option key={key} value={key}>
+                      {locationLabels?.[idx] ?? key}
                     </option>
                   ))}
                 </select>
@@ -131,17 +135,17 @@ export function Calculator() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-primary-green bg-gd-result p-6 shadow-elevated md:p-8">
+          <div ref={resultRef} className="rounded-xl border border-primary-green bg-gd-result p-6 shadow-elevated md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">ფასი</p>
             <p className="mt-2 font-sans text-4xl font-extrabold text-white md:text-[56px] md:leading-[1.05]">
-              <AnimatedNumber value={result.perMin} suffix="" /> – <AnimatedNumber value={result.perMax} suffix="" /> ₾ / მ²
+              {formatNumber(animatedPerMin)} – {formatNumber(animatedPerMax)} ₾ / მ²
             </p>
 
             <div className="mt-7">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">სრული თანხა</p>
-              <p className="mt-2 font-sans text-2xl font-extrabold text-primary-green md:text-[32px] md:leading-[1.15]">
-                <AnimatedGel value={result.totalMin} /> – <AnimatedGel value={result.totalMax} />
-              </p>
+              <span className="mt-2 block font-sans text-2xl font-extrabold text-primary-green md:text-[32px] md:leading-[1.15]">
+                {formatNumber(animatedTotalMin)} ₾ – {formatNumber(animatedTotalMax)} ₾
+              </span>
             </div>
 
             <p className="mt-6 text-sm italic leading-relaxed text-gd-muted">{t("note")}</p>
@@ -149,7 +153,7 @@ export function Calculator() {
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center rounded-lg bg-primary-green px-5 py-3 text-sm font-semibold text-white shadow-glow-green transition hover:translate-y-0.5"
+                className="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
                 {t("cta")}
               </Link>
@@ -176,56 +180,37 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const [started, setStarted] = useState(false);
-  const [seed, setSeed] = useState(0);
-  const count = useCountUp(value, 900, started);
+function useCountTransition(target: number, enabled: boolean, duration = 900) {
+  const [value, setValue] = useState(0);
+  const previousRef = useRef(0);
 
   useEffect(() => {
-    setSeed((x) => x + 1);
-  }, [value]);
+    if (!enabled) return;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setStarted(true);
-      },
-      { threshold: 0.35 },
-    );
+    const from = previousRef.current;
+    const to = target;
+    let raf = 0;
+    let startTime: number | null = null;
 
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const nextValue = Math.round(from + (to - from) * eased);
 
-  return (
-    <span ref={ref} key={seed}>
-      {formatNumber(count)}{suffix}
-    </span>
-  );
-}
+      setValue(nextValue);
 
-function AnimatedGel({ value }: { value: number }) {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const [started, setStarted] = useState(false);
-  const [seed, setSeed] = useState(0);
-  const count = useCountUp(value, 1000, started);
+      if (progress < 1) {
+        raf = requestAnimationFrame(step);
+      } else {
+        previousRef.current = to;
+        setValue(to);
+      }
+    };
 
-  useEffect(() => {
-    setSeed((x) => x + 1);
-  }, [value]);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [duration, enabled, target]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setStarted(true);
-      },
-      { threshold: 0.35 },
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return <span ref={ref} key={seed}>{formatGel(count)}</span>;
+  return value;
 }

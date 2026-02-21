@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -43,7 +43,7 @@ export function ServicesDetails({
 
   return (
     <div className="relative">
-      <section className="fade-up py-[60px] md:py-[100px]">
+      <section className="py-[60px] md:py-[100px]">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <div className="mb-10 md:mb-12">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
@@ -93,7 +93,7 @@ export function ServicesDetails({
         </div>
       </section>
 
-      <section className="fade-up pb-[60px] md:pb-[100px]">
+      <section className="pb-[60px] md:pb-[100px]">
         <div className="mx-auto grid max-w-[1440px] gap-6 px-5 md:px-10">
           {items.map((s, idx) => (
             <motion.article
@@ -105,62 +105,80 @@ export function ServicesDetails({
               transition={{ duration: 0.35, delay: idx * 0.03 }}
               className="rounded-2xl border border-white/10 bg-gd-surface p-6 shadow-elevated md:p-8"
             >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-                    სერვისი
-                  </p>
-                  <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div>
+                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
+                        სერვისი
+                      </p>
+                      <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                        {s.title}
+                      </h3>
+                    </div>
+                    <Link
+                      href={`/${locale}/calculator`}
+                      className="inline-flex w-fit items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                    >
+                      ფასის კალკულატორი →
+                    </Link>
+                  </div>
+
+                  <p className="mt-5 text-base leading-relaxed text-white/85">{s.body}</p>
+
+                  {s.includes && s.includes.length > 0 ? (
+                    <div className="mt-6 border-t border-white/10 pt-5">
+                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
+                        რას მოიცავს
+                      </p>
+                      <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
+                        {s.includes.map((x) => (
+                          <li key={x} className="flex gap-2">
+                            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
+                            <span>{x}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {s.variants && s.variants.length > 0 ? (
+                    <div className="mt-6 border-t border-white/10 pt-5">
+                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
+                        სახეობები
+                      </p>
+                      <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
+                        {s.variants.map((x) => (
+                          <li key={x} className="flex gap-2">
+                            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
+                            <span>{x}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="relative h-[220px] overflow-hidden rounded-xl border border-white/10 shadow-elevated md:h-[260px]">
+                  <Image
+                    src={SERVICE_IMAGE_MAP[s.key] ?? "/assets/services/flat-roof.jpg"}
+                    alt={`${s.title} ფოტო`}
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <p className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">
                     {s.title}
-                  </h3>
+                  </p>
                 </div>
-                <Link
-                  href={`/${locale}/calculator`}
-                  className="inline-flex w-fit items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
-                >
-                  ფასის კალკულატორი →
-                </Link>
               </div>
-
-              <p className="mt-5 text-base leading-relaxed text-white/85">{s.body}</p>
-
-              {s.includes && s.includes.length > 0 ? (
-                <div className="mt-7 rounded-xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                    რას მოიცავს
-                  </p>
-                  <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
-                    {s.includes.map((x) => (
-                      <li key={x} className="flex gap-2">
-                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-
-              {s.variants && s.variants.length > 0 ? (
-                <div className="mt-7 rounded-xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                    სახეობები
-                  </p>
-                  <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
-                    {s.variants.map((x) => (
-                      <li key={x} className="flex gap-2">
-                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
             </motion.article>
           ))}
         </div>
       </section>
 
-      <section className="fade-up relative bg-gd-surface py-[60px] md:py-[100px]">
+      <section className="relative bg-gd-surface py-[60px] md:py-[100px]">
         <div className="pointer-events-none absolute inset-0 opacity-[0.10] bg-dots [background-size:18px_18px]" />
         <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
           <div className="mb-10 md:mb-12">
@@ -203,3 +221,4 @@ export function ServicesDetails({
     </div>
   );
 }
+

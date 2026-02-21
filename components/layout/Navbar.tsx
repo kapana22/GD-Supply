@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
@@ -13,6 +13,7 @@ const links = [
   { href: "services", key: "services" },
   { href: "portfolio", key: "portfolio" },
   { href: "about", key: "about" },
+  { href: "blog", key: "blog" },
   { href: "calculator", key: "calculator" },
   { href: "contact", key: "contact" },
 ] as const;
@@ -37,7 +38,7 @@ export function Navbar() {
   const phone = tHeader("phone");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -60,28 +61,27 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition ${
-        scrolled
-          ? "border-b border-white/10 bg-primary-navy/90 backdrop-blur"
-          : "bg-transparent"
-      }`}
+      className="fixed left-0 right-0 top-0 z-50 transition-all duration-500"
+      style={{
+        background: scrolled ? "rgba(14,18,40,0.58)" : "rgba(14,18,40,0.14)",
+        backdropFilter: scrolled ? "blur(14px) saturate(1.2)" : "blur(8px) saturate(1.05)",
+        borderBottom: scrolled
+          ? "1px solid rgba(255,255,255,0.1)"
+          : "1px solid rgba(255,255,255,0.04)",
+      }}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 py-4 md:px-10">
         <Link href={`/${locale}`} className="flex items-center gap-3" aria-label="GD Supply">
-          <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-lg bg-white shadow-elevated ring-1 ring-black/10">
-            <Image
-              src="/images/logo.png"
-              alt="GD Supply"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
-              priority
-            />
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="GD Supply"
+            width={44}
+            height={44}
+            className="h-11 w-11 object-contain"
+            priority
+          />
           <div className="leading-tight">
-            <p className="text-sm font-extrabold tracking-[0.14em] text-white">
-              GD SUPPLY
-            </p>
+            <p className="text-sm font-extrabold tracking-[0.14em] text-white">GD SUPPLY</p>
           </div>
         </Link>
 
@@ -89,12 +89,13 @@ export function Navbar() {
           {links.map((item) => {
             const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
             const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
+
             return (
               <Link
                 key={item.key}
                 href={href}
                 className={`text-sm font-semibold transition ${
-                  isActive ? "text-white" : "text-white/70 hover:text-white"
+                  isActive ? "text-white" : "text-white/72 hover:text-white"
                 }`}
               >
                 {tNav(item.key)}
@@ -112,6 +113,7 @@ export function Navbar() {
             {(["ka", "en", "ru"] as const).map((loc) => {
               const active = loc === locale;
               const supported = locales.includes(loc);
+
               return (
                 <button
                   key={loc}
@@ -122,7 +124,7 @@ export function Navbar() {
                     active
                       ? "bg-primary-green text-white shadow-glow-green"
                       : supported
-                        ? "text-white/70 hover:text-white"
+                        ? "text-white/72 hover:text-white"
                         : "cursor-not-allowed text-white/35"
                   }`}
                   aria-pressed={active}
@@ -143,7 +145,7 @@ export function Navbar() {
 
         <button
           aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((value) => !value)}
           className="grid h-11 w-11 place-items-center rounded-lg border border-white/12 bg-white/5 text-white backdrop-blur lg:hidden"
         >
           <span className="relative block h-0.5 w-6 bg-current before:absolute before:-top-2 before:h-0.5 before:w-6 before:bg-current after:absolute after:top-2 after:h-0.5 after:w-6 after:bg-current" />
@@ -164,6 +166,7 @@ export function Navbar() {
                 {links.map((item) => {
                   const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
                   const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
+
                   return (
                     <Link
                       key={item.key}
@@ -182,13 +185,12 @@ export function Navbar() {
               </div>
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/5 p-2">
-                <span className="px-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
-                  ენა
-                </span>
+                <span className="px-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">ენა</span>
                 <div className="flex items-center gap-1">
                   {(["ka", "en", "ru"] as const).map((loc) => {
                     const active = loc === locale;
                     const supported = locales.includes(loc);
+
                     return (
                       <button
                         key={loc}

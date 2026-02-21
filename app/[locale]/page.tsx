@@ -2,6 +2,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { Calculator } from "@/components/sections/Calculator";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { ServicesField } from "@/components/sections/ServicesField";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
@@ -84,6 +85,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         ctaSecondary={isKa ? "ჩვენი პროექტები" : tHero("cta_projects")}
         stats={heroStats}
       />
+
+      <ServicesField items={services} />
 
       <ServicesOverview
         title={isKa ? "რას ვაკეთებთ" : tServices("title")}
