@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -38,3 +38,4 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
     </section>
   );
 }
+

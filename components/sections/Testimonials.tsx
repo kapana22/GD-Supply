@@ -1,6 +1,7 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 type Testimonial = { quote: string; author: string; meta: string };
 
@@ -11,8 +12,15 @@ export function Testimonials({
   title: string;
   items: Testimonial[];
 }) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  function scrollByAmount(amount: number) {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
+  }
+
   return (
-    <section id="testimonials" className="relative py-[60px] md:py-[100px]">
+    <section id="testimonials" className="fade-up relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
@@ -23,12 +31,27 @@ export function Testimonials({
               {title}
             </h2>
           </div>
-          <p className="max-w-xl text-sm leading-relaxed text-gd-muted">
-            რეალური გამოცდილება ჩვენი კლიენტებისგან. გადაასრიალე და ნახე მეტი.
-          </p>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scrollByAmount(-320)}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white/80 hover:text-white"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => scrollByAmount(320)}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-white/80 hover:text-white"
+            >
+              →
+            </button>
+          </div>
         </div>
 
-        <div className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          ref={scrollRef}
+          className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {items.map((t, idx) => (
             <motion.figure
               key={`${t.author}-${idx}`}

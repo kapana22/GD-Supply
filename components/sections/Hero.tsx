@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useCountUp } from "@/hooks/useCountUp";
+import { useLocale } from "next-intl";
 
 type HeroStat = { value: string; label: string };
 
@@ -28,9 +29,8 @@ export function Hero({
   ctaSecondary,
   stats,
 }: HeroProps) {
-  const { locale } = useParams() as { locale: string };
+  const locale = useLocale();
   const rootRef = useRef<HTMLElement | null>(null);
-  const countersStarted = useRef(false);
 
   const statLabels = useMemo(() => stats.slice(0, 4), [stats]);
 
@@ -42,14 +42,8 @@ export function Hero({
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-
           const el = entry.target as HTMLElement;
           el.classList.add("is-visible");
-
-          if (el.classList.contains("hero-stats-row") && !countersStarted.current) {
-            countersStarted.current = true;
-            startCounters(el);
-          }
         });
       },
       { threshold: 0.2 },
@@ -67,7 +61,6 @@ export function Hero({
       ref={rootRef}
       className="relative min-h-[680px] overflow-hidden bg-primary-navy md:min-h-[720px]"
     >
-      {/* Background video */}
       <div className="hero-video-wrapper" aria-hidden="true">
         <video
           className="hero-video"
@@ -122,21 +115,12 @@ export function Hero({
             <div className="grid grid-cols-2 divide-y divide-white/10 md:grid-cols-4 md:divide-x md:divide-y-0">
               {statLabels.map((s, idx) => {
                 const meta = STAT_META[idx] ?? STAT_META[0];
-                const initialText = `0${meta.suffix}`;
                 return (
                   <div key={s.label} className="hero-stat px-5 py-4 md:px-6 md:py-5">
                     <p className="font-sans text-3xl font-extrabold text-primary-green md:text-5xl">
-                      <span
-                        data-count={meta.count}
-                        data-suffix={meta.suffix}
-                        data-duration={meta.duration}
-                      >
-                        {initialText}
-                      </span>
+                      <StatCounter value={meta.count} suffix={meta.suffix} duration={meta.duration} />
                     </p>
-                    <p className="mt-1 text-xs font-semibold tracking-[0.14em] text-white/65">
-                      {s.label}
-                    </p>
+                    <p className="mt-1 text-xs font-semibold tracking-[0.14em] text-white/65">{s.label}</p>
                   </div>
                 );
               })}
@@ -148,24 +132,35 @@ export function Hero({
   );
 }
 
-function startCounters(root: HTMLElement) {
-  root.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
-    if (el.dataset.started === "true") return;
-    el.dataset.started = "true";
+function StatCounter({
+  value,
+  suffix,
+  duration,
+}: {
+  value: number;
+  suffix: string;
+  duration: number;
+}) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const [started, setStarted] = useState(false);
+  const count = useCountUp(value, duration, started);
 
-    const target = parseInt(el.dataset.count || "0", 10);
-    const duration = parseInt(el.dataset.duration || "1500", 10);
-    const suffix = el.dataset.suffix || "";
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStarted(true);
+      },
+      { threshold: 0.4 },
+    );
 
-    let start = 0;
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      el.textContent = `${Math.floor(eased * target)}${suffix}`;
-      if (progress < 1) requestAnimationFrame(step);
-    };
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
-    requestAnimationFrame(step);
-  });
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
 }

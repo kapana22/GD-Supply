@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { useLocale } from "next-intl";
 
 type ServiceItem = {
   key: string;
@@ -20,6 +20,15 @@ const SERVICE_IMAGES: Record<string, string> = {
   materials: "/assets/services/materials.jpg",
 };
 
+const SHORT_SERVICE_BODIES: Record<string, string> = {
+  flat_roof: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი დაცვა ნებისმიერ სეზონში.",
+  terrace: "ელასტიური სისტემები ფილის ან ხის საფარის ქვეშ. სეზონური ტემპერატურის მდგრადი.",
+  foundation: "ნეგატიური და პოზიტიური ჰიდროიზოლაცია. მიწისქვეშა ტენის სრული ბლოკირება.",
+  pool: "ეპოქსიდური, ცემენტური და PVC სისტემები. საცხოვრებელი და კომერციული ობიექტები.",
+  industrial_floor: "ეპოქსიდური და პოლიურეთანის საფარი. ქიმიური და მექანიკური დატვირთვის მდგრადი.",
+  materials: "ევროპული ბრენდების ოფიციალური იმპორტი. სამშენებლო ქიმია და სპეციალური საფარები.",
+};
+
 export function ServicesOverview({
   title,
   subtitle,
@@ -29,22 +38,16 @@ export function ServicesOverview({
   subtitle: string;
   items: ServiceItem[];
 }) {
-  const { locale } = useParams() as { locale: string };
+  const locale = useLocale();
 
   return (
-    <section id="services" className="relative py-[60px] md:py-[100px]">
+    <section id="services" className="fade-up relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-              სერვისები
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-              {title}
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">
-              {subtitle}
-            </p>
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">სერვისები</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">{title}</h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
           </div>
 
           <Link
@@ -77,12 +80,9 @@ export function ServicesOverview({
               </div>
 
               <div className="p-6">
-                <div className="mb-4 h-10 w-10 text-white/85">
-                  <ServiceIcon name={s.key} />
-                </div>
                 <h3 className="text-lg font-extrabold text-white md:text-xl">{s.title}</h3>
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gd-muted">
-                  {s.body}
+                  {SHORT_SERVICE_BODIES[s.key] ?? s.body}
                 </p>
                 <Link
                   href={`/${locale}/services#${s.key}`}
@@ -97,168 +97,4 @@ export function ServicesOverview({
       </div>
     </section>
   );
-}
-
-function ServiceIcon({ name }: { name: string }) {
-  // Premium line-art icons (SVG) for each service key.
-  switch (name) {
-    case "flat_roof":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M4 12.5L12 6l8 6.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7 10.5V18h10v-7.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M6 20h12"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "terrace":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M5 9h14"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M6 9l2 11h8l2-11"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9 14h6"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "foundation":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M6 7h12v5H6V7Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M8 12v7h8v-7"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M5 20h14"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "pool":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M6 9h12v9H6V9Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7.5 12c1.2.8 2.4.8 3.6 0s2.4-.8 3.6 0 2.4.8 3.6 0"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "industrial_floor":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M4 17l8-4 8 4-8 4-8-4Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M4 12l8-4 8 4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M12 8v13"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeLinecap="round"
-            opacity="0.65"
-          />
-        </svg>
-      );
-    case "materials":
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M7 7h10v10H7V7Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9 10h6"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M9 14h4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M18.5 9.5l2.5 2.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    default:
-      return (
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M7 7h10v10H7V7Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9 9h6"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-  }
 }

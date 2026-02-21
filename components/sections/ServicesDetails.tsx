@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useLocale } from "next-intl";
 
 type ServiceItem = {
   key: string;
@@ -13,6 +14,15 @@ type ServiceItem = {
 };
 
 type ProcessStep = { title: string; body: string };
+
+const SERVICE_IMAGE_MAP: Record<string, string> = {
+  flat_roof: "/assets/services/flat-roof.jpg",
+  terrace: "/assets/services/terrace.jpg",
+  foundation: "/assets/services/foundation.jpg",
+  pool: "/assets/services/pool.jpg",
+  industrial_floor: "/assets/services/industrial-floor.jpg",
+  materials: "/assets/services/materials.jpg",
+};
 
 export function ServicesDetails({
   title,
@@ -29,11 +39,11 @@ export function ServicesDetails({
   processSubtitle: string;
   steps: ProcessStep[];
 }) {
-  const { locale } = useParams() as { locale: string };
+  const locale = useLocale();
 
   return (
     <div className="relative">
-      <section className="py-[60px] md:py-[100px]">
+      <section className="fade-up py-[60px] md:py-[100px]">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <div className="mb-10 md:mb-12">
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
@@ -55,26 +65,35 @@ export function ServicesDetails({
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="group relative rounded-xl border border-white/10 bg-gd-panel p-6 shadow-elevated transition hover:-translate-y-1"
+                transition={{ duration: 0.35, delay: idx * 0.04 }}
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-gd-panel shadow-elevated transition hover:-translate-y-1"
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-primary-green opacity-0 transition group-hover:opacity-100" />
-                <h2 className="text-lg font-extrabold text-white md:text-xl">
-                  {s.title}
-                </h2>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-gd-muted">
-                  {s.body}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-green group-hover:text-white">
-                  გაიგე მეტი <span className="transition group-hover:translate-x-0.5">→</span>
-                </span>
+                <div className="relative h-[180px] w-full">
+                  <Image
+                    src={SERVICE_IMAGE_MAP[s.key] ?? "/assets/hero-poster.jpg"}
+                    alt={s.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h2 className="text-lg font-extrabold text-white md:text-xl">{s.title}</h2>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-gd-muted">
+                    {s.body}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-green group-hover:text-white">
+                    გაიგე მეტი <span className="transition group-hover:translate-x-0.5">→</span>
+                  </span>
+                </div>
               </motion.a>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="pb-[60px] md:pb-[100px]">
+      <section className="fade-up pb-[60px] md:pb-[100px]">
         <div className="mx-auto grid max-w-[1440px] gap-6 px-5 md:px-10">
           {items.map((s, idx) => (
             <motion.article
@@ -84,7 +103,7 @@ export function ServicesDetails({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.35, delay: idx * 0.03 }}
-              className="rounded-xl border border-white/10 bg-gd-surface p-6 shadow-elevated md:p-8"
+              className="rounded-2xl border border-white/10 bg-gd-surface p-6 shadow-elevated md:p-8"
             >
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
@@ -103,9 +122,7 @@ export function ServicesDetails({
                 </Link>
               </div>
 
-              <p className="mt-5 text-base leading-relaxed text-white/85">
-                {s.body}
-              </p>
+              <p className="mt-5 text-base leading-relaxed text-white/85">{s.body}</p>
 
               {s.includes && s.includes.length > 0 ? (
                 <div className="mt-7 rounded-xl border border-white/10 bg-white/5 p-5">
@@ -143,7 +160,7 @@ export function ServicesDetails({
         </div>
       </section>
 
-      <section className="relative bg-gd-surface py-[60px] md:py-[100px]">
+      <section className="fade-up relative bg-gd-surface py-[60px] md:py-[100px]">
         <div className="pointer-events-none absolute inset-0 opacity-[0.10] bg-dots [background-size:18px_18px]" />
         <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
           <div className="mb-10 md:mb-12">
@@ -177,9 +194,7 @@ export function ServicesDetails({
                   </span>
                 </div>
                 <p className="mt-4 text-sm font-extrabold text-white">{s.title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-gd-muted">
-                  {s.body}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-gd-muted">{s.body}</p>
               </motion.div>
             ))}
           </div>

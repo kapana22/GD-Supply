@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
 
 export function ContactCta({
@@ -21,22 +21,16 @@ export function ContactCta({
   whatsapp: string;
   hours: string[];
 }) {
-  const { locale } = useParams() as { locale: string };
+  const locale = useLocale();
   const waHref = "https://wa.me/995599705697?text=გამარჯობა%20GD%20Supply";
 
   return (
     <section className="rounded-3xl border border-white/10 bg-gd-surface/55 px-6 py-10 shadow-2xl shadow-black/40 backdrop-blur md:px-10">
       <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-start">
         <div className="space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-green">
-            კონტაქტი
-          </p>
-          <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-            {title}
-          </h2>
-          <p className="text-sm leading-relaxed text-white/70 md:text-base">
-            {subtitle}
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-green">კონტაქტი</p>
+          <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">{title}</h2>
+          <p className="text-sm leading-relaxed text-white/70 md:text-base">{subtitle}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href={`/${locale}/contact`}
@@ -61,16 +55,14 @@ export function ContactCta({
           className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-inner shadow-black/30"
         >
           <div className="grid gap-3 text-sm text-white/80">
-            <Row label="📞 ტელეფონი" value={phone} href={`tel:${phone.replaceAll(" ", "")}`} />
-            <Row label="📧 ელ-ფოსტა" value={email} href={`mailto:${email}`} />
-            <Row label="📍 ლოკაცია" value={location} />
-            <Row label="💬 WhatsApp" value={whatsapp} href={waHref} />
+            <Row label="ტელეფონი" value={phone} href={`tel:${phone.replaceAll(" ", "")}`} />
+            <Row label="ელ-ფოსტა" value={email} href={`mailto:${email}`} />
+            <Row label="ლოკაცია" value={location} />
+            <Row label="WhatsApp" value={whatsapp} href={waHref} />
           </div>
 
           <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">
-              სამუშაო საათები
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55">სამუშაო საათები</p>
             <ul className="mt-2 space-y-1 text-sm text-white/75">
               {hours.map((h) => (
                 <li key={h}>{h}</li>
@@ -86,9 +78,7 @@ export function ContactCta({
 function Row({ label, value, href }: { label: string; value: string; href?: string }) {
   const content = (
     <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
-        {label}
-      </span>
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">{label}</span>
       <span className="text-sm font-extrabold text-white">{value}</span>
     </div>
   );

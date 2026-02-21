@@ -1,27 +1,98 @@
-import { getTranslations } from "next-intl/server";
+﻿import { getTranslations } from "next-intl/server";
 import { ServicesDetails } from "@/components/sections/ServicesDetails";
 
-export default async function ServicesPage() {
+const KA_SERVICES = [
+  {
+    key: "flat_roof",
+    title: "ბრტყელი სახურავი",
+    body: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი გამძლეობა ნებისმიერ სეზონში.",
+    includes: [
+      "ძველი საფარის დემონტაჟი",
+      "ზედაპირის მომზადება და პრაიმერი",
+      "მემბრანის ან სითხური სისტემის მონტაჟი",
+      "კვანძებისა და კიდეების დამუშავება",
+      "ტესტირება და ჩაბარება",
+    ],
+  },
+  {
+    key: "terrace",
+    title: "ტერასა და ბალკონი",
+    body: "ელასტიური სისტემები ფილის, კომპოზიტის ან ხის საფარის ქვეშ. ტემპერატურული ცვლილებების მიმართ მდგრადი.",
+    includes: [
+      "ბეტონის ზედაპირის მომზადება",
+      "ელასტიური ჰიდროიზოლაციის ფენა",
+      "ნაპრალების სპეციალური დამუშავება",
+      "სადრენაჟო ელემენტების ინტეგრაცია",
+    ],
+  },
+  {
+    key: "foundation",
+    title: "საძირკველი და სარდაფი",
+    body: "ნეგატიური და პოზიტიური ჰიდროიზოლაცია მიწისქვეშა ტენისა და გრუნტის წყლის სრულად ბლოკირებისთვის.",
+    includes: [
+      "გეოლოგიური შეფასება",
+      "ჰიდროიზოლაციის სისტემის შერჩევა",
+      "დრენაჟის მოწყობა",
+      "გარანტიის დოკუმენტაცია",
+    ],
+  },
+  {
+    key: "pool",
+    title: "აუზი და რეზერვუარი",
+    body: "ეპოქსიდური, ცემენტური და PVC სისტემები მუდმივ წყალჩაკირულ გარემოში მაქსიმალური დაცვისთვის.",
+  },
+  {
+    key: "industrial_floor",
+    title: "ინდუსტრიული იატაკი",
+    body: "ეპოქსიდური და პოლიურეთანის საფარი. მდგრადი ქიმიური, მექანიკური და ტენით დატვირთული გარემოსთვის.",
+    variants: [
+      "ეპოქსიდური ერთფენიანი და მრავალფენიანი",
+      "პოლიურეთანის ელასტიური საფარი",
+      "ანტისტატიკური საფარი",
+      "საპარკინგე სისტემები",
+    ],
+  },
+  {
+    key: "materials",
+    title: "სამშენებლო მასალები",
+    body: "ევროპული ბრენდების ოფიციალური იმპორტი: სამშენებლო ქიმია, ჰიდროიზოლაცია და სპეციალიზებული საფარები.",
+  },
+];
+
+const KA_STEPS = [
+  { title: "კონსულტაცია და ინსპექცია", body: "ობიექტის ადგილზე შეფასება და უფასო ბიუჯეტის მომზადება." },
+  { title: "სისტემის შერჩევა", body: "ობიექტის ტიპისა და პირობების მიხედვით ოპტიმალური სისტემის არჩევა." },
+  { title: "ხელშეკრულება", body: "ვადები, ფასი და გარანტია ფიქსირდება წერილობით." },
+  { title: "სამუშაოს შესრულება", body: "გამოცდილი ბრიგადა ასრულებს სამუშაოს სტანდარტების დაცვით." },
+  { title: "ჩაბარება და გარანტია", body: "საბოლოო ინსპექცია, ჩაბარება და 3 წლიანი გარანტია." },
+];
+
+export default async function ServicesPage({ params }: { params: { locale: string } }) {
   const t = await getTranslations("services");
+  const isKa = params.locale === "ka";
 
-  const items = t.raw("items") as Array<{
-    key: string;
-    title: string;
-    body: string;
-    includes?: string[];
-    variants?: string[];
-  }>;
+  const items = isKa
+    ? KA_SERVICES
+    : (t.raw("items") as Array<{
+        key: string;
+        title: string;
+        body: string;
+        includes?: string[];
+        variants?: string[];
+      }>);
 
-  const steps = t.raw("process.steps") as Array<{ title: string; body: string }>;
+  const steps = isKa
+    ? KA_STEPS
+    : (t.raw("process.steps") as Array<{ title: string; body: string }>);
 
   return (
     <main className="relative">
       <ServicesDetails
-        title="სრული სერვისების სია"
-        subtitle={t("subtitle")}
+        title={isKa ? "სრული სერვისების სია" : t("title")}
+        subtitle={isKa ? "GD Supply გთავაზობთ ჰიდროიზოლაციის სისტემების სრულ ციკლს — პირველი ნახვიდან 3 წლიანი გარანტიის ჩათვლით." : t("subtitle")}
         items={items}
-        processTitle={t("process.title")}
-        processSubtitle={t("process.subtitle")}
+        processTitle={isKa ? "პროცესი — ეტაპები" : t("process.title")}
+        processSubtitle={isKa ? "ვმუშაობთ მკაფიო, გამჭვირვალე პროცესით — შეფასებიდან საბოლოო ჩაბარებამდე." : t("process.subtitle")}
         steps={steps}
       />
     </main>

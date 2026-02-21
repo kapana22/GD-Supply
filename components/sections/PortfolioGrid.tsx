@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Project = {
@@ -12,6 +12,27 @@ type Project = {
   duration: string;
   tags: string[];
 };
+
+const CATEGORY_IMAGES: Record<string, string> = {
+  ყველა: "/assets/portfolio/commercial.jpg",
+  "ბრტყელი სახურავი": "/assets/portfolio/flat-roof.jpg",
+  ტერასა: "/assets/portfolio/terrace.jpg",
+  საძირკველი: "/assets/portfolio/foundation.jpg",
+  აუზი: "/assets/portfolio/pool.jpg",
+  "ინდუსტრიული იატაკი": "/assets/portfolio/floor.jpg",
+  კომერციული: "/assets/portfolio/commercial.jpg",
+};
+
+const PROJECT_IMAGES = [
+  "/assets/portfolio/flat-roof.jpg",
+  "/assets/portfolio/terrace.jpg",
+  "/assets/portfolio/floor.jpg",
+  "/assets/portfolio/flat-roof.jpg",
+  "/assets/portfolio/pool.jpg",
+  "/assets/portfolio/commercial.jpg",
+  "/assets/portfolio/terrace.jpg",
+  "/assets/portfolio/floor.jpg",
+] as const;
 
 export function PortfolioGrid({
   title,
@@ -26,22 +47,30 @@ export function PortfolioGrid({
 }) {
   const [filter, setFilter] = useState(filters[0] ?? "ყველა");
   const [active, setActive] = useState<(Project & { image: string; aspect: string }) | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  const enriched = useMemo(() => {
-    return projects.map((p, idx) => ({
-      ...p,
-      image: pickImage(p),
-      aspect: pickAspect(idx),
-    }));
-  }, [projects]);
+  const enriched = useMemo(
+    () =>
+      projects.map((p, idx) => ({
+        ...p,
+        image: PROJECT_IMAGES[idx % PROJECT_IMAGES.length] ?? "/assets/portfolio/commercial.jpg",
+        aspect: pickAspect(idx),
+      })),
+    [projects],
+  );
 
   const visible = useMemo(() => {
     if (!filter || filter === "ყველა") return enriched;
     return enriched.filter((p) => p.tags?.includes(filter));
   }, [enriched, filter]);
 
+  function scrollByAmount(amount: number) {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: amount, behavior: "smooth" });
+  }
+
   return (
-    <section id="portfolio" className="relative py-[60px] md:py-[100px]">
+    <section id="portfolio" className="fade-up relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
@@ -51,29 +80,64 @@ export function PortfolioGrid({
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
               {title}
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">
-              {subtitle}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {filters.map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] transition ${
-                  filter === f
-                    ? "border-primary-green bg-primary-green/15 text-white"
-                    : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                {f}
-              </button>
-            ))}
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
           </div>
         </div>
 
-        <div className="mt-10 columns-1 [column-gap:20px] md:columns-2 xl:columns-3">
+        <div className="mt-8 grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+          {filters.filter((f) => f !== "ყველა").map((f) => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`group relative overflow-hidden rounded-xl border text-left transition ${
+                filter === f
+                  ? "border-primary-green shadow-glow-green"
+                  : "border-white/10 hover:border-primary-green/60"
+              }`}
+            >
+              <div className="relative h-28 w-full">
+                <Image
+                  src={CATEGORY_IMAGES[f] ?? "/assets/portfolio/commercial.jpg"}
+                  alt={f}
+                  fill
+                  className="object-cover transition duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+              </div>
+              <p className="absolute bottom-2 left-3 text-xs font-extrabold text-white">{f}</p>
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setFilter("ყველა")}
+            className={`rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] transition ${
+              filter === "ყველა"
+                ? "border-primary-green bg-primary-green/15 text-white"
+                : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            ყველა
+          </button>
+          <button
+            onClick={() => scrollByAmount(-320)}
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-white/80 hover:text-white"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => scrollByAmount(320)}
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-white/80 hover:text-white"
+          >
+            →
+          </button>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {visible.map((p, idx) => (
             <motion.button
               key={`${p.name}-${idx}`}
@@ -82,22 +146,15 @@ export function PortfolioGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.35, delay: idx * 0.03 }}
-              className="group mb-5 block w-full break-inside-avoid overflow-hidden rounded-xl border border-white/10 bg-white/5 text-left shadow-elevated transition hover:-translate-y-1"
+              className="group snap-start w-[88vw] shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5 text-left shadow-elevated transition hover:-translate-y-1 sm:w-[65vw] md:w-[46vw] xl:w-[31%]"
             >
               <div className={`relative w-full ${p.aspect}`}>
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-[1.04]"
-                />
+                <Image src={p.image} alt={p.name} fill className="object-cover transition duration-700 group-hover:scale-[1.04]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-green/45 via-black/60 to-transparent opacity-0 transition group-hover:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 p-5 opacity-0 transition group-hover:opacity-100">
                   <p className="text-sm font-extrabold text-white md:text-base">{p.name}</p>
                   <p className="mt-1 text-sm text-white/75">{p.work}</p>
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-green">
-                    {p.area}
-                  </p>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-green">{p.area}</p>
                 </div>
               </div>
 
@@ -146,10 +203,7 @@ export function PortfolioGrid({
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {(active.tags || []).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-white/12 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80"
-                      >
+                      <span key={tag} className="rounded-full border border-white/12 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80">
                         {tag}
                       </span>
                     ))}
@@ -173,22 +227,4 @@ export function PortfolioGrid({
 function pickAspect(idx: number) {
   const aspects = ["aspect-[4/3]", "aspect-[16/10]", "aspect-[3/4]", "aspect-[16/9]"];
   return aspects[idx % aspects.length]!;
-}
-
-function pickImage(p: Project) {
-  const tag = (p.tags || [])[0] || "";
-  // Unsplash placeholders. Replace with real project images later.
-  if (tag.includes("ტერასა")) {
-    return "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&w=1400&q=80";
-  }
-  if (tag.includes("აუზი")) {
-    return "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1400&q=80";
-  }
-  if (tag.includes("საძირკველი")) {
-    return "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=1400&q=80";
-  }
-  if (tag.includes("ინდუსტრიული")) {
-    return "https://images.unsplash.com/photo-1529429617124-aee1f1650a5c?auto=format&fit=crop&w=1400&q=80";
-  }
-  return "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80";
 }
