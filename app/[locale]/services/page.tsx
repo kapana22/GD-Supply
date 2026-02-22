@@ -4,6 +4,8 @@ import { ServicesDetails } from "@/components/sections/ServicesDetails";
 const KA_SERVICES = [
   {
     key: "roof_terrace",
+    group: "hydro",
+    tabLabel: "ბრტყელი სახურავი",
     title: "ბრტყელი სახურავი / ტერასა",
     body: "გაიარე კონსულტაცია და მიიღე შენი სამშენებლო ობიექტის საჭიროებაზე მორგებული გადაწყვეტილება. ვიყენებთ მრავალფენოვან სისტემებს რომლებიც 15–20 წლიან დაცვას უზრუნველყოფს.",
     materials: [
@@ -17,6 +19,8 @@ const KA_SERVICES = [
   },
   {
     key: "foundation",
+    group: "hydro",
+    tabLabel: "საძირკველი",
     title: "საძირკველი და სარდაფი",
     body: "მიწისქვეშა ტენი და გრუნტის წყალი ყველაზე სერიოზული საფრთხეა საძირკვლისთვის. ვასრულებთ როგორც ახალი მშენებლობის, ასევე არსებული შენობების საძირკვლის ჰიდროიზოლაციას.",
     materials: [
@@ -31,6 +35,8 @@ const KA_SERVICES = [
   },
   {
     key: "industrial_floor",
+    group: "floor",
+    tabLabel: "ინდუსტრიული იატაკი",
     title: "ინდუსტრიული იატაკი",
     body: "საწარმოო სახელოსნოები, სავაჭრო ცენტრები, საავადმყოფოები, საპარკინგეები — ყველა მათგანს სჭირდება განსხვავებული მიდგომა.",
     materials: ["ეპოქსიდი", "პოლიურეთანი"],
@@ -55,6 +61,8 @@ const KA_SERVICES = [
   },
   {
     key: "materials",
+    group: "import",
+    tabLabel: "მასალები და იმპორტი",
     title: "მასალები და იმპორტი",
     body: "ჩვენს მიერ იმპორტირებული სამშენებლო მასალები ეხმარება მშენებლობას სხვადასხვა კომპლექსური პრობლემის მოგვარებაში და უზრუნველყოფს ხარისხის შენარჩუნებასა და ამაღლებას.",
     materials: ["სამშენებლო ქიმია", "ხმის იზოლაცია", "კარები და ხალიჩები"],
@@ -109,6 +117,8 @@ export default async function ServicesPage({ params }: { params: { locale: strin
     ? KA_SERVICES
     : (t.raw("items") as Array<{
         key: string;
+        group?: string;
+        tabLabel?: string;
         title: string;
         body: string;
         image?: string;

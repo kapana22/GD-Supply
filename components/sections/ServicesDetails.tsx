@@ -1,29 +1,35 @@
-﻿"use client";
+"use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
+type ServiceSubsection = {
+  title: string;
+  description?: string;
+  products?: string[];
+  image?: string;
+};
+
 type ServiceItem = {
   key: string;
+  group?: string;
+  tabLabel?: string;
   title: string;
   body: string;
   image?: string;
   materials?: string[];
   includes?: string[];
   variants?: string[];
-  subsections?: Array<{
-    title: string;
-    description?: string;
-    products?: string[];
-    image?: string;
-  }>;
+  subsections?: ServiceSubsection[];
 };
 
 type ProcessStep = { title: string; body: string };
 
 const SERVICE_IMAGE_MAP: Record<string, string> = {
+  roof_terrace: "/assets/services/flat-roof.jpg",
   flat_roof: "/assets/services/flat-roof.jpg",
   terrace: "/assets/services/terrace.jpg",
   foundation: "/assets/services/foundation.jpg",
@@ -48,6 +54,16 @@ export function ServicesDetails({
   steps: ProcessStep[];
 }) {
   const locale = useLocale();
+  const [activeKey, setActiveKey] = useState(items[0]?.key ?? "");
+
+  useEffect(() => {
+    if (!items.length) return;
+    if (!items.some((item) => item.key === activeKey)) {
+      setActiveKey(items[0].key);
+    }
+  }, [items, activeKey]);
+
+  const activeItem = items.find((item) => item.key === activeKey) ?? items[0] ?? null;
 
   return (
     <div className="relative">
@@ -65,216 +81,51 @@ export function ServicesDetails({
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-gd-panel p-5 shadow-elevated md:p-6">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-                  სერვისების ნავიგაცია
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-gd-muted">
-                  ქვემოთ ყველა სერვისი დალაგებულია დეტალური აღწერით, მასალებით და შესაბამისი ფოტოებით.
-                </p>
+          <div className="rounded-2xl border border-white/10 bg-gd-panel p-4 shadow-elevated md:p-6">
+            <div className="overflow-x-auto pb-1">
+              <div className="inline-flex min-w-full gap-2">
+                {items.map((item) => {
+                  const isActive = item.key === activeKey;
+
+                  return (
+                    <button
+                      key={item.key}
+                      type="button"
+                      onClick={() => setActiveKey(item.key)}
+                      className="relative shrink-0 overflow-hidden rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white/80 transition hover:border-primary-green/40 hover:text-white"
+                    >
+                      {isActive ? (
+                        <motion.span
+                          layoutId="services-tab-active"
+                          className="absolute inset-0 border border-primary-green/40 bg-primary-green/15"
+                          transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                        />
+                      ) : null}
+                      <span className={`relative whitespace-nowrap ${isActive ? "text-white" : ""}`}>
+                        {item.tabLabel ?? item.title}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-              <p className="text-sm font-semibold text-white/60">{items.length} სერვისი</p>
             </div>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-              {items.map((s, idx) => (
-                <motion.a
-                  key={s.key}
-                  href={`#${s.key}`}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.35, delay: idx * 0.04 }}
-                  className="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-0.5 hover:border-primary-green/40 hover:bg-primary-green/5"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-primary-green/30 bg-primary-green/10 text-xs font-extrabold text-white">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-snug text-white">{s.title}</p>
-                      <span className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-primary-green">
-                        ნახე დეტალები
-                        <span className="transition group-hover:translate-x-0.5">→</span>
-                      </span>
-                    </div>
-                  </div>
-                </motion.a>
-              ))}
+            <div className="mt-4 rounded-2xl border border-white/10 bg-gd-surface p-4 md:p-6">
+              <AnimatePresence mode="wait" initial={false}>
+                {activeItem ? (
+                  <motion.div
+                    key={activeItem.key}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <ServiceTabContent item={activeItem} locale={locale} />
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="pb-[60px] md:pb-[100px]">
-        <div className="mx-auto grid max-w-[1440px] gap-6 px-5 md:px-10">
-          {items.map((s, idx) => {
-            const leadImage = s.image ?? SERVICE_IMAGE_MAP[s.key] ?? "/assets/services/flat-roof.jpg";
-            const hasSubsections = Boolean(s.subsections && s.subsections.length > 0);
-            const showLeadImage = !(
-              hasSubsections &&
-              s.subsections?.some((sub) => sub.image && sub.image === leadImage)
-            );
-
-            return (
-              <motion.article
-                key={s.key}
-                id={s.key}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.35, delay: idx * 0.03 }}
-                className="scroll-mt-24 rounded-2xl border border-white/10 bg-gd-surface p-6 shadow-elevated md:p-8"
-              >
-                <div className={showLeadImage ? "grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start" : "grid gap-6"}>
-                  <div>
-                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div>
-                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-                        სერვისი
-                      </p>
-                      <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
-                        {s.title}
-                      </h3>
-                    </div>
-                    <Link
-                      href={`/${locale}/calculator`}
-                      className="inline-flex w-fit items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
-                    >
-                      ფასის კალკულატორი →
-                    </Link>
-                  </div>
-
-                  <p className="mt-5 text-base leading-relaxed text-white/85">{s.body}</p>
-
-                  {s.materials && s.materials.length > 0 ? (
-                    <div className="mt-6 border-t border-white/10 pt-5">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                        მასალები
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {s.materials.map((material) => (
-                          <span
-                            key={material}
-                            className="rounded-full border border-primary-green/25 bg-primary-green/10 px-3 py-1.5 text-xs font-semibold text-white/90"
-                          >
-                            {material}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-
-                  {s.includes && s.includes.length > 0 ? (
-                    <div className="mt-6 border-t border-white/10 pt-5">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                        რას მოიცავს
-                      </p>
-                      <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
-                        {s.includes.map((x) => (
-                          <li key={x} className="flex gap-2">
-                            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
-                            <span>{x}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-
-                  {s.variants && s.variants.length > 0 ? (
-                    <div className="mt-6 border-t border-white/10 pt-5">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                        სახეობები
-                      </p>
-                      <ul className="mt-4 grid gap-3 text-sm text-white/85 md:grid-cols-2">
-                        {s.variants.map((x) => (
-                          <li key={x} className="flex gap-2">
-                            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
-                            <span>{x}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : null}
-
-                  {s.subsections && s.subsections.length > 0 ? (
-                    <div className="mt-6 border-t border-white/10 pt-5">
-                      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
-                        დამატებითი მიმართულებები
-                      </p>
-                      <div className="mt-4 grid gap-4">
-                        {s.subsections.map((sub) => (
-                          <div
-                            key={`${s.key}-${sub.title}`}
-                            className="overflow-hidden rounded-xl border border-white/10 bg-white/5"
-                          >
-                            <div className="grid gap-0 md:grid-cols-[240px_1fr]">
-                              <div className="relative h-44 md:h-full">
-                                <Image
-                                  src={sub.image ?? s.image ?? SERVICE_IMAGE_MAP[s.key] ?? "/assets/hero-poster.jpg"}
-                                  alt={sub.title}
-                                  fill
-                                  className="object-cover"
-                                  sizes="(min-width: 768px) 240px, 100vw"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:bg-gradient-to-r md:from-black/20 md:to-transparent" />
-                              </div>
-
-                              <div className="p-5">
-                                <p className="text-base font-extrabold text-white">{sub.title}</p>
-                                {sub.description ? (
-                                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                                    {sub.description}
-                                  </p>
-                                ) : null}
-
-                                {sub.products && sub.products.length > 0 ? (
-                                  <div className="mt-4">
-                                    <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-primary-green">
-                                      პროდუქტები
-                                    </p>
-                                    <div className="mt-3 flex flex-wrap gap-2">
-                                      {sub.products.map((product) => (
-                                        <span
-                                          key={`${sub.title}-${product}`}
-                                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/85"
-                                        >
-                                          {product}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                ) : null}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                  </div>
-
-                  {showLeadImage ? (
-                    <div className="relative h-[220px] overflow-hidden rounded-xl border border-white/10 shadow-elevated md:h-[260px]">
-                      <Image
-                        src={leadImage}
-                        alt={`${s.title} ფოტო`}
-                        fill
-                        sizes="(min-width: 1024px) 40vw, 100vw"
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                      <p className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/35 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">
-                        {s.title}
-                      </p>
-                    </div>
-                  ) : null}
-                </div>
-              </motion.article>
-            );
-          })}
         </div>
       </section>
 
@@ -322,3 +173,183 @@ export function ServicesDetails({
   );
 }
 
+function ServiceTabContent({ item, locale }: { item: ServiceItem; locale: string }) {
+  const hasSubsections = Boolean(item.subsections && item.subsections.length > 0);
+
+  if (hasSubsections) {
+    return <CompositeServiceTab item={item} locale={locale} />;
+  }
+
+  return <SplitServiceTab item={item} locale={locale} />;
+}
+
+function SplitServiceTab({ item, locale }: { item: ServiceItem; locale: string }) {
+  const image = item.image ?? SERVICE_IMAGE_MAP[item.key] ?? "/assets/services/flat-roof.jpg";
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <div className="relative h-[240px] overflow-hidden rounded-xl border border-white/10 shadow-elevated md:h-[320px]">
+        <Image
+          src={image}
+          alt={item.title}
+          fill
+          className="object-cover"
+          sizes="(min-width: 1024px) 45vw, 100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+      </div>
+
+      <div className="flex h-full flex-col">
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
+            {item.tabLabel ?? "სერვისი"}
+          </p>
+          <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+            {item.title}
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-white/85">{item.body}</p>
+        </div>
+
+        <MaterialsBadges items={item.materials} className="mt-5" />
+        <ServiceDetailLists item={item} className="mt-5" />
+
+        <div className="mt-6">
+          <Link
+            href={`/${locale}/calculator`}
+            className="inline-flex items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+          >
+            ფასის კალკულატორი →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CompositeServiceTab({ item, locale }: { item: ServiceItem; locale: string }) {
+  const subsections = item.subsections ?? [];
+  const isMaterialsImport = item.key === "materials";
+  const showBadges = (item.materials?.length ?? 0) > 0 && !isMaterialsImport;
+  const columnsClass =
+    subsections.length >= 3 ? "lg:grid-cols-3" : subsections.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-1";
+
+  return (
+    <div className="grid gap-6">
+      <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
+          {item.tabLabel ?? "სერვისი"}
+        </p>
+        <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+          {item.title}
+        </h3>
+        <p className="mt-4 text-base leading-relaxed text-white/85">{item.body}</p>
+
+        {showBadges ? <MaterialsBadges items={item.materials} className="mt-5" /> : null}
+        <ServiceDetailLists item={item} className="mt-5" />
+      </div>
+
+      {subsections.length > 0 ? (
+        <div className={`grid gap-4 ${columnsClass}`}>
+          {subsections.map((sub) => (
+            <SubsectionCard key={`${item.key}-${sub.title}`} sub={sub} fallbackImage={item.image} />
+          ))}
+        </div>
+      ) : null}
+
+      <div>
+        <Link
+          href={`/${locale}/calculator`}
+          className="inline-flex items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+        >
+          ფასის კალკულატორი →
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function MaterialsBadges({ items, className = "" }: { items?: string[]; className?: string }) {
+  if (!items || items.length === 0) return null;
+
+  return (
+    <div className={className}>
+      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
+        მასალები
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {items.map((material) => (
+          <span
+            key={material}
+            className="rounded-full border border-primary-green/25 bg-primary-green/10 px-3 py-1.5 text-xs font-semibold text-white/90"
+          >
+            {material}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ServiceDetailLists({ item, className = "" }: { item: ServiceItem; className?: string }) {
+  const hasIncludes = Boolean(item.includes && item.includes.length > 0);
+  const hasVariants = Boolean(item.variants && item.variants.length > 0);
+
+  if (!hasIncludes && !hasVariants) return null;
+
+  return (
+    <div className={`grid gap-4 ${className}`}>
+      {hasIncludes ? <TextBulletList title="რას მოიცავს" items={item.includes ?? []} /> : null}
+      {hasVariants ? <TextBulletList title="სახეობები" items={item.variants ?? []} /> : null}
+    </div>
+  );
+}
+
+function TextBulletList({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/60">
+        {title}
+      </p>
+      <ul className="mt-3 grid gap-2 text-sm text-white/85">
+        {items.map((item) => (
+          <li key={item} className="flex gap-2">
+            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary-green" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SubsectionCard({
+  sub,
+  fallbackImage,
+}: {
+  sub: ServiceSubsection;
+  fallbackImage?: string;
+}) {
+  const image = sub.image ?? fallbackImage ?? "/assets/hero-poster.jpg";
+  const body = sub.description ?? (sub.products && sub.products.length > 0 ? sub.products.join(", ") : "");
+
+  return (
+    <article className="overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-elevated">
+      <div className="relative h-48">
+        <Image
+          src={image}
+          alt={sub.title}
+          fill
+          className="object-cover"
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      </div>
+      <div className="p-5">
+        <h4 className="text-lg font-extrabold text-white">{sub.title}</h4>
+        {body ? (
+          <p className="mt-3 text-sm leading-relaxed text-white/75">{body}</p>
+        ) : null}
+      </div>
+    </article>
+  );
+}
