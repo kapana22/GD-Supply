@@ -79,7 +79,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
     <main className="relative">
       <Hero
         title={isKa ? "წყალი შევაჩერეთ. სამუდამოდ." : tHero("title")}
-        subtitle={isKa ? "GD Supply — საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია. სახურავიდან საძირკვლამდე." : tHero("subtitle")}
+        subtitle={isKa ? "GD Supply — საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია. ფუნდამენტიდან სახურავამდე." : tHero("subtitle")}
         ctaPrimary={isKa ? "დაგვიკავშირდით" : tHero("cta_estimate")}
         ctaSecondary={isKa ? "ჩვენი პროექტები" : tHero("cta_projects")}
         stats={heroStats}

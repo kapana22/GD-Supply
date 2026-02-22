@@ -7,8 +7,8 @@ import {
   EnvelopeSimple,
   FacebookLogo,
   LinkedinLogo,
-  MapPin,
   Phone,
+  WhatsappLogo,
 } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 
@@ -27,8 +27,9 @@ export function Footer() {
   const tServices = useTranslations("services");
 
   const phone = tContact("alt.phone");
+  const phoneSecondary = tContact("alt.phone_secondary");
   const email = tContact("alt.email");
-  const location = tContact("alt.location");
+  const whatsapp = tContact("alt.whatsapp");
 
   const services = (tServices.raw("items") as ServiceItem[]).map((service) => ({
     label: service.title,
@@ -50,14 +51,19 @@ export function Footer() {
       href: `tel:${phone.replaceAll(" ", "")}`,
     },
     {
+      icon: <Phone size={16} weight="duotone" aria-hidden="true" />,
+      text: phoneSecondary,
+      href: `tel:${phoneSecondary.replaceAll(" ", "")}`,
+    },
+    {
+      icon: <WhatsappLogo size={16} weight="fill" aria-hidden="true" />,
+      text: whatsapp,
+      href: "https://wa.me/995555656503?text=გამარჯობა%20GD%20Supply",
+    },
+    {
       icon: <EnvelopeSimple size={16} weight="duotone" aria-hidden="true" />,
       text: email,
       href: `mailto:${email}`,
-    },
-    {
-      icon: <MapPin size={16} weight="duotone" aria-hidden="true" />,
-      text: location,
-      href: "#",
     },
   ];
 

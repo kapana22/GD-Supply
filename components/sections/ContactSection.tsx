@@ -59,27 +59,37 @@ export function ContactSection() {
   }
 
   const phone = t("alt.phone");
+  const phoneSecondary = t("alt.phone_secondary");
   const email = t("alt.email");
   const location = t("alt.location");
+  const whatsappNumber = t("alt.whatsapp");
   const hours = t.raw("hours") as string[];
   const submitLabel = t("fields.submit");
+  const waPrimaryHref = "https://wa.me/995599705697?text=გამარჯობა GD Supply";
+  const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
 
   return (
-    <section id="contact" className="bg-gd-surface py-[60px] md:py-[100px]">
+    <section id="contact" className="bg-gd-surface py-[52px] md:py-[84px]">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-        <div className="grid items-stretch gap-8 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-12">
-          <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-primary-navy p-8 shadow-elevated md:p-10">
+        <div className="grid items-stretch gap-6 lg:grid-cols-[470px_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[500px_minmax(0,1fr)] xl:gap-10">
+          <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-primary-navy p-7 shadow-elevated md:p-8">
             <h2 className="tt-heading-lg text-3xl font-extrabold text-white md:text-4xl">
               {t("title")}
             </h2>
             <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
 
-            <div className="mt-8 divide-y divide-white/10">
+            <div className="mt-6 divide-y divide-white/10">
               <ContactItem
                 icon={<PhoneIcon />}
                 label="ტელეფონი"
                 value={phone}
                 href={`tel:${phone.replaceAll(" ", "")}`}
+              />
+              <ContactItem
+                icon={<PhoneIcon />}
+                label="დამატებითი ნომერი"
+                value={phoneSecondary}
+                href={`tel:${phoneSecondary.replaceAll(" ", "")}`}
               />
               <ContactItem
                 icon={<MailIcon />}
@@ -88,15 +98,15 @@ export function ContactSection() {
                 href={`mailto:${email}`}
               />
               <ContactItem icon={<PinIcon />} label="ლოკაცია" value={location} />
-              <div className="flex gap-4 py-5">
-                <div className="grid h-11 w-11 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
+              <div className="flex gap-4 py-4">
+                <div className="grid h-10 w-10 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
                   <ClockIcon />
                 </div>
                 <div className="min-w-0">
-                  <span className="block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                    სამუშაო საათები
-                  </span>
-                  <div className="mt-1 space-y-1 text-sm font-semibold text-white/90">
+                    <span className="block text-[10px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                      სამუშაო საათები
+                    </span>
+                  <div className="mt-1 space-y-0.5 text-sm font-semibold text-white/90">
                     {hours.map((h) => (
                       <div key={h} className="text-white/80">
                         {h}
@@ -107,25 +117,54 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="mt-auto pt-8">
-              <a
-                href="https://wa.me/995599705697?text=გამარჯობა GD Supply"
-                target="_blank"
-                rel="noreferrer"
-                className="tt-ui flex w-full items-center justify-center gap-2 rounded-lg border border-primary-green px-4 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
-                style={{ backgroundColor: "#176D48" }}
-              >
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
-                  <WhatsAppIcon />
+            <div className="mt-auto pt-6">
+              <div>
+                <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                  WhatsApp
                 </span>
-                WhatsApp
-              </a>
+                <div className="mt-2.5 grid gap-2.5">
+                  <a
+                    href={waPrimaryHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tt-ui flex items-center justify-between gap-3 rounded-lg border border-primary-green px-3 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
+                    style={{ backgroundColor: "#176D48" }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
+                        <WhatsAppIcon />
+                      </span>
+                      <span>WhatsApp</span>
+                    </span>
+                    <span className="font-sans text-[13px] font-bold tabular-nums whitespace-nowrap">
+                      {phone}
+                    </span>
+                  </a>
+                  <a
+                    href={waSecondaryHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tt-ui flex items-center justify-between gap-3 rounded-lg border border-primary-green px-3 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
+                    style={{ backgroundColor: "#176D48" }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
+                        <WhatsAppIcon />
+                      </span>
+                      <span>WhatsApp</span>
+                    </span>
+                    <span className="font-sans text-[13px] font-bold tabular-nums whitespace-nowrap">
+                      {whatsappNumber}
+                    </span>
+                  </a>
+                </div>
+              </div>
 
-              <div className="mt-8">
+              <div className="mt-5">
                 <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   სოციალური
                 </span>
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div className="mt-2.5 grid gap-2.5 sm:grid-cols-2">
                   <a
                     href="https://facebook.com/GDSupply1"
                     className="tt-ui inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/10"
@@ -149,13 +188,13 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="flex h-full flex-col rounded-[20px] border border-primary-green/20 bg-gd-result p-8 shadow-elevated md:p-10">
+          <div className="flex h-full flex-col rounded-[20px] border border-primary-green/20 bg-gd-result p-7 shadow-elevated md:p-8">
             <h3 className="tt-heading-md text-xl font-extrabold text-white md:text-2xl">
               გამოგვიგზავნე განცხადება
             </h3>
 
             {state === "sent" ? (
-              <div className="mt-6 grid min-h-[460px] flex-1 place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/10 p-6 text-center">
+              <div className="mt-5 grid min-h-[430px] flex-1 place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/10 p-6 text-center">
                 <div>
                   <p className="tt-heading-md text-xl font-extrabold text-primary-green md:text-2xl">
                     ✓ თქვენი განცხადება მიღებულია!
@@ -166,9 +205,9 @@ export function ContactSection() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-6 flex flex-1 flex-col">
-                <div className="grid gap-4">
-                  <div className="grid gap-4 md:grid-cols-2">
+              <form onSubmit={handleSubmit} className="mt-5 flex flex-1 flex-col">
+                <div className="grid gap-3">
+                  <div className="grid gap-3 md:grid-cols-2">
                     <input
                       name="name"
                       required
@@ -213,7 +252,7 @@ export function ContactSection() {
                   />
                 </div>
 
-                <div className="mt-4 flex-1">
+                <div className="mt-3 flex-1">
                   <textarea
                     name="message"
                     rows={5}
@@ -222,7 +261,7 @@ export function ContactSection() {
                   />
                 </div>
 
-                <div className="mt-auto pt-5">
+                <div className="mt-auto pt-4">
                   {error ? (
                     <p className="mb-3 text-sm text-red-400" aria-live="polite">
                       {error}
@@ -258,8 +297,8 @@ function ContactItem({
   href?: string;
 }) {
   const content = (
-    <div className="flex gap-4 py-5">
-      <div className="grid h-11 w-11 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
+    <div className="flex gap-3.5 py-3.5">
+      <div className="grid h-10 w-10 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
         {icon}
       </div>
       <div className="min-w-0">

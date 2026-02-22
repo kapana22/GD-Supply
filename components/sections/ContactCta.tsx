@@ -22,7 +22,7 @@ export function ContactCta({
   hours: string[];
 }) {
   const locale = useLocale();
-  const waHref = "https://wa.me/995599705697?text=გამარჯობა%20GD%20Supply";
+  const waHref = "https://wa.me/995555656503?text=გამარჯობა%20GD%20Supply";
 
   return (
     <section className="rounded-3xl border border-white/10 bg-gd-surface/55 px-6 py-10 shadow-2xl shadow-black/40 backdrop-blur md:px-10">
