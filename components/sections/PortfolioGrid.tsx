@@ -13,15 +13,23 @@ type Project = {
   tags: string[];
 };
 
+type EnrichedProject = PortfolioProject & { tags: string[] };
+
 const PROJECT_IMAGES = [
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=80",
-  "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=1400&q=80",
+  "https://static.wixstatic.com/media/d7b296_9d374e9e02774693981e6baa862508e2~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_6e9ece30eebe4e72854dc414fa71b1d7~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_d98ff4d2fe044b66b7864bb2af75a9fd~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_a79d086fe005479e940ff5bbfbad984c~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_af418acb60e94ce6825a0a9764f9bbc6~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_7271b151b30e4c6db5ec5b8d03dd4478~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_011d0f6ecd0e4600b4ef423ff7e479ac~mv2.webp",
+  "https://static.wixstatic.com/media/d7b296_30ec8e14b0484984b8a4ebe8c7604f1d~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_d6ccb14d9d474e72bef71b1ca5495ca8~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_769e2857aa374c5a817a43f8744d8be1~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_42b9b6ce57dd472bb6f7c28087fb5291~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_516b68d958234423810c91f489d54895~mv2.jpg",
+  "https://static.wixstatic.com/media/d7b296_1eac59bc825f453fa619d31547a4b6e6~mv2.jpg",
 ] as const;
 
 export function PortfolioGrid({
@@ -37,7 +45,7 @@ export function PortfolioGrid({
 }) {
   const [filter, setFilter] = useState(filters[0] ?? "ყველა");
 
-  const enriched = useMemo<PortfolioProject[]>(
+  const enriched = useMemo<EnrichedProject[]>(
     () =>
       projects.map((project, idx) => ({
         title: project.name,
@@ -45,17 +53,15 @@ export function PortfolioGrid({
         area: project.area || "—",
         category: getPrimaryCategory(project.tags),
         image: PROJECT_IMAGES[idx % PROJECT_IMAGES.length],
+        tags: project.tags ?? [],
       })),
     [projects],
   );
 
   const visible = useMemo(() => {
     if (!filter || filter === "ყველა") return enriched;
-    return enriched.filter((project) => {
-      const source = projects.find((p) => p.name === project.title);
-      return source?.tags?.includes(filter);
-    });
-  }, [enriched, filter, projects]);
+    return enriched.filter((project) => project.tags.includes(filter));
+  }, [enriched, filter]);
 
   return (
     <section id="portfolio" className="relative py-[60px] md:py-[100px]">

@@ -191,7 +191,7 @@ function FeaturedCard({ post, locale }: { post: BlogPostMeta; locale: string }) 
         </div>
 
         <div className="flex flex-col justify-center p-8 lg:p-10">
-          <div className="mb-4 flex items-center gap-3">
+          <div className="mb-4">
             <span
               className="rounded-full px-3 py-1 text-xs font-semibold text-[#176D48]"
               style={{
@@ -201,10 +201,6 @@ function FeaturedCard({ post, locale }: { post: BlogPostMeta; locale: string }) 
             >
               {post.category}
             </span>
-            <span className="flex items-center gap-1.5 text-xs text-white/30">
-              <ClockIcon className="h-3 w-3" />
-              {post.readTime}
-            </span>
           </div>
 
           <h2 className="mb-4 line-clamp-2 text-2xl font-black leading-snug text-white transition-colors duration-300 group-hover:text-[#176D48] xl:text-3xl">
@@ -213,14 +209,7 @@ function FeaturedCard({ post, locale }: { post: BlogPostMeta; locale: string }) 
 
           <p className="mb-6 line-clamp-3 text-base leading-relaxed text-white/50">{post.excerpt}</p>
 
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-white/30">
-              {new Date(post.date).toLocaleDateString("ka-GE", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
+          <div className="flex items-center">
             <span className="flex items-center gap-2 text-sm font-semibold text-[#176D48] transition-all duration-300 group-hover:gap-3">
               სრულად წაკითხვა
               <ArrowIcon className="h-4 w-4" />
@@ -256,21 +245,6 @@ function PostCard({ post, locale }: { post: BlogPostMeta; locale: string }) {
         </div>
 
         <div className="flex flex-1 flex-col p-6">
-          <div className="mb-3 flex items-center gap-3 text-xs text-white/30">
-            <span>
-              {new Date(post.date).toLocaleDateString("ka-GE", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1">
-              <ClockIcon className="h-3 w-3" />
-              {post.readTime}
-            </span>
-          </div>
-
           <h3 className="mb-3 line-clamp-2 text-lg font-bold leading-snug text-white transition-colors duration-300 group-hover:text-[#176D48]">
             {post.title}
           </h3>
@@ -293,15 +267,6 @@ function ArrowIcon({ className }: { className: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={className}>
       <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  );
-}
-
-function ClockIcon({ className }: { className: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
     </svg>
   );
 }

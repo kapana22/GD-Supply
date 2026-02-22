@@ -65,24 +65,13 @@ export default function PostPageClient({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-5 flex items-center gap-3"
+            className="mb-5"
           >
             <span
               className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#176D48]"
               style={{ background: "rgba(23,109,72,0.15)", border: "1px solid rgba(23,109,72,0.3)" }}
             >
               {post.category}
-            </span>
-            <span className="flex items-center gap-1.5 text-xs text-white/35">
-              <ClockIcon className="h-3 w-3" />
-              {post.readTime}
-            </span>
-            <span className="text-xs text-white/35">
-              {new Date(post.date).toLocaleDateString("ka-GE", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
             </span>
           </motion.div>
 
@@ -182,21 +171,11 @@ function RelatedCard({ post, locale }: { post: BlogPostMeta; locale: string }) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#1E2140]/75 to-transparent" />
         </div>
         <div className="flex flex-1 flex-col p-5">
-          <p className="text-xs text-white/40">{post.readTime}</p>
-          <h3 className="mt-2 line-clamp-2 text-lg font-bold text-white transition group-hover:text-[#176D48]">{post.title}</h3>
+          <h3 className="line-clamp-2 text-lg font-bold text-white transition group-hover:text-[#176D48]">{post.title}</h3>
           <p className="mt-2 line-clamp-3 text-sm text-white/55">{post.excerpt}</p>
           <p className="mt-4 text-sm font-semibold text-[#176D48]">წაკითხვა →</p>
         </div>
       </article>
     </Link>
-  );
-}
-
-function ClockIcon({ className }: { className: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
   );
 }

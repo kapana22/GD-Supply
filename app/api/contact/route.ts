@@ -1,13 +1,20 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null;
+const CONTACT_EMAIL = "info@gdsupply.ge";
+const RESEND_FROM = process.env.RESEND_FROM_EMAIL || "GD Supply <onboarding@resend.dev>";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
-  const { name, email, phone, service, area, message } = body || {};
+
+  const name = typeof body?.name === "string" ? body.name.trim() : "";
+  const phone = typeof body?.phone === "string" ? body.phone.trim() : "";
+  const email = typeof body?.email === "string" ? body.email.trim() : "";
+  const service = typeof body?.service === "string" ? body.service.trim() : "";
+  const area = typeof body?.area === "string" ? body.area.trim() : "";
+  const message = typeof body?.message === "string" ? body.message.trim() : "";
 
   if (!name || !phone || !service || !message) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
@@ -22,15 +29,15 @@ export async function POST(request: Request) {
 
   try {
     await resend.emails.send({
-      from: "GD Supply <info@gdsupply.ge>",
-      to: ["info@gdsupply.ge"],
+      from: RESEND_FROM,
+      to: [CONTACT_EMAIL],
       subject: `GD Supply - ახალი მოთხოვნა: ${name}`,
       ...(email ? { replyTo: email } : {}),
       text: `სახელი და გვარი: ${name}
 ტელეფონი: ${phone}
 ელ-ფოსტა: ${email || "-"}
-სერვისი: ${service}
-ფართობი: ${area || "-"}
+სერვისის სახეობა: ${service}
+ობიექტის ფართობი: ${area || "-"}
 
 შეტყობინება:
 ${message}`,
@@ -38,7 +45,7 @@ ${message}`,
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error(error);
+    console.error("Contact form email send failed", error);
     return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
   }
 }

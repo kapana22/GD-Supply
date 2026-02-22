@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 type FormState = "idle" | "loading" | "sent" | "error";
+const GENERIC_ERROR_MESSAGE = "შეცდომა, სცადე თავიდან";
 
 export function ContactSection() {
   const t = useTranslations("contact");
@@ -27,18 +28,23 @@ export function ContactSection() {
     setState("loading");
     setError("");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    if (res.ok) {
-      setState("sent");
-      form.reset();
-    } else {
-      const body = await res.json().catch(() => ({}));
-      setError(body?.error || "შეტყობინება ვერ გაიგზავნა");
+      if (res.ok) {
+        setState("sent");
+        form.reset();
+        return;
+      }
+
+      setError(GENERIC_ERROR_MESSAGE);
+      setState("error");
+    } catch {
+      setError(GENERIC_ERROR_MESSAGE);
       setState("error");
     }
   }
@@ -47,6 +53,7 @@ export function ContactSection() {
   const email = t("alt.email");
   const location = t("alt.location");
   const hours = t.raw("hours") as string[];
+  const submitLabel = t("fields.submit");
 
   return (
     <section id="contact" className="bg-gd-surface py-[60px] md:py-[100px]">
@@ -92,6 +99,18 @@ export function ContactSection() {
             </div>
 
             <div className="mt-8">
+              <a
+                href="https://wa.me/995599705697?text=გამარჯობა GD Supply"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-primary-green px-4 py-2 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
+                style={{ backgroundColor: "#176D48" }}
+              >
+                <WhatsAppIcon /> WhatsApp
+              </a>
+            </div>
+
+            <div className="mt-8">
               <span className="block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
                 სოციალური
               </span>
@@ -117,75 +136,88 @@ export function ContactSection() {
               გამოგვიგზავნე განცხადება
             </h3>
 
-            <form onSubmit={handleSubmit} className="mt-6">
-              <div className="grid gap-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    name="name"
-                    required
-                    placeholder={t("fields.name")}
-                    className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
-                  />
-                  <input
-                    name="phone"
-                    required
-                    placeholder={t("fields.phone")}
-                    className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
-                  />
+            {state === "sent" ? (
+              <div className="mt-6 grid min-h-[460px] place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/10 p-6 text-center">
+                <div>
+                  <p className="text-xl font-extrabold text-primary-green md:text-2xl">
+                    ✓ თქვენი განცხადება მიღებულია!
+                  </p>
+                  <p className="mt-3 text-base font-semibold text-primary-green/90">
+                    ჩვენი სპეციალისტი 2 საათის განმავლობაში დაგიკავშირდებათ.
+                  </p>
                 </div>
-
-                <input
-                  name="email"
-                  type="email"
-                  placeholder={t("fields.email")}
-                  className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
-                />
-
-                <select
-                  name="service"
-                  required
-                  defaultValue=""
-                  className="gd-select w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] font-semibold text-white outline-none transition focus:border-primary-green focus:bg-primary-green/5"
-                >
-                  <option value="" disabled>
-                    {t("fields.service")}
-                  </option>
-                  {(tCalc.raw("service_options") as string[]).map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-
-                <input
-                  name="area"
-                  placeholder={t("fields.area")}
-                  className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
-                />
-
-                <textarea
-                  name="message"
-                  rows={4}
-                  required
-                  placeholder={t("fields.message")}
-                  className="w-full resize-none rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
-                />
-
-                {error ? <p className="text-sm text-red-400">{error}</p> : null}
-
-                <button
-                  type="submit"
-                  disabled={state === "loading"}
-                  className="btn-primary w-full rounded-[10px] px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
-                >
-                  {state === "loading"
-                    ? "იგზავნება..."
-                    : state === "sent"
-                      ? "გაიგზავნა ✓"
-                      : t("fields.submit")}
-                </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="mt-6">
+                <div className="grid gap-4">
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <input
+                      name="name"
+                      required
+                      placeholder={t("fields.name")}
+                      className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                    />
+                    <input
+                      name="phone"
+                      required
+                      placeholder={t("fields.phone")}
+                      className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                    />
+                  </div>
+
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder={t("fields.email")}
+                    className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                  />
+
+                  <select
+                    name="service"
+                    required
+                    defaultValue=""
+                    className="gd-select w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] font-semibold text-white outline-none transition focus:border-primary-green focus:bg-primary-green/5"
+                  >
+                    <option value="" disabled>
+                      {t("fields.service")}
+                    </option>
+                    {(tCalc.raw("service_options") as string[]).map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+
+                  <input
+                    name="area"
+                    placeholder={t("fields.area")}
+                    className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                  />
+
+                  <textarea
+                    name="message"
+                    rows={4}
+                    required
+                    placeholder={t("fields.message")}
+                    className="w-full resize-none rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                  />
+
+                  {error ? (
+                    <p className="text-sm text-red-400" aria-live="polite">
+                      {error}
+                    </p>
+                  ) : null}
+
+                  <button
+                    type="submit"
+                    disabled={state === "loading"}
+                    className="btn-primary w-full rounded-[10px] px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
+                  >
+                    {state === "loading" ? "იგზავნება..." : submitLabel}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>
@@ -289,6 +321,27 @@ function ClockIcon() {
       />
       <path
         d="M12 6v6l4 2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M20 12a8 8 0 0 1-11.8 7l-3.2 1 1-3.1A8 8 0 1 1 20 12Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.4 9.2c.2-.3.4-.3.6-.3h.4c.1 0 .3.1.3.2l.7 1.7c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.2 0 .3.3.6.8 1.1 1.4 1.5.1.1.2.1.3 0l.6-.4c.1-.1.3-.1.5 0l1.6.8c.2.1.2.2.2.3v.4c0 .2 0 .4-.3.6-.4.3-.9.4-1.4.3-1.2-.2-2.4-.9-3.4-1.9s-1.6-2.1-1.9-3.4c-.1-.5 0-1 .3-1.4Z"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
