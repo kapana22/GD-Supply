@@ -2,6 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-family: var(--font-contractica), sans-serif;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    font-synthesis: none;
+    text-wrap: balance;
+  }
+
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .btn-primary,
+  a[class*="btn-"] {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    font-synthesis: none;
+  }
+}
+
+@layer components {
+  .tt-heading-xl {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    font-weight: 900;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+  }
+
+  .tt-heading-lg {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    font-weight: 900;
+    text-wrap: balance;
+    letter-spacing: -0.008em;
+    line-height: 0.96;
+  }
+
+  .tt-heading-md {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    font-weight: 700;
+    text-wrap: balance;
+    letter-spacing: -0.004em;
+    line-height: 1;
+  }
+
+  .tt-detail {
+    font-family: var(--font-contractica), sans-serif;
+    letter-spacing: 0;
+    line-height: 1.52;
+  }
+
+  .tt-ui {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    letter-spacing: 0;
+    line-height: 1;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    font-synthesis: none;
+  }
+
+  .tt-label {
+    font-family: var(--font-contractica-caps), var(--font-contractica), sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    font-synthesis: none;
+  }
+}
+
 :root {
   color-scheme: dark;
 }
@@ -139,7 +225,7 @@ select.gd-select option:disabled {
   opacity: 0;
   transform: scale(1.02);
   filter: blur(8px);
-  background: #0f1124;
+  background: transparent;
   will-change: transform, opacity, filter;
   transition:
     opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
@@ -158,7 +244,7 @@ select.gd-select option:disabled {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(0.88) contrast(1.05) brightness(0.55);
+  filter: saturate(0.92) contrast(1.04) brightness(0.64);
   transform: scale(1.03);
 }
 
@@ -187,15 +273,15 @@ select.gd-select option:disabled {
 .mobile-call-bar {
   display: none;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
   z-index: 9999;
-  height: 64px;
-  background: #176d48;
+  background: transparent;
   padding: 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
-  transform: translateY(100%);
+  box-shadow: none;
+  pointer-events: none;
+  transform: translateY(calc(100% + 24px));
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -212,18 +298,47 @@ select.gd-select option:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 16px 24px;
+  gap: 10px;
+  width: min(100%, 560px);
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 14px 18px;
   color: #ffffff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(32, 147, 99, 0.98), rgba(23, 109, 72, 0.98));
+  box-shadow:
+    0 14px 36px rgba(23, 109, 72, 0.38),
+    0 10px 26px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
 }
 
 .mobile-call-btn svg {
   flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.1;
+}
+
+.mobile-call-btn:hover,
+.mobile-call-btn:active {
+  filter: brightness(1.04);
+}
+
+.mobile-call-btn:active {
+  transform: translateY(1px);
 }
 
 @media (max-width: 768px) {
@@ -236,7 +351,7 @@ select.gd-select option:disabled {
   }
 
   body {
-    padding-bottom: 60px;
+    padding-bottom: 84px;
   }
 }
 
@@ -253,23 +368,38 @@ select.gd-select option:disabled {
 .footer-contact-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.2s;
+  line-height: 1.2;
+  transition: color 0.2s ease, transform 0.2s ease;
   margin-bottom: 10px;
 }
 
 .footer-contact-item:hover {
   color: #ffffff;
+  transform: translateX(2px);
 }
 
 .footer-icon {
-  color: rgba(255, 255, 255, 0.4);
-  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.68);
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-contact-item:hover .footer-icon {
+  color: #ffffff;
+  border-color: rgba(23, 109, 72, 0.45);
+  background: rgba(23, 109, 72, 0.12);
 }
 
 .fade-up {

@@ -1,0 +1,82 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import type { ServicePageData } from "@/lib/servicesCatalog";
+
+export function ServicesHubPage({
+  locale,
+  services,
+}: {
+  locale: string;
+  services: ServicePageData[];
+}) {
+  return (
+    <section className="bg-primary-navy py-[56px] text-white md:py-[88px]">
+      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+        <div className="mb-10 md:mb-14">
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+            სერვისები
+          </p>
+          <h1 className="tt-heading-xl mt-3 max-w-[12ch] text-3xl font-black md:text-5xl">
+            რას ვაკეთებთ
+          </h1>
+          <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
+            GD Supply — 2014 წლიდან, 500+ პროექტი, 3 წლიანი გარანტია
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.35, delay: index * 0.05 }}
+            >
+              <Link
+                href={`/${locale}/services/${service.slug}`}
+                className="group block overflow-hidden rounded-2xl border border-white/10 bg-gd-panel shadow-elevated transition duration-300 hover:border-primary-green/70"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={service.cardImage}
+                    alt={service.cardTitle}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-[1.05]"
+                    sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/90 via-primary-navy/20 to-transparent" />
+                </div>
+
+                <div className="p-5 md:p-6">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-primary-green/30 bg-primary-green/10 px-2 text-xs font-extrabold tracking-[0.08em] text-primary-green">
+                      {String(service.order).padStart(2, "0")}
+                    </span>
+                    <span className="tt-label text-xs font-semibold uppercase tracking-[0.06em] text-white/45">
+                      სერვისი
+                    </span>
+                  </div>
+
+                  <h2 className="tt-heading-md text-xl font-extrabold text-white">
+                    {service.cardTitle}
+                  </h2>
+                  <p className="tt-detail mt-3 line-clamp-2 text-sm text-gd-muted">
+                    {service.cardSummary}
+                  </p>
+
+                  <span className="tt-ui mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-green transition group-hover:gap-3">
+                    დეტალურად →
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

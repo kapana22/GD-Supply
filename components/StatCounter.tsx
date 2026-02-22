@@ -39,11 +39,11 @@ export default function StatCounter({
 
   return (
     <div ref={ref} className="flex flex-col items-center">
-      <span className="font-sans text-4xl font-black leading-none text-[#176D48] tabular-nums xl:text-5xl">
+      <span className="font-sans text-4xl font-black leading-none tracking-tight text-[#1CB879] drop-shadow-[0_4px_18px_rgba(23,109,72,0.35)] tabular-nums xl:text-5xl">
         {count}
         {suffix}
       </span>
-      <span className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-white/40">
+      <span className="tt-label mt-2 text-xs font-semibold uppercase tracking-[0.05em] text-white/60">
         {label}
       </span>
     </div>

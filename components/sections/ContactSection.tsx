@@ -1,6 +1,15 @@
 ﻿"use client";
 
 import { useState } from "react";
+import {
+  Clock,
+  EnvelopeSimple,
+  FacebookLogo,
+  LinkedinLogo,
+  MapPin,
+  Phone,
+  WhatsappLogo,
+} from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 
 type FormState = "idle" | "loading" | "sent" | "error";
@@ -58,12 +67,12 @@ export function ContactSection() {
   return (
     <section id="contact" className="bg-gd-surface py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-        <div className="grid gap-10 lg:grid-cols-[420px_1fr] lg:gap-14">
-          <div className="rounded-[20px] border border-white/10 bg-primary-navy p-8 shadow-elevated md:p-10">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+        <div className="grid items-stretch gap-8 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-12">
+          <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-primary-navy p-8 shadow-elevated md:p-10">
+            <h2 className="tt-heading-lg text-3xl font-extrabold text-white md:text-4xl">
               {t("title")}
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
+            <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
 
             <div className="mt-8 divide-y divide-white/10">
               <ContactItem
@@ -98,57 +107,66 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-auto pt-8">
               <a
                 href="https://wa.me/995599705697?text=გამარჯობა GD Supply"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-primary-green px-4 py-2 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
+                className="tt-ui flex w-full items-center justify-center gap-2 rounded-lg border border-primary-green px-4 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/90"
                 style={{ backgroundColor: "#176D48" }}
               >
-                <WhatsAppIcon /> WhatsApp
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
+                  <WhatsAppIcon />
+                </span>
+                WhatsApp
               </a>
-            </div>
 
-            <div className="mt-8">
-              <span className="block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                სოციალური
-              </span>
-              <div className="mt-3 flex flex-wrap gap-3">
-                <a
-                  href="https://facebook.com/GDSupply1"
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/10"
-                >
-                  <FacebookIcon /> Facebook
-                </a>
-                <a
-                  href="https://linkedin.com/company/gd-supply"
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/10"
-                >
-                  <LinkedInIcon /> LinkedIn
-                </a>
+              <div className="mt-8">
+                <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                  სოციალური
+                </span>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  <a
+                    href="https://facebook.com/GDSupply1"
+                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/10"
+                  >
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-white/5 ring-1 ring-white/10">
+                      <FacebookIcon />
+                    </span>
+                    Facebook
+                  </a>
+                  <a
+                    href="https://linkedin.com/company/gd-supply"
+                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-primary-green hover:bg-primary-green/10"
+                  >
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-white/5 ring-1 ring-white/10">
+                      <LinkedInIcon />
+                    </span>
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[20px] border border-primary-green/20 bg-gd-result p-8 shadow-elevated md:p-10">
-            <h3 className="text-xl font-extrabold text-white md:text-2xl">
+          <div className="flex h-full flex-col rounded-[20px] border border-primary-green/20 bg-gd-result p-8 shadow-elevated md:p-10">
+            <h3 className="tt-heading-md text-xl font-extrabold text-white md:text-2xl">
               გამოგვიგზავნე განცხადება
             </h3>
 
             {state === "sent" ? (
-              <div className="mt-6 grid min-h-[460px] place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/10 p-6 text-center">
+              <div className="mt-6 grid min-h-[460px] flex-1 place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/10 p-6 text-center">
                 <div>
-                  <p className="text-xl font-extrabold text-primary-green md:text-2xl">
+                  <p className="tt-heading-md text-xl font-extrabold text-primary-green md:text-2xl">
                     ✓ თქვენი განცხადება მიღებულია!
                   </p>
-                  <p className="mt-3 text-base font-semibold text-primary-green/90">
+                  <p className="tt-detail mt-3 text-base font-semibold text-primary-green/90">
                     ჩვენი სპეციალისტი 2 საათის განმავლობაში დაგიკავშირდებათ.
                   </p>
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-6">
+              <form onSubmit={handleSubmit} className="mt-6 flex flex-1 flex-col">
                 <div className="grid gap-4">
                   <div className="grid gap-4 md:grid-cols-2">
                     <input
@@ -193,17 +211,20 @@ export function ContactSection() {
                     placeholder={t("fields.area")}
                     className="w-full rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
                   />
+                </div>
 
+                <div className="mt-4 flex-1">
                   <textarea
                     name="message"
-                    rows={4}
-                    required
+                    rows={5}
                     placeholder={t("fields.message")}
-                    className="w-full resize-none rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5"
+                    className="h-full min-h-[140px] w-full resize-none rounded-[10px] border border-white/10 bg-white/5 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/35 transition focus:border-primary-green focus:bg-primary-green/5 md:min-h-[180px]"
                   />
+                </div>
 
+                <div className="mt-auto pt-5">
                   {error ? (
-                    <p className="text-sm text-red-400" aria-live="polite">
+                    <p className="mb-3 text-sm text-red-400" aria-live="polite">
                       {error}
                     </p>
                   ) : null}
@@ -211,7 +232,7 @@ export function ContactSection() {
                   <button
                     type="submit"
                     disabled={state === "loading"}
-                    className="btn-primary w-full rounded-[10px] px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
+                    className="btn-primary tt-ui w-full rounded-[10px] px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
                   >
                     {state === "loading" ? "იგზავნება..." : submitLabel}
                   </button>
@@ -260,132 +281,30 @@ function ContactItem({
 }
 
 function PhoneIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 11 19.79 19.79 0 0 1 .12 2.38 2 2 0 0 1 2.11 0h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 14.92Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Phone size={20} weight="duotone" aria-hidden="true" />;
 }
 
 function MailIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4 4h16v16H4V4Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4 7l8 6 8-6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <EnvelopeSimple size={20} weight="duotone" aria-hidden="true" />;
 }
 
 function PinIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
+  return <MapPin size={20} weight="duotone" aria-hidden="true" />;
 }
 
 function ClockIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M12 6v6l4 2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Clock size={20} weight="duotone" aria-hidden="true" />;
 }
 
 function WhatsAppIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M20 12a8 8 0 0 1-11.8 7l-3.2 1 1-3.1A8 8 0 1 1 20 12Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9.4 9.2c.2-.3.4-.3.6-.3h.4c.1 0 .3.1.3.2l.7 1.7c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.2 0 .3.3.6.8 1.1 1.4 1.5.1.1.2.1.3 0l.6-.4c.1-.1.3-.1.5 0l1.6.8c.2.1.2.2.2.3v.4c0 .2 0 .4-.3.6-.4.3-.9.4-1.4.3-1.2-.2-2.4-.9-3.4-1.9s-1.6-2.1-1.9-3.4c-.1-.5 0-1 .3-1.4Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <WhatsappLogo size={16} weight="fill" aria-hidden="true" />;
 }
 
 function FacebookIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M14 9h3V6h-3c-2 0-4 2-4 4v3H7v3h3v6h3v-6h3l1-3h-4v-3c0-.5.5-1 1-1Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <FacebookLogo size={16} weight="fill" aria-hidden="true" />;
 }
 
 function LinkedInIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M6 9H3v12h3V9Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M4.5 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M21 21v-7a4 4 0 0 0-4-4 4 4 0 0 0-3 1.4V9h-3v12h3v-6.3a2.7 2.7 0 0 1 2.7-2.7A2.3 2.3 0 0 1 19 14.3V21h2Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <LinkedinLogo size={16} weight="fill" aria-hidden="true" />;
 }
 

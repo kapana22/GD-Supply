@@ -290,7 +290,7 @@ function IntroStat({
         {count}
         {suffix}
       </p>
-      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/65">{label}</p>
+      <p className="tt-label mt-2 text-xs font-semibold uppercase tracking-[0.08em] text-white/65">{label}</p>
     </div>
   );
 }

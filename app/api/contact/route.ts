@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   const area = typeof body?.area === "string" ? body.area.trim() : "";
   const message = typeof body?.message === "string" ? body.message.trim() : "";
 
-  if (!name || !phone || !service || !message) {
+  if (!name || !phone || !service) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 

@@ -2,7 +2,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { Calculator } from "@/components/sections/Calculator";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
-import { ServicesField } from "@/components/sections/ServicesField";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
@@ -81,16 +80,14 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <Hero
         title={isKa ? "წყალი შევაჩერეთ. სამუდამოდ." : tHero("title")}
         subtitle={isKa ? "GD Supply — საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია. სახურავიდან საძირკვლამდე." : tHero("subtitle")}
-        ctaPrimary={isKa ? "უფასო შეფასება" : tHero("cta_estimate")}
+        ctaPrimary={isKa ? "დაგვიკავშირდით" : tHero("cta_estimate")}
         ctaSecondary={isKa ? "ჩვენი პროექტები" : tHero("cta_projects")}
         stats={heroStats}
       />
 
-      <ServicesField items={services} />
-
       <ServicesOverview
         title={isKa ? "რას ვაკეთებთ" : tServices("title")}
-        subtitle={isKa ? "ვთავაზობთ სრულ ციკლს — კონსულტაციიდან ჩაბარებამდე." : tServices("subtitle")}
+        subtitle={isKa ? "მთავარ მიმართულებებს გაეცანი მოკლედ და გადადი შესაბამის სერვისის დეტალურ გვერდზე." : tServices("subtitle")}
         items={services}
       />
 

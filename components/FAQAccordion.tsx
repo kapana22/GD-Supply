@@ -44,7 +44,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
   const faqs = items && items.length ? items : DEFAULT_FAQS;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-3">
+    <div className="w-full max-w-4xl space-y-3 xl:ml-auto">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         return (
@@ -54,7 +54,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.06 }}
-            className="overflow-hidden rounded-xl transition-all duration-300"
+            className="overflow-hidden rounded-2xl transition-all duration-300"
             style={{
               background: "#1E2140",
               border: isOpen
@@ -64,10 +64,10 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left md:px-7 md:py-5"
             >
               <span
-                className={`font-medium transition-colors duration-300 ${
+                className={`tt-ui pr-2 text-base font-semibold leading-tight transition-colors duration-300 md:text-lg ${
                   isOpen ? "text-white" : "text-white/80"
                 }`}
               >
@@ -77,7 +77,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
               <motion.div
                 animate={{ rotate: isOpen ? 45 : 0 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-colors duration-300"
+                className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-colors duration-300"
                 style={{
                   background: isOpen ? "#176D48" : "rgba(255,255,255,0.07)",
                 }}
@@ -96,7 +96,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="border-t border-white/[0.05] px-6 pb-5 pt-1 text-sm leading-relaxed text-white/55">
+                  <div className="tt-detail border-t border-white/[0.05] px-6 pb-5 pt-3 text-sm leading-relaxed text-white/60 md:px-7 md:text-[15px]">
                     {faq.a}
                   </div>
                 </motion.div>

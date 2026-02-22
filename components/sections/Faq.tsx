@@ -8,15 +8,21 @@ type QA = { q: string; a: string };
 export function Faq({ title, items }: { title: string; items: QA[] }) {
   return (
     <section id="faq" className="bg-primary-navy py-[60px] md:py-[100px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <FadeUp>
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">FAQ</p>
-        </FadeUp>
-        <FadeUp delay={0.1}>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">{title}</h2>
-        </FadeUp>
+      <div className="mx-auto grid max-w-[1440px] gap-10 px-5 md:px-10 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] xl:gap-14">
+        <div className="xl:pt-1">
+          <FadeUp>
+            <p className="tt-label text-xs font-extrabold uppercase tracking-[0.12em] text-primary-green">
+              FAQ
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <h2 className="tt-heading-lg mt-3 text-3xl font-extrabold text-white md:text-4xl">
+              {title}
+            </h2>
+          </FadeUp>
+        </div>
 
-        <div className="mt-10">
+        <div className="xl:mt-1">
           <FAQAccordion items={items} />
         </div>
       </div>

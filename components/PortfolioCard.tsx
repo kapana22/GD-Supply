@@ -14,11 +14,18 @@ export interface PortfolioProject {
 export default function PortfolioCard({
   project,
   index,
+  isActive = false,
+  onSelect,
 }: {
   project: PortfolioProject;
   index: number;
+  isActive?: boolean;
+  onSelect?: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const active = hovered || pressed || isActive;
+  const interactive = Boolean(onSelect);
 
   return (
     <motion.div
@@ -26,16 +33,41 @@ export default function PortfolioCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="relative cursor-pointer overflow-hidden rounded-xl"
+      whileTap={{ scale: 0.992 }}
+      className="group relative cursor-pointer overflow-hidden rounded-xl border border-white/10 transition-shadow duration-300"
       style={{ aspectRatio: "4/3" }}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-pressed={interactive ? active : undefined}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
+      onTapStart={() => setPressed(true)}
+      onTapCancel={() => setPressed(false)}
+      onTap={() => setPressed(false)}
+      onClick={onSelect}
+      onKeyDown={(event) => {
+        if (!interactive) return;
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelect?.();
+        }
+      }}
+      animate={{
+        boxShadow: active
+          ? "0 14px 38px rgba(23,109,72,0.18)"
+          : "0 8px 24px rgba(0,0,0,0.16)",
+      }}
     >
       <motion.img
         src={project.image}
         alt={project.title}
         className="block h-full w-full object-cover"
-        animate={{ scale: hovered ? 1.07 : 1 }}
+        animate={{
+          scale: active ? 1.09 : 1,
+          filter: active
+            ? "saturate(1.06) brightness(1.08)"
+            : "saturate(0.95) brightness(0.94)",
+        }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       />
 
@@ -43,7 +75,7 @@ export default function PortfolioCard({
 
       <motion.div
         className="pointer-events-none absolute inset-0"
-        animate={{ opacity: hovered ? 1 : 0 }}
+        animate={{ opacity: active ? 1 : 0 }}
         transition={{ duration: 0.35 }}
         style={{
           background:
@@ -53,7 +85,7 @@ export default function PortfolioCard({
 
       <div className="absolute bottom-0 left-0 right-0 p-5">
         <motion.div
-          animate={{ opacity: hovered ? 0.6 : 0.5, y: hovered ? -4 : 0 }}
+          animate={{ opacity: active ? 0.68 : 0.5, y: active ? -4 : 0 }}
           transition={{ duration: 0.3 }}
           className="mb-1 text-xs uppercase tracking-wider text-white/60"
         >
@@ -63,28 +95,30 @@ export default function PortfolioCard({
         <div className="text-base font-bold leading-snug text-white">{project.title}</div>
 
         <motion.div
-          animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 12 }}
-          transition={{ duration: 0.35, delay: hovered ? 0.05 : 0 }}
-          className="mt-3 flex items-center justify-between"
+          animate={{ opacity: 1, y: active ? -1 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-3 flex items-center"
         >
-          <span className="text-sm text-white/70">{project.area}</span>
-          <span className="flex items-center gap-1.5 text-sm font-semibold text-[#176D48]">
-            იხილე
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </span>
+          <span className="text-sm font-semibold text-white/75">{project.area}</span>
         </motion.div>
       </div>
 
       <motion.div
-        animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.8 }}
+        animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.8 }}
         transition={{ duration: 0.25 }}
         className="absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-semibold text-white"
         style={{ background: "rgba(23,109,72,0.85)", backdropFilter: "blur(8px)" }}
       >
         {project.category}
       </motion.div>
+
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 rounded-xl"
+        animate={{ opacity: active ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        style={{ boxShadow: "inset 0 0 0 1px rgba(28,184,121,0.45)" }}
+      />
     </motion.div>
   );
 }
