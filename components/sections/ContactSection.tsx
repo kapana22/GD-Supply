@@ -8,9 +8,9 @@ import {
   LinkedinLogo,
   MapPin,
   Phone,
-  WhatsappLogo,
 } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
+import { WhatsAppIcon as BrandWhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 type FormState = "idle" | "loading" | "sent" | "error";
 const GENERIC_ERROR_MESSAGE = "შეცდომა, სცადე თავიდან";
@@ -297,7 +297,7 @@ function ClockIcon() {
 }
 
 function WhatsAppIcon() {
-  return <WhatsappLogo size={16} weight="fill" aria-hidden="true" />;
+  return <BrandWhatsAppIcon className="h-4 w-4" />;
 }
 
 function FacebookIcon() {

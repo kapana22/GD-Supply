@@ -103,18 +103,21 @@ export function ServicesOverview({
                   <TiltCard
                     className="group h-full overflow-hidden rounded-2xl border border-white/10 bg-gd-result transition-[border-color,box-shadow] duration-300 hover:border-primary-green/40 hover:shadow-[0_16px_44px_rgba(23,109,72,0.16)]"
                   >
-                    <div className="relative h-[200px] w-full">
-                      <Image
-                        src={SERVICE_IMAGES[service.key] ?? "/assets/hero-poster.jpg"}
-                        alt={service.title}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+                    <div className="relative h-[200px] w-full overflow-hidden bg-gd-result">
+                      <div className="absolute inset-0 transition duration-500 will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] group-hover:scale-[1.02]">
+                        <Image
+                          src={SERVICE_IMAGES[service.key] ?? "/assets/hero-poster.jpg"}
+                          alt={service.title}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+                      </div>
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gd-result" />
                     </div>
 
-                    <div className="flex min-h-[188px] flex-col p-6">
+                    <div className="relative -mt-px flex min-h-[188px] flex-col bg-gd-result p-6 before:pointer-events-none before:absolute before:-top-[2px] before:inset-x-0 before:h-[3px] before:bg-gd-result">
                       <h3 className="tt-heading-md text-lg font-extrabold text-white md:text-xl">
                         {service.title}
                       </h3>

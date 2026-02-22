@@ -14,8 +14,8 @@ export default function TiltCard({ children, className = "", style }: TiltCardPr
   const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
   const [enabled, setEnabled] = useState(true);
 
-  const rotateX = useSpring(0, { stiffness: 200, damping: 25 });
-  const rotateY = useSpring(0, { stiffness: 200, damping: 25 });
+  const rotateX = useSpring(0, { stiffness: 220, damping: 24 });
+  const rotateY = useSpring(0, { stiffness: 220, damping: 24 });
   const scale = useSpring(1, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
@@ -35,14 +35,14 @@ export default function TiltCard({ children, className = "", style }: TiltCardPr
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
-    rotateX.set((y - 0.5) * -14);
-    rotateY.set((x - 0.5) * 14);
+    rotateX.set((y - 0.5) * -8);
+    rotateY.set((x - 0.5) * 8);
     setGlowPos({ x: x * 100, y: y * 100 });
   };
 
   const handleMouseEnter = () => {
     if (!enabled) return;
-    scale.set(1.03);
+    scale.set(1.012);
   };
 
   const handleMouseLeave = () => {
@@ -64,7 +64,8 @@ export default function TiltCard({ children, className = "", style }: TiltCardPr
         rotateY: enabled ? rotateY : 0,
         scale: enabled ? scale : 1,
         transformStyle: "preserve-3d",
-        transformPerspective: 800,
+        transformPerspective: 1000,
+        willChange: "transform",
         ...style,
       }}
       className={`relative ${className}`}
