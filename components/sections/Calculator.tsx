@@ -34,13 +34,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 15,
   },
   {
-    category: "roof",
-    priceMin: 40,
-    priceMax: 70,
-    warrantyMin: 1,
-    warrantyMax: 2,
-  },
-  {
     category: "terrace",
     priceMin: 80,
     priceMax: 80,
@@ -72,21 +65,25 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
 
 const CATEGORY_INCLUDES = {
   ka: {
-    roof: ["წასასმელი იზოლაცია", "PVC / EPDM", "ტოლი"],
+    roof: ["წასასმელი იზოლაცია", "PVC/EPDM", "მემბრანა"],
     terrace: ["აკრილ-ცემენტი", "პოლიურეთანი", "პოლიურეა"],
     foundation: ["თხევადი ბიტუმი"],
   },
   en: {
-    roof: ["Coating insulation", "PVC / EPDM", "Torch-on membrane"],
+    roof: ["Coating insulation", "PVC/EPDM", "Membrane"],
     terrace: ["Acrylic-cement", "Polyurethane", "Polyurea"],
     foundation: ["Liquid bitumen"],
   },
   ru: {
-    roof: ["Обмазочная изоляция", "PVC / EPDM", "Толь"],
+    roof: ["Обмазочная изоляция", "PVC/EPDM", "Мембрана"],
     terrace: ["Акрил-цемент", "Полиуретан", "Полимочевина"],
     foundation: ["Жидкий битум"],
   },
 } as const satisfies Record<string, Record<CategoryKey, string[]>>;
+
+const CATEGORY_PRICE_MIN_OVERRIDE: Partial<Record<CategoryKey, number>> = {
+  roof: 70,
+};
 
 const CALCULATOR_LABELS = {
   ka: {
@@ -153,6 +150,7 @@ export function Calculator() {
 
   const localeLabels =
     CALCULATOR_LABELS[(locale as keyof typeof CALCULATOR_LABELS) ?? "ka"] ?? CALCULATOR_LABELS.ka;
+  const calculatorCtaLabel = locale === "ka" ? "კონსულტაციის მიღება →" : t("cta");
   const includesLabels =
     CATEGORY_INCLUDES[(locale as keyof typeof CATEGORY_INCLUDES) ?? "ka"] ?? CATEGORY_INCLUDES.ka;
 
@@ -167,10 +165,11 @@ export function Calculator() {
   );
 
   const result = useMemo(() => {
-    const priceMin = Math.min(...rowsForCategory.map((row) => row.priceMin));
+    const rawPriceMin = Math.min(...rowsForCategory.map((row) => row.priceMin));
     const priceMax = Math.max(...rowsForCategory.map((row) => row.priceMax));
     const warrantyMin = Math.min(...rowsForCategory.map((row) => row.warrantyMin));
     const warrantyMax = Math.max(...rowsForCategory.map((row) => row.warrantyMax));
+    const priceMin = CATEGORY_PRICE_MIN_OVERRIDE[category] ?? rawPriceMin;
 
     const perMin = Math.round(priceMin);
     const perMax = Math.round(priceMax);
@@ -233,9 +232,6 @@ export function Calculator() {
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">
                     {localeLabels.fields.includes}
                   </p>
-                  <span className="rounded-full border border-primary-green/25 bg-primary-green/10 px-2.5 py-1 text-[11px] font-bold text-primary-green">
-                    {rowsForCategory.length} {localeLabels.fields.variants}
-                  </span>
                 </div>
 
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -334,7 +330,7 @@ export function Calculator() {
                 href={`/${locale}/contact`}
                 className="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
-                {t("cta")}
+                {calculatorCtaLabel}
               </Link>
               <Link
                 href={`/${locale}/services`}

@@ -1,7 +1,9 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  CaretDown,
+  Check,
   Clock,
   EnvelopeSimple,
   FacebookLogo,
@@ -25,15 +27,27 @@ export function ContactSection() {
 
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
+  const [selectedService, setSelectedService] = useState("");
+  const serviceOptions = useMemo(
+    () => filterContactServiceOptions(tCalc.raw("service_options") as string[]),
+    [tCalc],
+  );
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+
+    if (!selectedService) {
+      setError("აირჩიე სერვისის სახეობა");
+      setState("error");
+      return;
+    }
+
     const data = {
       name: (form.elements.namedItem("name") as HTMLInputElement).value,
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      service: (form.elements.namedItem("service") as HTMLSelectElement).value,
+      service: selectedService,
       area: (form.elements.namedItem("area") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     };
@@ -51,6 +65,7 @@ export function ContactSection() {
       if (res.ok) {
         setState("sent");
         form.reset();
+        setSelectedService("");
         return;
       }
 
@@ -239,21 +254,16 @@ export function ContactSection() {
                     className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5"
                   />
 
-                  <select
+                  <ServiceDropdown
                     name="service"
-                    required
-                    defaultValue=""
-                    className="gd-select w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] font-semibold text-white outline-none transition focus:border-primary-green/80 focus:bg-primary-green/5"
-                  >
-                    <option value="" disabled>
-                      {t("fields.service")}
-                    </option>
-                    {(tCalc.raw("service_options") as string[]).map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
+                    value={selectedService}
+                    options={serviceOptions}
+                    placeholder={t("fields.service")}
+                    onChange={(value) => {
+                      setSelectedService(value);
+                      if (error) setError("");
+                    }}
+                  />
 
                   <input
                     name="area"
@@ -292,6 +302,112 @@ export function ContactSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function filterContactServiceOptions(options: string[]) {
+  return options.filter((opt) => !/აუზ|pool|басс/i.test(opt));
+}
+
+function ServiceDropdown({
+  name,
+  options,
+  value,
+  onChange,
+  placeholder,
+}: {
+  name: string;
+  options: string[];
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onDocumentClick(event: MouseEvent) {
+      if (!rootRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    function onEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("mousedown", onDocumentClick);
+    document.addEventListener("keydown", onEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", onDocumentClick);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, []);
+
+  return (
+    <div ref={rootRef} className="relative">
+      <input type="hidden" name={name} value={value} />
+
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        className={`w-full rounded-xl border px-4 py-3 text-left text-[15px] font-semibold outline-none transition ${
+          open
+            ? "border-primary-green/80 bg-primary-green/5 text-white shadow-[0_0_0_2px_rgba(23,109,72,0.14)]"
+            : value
+              ? "border-white/12 bg-white/[0.045] text-white hover:border-white/20"
+              : "border-white/10 bg-white/[0.045] text-white/55 hover:border-white/20 hover:text-white/85"
+        }`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className="block truncate pr-8">{value || placeholder}</span>
+        <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-white/70">
+          <CaretDown
+            size={16}
+            weight="bold"
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
+          />
+        </span>
+      </button>
+
+      {open ? (
+        <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 rounded-xl border border-white/12 bg-[#11162d]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.45)] backdrop-blur">
+          <div className="max-h-56 overflow-y-auto pr-1">
+            {options.map((opt) => {
+              const active = opt === value;
+
+              return (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => {
+                    onChange(opt);
+                    setOpen(false);
+                  }}
+                  role="option"
+                  aria-selected={active}
+                  className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-semibold transition ${
+                    active
+                      ? "bg-primary-green/14 text-white"
+                      : "text-white/85 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  <span className="truncate">{opt}</span>
+                  {active ? (
+                    <span className="flex-none text-primary-green">
+                      <Check size={16} weight="bold" aria-hidden="true" />
+                    </span>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
