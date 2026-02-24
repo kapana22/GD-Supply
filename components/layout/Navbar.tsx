@@ -56,7 +56,12 @@ export function Navbar() {
     if (!pathname) return;
     const segments = pathname.split("/");
     segments[1] = nextLocale;
-    router.push(segments.join("/") || "/");
+    const nextPath = segments.join("/") || `/${nextLocale}`;
+    const suffix =
+      typeof window === "undefined"
+        ? ""
+        : `${window.location.search}${window.location.hash}`;
+    router.push(`${nextPath}${suffix}`);
     setOpen(false);
   }
 

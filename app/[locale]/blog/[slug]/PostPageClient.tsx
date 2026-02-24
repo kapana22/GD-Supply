@@ -7,6 +7,9 @@ import Link from "next/link";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { BlogPost, BlogPostMeta } from "@/lib/posts";
 
+const BLOG_ACCENT = "var(--gd-accent)";
+const BLOG_PANEL = "var(--gd-panel)";
+
 export default function PostPageClient({
   post,
   related,
@@ -33,7 +36,7 @@ export default function PostPageClient({
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#1A1C33]">
+    <main className="min-h-screen bg-[var(--gd-bg)]">
       <div className="fixed left-0 right-0 top-0 z-[60] h-[3px] bg-white/10">
         <motion.div className="h-full bg-[#176D48]" style={{ width: `${progress}%` }} transition={{ duration: 0.1 }} />
       </div>
@@ -65,13 +68,23 @@ export default function PostPageClient({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-5"
+            className="mb-4 flex flex-wrap items-center gap-2"
           >
             <span
-              className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#176D48]"
-              style={{ background: "rgba(23,109,72,0.15)", border: "1px solid rgba(23,109,72,0.3)" }}
+              className="rounded-full px-3 py-1.5 text-xs font-semibold"
+              style={{
+                color: BLOG_ACCENT,
+                background: "rgba(var(--gd-accent-rgb), 0.12)",
+                border: "1px solid rgba(var(--gd-accent-rgb), 0.25)",
+              }}
             >
               {post.category}
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
+              {post.updated ?? post.date}
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
+              {post.readTime}
             </span>
           </motion.div>
 
@@ -88,7 +101,7 @@ export default function PostPageClient({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="border-l-2 border-[#176D48] pl-5 text-xl leading-relaxed text-white/55"
+            className="border-l-2 border-[var(--gd-accent)] pl-5 text-xl leading-relaxed text-white/72"
           >
             {post.excerpt}
           </motion.p>
@@ -101,7 +114,10 @@ export default function PostPageClient({
         transition={{ delay: 0.35 }}
         className="mx-auto mb-12 max-w-3xl px-6"
       >
-        <div className="relative h-80 overflow-hidden rounded-2xl" style={{ boxShadow: "0 0 0 1px rgba(23,109,72,0.2), 0 0 40px rgba(0,0,0,0.4)" }}>
+        <div
+          className="relative h-72 overflow-hidden rounded-2xl md:h-80"
+          style={{ boxShadow: "0 0 0 1px rgba(var(--gd-accent-rgb),0.16), 0 20px 48px rgba(0,0,0,0.32)" }}
+        >
           <Image src={post.image} alt={post.title} fill className="object-cover" />
         </div>
       </motion.div>
@@ -114,12 +130,15 @@ export default function PostPageClient({
       >
         <MDXRemote {...source} />
 
-        <div className="mt-12 flex flex-wrap gap-2 border-t border-white/[0.07] pt-8">
+        <div className="mt-12 flex flex-wrap gap-2 border-t border-white/[0.08] pt-8">
           {post.tags?.map((tag) => (
             <span
               key={tag}
-              className="rounded-full px-3 py-1.5 text-xs text-white/50"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
+              className="rounded-full px-3 py-1.5 text-xs text-white/70"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.10)",
+              }}
             >
               #{tag}
             </span>
@@ -128,12 +147,19 @@ export default function PostPageClient({
       </motion.article>
 
       <section className="mx-auto mb-20 max-w-3xl px-6">
-        <div className="rounded-2xl p-8 text-center" style={{ background: "rgba(23,109,72,0.1)", border: "1px solid rgba(23,109,72,0.25)" }}>
+        <div
+          className="rounded-2xl p-8 text-center"
+          style={{
+            background: "rgba(var(--gd-accent-rgb),0.09)",
+            border: "1px solid rgba(var(--gd-accent-rgb),0.20)",
+            boxShadow: "0 14px 32px rgba(0,0,0,0.18)",
+          }}
+        >
           <p className="mb-2 text-xl font-bold text-white">კითხვა გაქვს სტატიაზე?</p>
-          <p className="mb-6 text-sm text-white/50">ჩვენი სპეციალისტი 2 საათში გიპასუხებს.</p>
+          <p className="mb-6 text-sm text-white/66">ჩვენი სპეციალისტი 2 საათში გიპასუხებს.</p>
           <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 rounded-xl bg-[#176D48] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1a8055] hover:shadow-[0_0_20px_rgba(23,109,72,0.45)]"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--gd-accent)] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1f8f61] hover:shadow-[0_0_20px_rgba(23,109,72,0.32)]"
           >
             უფასო კონსულტაცია →
           </Link>
@@ -165,15 +191,18 @@ export default function PostPageClient({
 function RelatedCard({ post, locale }: { post: BlogPostMeta; locale: string }) {
   return (
     <Link href={`/${locale}/blog/${post.slug}`} className="group block h-full">
-      <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#1E2140] transition group-hover:-translate-y-1">
+      <article
+        className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 transition group-hover:-translate-y-1"
+        style={{ background: BLOG_PANEL }}
+      >
         <div className="relative h-44 overflow-hidden">
           <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1E2140]/75 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--gd-panel)]/80 to-transparent" />
         </div>
         <div className="flex flex-1 flex-col p-5">
-          <h3 className="line-clamp-2 text-lg font-bold text-white transition group-hover:text-[#176D48]">{post.title}</h3>
-          <p className="mt-2 line-clamp-3 text-sm text-white/55">{post.excerpt}</p>
-          <p className="mt-4 text-sm font-semibold text-[#176D48]">წაკითხვა →</p>
+          <h3 className="line-clamp-2 text-lg font-bold text-white transition group-hover:text-[var(--gd-accent)]">{post.title}</h3>
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/68">{post.excerpt}</p>
+          <p className="mt-4 text-sm font-semibold text-[var(--gd-accent)]">წაკითხვა →</p>
         </div>
       </article>
     </Link>
