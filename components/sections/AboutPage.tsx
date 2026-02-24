@@ -76,38 +76,44 @@ export function AboutPage({ locale }: { locale: string }) {
             <span className="text-white/85">ჩვენ შესახებ</span>
           </p>
           <h1 className="mt-4 text-4xl font-black text-white md:text-6xl">ჩვენ შესახებ</h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/65">
-            2014 წლიდან ვაშენებთ სანდოობას და ვნერგავთ ჰიდროიზოლაციის სისტემებს, რომლებიც რეალურად მუშაობს ქართულ კლიმატსა და დატვირთვებზე.
+          <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/65">
+            სერვისი რომელიც გიცავთ სახურავისა და ტერასიდან წყლის გაჟონვისგან-უზრუნველყოფს თქვენს სიმშვიდეს მრავალი
+            წლის მანძილზე. 2014 წლიდან ვაშენებთ სანდოობას და ვნერგავთ ჰიდროიზოლაციის სისტემებს, რომლებიც რეალურად
+            მუშაობს ქართულ კლიმატსა და დატვირთვებზე.
           </p>
         </div>
       </motion.section>
 
-      <motion.section {...fadeUp} className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 md:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">კომპანიის ისტორია</p>
-            <p className="mt-5 text-base leading-relaxed text-white/80">
+      <motion.section id="about-story" {...fadeUp} className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-[1440px] items-start gap-8 px-5 md:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] p-6 shadow-[0_14px_32px_rgba(5,8,20,0.2)] md:p-8 lg:p-10">
+            <div className="pointer-events-none absolute -right-20 -top-16 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(28,184,121,0.18)_0%,rgba(28,184,121,0)_72%)]" />
+            <p className="relative text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">კომპანიის ისტორია</p>
+            <p className="relative mt-5 text-base leading-relaxed text-white/82">
               GD Supply დაარსდა 2014 წელს, როგორც სპეციალიზებული ჰიდროიზოლაციის კომპანია. წლების განმავლობაში შევასრულეთ ასეულობით პროექტი
               კერძო, კომერციულ და ინდუსტრიულ ობიექტებზე, სადაც მთავარი მოთხოვნა იყო შედეგის გრძელვადიანობა.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-white/80">
+            <p className="relative mt-4 text-base leading-relaxed text-white/82">
               დღეს ჩვენი გუნდი მუშაობს სრულ ციკლზე: ინსპექცია, სისტემის შერჩევა, შესრულება და ჩაბარება. სწორედ ამ მიდგომამ მოგვიტანა მაღალი
               კმაყოფილება და სტაბილური რეპუტაცია ბაზარზე.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <IntroStat value={6} suffix="+" label="წლიანი გამოცდილება" duration={1500} />
-            <IntroStat value={500} suffix="+" label="დასრულებული პროექტი" duration={2000} />
-            <IntroStat value={10} suffix="+ წელი" label="გარანტია" duration={900} />
-            <IntroStat value={100} suffix="%" label="კლიენტის კმაყოფილება" duration={1800} />
+          <div className="relative self-start overflow-hidden rounded-2xl border border-white/18 bg-white/[0.08] shadow-[0_18px_48px_rgba(5,8,20,0.35),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-xl">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(420px_180px_at_70%_-10%,rgba(28,184,121,0.12),transparent_72%)]" />
+            <div className="relative grid grid-cols-2 md:grid-cols-4">
+              <IntroStat value={6} suffix="+" label="გამოცდილება" duration={1500} className="border-b border-r border-white/12 md:border-b-0" />
+              <IntroStat value={300} suffix="+" label="პროექტი" duration={2000} className="border-b border-white/12 md:border-b-0 md:border-r md:border-white/12" />
+              <IntroStat value={10} suffix="+" label="წლ. გარანტია" duration={900} className="border-r border-white/12 md:border-r" />
+              <IntroStat value={100} suffix="%" label="კმაყოფილება" duration={1800} />
+            </div>
           </div>
         </div>
       </motion.section>
 
-      <motion.section {...fadeUp} className="py-16 md:py-24">
+      <motion.section id="about-values" {...fadeUp} className="py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">ჩვენი ფასეულობები</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">ჩვენი ფასეულობები</p>
           <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">რაც გვარჩევს ბაზარზე</h2>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -130,9 +136,9 @@ export function AboutPage({ locale }: { locale: string }) {
         </div>
       </motion.section>
 
-      <motion.section {...fadeUp} className="py-16 md:py-24">
+      <motion.section id="about-process" {...fadeUp} className="py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">პროცესი</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">პროცესი</p>
           <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">როგორ ვმუშაობთ</h2>
 
           <div className="relative mt-10 hidden md:block">
@@ -185,9 +191,9 @@ export function AboutPage({ locale }: { locale: string }) {
         </div>
       </motion.section>
 
-      <motion.section {...fadeUp} className="py-16 md:py-24">
+      <motion.section id="about-team" {...fadeUp} className="py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">გუნდი</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">გუნდი</p>
           <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">მთავარი როლები პროექტში</h2>
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
@@ -213,7 +219,7 @@ export function AboutPage({ locale }: { locale: string }) {
 
       <motion.section {...fadeUp} className="py-16 md:py-24">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-primary-green">ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს</p>
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#1CB879]">ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             {partners.map((brand) => (
               <span key={brand} className="text-lg font-semibold text-white/35 grayscale transition hover:text-white hover:grayscale-0">
@@ -234,13 +240,13 @@ export function AboutPage({ locale }: { locale: string }) {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-bold text-[#0f4d34] transition hover:brightness-95"
+                className="btn-primary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
                 უფასო კონსულტაცია →
               </Link>
               <Link
                 href={`/${locale}/services`}
-                className="inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/20"
+                className="btn-secondary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
                 სერვისების ნახვა →
               </Link>
@@ -257,11 +263,13 @@ function IntroStat({
   suffix,
   label,
   duration,
+  className = "",
 }: {
   value: number;
   suffix: string;
   label: string;
   duration: number;
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { count, trigger } = useCountUp(value, duration);
@@ -285,12 +293,12 @@ function IntroStat({
   }, [trigger]);
 
   return (
-    <div ref={ref} className="rounded-xl border border-white/10 bg-[#1A1C33] p-5 text-center">
-      <p className="font-sans text-4xl font-black text-primary-green">
+    <div ref={ref} className={`flex min-h-[104px] flex-col items-center justify-center bg-transparent px-4 py-5 text-center md:min-h-[118px] md:px-5 md:py-6 ${className}`}>
+      <p className="font-sans text-4xl font-black leading-none tracking-tight text-[#1CB879] [text-shadow:0_4px_18px_rgba(23,109,72,0.35)] md:text-5xl">
         {count}
         {suffix}
       </p>
-      <p className="tt-label mt-2 text-xs font-semibold uppercase tracking-[0.08em] text-white/65">{label}</p>
+      <p className="tt-label mt-2 text-xs font-semibold uppercase tracking-[0.06em] text-white/62">{label}</p>
     </div>
   );
 }

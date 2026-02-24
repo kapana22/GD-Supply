@@ -75,7 +75,7 @@ export function ServicesOverview({
 
           <Link
             href={`/${locale}/services`}
-            className="tt-ui inline-flex w-fit items-center justify-center rounded-lg border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 shadow-elevated backdrop-blur transition hover:bg-white/10"
+            className="btn-secondary tt-ui inline-flex w-fit items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
           >
             სრული სერვისების სია →
           </Link>

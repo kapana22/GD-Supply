@@ -160,13 +160,13 @@ export function ServiceDetailPage({
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Link
                   href={`/${locale}/contact`}
-                  className="tt-ui inline-flex items-center justify-center rounded-xl border border-primary-green bg-primary-green px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+                  className="btn-primary tt-ui inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white"
                 >
                   კონსულტაცია →
                 </Link>
                 <Link
                   href={`/${locale}/calculator`}
-                  className="tt-ui inline-flex items-center justify-center rounded-xl border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-white transition hover:border-primary-green/50 hover:bg-primary-green/5"
+                  className="btn-secondary tt-ui inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white"
                 >
                   ფასის კალკულატორი →
                 </Link>

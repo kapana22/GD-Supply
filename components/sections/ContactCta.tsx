@@ -34,13 +34,13 @@ export function ContactCta({
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center rounded-full bg-primary-green px-6 py-3 text-sm font-semibold text-white shadow-glow-green transition hover:translate-y-0.5"
+              className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white"
             >
               კონტაქტის ფორმა →
             </Link>
             <a
               href={waHref}
-              className="inline-flex items-center justify-center rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-semibold text-white/85 transition hover:bg-white/10 hover:text-white"
+              className="btn-secondary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
             >
               WhatsApp →
             </a>

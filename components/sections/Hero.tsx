@@ -32,7 +32,7 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
   });
 
   return (
-    <section className="relative min-h-[680px] overflow-hidden md:min-h-[720px]">
+    <section className="relative -mt-[84px] min-h-[680px] overflow-hidden pt-[84px] md:min-h-[720px]">
       <div className="hero-video-wrapper is-visible" aria-hidden="true">
         <video
           className="hero-video"
@@ -80,7 +80,7 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
             </Link>
             <Link
               href={`/${locale}/portfolio`}
-              className="tt-ui inline-flex items-center justify-center rounded-lg border border-white/14 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur transition hover:bg-white/10"
+              className="btn-secondary tt-ui inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold"
             >
               {ctaSecondary}
             </Link>

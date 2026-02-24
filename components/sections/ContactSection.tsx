@@ -88,10 +88,10 @@ export function ContactSection() {
   const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
 
   return (
-    <section id="contact" className="bg-gd-surface py-[60px] md:py-[88px]">
+    <section id="contact" className="bg-gd-surface py-[56px] md:py-[72px]">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-        <div className="grid items-stretch gap-7 lg:grid-cols-[470px_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[500px_minmax(0,1fr)] xl:gap-10">
-          <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-primary-navy/95 p-7 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-8">
+        <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
+          <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-primary-navy/95 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-7">
             <h2 className="tt-heading-lg text-3xl font-extrabold text-white md:text-4xl">
               {t("title")}
             </h2>
@@ -99,7 +99,7 @@ export function ContactSection() {
               {t("subtitle")}
             </p>
 
-            <div className="mt-6 divide-y divide-white/10">
+            <div className="mt-5 divide-y divide-white/10">
               <ContactItem
                 icon={<PhoneIcon />}
                 label="ტელეფონი"
@@ -119,7 +119,7 @@ export function ContactSection() {
                 href={`mailto:${email}`}
               />
               <ContactItem icon={<PinIcon />} label="ლოკაცია" value={location} />
-              <div className="flex gap-4 py-5">
+              <div className="flex gap-4 py-4">
                 <div className="grid h-10 w-10 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
                   <ClockIcon />
                 </div>
@@ -138,17 +138,17 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-5">
               <div>
                 <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   WhatsApp
                 </span>
-                <div className="mt-2.5 grid gap-2.5">
+                <div className="mt-2.5 grid gap-2">
                   <a
                     href={waPrimaryHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="tt-ui flex items-center justify-between gap-3 rounded-xl border border-primary-green/70 px-3.5 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(23,109,72,0.18)] transition hover:-translate-y-0.5 hover:border-primary-green hover:shadow-[0_10px_24px_rgba(23,109,72,0.22)]"
+                    className="tt-ui flex items-center justify-between gap-3 rounded-xl border border-primary-green/70 px-3.5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(23,109,72,0.18)] transition hover:-translate-y-0.5 hover:border-primary-green hover:shadow-[0_10px_24px_rgba(23,109,72,0.22)]"
                     style={WA_BUTTON_STYLE}
                   >
                     <span className="flex items-center gap-2">
@@ -165,7 +165,7 @@ export function ContactSection() {
                     href={waSecondaryHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="tt-ui flex items-center justify-between gap-3 rounded-xl border border-primary-green/70 px-3.5 py-3 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(23,109,72,0.18)] transition hover:-translate-y-0.5 hover:border-primary-green hover:shadow-[0_10px_24px_rgba(23,109,72,0.22)]"
+                    className="tt-ui flex items-center justify-between gap-3 rounded-xl border border-primary-green/70 px-3.5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(23,109,72,0.18)] transition hover:-translate-y-0.5 hover:border-primary-green hover:shadow-[0_10px_24px_rgba(23,109,72,0.22)]"
                     style={WA_BUTTON_STYLE}
                   >
                     <span className="flex items-center gap-2">
@@ -181,16 +181,16 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-4">
                 <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   სოციალური
                 </span>
-                <div className="mt-2.5 grid gap-2.5 sm:grid-cols-2">
+                <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
                   <a
                     href="https://facebook.com/GDSupply1"
                     target="_blank"
                     rel="noreferrer"
-                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm font-semibold text-white/92 transition hover:border-primary-green/50 hover:bg-primary-green/10 hover:text-white"
+                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-semibold text-white/92 transition hover:border-primary-green/50 hover:bg-primary-green/10 hover:text-white"
                   >
                     <span className="grid h-6 w-6 place-items-center rounded-full bg-white/5 ring-1 ring-white/10">
                       <FacebookIcon />
@@ -201,7 +201,7 @@ export function ContactSection() {
                     href="https://linkedin.com/company/gd-supply"
                     target="_blank"
                     rel="noreferrer"
-                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm font-semibold text-white/92 transition hover:border-primary-green/50 hover:bg-primary-green/10 hover:text-white"
+                    className="tt-ui inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-semibold text-white/92 transition hover:border-primary-green/50 hover:bg-primary-green/10 hover:text-white"
                   >
                     <span className="grid h-6 w-6 place-items-center rounded-full bg-white/5 ring-1 ring-white/10">
                       <LinkedInIcon />
@@ -213,13 +213,13 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-gd-result p-7 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-8">
+          <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-gd-result p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-7">
             <h3 className="tt-heading-md text-xl font-extrabold text-white md:text-2xl">
               გამოგვიგზავნე განცხადება
             </h3>
 
             {state === "sent" ? (
-              <div className="mt-5 grid min-h-[340px] flex-1 place-items-center rounded-xl border border-primary-green/25 bg-primary-green/10 p-6 text-center md:min-h-[430px]">
+              <div className="mt-4 grid min-h-[260px] flex-1 place-items-center rounded-xl border border-primary-green/25 bg-primary-green/10 p-6 text-center md:min-h-[320px]">
                 <div>
                   <p className="tt-heading-md text-xl font-extrabold text-primary-green md:text-2xl">
                     ✓ თქვენი განცხადება მიღებულია!
@@ -230,20 +230,20 @@ export function ContactSection() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-5 flex flex-1 flex-col">
-                <div className="grid gap-3.5">
-                  <div className="grid gap-3.5 md:grid-cols-2">
+              <form onSubmit={handleSubmit} className="mt-4 flex flex-1 flex-col">
+                <div className="grid gap-3">
+                  <div className="grid gap-3 md:grid-cols-2">
                     <input
                       name="name"
                       required
                       placeholder={t("fields.name")}
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5"
+                      className="gd-input w-full px-4 py-3 text-[15px] text-white"
                     />
                     <input
                       name="phone"
                       required
                       placeholder={t("fields.phone")}
-                      className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5"
+                      className="gd-input w-full px-4 py-3 text-[15px] text-white"
                     />
                   </div>
 
@@ -251,7 +251,7 @@ export function ContactSection() {
                     name="email"
                     type="email"
                     placeholder={t("fields.email")}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5"
+                    className="gd-input w-full px-4 py-3 text-[15px] text-white"
                   />
 
                   <ServiceDropdown
@@ -268,20 +268,20 @@ export function ContactSection() {
                   <input
                     name="area"
                     placeholder={t("fields.area")}
-                    className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5"
+                    className="gd-input w-full px-4 py-3 text-[15px] text-white"
                   />
                 </div>
 
-                <div className="mt-3.5 flex-1">
+                <div className="mt-3 flex-1">
                   <textarea
                     name="message"
                     rows={5}
                     placeholder={t("fields.message")}
-                    className="h-full min-h-[150px] w-full resize-none rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/45 transition focus:border-primary-green/80 focus:bg-primary-green/5 md:min-h-[190px]"
+                    className="gd-input h-full min-h-[120px] w-full resize-none px-4 py-3 text-[15px] text-white md:min-h-[160px]"
                   />
                 </div>
 
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-3">
                   {error ? (
                     <p className="mb-3 text-sm text-red-400" aria-live="polite">
                       {error}
@@ -291,7 +291,7 @@ export function ContactSection() {
                   <button
                     type="submit"
                     disabled={state === "loading"}
-                    className="btn-primary tt-ui w-full rounded-xl px-6 py-4 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
+                    className="btn-primary tt-ui w-full rounded-xl px-6 py-3.5 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
                   >
                     {state === "loading" ? "იგზავნება..." : submitLabel}
                   </button>
@@ -352,12 +352,12 @@ function ServiceDropdown({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={`w-full rounded-xl border px-4 py-3 text-left text-[15px] font-semibold outline-none transition ${
+        className={`gd-input w-full px-4 py-3 text-left text-[15px] font-semibold transition ${
           open
             ? "border-primary-green/80 bg-primary-green/5 text-white shadow-[0_0_0_2px_rgba(23,109,72,0.14)]"
             : value
-              ? "border-white/12 bg-white/[0.045] text-white hover:border-white/20"
-              : "border-white/10 bg-white/[0.045] text-white/55 hover:border-white/20 hover:text-white/85"
+              ? "text-white hover:border-white/20"
+              : "text-white/55 hover:text-white/85"
         }`}
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -374,7 +374,7 @@ function ServiceDropdown({
       </button>
 
       {open ? (
-        <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 rounded-xl border border-white/12 bg-[#11162d]/95 p-1.5 shadow-[0_18px_40px_rgba(0,0,0,0.45)] backdrop-blur">
+        <div className="gd-dropdown-panel absolute left-0 right-0 top-[calc(100%+8px)] z-30 rounded-xl p-1.5">
           <div className="max-h-56 overflow-y-auto pr-1">
             {options.map((opt) => {
               const active = opt === value;
@@ -391,8 +391,8 @@ function ServiceDropdown({
                   aria-selected={active}
                   className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-semibold transition ${
                     active
-                      ? "bg-primary-green/14 text-white"
-                      : "text-white/85 hover:bg-white/[0.05] hover:text-white"
+                      ? "gd-option gd-option-active"
+                      : "gd-option"
                   }`}
                 >
                   <span className="truncate">{opt}</span>
@@ -423,7 +423,7 @@ function ContactItem({
   href?: string;
 }) {
   const content = (
-    <div className="flex gap-3.5 py-4">
+    <div className="flex gap-3.5 py-3">
       <div className="grid h-10 w-10 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
         {icon}
       </div>

@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
 
       <PortfolioGrid
         title={isKa ? "ჩვენი პროექტები" : tPortfolio("title")}
-        subtitle={isKa ? "ყოველი პროექტი — ეს არის ჩვენი ნამუშევარი, რომელსაც სახელი ადევს." : tPortfolio("subtitle")}
+        subtitle={isKa ? "" : tPortfolio("subtitle")}
         filters={filters}
         projects={projects}
       />

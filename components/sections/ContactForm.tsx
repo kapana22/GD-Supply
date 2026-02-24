@@ -57,7 +57,7 @@ export function ContactForm() {
           </label>
           <select
             name="service"
-            className="gd-select w-full rounded-2xl border border-white/10 bg-gd-panel/70 px-4 py-3 text-sm font-semibold text-white shadow-inner shadow-black/30 outline-none"
+            className="gd-input gd-select w-full px-4 py-3 text-sm font-semibold text-white"
             defaultValue=""
             required
           >
@@ -82,7 +82,7 @@ export function ContactForm() {
             name="message"
             rows={5}
             required
-            className="w-full rounded-2xl border border-white/10 bg-gd-panel/70 px-4 py-3 text-sm text-white shadow-inner shadow-black/30 outline-none placeholder:text-white/35"
+            className="gd-input w-full px-4 py-3 text-sm text-white"
             placeholder="მოგვწერე დეტალები: ობიექტი, პრობლემა, სასურველი ვადა…"
           />
         </div>
@@ -97,7 +97,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={state === "loading"}
-          className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white shadow-glow-green disabled:opacity-60"
+        className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white disabled:opacity-60"
         >
           {state === "loading"
             ? "იგზავნება..."
@@ -130,7 +130,7 @@ function Input({
         name={name}
         type={type}
         required={required}
-        className="w-full rounded-2xl border border-white/10 bg-gd-panel/70 px-4 py-3 text-sm text-white shadow-inner shadow-black/30 outline-none placeholder:text-white/35"
+        className="gd-input w-full px-4 py-3 text-sm text-white"
       />
     </div>
   );

@@ -334,7 +334,7 @@ export function Calculator() {
               </Link>
               <Link
                 href={`/${locale}/services`}
-                className="inline-flex items-center justify-center rounded-lg border border-white/14 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+                className="btn-secondary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
                 {tNav("services")} →
               </Link>

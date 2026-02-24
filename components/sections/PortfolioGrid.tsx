@@ -102,9 +102,11 @@ export function PortfolioGrid({
         <FadeUp delay={0.1}>
           <h2 className="tt-heading-lg mt-3 text-3xl font-extrabold text-white md:text-4xl">{title}</h2>
         </FadeUp>
-        <FadeUp delay={0.2}>
-          <p className="tt-detail mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
-        </FadeUp>
+        {subtitle?.trim() ? (
+          <FadeUp delay={0.2}>
+            <p className="tt-detail mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
+          </FadeUp>
+        ) : null}
 
         <div className="mt-8 flex flex-wrap gap-2">
           {filters.map((item) => {
