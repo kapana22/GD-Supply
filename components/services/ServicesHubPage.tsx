@@ -23,7 +23,7 @@ export function ServicesHubPage({
             რას ვაკეთებთ
           </h1>
           <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
-            GD Supply — 2014 წლიდან, 300+ პროექტი, 3 წლიანი გარანტია
+            GD Supply — 2014 წლიდან, 300+ პროექტი, 10+ წლიანი გარანტია
           </p>
         </div>
 

@@ -23,7 +23,7 @@ const values = [
   },
   {
     title: "გარანტია",
-    body: "სამუშაოს დასრულების შემდეგ გაძლევთ 3 წლიან გარანტიას. შედეგი არის გაზომვადი და კონტროლირებადი.",
+    body: "სამუშაოს დასრულების შემდეგ გაძლევთ 6 წლიან გარანტიას. შედეგი არის გაზომვადი და კონტროლირებადი.",
     icon: <WarrantyIcon />,
   },
 ] as const;
@@ -97,9 +97,9 @@ export function AboutPage({ locale }: { locale: string }) {
           </div>
 
           <div className="grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <IntroStat value={10} suffix="+" label="წლიანი გამოცდილება" duration={1500} />
+            <IntroStat value={6} suffix="+" label="წლიანი გამოცდილება" duration={1500} />
             <IntroStat value={500} suffix="+" label="დასრულებული პროექტი" duration={2000} />
-            <IntroStat value={3} suffix=" წელი" label="გარანტია" duration={900} />
+            <IntroStat value={10} suffix="+ წელი" label="გარანტია" duration={900} />
             <IntroStat value={100} suffix="%" label="კლიენტის კმაყოფილება" duration={1800} />
           </div>
         </div>
