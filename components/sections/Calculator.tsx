@@ -6,18 +6,9 @@ import { useInView } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import FadeUp from "@/components/FadeUp";
 
-type CategoryKey = "roof" | "terrace" | "basement";
-type SystemKey =
-  | "coating_insulation"
-  | "pvc_epdm"
-  | "toli"
-  | "acryl_cement"
-  | "polyurethane"
-  | "polyurea"
-  | "liquid_bitumen";
+type CategoryKey = "roof" | "terrace" | "foundation";
 
 type CalculatorRow = {
-  id: SystemKey;
   category: CategoryKey;
   priceMin: number;
   priceMax: number;
@@ -25,11 +16,10 @@ type CalculatorRow = {
   warrantyMax: number;
 };
 
-const CATEGORY_KEYS: CategoryKey[] = ["roof", "terrace", "basement"];
+const CATEGORY_KEYS: CategoryKey[] = ["roof", "terrace", "foundation"];
 
 const CALCULATOR_ROWS: CalculatorRow[] = [
   {
-    id: "coating_insulation",
     category: "roof",
     priceMin: 90,
     priceMax: 120,
@@ -37,7 +27,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 7,
   },
   {
-    id: "pvc_epdm",
     category: "roof",
     priceMin: 80,
     priceMax: 120,
@@ -45,7 +34,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 15,
   },
   {
-    id: "toli",
     category: "roof",
     priceMin: 40,
     priceMax: 70,
@@ -53,7 +41,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 2,
   },
   {
-    id: "acryl_cement",
     category: "terrace",
     priceMin: 80,
     priceMax: 80,
@@ -61,7 +48,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 5,
   },
   {
-    id: "polyurethane",
     category: "terrace",
     priceMin: 100,
     priceMax: 120,
@@ -69,7 +55,6 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 7,
   },
   {
-    id: "polyurea",
     category: "terrace",
     priceMin: 150,
     priceMax: 150,
@@ -77,8 +62,7 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
     warrantyMax: 10,
   },
   {
-    id: "liquid_bitumen",
-    category: "basement",
+    category: "foundation",
     priceMin: 75,
     priceMax: 75,
     warrantyMin: 5,
@@ -86,77 +70,74 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
   },
 ];
 
+const CATEGORY_INCLUDES = {
+  ka: {
+    roof: ["წასასმელი იზოლაცია", "PVC / EPDM", "ტოლი"],
+    terrace: ["აკრილ-ცემენტი", "პოლიურეთანი", "პოლიურეა"],
+    foundation: ["თხევადი ბიტუმი"],
+  },
+  en: {
+    roof: ["Coating insulation", "PVC / EPDM", "Torch-on membrane"],
+    terrace: ["Acrylic-cement", "Polyurethane", "Polyurea"],
+    foundation: ["Liquid bitumen"],
+  },
+  ru: {
+    roof: ["Обмазочная изоляция", "PVC / EPDM", "Толь"],
+    terrace: ["Акрил-цемент", "Полиуретан", "Полимочевина"],
+    foundation: ["Жидкий битум"],
+  },
+} as const satisfies Record<string, Record<CategoryKey, string[]>>;
+
 const CALCULATOR_LABELS = {
   ka: {
     fields: {
       category: "კატეგორია",
-      type: "სისტემის ტიპი",
+      includes: "რას მოიცავს დიაპაზონი",
       price: "ფასი",
       total: "სრული თანხა",
       warranty: "გარანტია",
+      categoryRange: "კატეგორიის დიაპაზონი",
+      variants: "ვარიანტი",
     },
     categories: {
       roof: "სახურავი",
       terrace: "ტერასა",
-      basement: "სარდაფი",
+      foundation: "საძირკველი",
     } satisfies Record<CategoryKey, string>,
-    types: {
-      coating_insulation: "წასასმელი იზოლაცია",
-      pvc_epdm: "PVC / EPDM",
-      toli: "ტოლი",
-      acryl_cement: "აკრილ-ცემენტი",
-      polyurethane: "პოლიურეთანი",
-      polyurea: "პოლიურეა",
-      liquid_bitumen: "თხევადი ბიტუმი",
-    } satisfies Record<SystemKey, string>,
     yearsSuffix: "წელი",
   },
   en: {
     fields: {
       category: "Category",
-      type: "System type",
+      includes: "Included in range",
       price: "Price",
       total: "Total",
       warranty: "Warranty",
+      categoryRange: "Category range",
+      variants: "variant",
     },
     categories: {
       roof: "Roof",
       terrace: "Terrace",
-      basement: "Basement",
+      foundation: "Foundation",
     } satisfies Record<CategoryKey, string>,
-    types: {
-      coating_insulation: "Coating insulation",
-      pvc_epdm: "PVC / EPDM",
-      toli: "Torch-on membrane",
-      acryl_cement: "Acrylic-cement",
-      polyurethane: "Polyurethane",
-      polyurea: "Polyurea",
-      liquid_bitumen: "Liquid bitumen",
-    } satisfies Record<SystemKey, string>,
     yearsSuffix: "years",
   },
   ru: {
     fields: {
       category: "Категория",
-      type: "Тип системы",
+      includes: "Что входит в диапазон",
       price: "Цена",
       total: "Итого",
       warranty: "Гарантия",
+      categoryRange: "Диапазон категории",
+      variants: "вариант",
     },
     categories: {
       roof: "Крыша",
       terrace: "Терраса",
-      basement: "Подвал",
+      foundation: "Фундамент",
     } satisfies Record<CategoryKey, string>,
-    types: {
-      coating_insulation: "Обмазочная изоляция",
-      pvc_epdm: "PVC / EPDM",
-      toli: "Толь",
-      acryl_cement: "Акрил-цемент",
-      polyurethane: "Полиуретан",
-      polyurea: "Полимочевина",
-      liquid_bitumen: "Жидкий битум",
-    } satisfies Record<SystemKey, string>,
     yearsSuffix: "лет",
   },
 } as const;
@@ -172,42 +153,32 @@ export function Calculator() {
 
   const localeLabels =
     CALCULATOR_LABELS[(locale as keyof typeof CALCULATOR_LABELS) ?? "ka"] ?? CALCULATOR_LABELS.ka;
+  const includesLabels =
+    CATEGORY_INCLUDES[(locale as keyof typeof CATEGORY_INCLUDES) ?? "ka"] ?? CATEGORY_INCLUDES.ka;
 
   const [category, setCategory] = useState<CategoryKey>("roof");
-  const [system, setSystem] = useState<SystemKey>("coating_insulation");
   const [area, setArea] = useState(250);
   const resultRef = useRef<HTMLDivElement | null>(null);
   const resultVisible = useInView(resultRef, { once: true, amount: 0.35 });
 
-  const systemsForCategory = useMemo(
+  const rowsForCategory = useMemo(
     () => CALCULATOR_ROWS.filter((row) => row.category === category),
     [category],
   );
 
-  useEffect(() => {
-    if (!systemsForCategory.some((row) => row.id === system)) {
-      setSystem(systemsForCategory[0]?.id ?? "coating_insulation");
-    }
-  }, [system, systemsForCategory]);
-
-  const selectedSystem = useMemo(
-    () => CALCULATOR_ROWS.find((row) => row.id === system) ?? CALCULATOR_ROWS[0],
-    [system],
-  );
-
   const result = useMemo(() => {
-    const base = selectedSystem;
-    const factor = 1;
+    const priceMin = Math.min(...rowsForCategory.map((row) => row.priceMin));
+    const priceMax = Math.max(...rowsForCategory.map((row) => row.priceMax));
+    const warrantyMin = Math.min(...rowsForCategory.map((row) => row.warrantyMin));
+    const warrantyMax = Math.max(...rowsForCategory.map((row) => row.warrantyMax));
 
-    const perMin = Math.round(base.priceMin * factor);
-    const perMax = Math.round(base.priceMax * factor);
+    const perMin = Math.round(priceMin);
+    const perMax = Math.round(priceMax);
     const totalMin = Math.round(perMin * area);
     const totalMax = Math.round(perMax * area);
-    const warrantyMin = base.warrantyMin;
-    const warrantyMax = base.warrantyMax;
 
     return { perMin, perMax, totalMin, totalMax, warrantyMin, warrantyMax };
-  }, [area, selectedSystem]);
+  }, [area, rowsForCategory]);
 
   const animatedPerMin = useCountTransition(result.perMin, resultVisible, 800);
   const animatedPerMax = useCountTransition(result.perMax, resultVisible, 900);
@@ -257,40 +228,49 @@ export function Calculator() {
                 </div>
               </Field>
 
-              <Field label={localeLabels.fields.type}>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {systemsForCategory.map((row) => (
-                    <button
-                      key={row.id}
-                      type="button"
-                      onClick={() => setSystem(row.id)}
-                      className={[
-                        "rounded-lg border px-4 py-3 text-left transition",
-                        "shadow-[0_6px_18px_rgba(0,0,0,0.18)]",
-                        system === row.id
-                          ? "border-primary-green/80 bg-gradient-to-b from-primary-green/16 to-transparent ring-1 ring-primary-green/35 shadow-[0_0_0_1px_rgba(23,109,72,0.22),0_10px_28px_rgba(23,109,72,0.12)]"
-                          : "border-white/15 bg-[#131832] hover:border-white/25 hover:bg-[#171d3a]",
-                      ].join(" ")}
-                      aria-pressed={system === row.id}
+              <div className="rounded-xl border border-white/12 bg-[#10152b]/90 p-4 shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">
+                    {localeLabels.fields.includes}
+                  </p>
+                  <span className="rounded-full border border-primary-green/25 bg-primary-green/10 px-2.5 py-1 text-[11px] font-bold text-primary-green">
+                    {rowsForCategory.length} {localeLabels.fields.variants}
+                  </span>
+                </div>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {includesLabels[category].map((label) => (
+                    <span
+                      key={label}
+                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-semibold text-white/85"
                     >
-                      <div className={`text-[15px] leading-snug font-bold ${system === row.id ? "text-white" : "text-white/90"}`}>
-                        {localeLabels.types[row.id]}
-                      </div>
-                      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium">
-                        <span className="text-primary-green [text-shadow:0_0_12px_rgba(23,109,72,0.25)]">
-                          {formatRange(row.priceMin, row.priceMax)} ₾/მ²
-                        </span>
-                        <span className="text-white/70">
-                          {formatRange(row.warrantyMin, row.warrantyMax)} {localeLabels.yearsSuffix}
-                        </span>
-                      </div>
-                    </button>
+                      {label}
+                    </span>
                   ))}
                 </div>
-              </Field>
+
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div className="rounded-lg border border-white/10 bg-[#141a34] px-3 py-2.5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
+                      {localeLabels.fields.price}
+                    </p>
+                    <p className="mt-1 text-base font-extrabold text-white">
+                      {formatRange(result.perMin, result.perMax)} ₾/მ²
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-white/10 bg-[#141a34] px-3 py-2.5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
+                      {localeLabels.fields.warranty}
+                    </p>
+                    <p className="mt-1 text-base font-extrabold text-primary-green">
+                      {formatRange(result.warrantyMin, result.warrantyMax)} {localeLabels.yearsSuffix}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               <Field label={t("fields.area")}>
-                <div className="rounded-lg border border-white/15 bg-[#12162d] px-4 py-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+                <div className="rounded-lg border border-white/15 bg-[#12162d] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-extrabold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
                       {formatNumber(area)} <span className="text-primary-green">მ²</span>
@@ -303,8 +283,12 @@ export function Calculator() {
                     max={2000}
                     value={area}
                     onChange={(e) => setArea(Number(e.target.value))}
-                    className="gd-range mt-3 w-full"
+                    className="gd-range mt-4 w-full"
                   />
+                  <div className="mt-3 flex items-center justify-between text-[11px] font-semibold text-white/45">
+                    <span>მინ: 10 მ²</span>
+                    <span>მაქს: 2000 მ²</span>
+                  </div>
                 </div>
               </Field>
             </div>
@@ -337,8 +321,8 @@ export function Calculator() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs font-medium text-white/65">{localeLabels.categories[selectedSystem.category]}</p>
-                  <p className="text-sm font-bold text-white">{localeLabels.types[selectedSystem.id]}</p>
+                  <p className="text-xs font-medium text-white/65">{localeLabels.categories[category]}</p>
+                  <p className="text-sm font-bold text-white">{localeLabels.fields.categoryRange}</p>
                 </div>
               </div>
             </div>
