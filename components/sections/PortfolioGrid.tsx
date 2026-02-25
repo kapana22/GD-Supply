@@ -92,7 +92,7 @@ export function PortfolioGrid({
   }, [activeProject]);
 
   return (
-    <section id="portfolio" className="relative py-[60px] md:py-[100px]">
+    <section id="portfolio" className="gd-cv-auto relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <FadeUp>
           <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">

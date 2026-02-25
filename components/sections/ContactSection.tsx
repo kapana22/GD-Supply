@@ -88,7 +88,7 @@ export function ContactSection() {
   const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
 
   return (
-    <section id="contact" className="bg-gd-surface py-[56px] md:py-[72px]">
+    <section id="contact" className="gd-cv-auto bg-gd-surface py-[56px] md:py-[72px]">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
         <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
           <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-primary-navy/95 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-7">

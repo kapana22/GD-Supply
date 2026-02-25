@@ -47,8 +47,8 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
         </video>
 
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,28,51,0)_0px,rgba(26,28,51,0)_96px,rgba(26,28,51,0.12)_160px,rgba(26,28,51,0.46)_52%,rgba(26,28,51,0.94))]" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.08] bg-grid-strong [background-size:56px_56px]" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_520px_at_70%_42%,rgba(23,109,72,0.08),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(980px_560px_at_74%_28%,rgba(28,184,121,0.14),transparent_62%),radial-gradient(760px_420px_at_14%_22%,rgba(255,255,255,0.07),transparent_70%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.14] bg-[linear-gradient(115deg,rgba(255,255,255,0.06)_0%,transparent_36%,transparent_64%,rgba(28,184,121,0.06)_100%)]" />
 
       </div>
 

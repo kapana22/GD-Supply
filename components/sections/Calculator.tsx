@@ -177,7 +177,7 @@ export function Calculator() {
     const totalMax = Math.round(perMax * area);
 
     return { perMin, perMax, totalMin, totalMax, warrantyMin, warrantyMax };
-  }, [area, rowsForCategory]);
+  }, [area, category, rowsForCategory]);
 
   const animatedPerMin = useCountTransition(result.perMin, resultVisible, 800);
   const animatedPerMax = useCountTransition(result.perMax, resultVisible, 900);
@@ -187,10 +187,10 @@ export function Calculator() {
   const animatedWarrantyMax = useCountTransition(result.warrantyMax, resultVisible, 850);
 
   return (
-    <section id="calculator" className="relative py-[60px] md:py-[100px]">
-      <div className="pointer-events-none absolute inset-0 bg-gd-surface" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.10] bg-dots [background-size:18px_18px]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_520px_at_20%_20%,rgba(23,109,72,0.18),transparent_60%)]" />
+    <section id="calculator" className="gd-cv-auto relative py-[60px] md:py-[100px]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#101428_0%,#0e1224_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(960px_560px_at_16%_20%,rgba(28,184,121,0.20),transparent_60%),radial-gradient(760px_420px_at_84%_18%,rgba(255,255,255,0.06),transparent_72%),radial-gradient(920px_520px_at_52%_110%,rgba(23,109,72,0.14),transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.16] bg-[linear-gradient(120deg,rgba(255,255,255,0.05)_0%,transparent_38%,transparent_62%,rgba(28,184,121,0.06)_100%)]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
         <FadeUp>

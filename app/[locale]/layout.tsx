@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { defaultLocale, locales } from "@/lib/i18n";
 import { contractica, contracticaCaps } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/Navbar";
+import { SiteAmbientBackground } from "@/components/layout/SiteAmbientBackground";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { MobileCallBar } from "@/components/ui/MobileCallBar";
@@ -47,16 +48,17 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${contractica.variable} ${contracticaCaps.variable} font-georgian antialiased`}
+        className={`${contractica.variable} ${contracticaCaps.variable} relative min-h-screen font-georgian antialiased`}
       >
-        <div className="pointer-events-none fixed inset-0 bg-grid-faint opacity-[0.10] [background-size:72px_72px]" />
-        <div className="pointer-events-none fixed inset-x-0 bottom-0 top-[84px] bg-[radial-gradient(900px_600px_at_60%_0%,rgba(23,109,72,0.20),transparent_60%)] opacity-70" />
+        <SiteAmbientBackground />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
-          <div className="relative pt-[84px]">{children}</div>
-          <Footer />
-          <WhatsAppButton />
-          <MobileCallBar />
+          <div className="relative z-10">
+            <Navbar />
+            <div className="relative pt-[84px]">{children}</div>
+            <Footer />
+            <WhatsAppButton />
+            <MobileCallBar />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>

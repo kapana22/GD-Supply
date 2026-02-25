@@ -25,6 +25,12 @@ const LOCALE_LABELS: Record<string, string> = {
   ru: "RU",
 };
 
+const LOCALE_FLAG_FILES: Record<string, string> = {
+  ka: "/flags/ge.svg",
+  en: "/flags/gb.svg",
+  ru: "/flags/ru.svg",
+};
+
 const LOCALE_OPTION_ORDER = ["en", "ru", "ka"] as const;
 
 const SYSTEM_CONTROL_FONT_STYLE = {
@@ -80,25 +86,53 @@ export function Navbar() {
       className="fixed left-0 right-0 top-0 z-50 transition-all duration-500"
       style={{
         background: scrolled
-          ? "linear-gradient(180deg, rgba(13,18,39,0.62) 0%, rgba(13,18,39,0.48) 100%)"
-          : "linear-gradient(180deg, rgba(13,18,39,0.18) 0%, rgba(13,18,39,0.09) 100%)",
-        backdropFilter: scrolled ? "blur(20px) saturate(1.25)" : "blur(14px) saturate(1.1)",
-        WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.25)" : "blur(14px) saturate(1.1)",
+          ? "linear-gradient(180deg, rgba(8,12,26,0.78) 0%, rgba(9,13,28,0.66) 52%, rgba(10,14,30,0.62) 100%)"
+          : "linear-gradient(180deg, rgba(8,12,26,0.36) 0%, rgba(9,13,28,0.22) 55%, rgba(10,14,30,0.16) 100%)",
+        backdropFilter: scrolled ? "blur(24px) saturate(1.45)" : "blur(17px) saturate(1.18)",
+        WebkitBackdropFilter: scrolled ? "blur(24px) saturate(1.45)" : "blur(17px) saturate(1.18)",
         borderBottom: scrolled
-          ? "1px solid rgba(255,255,255,0.10)"
-          : "1px solid rgba(255,255,255,0.00)",
+          ? "1px solid rgba(255,255,255,0.12)"
+          : "1px solid rgba(255,255,255,0.08)",
         boxShadow: scrolled
-          ? "inset 0 1px 0 rgba(255,255,255,0.07), 0 14px 32px rgba(5,8,20,0.24), 0 0 42px rgba(23,109,72,0.12)"
-          : "inset 0 1px 0 rgba(255,255,255,0.05), 0 0 34px rgba(23,109,72,0.10)",
+          ? "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(255,255,255,0.03), 0 16px 38px rgba(4,8,18,0.32), 0 0 56px rgba(28,184,121,0.09)"
+          : "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(255,255,255,0.02), 0 0 42px rgba(28,184,121,0.10)",
       }}
     >
       <div
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{
+          opacity: scrolled ? 0.92 : 0.68,
+          background:
+            "radial-gradient(34% 120% at 14% 0%, rgba(255,255,255,0.12) 0%, transparent 66%), radial-gradient(42% 120% at 50% -8%, rgba(255,255,255,0.06) 0%, transparent 70%), radial-gradient(48% 120% at 84% 0%, rgba(28,184,121,0.12) 0%, transparent 72%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-full transition-opacity duration-500"
+        style={{
+          opacity: scrolled ? 0.26 : 0.16,
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 34%, rgba(255,255,255,0.20) 50%, rgba(255,255,255,0.10) 66%, transparent 100%)",
+          mixBlendMode: "screen",
+        }}
+      />
+      <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.7 : 0.45,
+          opacity: scrolled ? 0.96 : 0.78,
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 18%, rgba(28,184,121,0.35) 50%, rgba(255,255,255,0.22) 82%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.24) 10%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.22) 90%, transparent 100%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px transition-opacity duration-500"
+        style={{
+          opacity: scrolled ? 0.9 : 0.72,
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 14%, rgba(255,255,255,0.20) 42%, rgba(28,184,121,0.34) 58%, rgba(255,255,255,0.14) 86%, transparent 100%)",
         }}
       />
       <div
@@ -107,16 +141,16 @@ export function Navbar() {
         style={{
           opacity: scrolled ? 0.22 : 0.14,
           background:
-            "radial-gradient(60% 100% at 50% 0%, rgba(28,184,121,0.55) 0%, rgba(28,184,121,0.0) 75%)",
+            "radial-gradient(58% 100% at 52% 0%, rgba(28,184,121,0.34) 0%, rgba(28,184,121,0.0) 76%)",
         }}
       />
       <div
-        className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height,padding] duration-500 md:px-10"
+        className="relative mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height,padding] duration-500 md:px-10"
         style={{ height: scrolled ? 74 : 78 }}
       >
         <Link
           href={`/${locale}`}
-          className="relative flex shrink-0 items-center gap-2.5"
+          className="relative z-[1] flex shrink-0 items-center gap-2.5"
           aria-label="GD Supply"
         >
           <span
@@ -138,7 +172,7 @@ export function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden min-w-0 items-center justify-center gap-1 lg:flex">
+        <nav className="relative z-[1] hidden min-w-0 items-center justify-center gap-1 lg:flex">
           {links.map((item) => {
             const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
             const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
@@ -159,7 +193,7 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+        <div className="relative z-[1] hidden shrink-0 items-center gap-3 lg:flex">
           <LanguageDropdown locale={locale} onChange={setLocale} />
 
           <a
@@ -174,7 +208,7 @@ export function Navbar() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((value) => !value)}
-          className="gd-control-icon grid h-11 w-11 place-items-center rounded-lg text-white lg:hidden"
+          className="gd-control-icon relative z-[1] grid h-11 w-11 place-items-center rounded-lg text-white lg:hidden"
         >
           {open ? <X className="h-5 w-5" strokeWidth={2.2} /> : <Menu className="h-5 w-5" strokeWidth={2.2} />}
         </button>
@@ -267,7 +301,6 @@ function LanguageDropdown({
   }, []);
 
   const activeLabel = LOCALE_LABELS[locale] ?? locale.toUpperCase();
-
   return (
     <div ref={rootRef} className={`relative ${mobile ? "w-[132px]" : ""}`}>
       <button
@@ -282,7 +315,10 @@ function LanguageDropdown({
         aria-label="Select language"
         style={SYSTEM_CONTROL_FONT_STYLE}
       >
-        <span>{activeLabel}</span>
+        <span className="inline-flex items-center gap-1.5">
+          <FlagIcon locale={locale} />
+          <span>{activeLabel}</span>
+        </span>
         <svg
           viewBox="0 0 20 20"
           className={`h-4 w-4 text-white/70 transition-transform ${isOpen ? "rotate-180" : ""}`}
@@ -306,13 +342,11 @@ function LanguageDropdown({
             transition={{ duration: 0.16 }}
             className="gd-dropdown-panel absolute right-0 top-[calc(100%+8px)] z-[70] w-[132px] rounded-xl p-1.5"
           >
-            <div className="mb-1 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/35">
-              EN / RU / GE
-            </div>
             <div role="listbox" aria-label="Select language" className="space-y-1">
               {LOCALE_OPTION_ORDER.map((loc) => {
                 const active = loc === locale;
                 const supported = locales.includes(loc);
+                const label = LOCALE_LABELS[loc] ?? loc.toUpperCase();
 
                 return (
                   <button
@@ -335,7 +369,10 @@ function LanguageDropdown({
                     }`}
                     style={SYSTEM_CONTROL_FONT_STYLE}
                   >
-                    <span>{LOCALE_LABELS[loc] ?? loc.toUpperCase()}</span>
+                    <span className="inline-flex items-center gap-2">
+                      <FlagIcon locale={loc} />
+                      <span>{label}</span>
+                    </span>
                     {active ? (
                       <svg
                         viewBox="0 0 16 16"
@@ -358,5 +395,38 @@ function LanguageDropdown({
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function FlagIcon({
+  locale,
+  className = "h-3.5 w-5",
+}: {
+  locale: string;
+  className?: string;
+}) {
+  const src = LOCALE_FLAG_FILES[locale] ?? "/flags/ge.svg";
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`relative inline-flex overflow-hidden rounded-[4px] ring-1 ring-white/20 shadow-[0_1px_8px_rgba(0,0,0,0.28)] ${className}`}
+    >
+      <Image
+        src={src}
+        alt=""
+        width={20}
+        height={14}
+        className="h-full w-full object-cover"
+        unoptimized
+      />
+      <span
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.0) 55%)",
+        }}
+      />
+    </span>
   );
 }

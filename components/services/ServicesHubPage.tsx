@@ -13,7 +13,7 @@ export function ServicesHubPage({
   services: ServicePageData[];
 }) {
   return (
-    <section className="bg-primary-navy py-[56px] text-white md:py-[88px]">
+    <section className="gd-cv-auto bg-primary-navy py-[56px] text-white md:py-[88px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="mb-10 md:mb-14">
           <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">

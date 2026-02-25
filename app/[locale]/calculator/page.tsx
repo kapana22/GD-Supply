@@ -16,7 +16,7 @@ export default async function CalculatorPage() {
   }>;
 
   return (
-    <main className="relative">
+    <main className="gd-page-shell relative">
       <Calculator />
       <PortfolioGrid
         title={tPortfolio("title")}

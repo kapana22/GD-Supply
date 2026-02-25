@@ -36,7 +36,7 @@ export default function PostPageClient({
   }, []);
 
   return (
-    <main className="min-h-screen bg-[var(--gd-bg)]">
+    <main className="gd-page-shell min-h-screen bg-[var(--gd-bg)]">
       <div className="fixed left-0 right-0 top-0 z-[60] h-[3px] bg-white/10">
         <motion.div className="h-full bg-[#176D48]" style={{ width: `${progress}%` }} transition={{ duration: 0.1 }} />
       </div>

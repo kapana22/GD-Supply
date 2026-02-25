@@ -14,7 +14,7 @@ export function ServiceDetailPage({
   service: ServicePageData;
 }) {
   return (
-    <main className="bg-primary-navy text-white">
+    <main className="gd-page-shell bg-primary-navy text-white">
       <ServiceHero locale={locale} service={service} />
 
       <section className="border-t border-white/10 py-12 md:py-16">

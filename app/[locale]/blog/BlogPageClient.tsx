@@ -27,7 +27,7 @@ export default function BlogPageClient({ posts }: { posts: BlogPostMeta[] }) {
   const rest = filtered.slice(1);
 
   return (
-    <main className="min-h-screen bg-[var(--gd-bg)]">
+    <main className="gd-page-shell min-h-screen bg-[var(--gd-bg)]">
       <section className="relative overflow-hidden px-6 pb-20 pt-32">
         <div
           className="absolute inset-0 opacity-[0.04]"

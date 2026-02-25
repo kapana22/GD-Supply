@@ -37,7 +37,7 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
       }>);
 
   return (
-    <main className="relative">
+    <main className="gd-page-shell relative">
       <PortfolioGrid
         title={isKa ? "ჩვენი პროექტები" : t("title")}
         subtitle={isKa ? "ყოველი პროექტი — ეს არის ჩვენი ნამუშევარი, რომელსაც სახელი ადევს." : t("subtitle")}

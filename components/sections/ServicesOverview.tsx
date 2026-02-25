@@ -58,7 +58,7 @@ export function ServicesOverview({
   const locale = useLocale();
 
   return (
-    <section id="services" className="relative py-[60px] md:py-[100px]">
+    <section id="services" className="gd-cv-auto relative py-[60px] md:py-[100px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
           <div>

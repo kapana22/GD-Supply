@@ -7,7 +7,7 @@ export default function ServicesPage({
   params: { locale: string };
 }) {
   return (
-    <main className="relative bg-primary-navy">
+    <main className="gd-page-shell relative bg-primary-navy">
       <ServicesHubPage locale={params.locale} services={SERVICES_CATALOG} />
     </main>
   );

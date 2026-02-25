@@ -7,7 +7,7 @@ type QA = { q: string; a: string };
 
 export function Faq({ title, items }: { title: string; items: QA[] }) {
   return (
-    <section id="faq" className="bg-primary-navy py-[60px] md:py-[100px]">
+    <section id="faq" className="gd-cv-auto bg-primary-navy py-[60px] md:py-[100px]">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-5 md:px-10 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] xl:gap-14">
         <div className="xl:pt-1">
           <FadeUp>
