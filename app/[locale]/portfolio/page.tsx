@@ -1,7 +1,8 @@
-﻿import { getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
+import { PageHero } from "@/components/sections/PageHero";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 
-const KA_FILTERS = ["ყველა", "ბრტყელი სახურავი", "ტერასა", "საძირკველი", "აუზი", "ინდუსტრიული იატაკი", "კომერციული"];
+const KA_FILTERS = ["ყველა", "ბრტყელი სახურავი", "ტერასა", "საძირკველი", "ინდუსტრიული იატაკი", "კომერციული"];
 
 const KA_PROJECTS = [
   { name: "ამბასადორი კახეთი", work: "სახურავის ჰიდროიზოლაცია", area: "2,400 მ²", material: "—", duration: "—", tags: ["ბრტყელი სახურავი", "კომერციული"] },
@@ -9,7 +10,6 @@ const KA_PROJECTS = [
   { name: "ნიუტონის თავისუფალი სკოლა", work: "ეპოქსიდური იატაკი", area: "1,200 მ²", material: "—", duration: "—", tags: ["ინდუსტრიული იატაკი", "კომერციული"] },
   { name: "საჯარო რეესტრის ეროვნული სააგენტო", work: "საპარკინგე საფარი", area: "—", material: "—", duration: "—", tags: ["ინდუსტრიული იატაკი", "კომერციული"] },
   { name: "ბაქსვუდის საერთაშორისო სკოლა", work: "ბრტყელი სახურავის მოწყობა", area: "1,800 მ²", material: "—", duration: "—", tags: ["ბრტყელი სახურავი", "კომერციული"] },
-  { name: "ანაკლიის აქვა-პარკი", work: "აუზის ჰიდროიზოლაცია", area: "600 მ²", material: "—", duration: "—", tags: ["აუზი", "კომერციული"] },
   { name: "სავაჭრო ცენტრი „მერანი“", work: "სახურავის ჰიდროიზოლაცია", area: "3,500 მ²", material: "—", duration: "—", tags: ["ბრტყელი სახურავი", "კომერციული"] },
   { name: "სასტუმრო „როიალ პალასი“", work: "ტერასის ჰიდროიზოლაცია", area: "450 მ²", material: "—", duration: "—", tags: ["ტერასა", "კომერციული"] },
   { name: "კერძო სახლი საგურამოში", work: "სახურავის ჰიდროიზოლაცია", area: "—", material: "—", duration: "—", tags: ["ბრტყელი სახურავი"] },
@@ -38,13 +38,25 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
 
   return (
     <main className="gd-page-shell relative">
+      <PageHero
+        locale={params.locale}
+        eyebrow="პორტფოლიო"
+        title={isKa ? "ჩვენი პროექტები" : t("title")}
+        subtitle={isKa ? "შერჩეული ობიექტები და შესრულებული სამუშაოები." : t("subtitle")}
+        breadcrumbs={[
+          { label: "მთავარი", href: `/${params.locale}` },
+          { label: isKa ? "პორტფოლიო" : t("title") },
+        ]}
+        backgroundTheme="portfolio"
+        compact
+      />
       <PortfolioGrid
         title={isKa ? "ჩვენი პროექტები" : t("title")}
         subtitle={isKa ? "ყოველი პროექტი — ეს არის ჩვენი ნამუშევარი, რომელსაც სახელი ადევს." : t("subtitle")}
         filters={filters}
         projects={projects}
+        showHeader={false}
       />
     </main>
   );
 }
-

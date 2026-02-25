@@ -85,35 +85,33 @@ export function Navbar() {
     <header
       className="fixed left-0 right-0 top-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? "linear-gradient(180deg, rgba(8,12,26,0.78) 0%, rgba(9,13,28,0.66) 52%, rgba(10,14,30,0.62) 100%)"
-          : "linear-gradient(180deg, rgba(8,12,26,0.36) 0%, rgba(9,13,28,0.22) 55%, rgba(10,14,30,0.16) 100%)",
-        backdropFilter: scrolled ? "blur(24px) saturate(1.45)" : "blur(17px) saturate(1.18)",
-        WebkitBackdropFilter: scrolled ? "blur(24px) saturate(1.45)" : "blur(17px) saturate(1.18)",
+        background: scrolled ? "rgba(26,28,51,0.72)" : "rgba(26,28,51,0.42)",
+        backdropFilter: scrolled ? "blur(20px) saturate(1.35)" : "blur(16px) saturate(1.15)",
+        WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.35)" : "blur(16px) saturate(1.15)",
         borderBottom: scrolled
-          ? "1px solid rgba(255,255,255,0.12)"
-          : "1px solid rgba(255,255,255,0.08)",
+          ? "1px solid rgba(255,255,255,0.14)"
+          : "1px solid rgba(255,255,255,0.10)",
         boxShadow: scrolled
-          ? "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(255,255,255,0.03), 0 16px 38px rgba(4,8,18,0.32), 0 0 56px rgba(28,184,121,0.09)"
-          : "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(255,255,255,0.02), 0 0 42px rgba(28,184,121,0.10)",
+          ? "inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(255,255,255,0.03), 0 14px 36px rgba(4,8,18,0.22), 0 0 34px rgba(23,109,72,0.08)"
+          : "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(255,255,255,0.02), 0 0 26px rgba(23,109,72,0.06)",
       }}
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.92 : 0.68,
+          opacity: scrolled ? 0.88 : 0.72,
           background:
-            "radial-gradient(34% 120% at 14% 0%, rgba(255,255,255,0.12) 0%, transparent 66%), radial-gradient(42% 120% at 50% -8%, rgba(255,255,255,0.06) 0%, transparent 70%), radial-gradient(48% 120% at 84% 0%, rgba(28,184,121,0.12) 0%, transparent 72%)",
+            "radial-gradient(36% 140% at 10% -8%, rgba(255,255,255,0.14) 0%, transparent 68%), radial-gradient(42% 140% at 50% -14%, rgba(255,255,255,0.05) 0%, transparent 72%), radial-gradient(46% 140% at 88% -6%, rgba(23,109,72,0.16) 0%, transparent 72%)",
         }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-full transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.26 : 0.16,
+          opacity: scrolled ? 0.14 : 0.10,
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 34%, rgba(255,255,255,0.20) 50%, rgba(255,255,255,0.10) 66%, transparent 100%)",
+            "linear-gradient(106deg, transparent 0%, rgba(255,255,255,0.08) 18%, transparent 34%, transparent 58%, rgba(28,184,121,0.06) 72%, transparent 88%)",
           mixBlendMode: "screen",
         }}
       />
@@ -121,27 +119,27 @@ export function Navbar() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.96 : 0.78,
+          opacity: scrolled ? 0.95 : 0.84,
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.24) 10%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.22) 90%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.24) 12%, rgba(255,255,255,0.52) 50%, rgba(255,255,255,0.24) 88%, transparent 100%)",
         }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.9 : 0.72,
+          opacity: scrolled ? 0.9 : 0.74,
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 14%, rgba(255,255,255,0.20) 42%, rgba(28,184,121,0.34) 58%, rgba(255,255,255,0.14) 86%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 14%, rgba(28,184,121,0.28) 52%, rgba(255,255,255,0.10) 86%, transparent 100%)",
         }}
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -bottom-6 h-10 blur-2xl transition-opacity duration-500"
         style={{
-          opacity: scrolled ? 0.22 : 0.14,
+          opacity: scrolled ? 0.16 : 0.11,
           background:
-            "radial-gradient(58% 100% at 52% 0%, rgba(28,184,121,0.34) 0%, rgba(28,184,121,0.0) 76%)",
+            "radial-gradient(56% 100% at 52% 0%, rgba(23,109,72,0.36) 0%, rgba(23,109,72,0.0) 76%)",
         }}
       />
       <div
@@ -223,7 +221,7 @@ export function Navbar() {
             transition={{ duration: 0.18 }}
             className="mx-auto max-w-[1440px] px-5 pb-4 md:px-10 lg:hidden"
           >
-            <div className="rounded-xl border border-white/10 bg-primary-navy/95 p-4 shadow-elevated backdrop-blur">
+            <div className="rounded-xl border border-white/12 bg-[rgba(26,28,51,0.76)] p-4 shadow-[0_18px_40px_rgba(4,8,18,0.26),inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-blur-xl">
               <div className="grid gap-2">
                 {links.map((item) => {
                   const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;

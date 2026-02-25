@@ -1,4 +1,4 @@
-import { AboutPage } from "@/components/sections/AboutPage";
+﻿import { AboutPage } from "@/components/sections/AboutPage";
 
 export default function AboutRoute({ params }: { params: { locale: string } }) {
   return (

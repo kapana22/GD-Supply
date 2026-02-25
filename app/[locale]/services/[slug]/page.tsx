@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PageHero } from "@/components/sections/PageHero";
 import { ServiceDetailPage } from "@/components/services/ServiceDetailPage";
 import { SERVICES_CATALOG, getServiceBySlug } from "@/lib/servicesCatalog";
 
@@ -42,5 +43,23 @@ export default function ServiceSlugPage({
     notFound();
   }
 
-  return <ServiceDetailPage locale={params.locale} service={service} />;
+  return (
+    <>
+      <PageHero
+        locale={params.locale}
+        eyebrow="სერვისი"
+        title={service.heroTitle}
+        subtitle={service.subtitle}
+        backgroundImage={service.heroImage}
+        backgroundTheme="services"
+        breadcrumbs={[
+          { label: "მთავარი", href: `/${params.locale}` },
+          { label: "სერვისები", href: `/${params.locale}/services` },
+          { label: service.title },
+        ]}
+        compact
+      />
+      <ServiceDetailPage locale={params.locale} service={service} hideHero />
+    </>
+  );
 }

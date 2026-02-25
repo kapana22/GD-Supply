@@ -9,13 +9,15 @@ import {
 export function ServiceDetailPage({
   locale,
   service,
+  hideHero = false,
 }: {
   locale: string;
   service: ServicePageData;
+  hideHero?: boolean;
 }) {
   return (
-    <main className="gd-page-shell bg-primary-navy text-white">
-      <ServiceHero locale={locale} service={service} />
+    <main className="gd-page-shell bg-transparent text-white">
+      {hideHero ? null : <ServiceHero locale={locale} service={service} />}
 
       <section className="border-t border-white/10 py-12 md:py-16">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">

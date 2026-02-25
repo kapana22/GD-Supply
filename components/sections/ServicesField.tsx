@@ -15,7 +15,6 @@ const SERVICE_IMAGE_MAP: Record<string, string> = {
   flat_roof: "/assets/services/flat-roof.jpg",
   terrace: "/assets/services/terrace.jpg",
   foundation: "/assets/services/foundation.jpg",
-  pool: "/assets/services/pool.jpg",
   industrial_floor: "/assets/services/industrial-floor.jpg",
   materials: "/assets/services/materials.jpg",
 };

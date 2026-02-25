@@ -56,6 +56,7 @@ const team = [
 
 const partners = ["Sika", "Mapei", "Soprema", "Isomat", "BASF", "Penetron", "Drizoro", "Ceresit"] as const;
 
+
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -85,27 +86,53 @@ export function AboutPage({ locale }: { locale: string }) {
       </motion.section>
 
       <motion.section id="about-story" {...fadeUp} className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-[1440px] items-start gap-8 px-5 md:px-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div className="relative overflow-hidden rounded-2xl border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] p-6 shadow-[0_14px_32px_rgba(5,8,20,0.2)] md:p-8 lg:p-10">
-            <div className="pointer-events-none absolute -right-20 -top-16 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(28,184,121,0.18)_0%,rgba(28,184,121,0)_72%)]" />
+        <div className="mx-auto grid max-w-[1440px] items-start gap-6 px-5 md:px-10 xl:grid-cols-12 xl:gap-8">
+          <div className="relative overflow-hidden rounded-2xl border border-white/18 bg-[linear-gradient(180deg,rgba(11,16,31,0.88),rgba(11,16,31,0.72))] p-6 shadow-[0_24px_60px_rgba(3,6,16,0.4),inset_0_1px_0_rgba(255,255,255,0.08),0_0_38px_rgba(23,109,72,0.10)] backdrop-blur-xl md:p-8 lg:p-10 xl:col-span-7">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(640px_200px_at_8%_0%,rgba(255,255,255,0.08),transparent_72%),radial-gradient(540px_220px_at_95%_6%,rgba(23,109,72,0.20),transparent_76%),linear-gradient(120deg,rgba(255,255,255,0.03)_0%,transparent_36%,transparent_64%,rgba(28,184,121,0.06)_100%)]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.32),transparent)]" />
+            <div className="pointer-events-none absolute inset-x-[12%] bottom-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(28,184,121,0.0),rgba(28,184,121,0.75),rgba(28,184,121,0.0),transparent)]" />
+
             <p className="relative text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">კომპანიის ისტორია</p>
-            <p className="relative mt-5 text-base leading-relaxed text-white/82">
-              GD Supply დაარსდა 2014 წელს, როგორც სპეციალიზებული ჰიდროიზოლაციის კომპანია. წლების განმავლობაში შევასრულეთ ასეულობით პროექტი
-              კერძო, კომერციულ და ინდუსტრიულ ობიექტებზე, სადაც მთავარი მოთხოვნა იყო შედეგის გრძელვადიანობა.
-            </p>
+            <h2 className="relative mt-3 text-2xl font-black text-white md:text-3xl">მოკლედ ჩვენ შესახებ</h2>
             <p className="relative mt-4 text-base leading-relaxed text-white/82">
-              დღეს ჩვენი გუნდი მუშაობს სრულ ციკლზე: ინსპექცია, სისტემის შერჩევა, შესრულება და ჩაბარება. სწორედ ამ მიდგომამ მოგვიტანა მაღალი
-              კმაყოფილება და სტაბილური რეპუტაცია ბაზარზე.
+              GD Supply 2014 წლიდან მუშაობს ჰიდროიზოლაციაზე და ასრულებს პროექტებს კერძო, კომერციულ და ინდუსტრიულ ობიექტებზე.
+              ჩვენი მიზანია მარტივი: სწორად შერჩეული სისტემა, ხარისხიანი შესრულება და გრძელვადიანი შედეგი.
             </p>
+
+            <div className="relative mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-white/60">სპეციალიზაცია</p>
+                <p className="mt-1 text-sm font-semibold text-white/90">სახურავი, ტერასა, საძირკველი</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-white/60">მუშაობის ფორმატი</p>
+                <p className="mt-1 text-sm font-semibold text-white/90">ინსპექციიდან ჩაბარებამდე</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-white/60">ფოკუსი</p>
+                <p className="mt-1 text-sm font-semibold text-white/90">გამძლე შედეგი და ხარისხი</p>
+              </div>
+            </div>
           </div>
 
-          <div className="relative self-start overflow-hidden rounded-2xl border border-white/18 bg-white/[0.08] shadow-[0_18px_48px_rgba(5,8,20,0.35),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-xl">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(420px_180px_at_70%_-10%,rgba(28,184,121,0.12),transparent_72%)]" />
-            <div className="relative grid grid-cols-2 md:grid-cols-4">
-              <IntroStat value={6} suffix="+" label="გამოცდილება" duration={1500} className="border-b border-r border-white/12 md:border-b-0" />
-              <IntroStat value={300} suffix="+" label="პროექტი" duration={2000} className="border-b border-white/12 md:border-b-0 md:border-r md:border-white/12" />
-              <IntroStat value={10} suffix="+" label="წლ. გარანტია" duration={900} className="border-r border-white/12 md:border-r" />
-              <IntroStat value={100} suffix="%" label="კმაყოფილება" duration={1800} />
+          <div className="xl:col-span-5">
+            <div className="relative self-start overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.9),rgba(11,16,31,0.74))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.12)] backdrop-blur-xl">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(620px_220px_at_5%_0%,rgba(255,255,255,0.08),transparent_72%),radial-gradient(520px_220px_at_96%_8%,rgba(23,109,72,0.22),transparent_74%),linear-gradient(120deg,rgba(255,255,255,0.03)_0%,transparent_40%,transparent_62%,rgba(23,109,72,0.06)_100%)]" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent)]" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.10),rgba(28,184,121,0.35),rgba(255,255,255,0.10),transparent)]" />
+              <div className="pointer-events-none absolute left-[18%] right-[18%] bottom-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(28,184,121,0.0),rgba(28,184,121,0.7),rgba(28,184,121,0.0),transparent)]" />
+
+              <div className="relative px-5 pb-2 pt-4 md:px-6">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary-green">GD Supply</p>
+                <p className="mt-1 text-sm text-white/68">ციფრებში: გამოცდილება, შესრულებული პროექტები და შედეგის სტანდარტი.</p>
+              </div>
+
+              <div className="relative grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2">
+                <IntroStat value={6} suffix="+" label="გამოცდილება" duration={1500} className="border-b border-r border-white/12 md:border-b-0 xl:border-b xl:border-r" />
+                <IntroStat value={300} suffix="+" label="პროექტი" duration={2000} className="border-b border-white/12 md:border-b-0 md:border-r md:border-white/12 xl:border-b xl:border-r-0 xl:border-white/12" />
+                <IntroStat value={10} suffix="+" label="წლ. გარანტია" duration={900} className="border-r border-white/12 md:border-r xl:border-r" />
+                <IntroStat value={100} suffix="%" label="კმაყოფილება" duration={1800} />
+              </div>
             </div>
           </div>
         </div>
@@ -242,13 +269,13 @@ export function AboutPage({ locale }: { locale: string }) {
                 href={`/${locale}/contact`}
                 className="btn-primary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
-                უფასო კონსულტაცია →
+                უფასო კონსულტაცია
               </Link>
               <Link
                 href={`/${locale}/services`}
                 className="btn-secondary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
-                სერვისების ნახვა →
+                სერვისების ნახვა
               </Link>
             </div>
           </div>
@@ -293,12 +320,20 @@ function IntroStat({
   }, [trigger]);
 
   return (
-    <div ref={ref} className={`flex min-h-[104px] flex-col items-center justify-center bg-transparent px-4 py-5 text-center md:min-h-[118px] md:px-5 md:py-6 ${className}`}>
-      <p className="font-sans text-4xl font-black leading-none tracking-tight text-[#1CB879] [text-shadow:0_4px_18px_rgba(23,109,72,0.35)] md:text-5xl">
-        {count}
-        {suffix}
-      </p>
-      <p className="tt-label mt-2 text-xs font-semibold uppercase tracking-[0.06em] text-white/62">{label}</p>
+    <div
+      ref={ref}
+      className={`group relative flex min-h-[104px] flex-col items-center justify-center bg-transparent px-4 py-5 text-center md:min-h-[118px] md:px-5 md:py-6 ${className}`}
+    >
+      <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.14),transparent)] opacity-0 transition duration-300 group-hover:opacity-100" />
+      <div className="flex items-baseline justify-center gap-0.5">
+        <span className="font-sans text-[34px] font-black leading-none tracking-tight text-[var(--gd-accent-bright)] drop-shadow-[0_6px_20px_rgba(23,109,72,0.44)] tabular-nums md:text-[46px]">
+          {count}
+        </span>
+        <span className="font-sans text-[22px] font-black leading-none tracking-tight text-[var(--gd-accent-bright)] drop-shadow-[0_4px_16px_rgba(23,109,72,0.34)] md:text-[28px]">
+          {suffix}
+        </span>
+      </div>
+      <p className="tt-label mt-1.5 text-xs font-semibold uppercase tracking-[0.05em] text-white/88">{label}</p>
     </div>
   );
 }

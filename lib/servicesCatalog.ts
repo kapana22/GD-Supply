@@ -81,10 +81,8 @@ export const SERVICES_CATALOG: ServicePageData[] = [
       "ბრტყელი სახურავი ყველაზე მოწყვლადი ადგილია. ვიყენებთ მრავალფენოვან სისტემებს — 15–20 წლიანი დაცვა.",
     cardSummary:
       "მრავალფენოვანი ჰიდროიზოლაცია ბრტყელი სახურავისთვის, გრძელვადიანი დაცვით და ობიექტზე მორგებული სისტემით.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_bffa29332f054919b86edfeddc8c990a~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_bffa29332f054919b86edfeddc8c990a~mv2.jpg",
+    heroImage: "/assets/services/flat-roof.jpg",
+    cardImage: "/assets/services/flat-roof.jpg",
     usage: ["home", "commercial", "hotel"],
     materials: [
       {
@@ -108,11 +106,7 @@ export const SERVICES_CATALOG: ServicePageData[] = [
           "გამძლე სინთეზური მემბრანა, რომელიც გამოირჩევა ამინდისა და UV ზემოქმედების მიმართ მდგრადობით.",
       },
     ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_bffa29332f054919b86edfeddc8c990a~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_30ec8e14b0484984b8a4ebe8c7604f1d~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_42b9b6ce57dd472bb6f7c28087fb5291~mv2.jpg",
-    ],
+    gallery: ["/assets/services/flat-roof.jpg"],
   },
   {
     slug: "terrace",
@@ -124,10 +118,8 @@ export const SERVICES_CATALOG: ServicePageData[] = [
       "ტერასა მუდმივად ატმოსფერული გავლენის ქვეშაა. ვაყენებთ სისტემებს რომლებიც გაუძლებს სეზონურ ცვლილებებს.",
     cardSummary:
       "ტერასისა და ბალკონის ჰიდროიზოლაცია სეზონური ტემპერატურის ცვლილებებისა და ტენის გათვალისწინებით.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_6b8a962c24a34cb784b6b8ed0c422a9e~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_6b8a962c24a34cb784b6b8ed0c422a9e~mv2.jpg",
+    heroImage: "/assets/services/terrace.jpg",
+    cardImage: "/assets/services/terrace.jpg",
     usage: ["home", "commercial", "hotel"],
     materials: [
       {
@@ -151,11 +143,7 @@ export const SERVICES_CATALOG: ServicePageData[] = [
           "ხანგრძლივი ექსპლუატაციის მქონე მემბრანა, რომელიც კარგად მუშაობს გარე კლიმატურ პირობებში.",
       },
     ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_6b8a962c24a34cb784b6b8ed0c422a9e~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_fe44a4e1561d4e88921eaa059ae0f6d5~mv2.jpg",
-    ],
+    gallery: ["/assets/services/terrace.jpg"],
   },
   {
     slug: "foundation",
@@ -167,10 +155,8 @@ export const SERVICES_CATALOG: ServicePageData[] = [
       "მიწისქვეშა ტენი და გრუნტის წყალი ყველაზე სერიოზული საფრთხეა. ნეგატიური და პოზიტიური სისტემები.",
     cardSummary:
       "საძირკვლისა და სარდაფის ჰიდროიზოლაცია ნეგატიური და პოზიტიური სისტემებით ახალი და არსებული შენობებისთვის.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_9d374e9e02774693981e6baa862508e2~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_9d374e9e02774693981e6baa862508e2~mv2.jpg",
+    heroImage: "/assets/services/foundation.jpg",
+    cardImage: "/assets/services/foundation.jpg",
     usage: ["home", "commercial", "industrial"],
     materials: [
       {
@@ -199,48 +185,7 @@ export const SERVICES_CATALOG: ServicePageData[] = [
           "გრძელვადიანი ჰიდროიზოლაციის გადაწყვეტა მაღალი ტენიანობის პირობებში.",
       },
     ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_9d374e9e02774693981e6baa862508e2~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_6b8a962c24a34cb784b6b8ed0c422a9e~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_1eac59bc825f453fa619d31547a4b6e6~mv2.jpg",
-    ],
-  },
-  {
-    slug: "pool",
-    order: 4,
-    cardTitle: "აუზი და წყლის რეზერვუარი",
-    title: "აუზი და წყლის რეზერვუარი",
-    heroTitle: "აუზი და წყლის რეზერვუარი",
-    subtitle:
-      "მუდმივ წყალჩაკირულ გარემოში მომუშავე სისტემები. საცხოვრებელი და კომერციული აუზები.",
-    cardSummary:
-      "აუზებისა და წყლის რეზერვუარებისთვის მუდმივ წყალჩაკირულ გარემოზე გათვლილი ჰიდროიზოლაციის სისტემები.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
-    usage: ["home", "commercial", "hotel"],
-    materials: [
-      {
-        name: "ორ-კომპონენტიანი ცემენტი",
-        description:
-          "წყალთან მუდმივი კონტაქტისთვის განკუთვნილი ცემენტური ჰიდროიზოლაცია აუზის თასისა და შიდა კვანძებისთვის.",
-      },
-      {
-        name: "ეპოქსიდური ფისები",
-        description:
-          "ქიმიურად მედეგი სისტემა წყლის რეზერვუარებისა და სპეციალური დატვირთვის ზონებისთვის.",
-      },
-      {
-        name: "PVC ფოლია",
-        description:
-          "აუზის ჰერმეტული შიდა ფენა, რომელიც უზრუნველყოფს უწყვეტ დაცვასა და მოვლის სიმარტივეს.",
-      },
-    ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_af418acb60e94ce6825a0a9764f9bbc6~mv2.jpg",
-    ],
+    gallery: ["/assets/services/foundation.jpg"],
   },
   {
     slug: "industrial-floor",
@@ -252,10 +197,8 @@ export const SERVICES_CATALOG: ServicePageData[] = [
       "საწარმოო სახელოსნოები, სავაჭრო ცენტრები, საპარკინგეები. მაღალი მდგრადობა და ქიმიური მედეგობა.",
     cardSummary:
       "ეპოქსიდური და პოლიურეთანის იატაკის სისტემები ინდუსტრიული და კომერციული მაღალი დატვირთვისთვის.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_3ae08ec07f15496aa33aff2970bdd18f~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_3ae08ec07f15496aa33aff2970bdd18f~mv2.jpg",
+    heroImage: "/assets/services/industrial-floor.jpg",
+    cardImage: "/assets/services/industrial-floor.jpg",
     usage: ["commercial", "industrial", "hotel"],
     materials: [
       {
@@ -269,11 +212,7 @@ export const SERVICES_CATALOG: ServicePageData[] = [
           "განსაკუთრებით მძიმე ფიზიკური დატვირთვისთვის და დინამიკური ექსპლუატაციის მქონე სივრცეებისთვის.",
       },
     ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_3ae08ec07f15496aa33aff2970bdd18f~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_f3023136b7014c71b3ddf2b3e907c949~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_d98ff4d2fe044b66b7864bb2af75a9fd~mv2.jpg",
-    ],
+    gallery: ["/assets/services/industrial-floor.jpg"],
   },
   {
     slug: "materials",
@@ -285,10 +224,8 @@ export const SERVICES_CATALOG: ServicePageData[] = [
       "ევროპული ბრენდების ოფიციალური წარმომადგენელი. Hilton, Radisson, Holiday Inn პროექტებზე გამოყენებული მასალები.",
     cardSummary:
       "ევროპული მასალების იმპორტი: სამშენებლო ქიმია, HDPE ხმის იზოლაცია და პრემიუმ პროექტების კარები/ხალიჩები.",
-    heroImage:
-      "https://static.wixstatic.com/media/d7b296_780357b87f4c4a3fbb3fd09f9be9d3c8~mv2.jpg",
-    cardImage:
-      "https://static.wixstatic.com/media/d7b296_780357b87f4c4a3fbb3fd09f9be9d3c8~mv2.jpg",
+    heroImage: "/assets/services/materials.jpg",
+    cardImage: "/assets/services/materials.jpg",
     usage: ["home", "commercial", "industrial", "hotel"],
     materials: [
       {
@@ -307,11 +244,7 @@ export const SERVICES_CATALOG: ServicePageData[] = [
           "სასტუმრო და პრემიუმ კლასის პროექტებისთვის შერჩეული გადაწყვეტილებები.",
       },
     ],
-    gallery: [
-      "https://static.wixstatic.com/media/d7b296_780357b87f4c4a3fbb3fd09f9be9d3c8~mv2.jpg",
-      "https://static.wixstatic.com/media/d7b296_3cbc8321c26046b786e66d4daf0e8f1e~mv2.jpeg",
-      "https://static.wixstatic.com/media/d7b296_7a46eb5e1a95413b94acd25f5f6fda2d~mv2.jpg",
-    ],
+    gallery: ["/assets/services/materials.jpg"],
   },
 ];
 

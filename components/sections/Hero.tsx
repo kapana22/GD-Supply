@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { BadgeCheck, BriefcaseBusiness, Clock3, ShieldCheck } from "lucide-react";
 import { useLocale } from "next-intl";
 import StatCounter from "@/components/StatCounter";
 
@@ -30,6 +31,13 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
     const suffix = match ? match[2] : "";
     return { value, suffix, label: item.label };
   });
+
+  const statIcons = [
+    <BriefcaseBusiness key="briefcase" className="h-5 w-5" strokeWidth={1.8} />,
+    <ShieldCheck key="shield" className="h-5 w-5" strokeWidth={1.8} />,
+    <BadgeCheck key="badge" className="h-5 w-5" strokeWidth={1.8} />,
+    <Clock3 key="clock" className="h-5 w-5" strokeWidth={1.8} />,
+  ] as const;
 
   return (
     <section className="relative -mt-[84px] min-h-[680px] overflow-hidden pt-[84px] md:min-h-[720px]">
@@ -86,19 +94,41 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
             </Link>
           </motion.div>
 
-          <motion.div
-            {...fadeUp(0.55)}
-            className="rounded-xl border border-white/18 bg-white/[0.08] shadow-[0_18px_48px_rgba(5,8,20,0.35),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-xl"
-          >
-            <div className="grid grid-cols-2 divide-y divide-white/12 md:grid-cols-4 md:divide-x md:divide-y-0">
-              {parsedStats.map((item) => (
-                <div key={item.label} className="px-5 py-4 md:px-6 md:py-5">
-                  <StatCounter value={item.value} suffix={item.suffix} label={item.label} duration={1600} />
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
+
+        <motion.div
+          {...fadeUp(0.55)}
+          className="relative mt-8 max-w-[1180px] overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.68))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.14)] backdrop-blur-xl"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(680px_240px_at_10%_0%,rgba(255,255,255,0.09),transparent_72%),radial-gradient(700px_260px_at_92%_2%,rgba(23,109,72,0.24),transparent_74%),linear-gradient(120deg,rgba(255,255,255,0.035)_0%,transparent_34%,transparent_60%,rgba(23,109,72,0.06)_100%)]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.40),transparent)]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.12),rgba(28,184,121,0.35),rgba(255,255,255,0.12),transparent)]" />
+          <div className="pointer-events-none absolute left-[18%] right-[18%] bottom-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(28,184,121,0.0)_0%,rgba(28,184,121,0.75)_50%,rgba(28,184,121,0.0)_100%)]" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white/[0.03] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-primary-green/[0.08] to-transparent" />
+
+          <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+            {parsedStats.map((item, index) => (
+              <div
+                key={item.label}
+                className={`px-4 py-4 md:px-5 md:py-5 xl:px-6 ${
+                  index !== parsedStats.length - 1
+                    ? "border-b border-white/14 md:[&:nth-child(2)]:border-b xl:border-b-0 xl:border-r xl:border-white/14"
+                    : ""
+                }`}
+              >
+                <StatCounter
+                  value={item.value}
+                  suffix={item.suffix}
+                  label={item.label}
+                  duration={1600}
+                  icon={statIcons[index]}
+                  variant="hero-strip"
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -25,8 +25,7 @@ export const posts: BlogPostMeta[] = [
     updated: "2025-04-02",
     category: "სახურავი",
     tags: ["ბრტყელი სახურავი", "შეცდომები"],
-    image:
-      "https://static.wixstatic.com/media/d7b296_be277ec0988b4fc49e02e220ea2bfc26~mv2.png",
+    image: "/assets/services/flat-roof.jpg",
     readTime: "3 წუთი",
     author: "GD Supply",
   },
@@ -39,8 +38,7 @@ export const posts: BlogPostMeta[] = [
     updated: "2025-04-02",
     category: "მასალები",
     tags: ["პოლიურეთანი", "მასალები", "ბრტყელი სახურავი"],
-    image:
-      "https://static.wixstatic.com/media/d7b296_f57a0560ab3642419dae9b03bce69578~mv2.png",
+    image: "/assets/services/materials.jpg",
     readTime: "4 წუთი",
     author: "GD Supply",
   },
@@ -53,8 +51,7 @@ export const posts: BlogPostMeta[] = [
     updated: "2025-04-02",
     category: "ზოგადი",
     tags: ["ჰიდროიზოლაცია", "ისტორია", "შედარება"],
-    image:
-      "https://static.wixstatic.com/media/d7b296_5fa380397997469ba66b8c51bfafb2ce~mv2.jpg",
+    image: "/assets/services/foundation.jpg",
     readTime: "5 წუთი",
     author: "GD Supply",
   },
@@ -67,8 +64,7 @@ export const posts: BlogPostMeta[] = [
     updated: "2025-04-02",
     category: "სახურავი",
     tags: ["ბრტყელი სახურავი", "ტიპები"],
-    image:
-      "https://static.wixstatic.com/media/d7b296_3fa320b5c1164e63a7ae4ee3958240b9~mv2.png",
+    image: "/assets/services/flat-roof.jpg",
     readTime: "4 წუთი",
     author: "GD Supply",
   },
@@ -81,8 +77,7 @@ export const posts: BlogPostMeta[] = [
     updated: "2025-04-02",
     category: "ზოგადი",
     tags: ["ჰიდროიზოლაცია", "ტიპები", "მემბრანა"],
-    image:
-      "https://static.wixstatic.com/media/d7b296_139a74897cf8400f8e09dc9caa414b3e~mv2.png",
+    image: "/assets/services/terrace.jpg",
     readTime: "3 წუთი",
     author: "GD Supply",
   },

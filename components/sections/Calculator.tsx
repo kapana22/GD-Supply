@@ -65,17 +65,17 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
 
 const CATEGORY_INCLUDES = {
   ka: {
-    roof: ["წასასმელი იზოლაცია", "PVC/EPDM", "მემბრანა"],
+    roof: ["წასასმელი იზოლაცია", "PVC/EPDM მემბრანა"],
     terrace: ["აკრილ-ცემენტი", "პოლიურეთანი", "პოლიურეა"],
     foundation: ["თხევადი ბიტუმი"],
   },
   en: {
-    roof: ["Coating insulation", "PVC/EPDM", "Membrane"],
+    roof: ["Coating insulation", "PVC/EPDM Membrane"],
     terrace: ["Acrylic-cement", "Polyurethane", "Polyurea"],
     foundation: ["Liquid bitumen"],
   },
   ru: {
-    roof: ["Обмазочная изоляция", "PVC/EPDM", "Мембрана"],
+    roof: ["Обмазочная изоляция", "PVC/EPDM мембрана"],
     terrace: ["Акрил-цемент", "Полиуретан", "Полимочевина"],
     foundation: ["Жидкий битум"],
   },
@@ -143,7 +143,7 @@ function formatNumber(value: number) {
   return value.toLocaleString("en-US");
 }
 
-export function Calculator() {
+export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
   const t = useTranslations("calculator");
   const tNav = useTranslations("navigation");
   const locale = useLocale();
@@ -188,23 +188,25 @@ export function Calculator() {
 
   return (
     <section id="calculator" className="gd-cv-auto relative py-[60px] md:py-[100px]">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#101428_0%,#0e1224_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(960px_560px_at_16%_20%,rgba(28,184,121,0.20),transparent_60%),radial-gradient(760px_420px_at_84%_18%,rgba(255,255,255,0.06),transparent_72%),radial-gradient(920px_520px_at_52%_110%,rgba(23,109,72,0.14),transparent_62%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.16] bg-[linear-gradient(120deg,rgba(255,255,255,0.05)_0%,transparent_38%,transparent_62%,rgba(28,184,121,0.06)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 gd-bg-main" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
-        <FadeUp>
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">{tNav("calculator")}</p>
-        </FadeUp>
-        <FadeUp delay={0.1}>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-[40px] md:leading-[1.1]">{t("title")}</h2>
-        </FadeUp>
-        <FadeUp delay={0.2}>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
-        </FadeUp>
+        {showHeader ? (
+          <>
+            <FadeUp>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">{tNav("calculator")}</p>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-[40px] md:leading-[1.1]">{t("title")}</h2>
+            </FadeUp>
+            <FadeUp delay={0.2}>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
+            </FadeUp>
+          </>
+        ) : null}
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-xl border border-white/10 bg-primary-navy/35 p-6 shadow-elevated backdrop-blur md:p-8">
+        <div className={`${showHeader ? "mt-10" : "mt-2"} grid gap-6 lg:grid-cols-[1.05fr_0.95fr]`}>
+          <div className="rounded-xl border border-white/10 bg-[color:var(--gd-surface)]/55 p-6 shadow-elevated backdrop-blur md:p-8">
             <div className="grid gap-5">
               <Field label={localeLabels.fields.category}>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
@@ -217,7 +219,7 @@ export function Calculator() {
                         "rounded-lg border px-4 py-3 text-sm font-semibold text-left transition",
                         category === key
                           ? "border-primary-green/80 bg-gradient-to-b from-primary-green/22 to-primary-green/10 text-white shadow-[0_8px_24px_rgba(23,109,72,0.18)]"
-                          : "border-white/15 bg-[#131832] text-white/90 hover:border-white/25 hover:bg-[#171d3a] hover:text-white",
+                          : "border-white/15 bg-[color:var(--gd-surface-soft)] text-white/90 hover:border-white/25 hover:bg-[color:var(--gd-surface)] hover:text-white",
                       ].join(" ")}
                       aria-pressed={category === key}
                     >
@@ -227,7 +229,7 @@ export function Calculator() {
                 </div>
               </Field>
 
-              <div className="rounded-xl border border-white/12 bg-[#10152b]/90 p-4 shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
+              <div className="rounded-xl border border-white/12 bg-[color:var(--gd-surface-soft)]/95 p-4 shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">
                     {localeLabels.fields.includes}
@@ -246,7 +248,7 @@ export function Calculator() {
                 </div>
 
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  <div className="rounded-lg border border-white/10 bg-[#141a34] px-3 py-2.5">
+                  <div className="rounded-lg border border-white/10 bg-[color:var(--gd-surface)] px-3 py-2.5">
                     <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
                       {localeLabels.fields.price}
                     </p>
@@ -254,7 +256,7 @@ export function Calculator() {
                       {formatRange(result.perMin, result.perMax)} ₾/მ²
                     </p>
                   </div>
-                  <div className="rounded-lg border border-white/10 bg-[#141a34] px-3 py-2.5">
+                  <div className="rounded-lg border border-white/10 bg-[color:var(--gd-surface)] px-3 py-2.5">
                     <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
                       {localeLabels.fields.warranty}
                     </p>
@@ -266,7 +268,7 @@ export function Calculator() {
               </div>
 
               <Field label={t("fields.area")}>
-                <div className="rounded-lg border border-white/15 bg-[#12162d] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+                <div className="rounded-lg border border-white/15 bg-[color:var(--gd-surface-soft)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-extrabold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
                       {formatNumber(area)} <span className="text-primary-green">მ²</span>
@@ -306,7 +308,7 @@ export function Calculator() {
               </span>
             </div>
 
-            <div className="mt-6 rounded-lg border border-white/12 bg-[#11162d]/90 px-4 py-3.5">
+            <div className="mt-6 rounded-lg border border-white/12 bg-[color:var(--gd-surface-soft)]/95 px-4 py-3.5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/65">

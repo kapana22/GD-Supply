@@ -56,7 +56,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
             transition={{ duration: 0.45, delay: i * 0.06 }}
             className="overflow-hidden rounded-2xl transition-all duration-300"
             style={{
-              background: "#1E2140",
+              background: "var(--gd-panel)",
               border: isOpen
                 ? "1px solid rgba(23,109,72,0.45)"
                 : "1px solid rgba(255,255,255,0.06)",
@@ -79,7 +79,7 @@ export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-colors duration-300"
                 style={{
-                  background: isOpen ? "#176D48" : "rgba(255,255,255,0.07)",
+                  background: isOpen ? "#176D48" : "rgba(255,255,255,0.09)",
                 }}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">

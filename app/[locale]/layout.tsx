@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -11,6 +12,11 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { MobileCallBar } from "@/components/ui/MobileCallBar";
 import "../globals.css";
 
+const StartupLoader = dynamic(
+  () => import("@/components/ui/StartupLoader").then((mod) => mod.StartupLoader),
+  { ssr: false },
+);
+
 export const metadata: Metadata = {
   title: {
     default:
@@ -18,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | GD Supply",
   },
   description:
-    "GD Supply — 6+ წლიანი გამოცდილების მქონე ჰიდროიზოლაციის კომპანია საქართველოში. სახურავი, ტერასა, საძირკველი, აუზი, ინდუსტრიული იატაკი. უფასო ინსპექცია. 10+ წლიანი გარანტია.",
+    "GD Supply — 6+ წლიანი გამოცდილების მქონე ჰიდროიზოლაციის კომპანია საქართველოში. სახურავი, ტერასა, საძირკველი, ინდუსტრიული იატაკი. უფასო ინსპექცია. 10+ წლიანი გარანტია.",
 };
 
 type LocaleLayoutProps = {
@@ -50,6 +56,7 @@ export default async function LocaleLayout({
       <body
         className={`${contractica.variable} ${contracticaCaps.variable} relative min-h-screen font-georgian antialiased`}
       >
+        <StartupLoader />
         <SiteAmbientBackground />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="relative z-10">

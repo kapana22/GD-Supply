@@ -8,24 +8,28 @@ import type { ServicePageData } from "@/lib/servicesCatalog";
 export function ServicesHubPage({
   locale,
   services,
+  showHeader = true,
 }: {
   locale: string;
   services: ServicePageData[];
+  showHeader?: boolean;
 }) {
   return (
-    <section className="gd-cv-auto bg-primary-navy py-[56px] text-white md:py-[88px]">
+    <section className="gd-cv-auto bg-transparent py-[56px] text-white md:py-[88px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="mb-10 md:mb-14">
-          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-            სერვისები
-          </p>
-          <h1 className="tt-heading-xl mt-3 max-w-[12ch] text-3xl font-black md:text-5xl">
-            რას ვაკეთებთ
-          </h1>
-          <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
-            GD Supply — 2014 წლიდან, 300+ პროექტი, 10+ წლიანი გარანტია
-          </p>
-        </div>
+        {showHeader ? (
+          <div className="mb-10 md:mb-14">
+            <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+              სერვისები
+            </p>
+            <h1 className="tt-heading-xl mt-3 max-w-[12ch] text-3xl font-black md:text-5xl">
+              რას ვაკეთებთ
+            </h1>
+            <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
+              GD Supply — 2014 წლიდან, 300+ პროექტი, 10+ წლიანი გარანტია
+            </p>
+          </div>
+        ) : null}
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => (

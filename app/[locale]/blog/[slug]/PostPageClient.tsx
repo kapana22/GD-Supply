@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
+import { PageHero } from "@/components/sections/PageHero";
 import type { BlogPost, BlogPostMeta } from "@/lib/posts";
 
 const BLOG_ACCENT = "var(--gd-accent)";
@@ -36,77 +37,51 @@ export default function PostPageClient({
   }, []);
 
   return (
-    <main className="gd-page-shell min-h-screen bg-[var(--gd-bg)]">
+    <main className="gd-page-shell min-h-screen bg-transparent">
       <div className="fixed left-0 right-0 top-0 z-[60] h-[3px] bg-white/10">
         <motion.div className="h-full bg-[#176D48]" style={{ width: `${progress}%` }} transition={{ duration: 0.1 }} />
       </div>
 
-      <section className="relative pb-0 pt-32">
-        <div className="absolute inset-0 overflow-hidden">
-          <Image src={post.image} alt="" fill className="object-cover opacity-10 blur-sm" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A1C33]/50 via-[#1A1C33]/80 to-[#1A1C33]" />
-        </div>
+      <PageHero
+        locale={locale}
+        eyebrow={post.category}
+        title={post.title}
+        subtitle={post.excerpt}
+        backgroundImage={post.image}
+        backgroundTheme="blog"
+        compact
+        breadcrumbs={[
+          { label: "მთავარი", href: `/${locale}` },
+          { label: "ბლოგი", href: `/${locale}/blog` },
+          { label: post.title },
+        ]}
+      />
 
-        <div className="relative mx-auto max-w-3xl px-6 pb-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mb-8 flex items-center gap-2 text-sm text-white/35"
+      <div className="relative mx-auto max-w-3xl px-6 pb-4 pt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-4 flex flex-wrap items-center gap-2"
+        >
+          <span
+            className="rounded-full px-3 py-1.5 text-xs font-semibold"
+            style={{
+              color: BLOG_ACCENT,
+              background: "rgba(var(--gd-accent-rgb), 0.12)",
+              border: "1px solid rgba(var(--gd-accent-rgb), 0.25)",
+            }}
           >
-            <Link href={`/${locale}`} className="transition-colors hover:text-white">
-              მთავარი
-            </Link>
-            <span>/</span>
-            <Link href={`/${locale}/blog`} className="transition-colors hover:text-white">
-              ბლოგი
-            </Link>
-            <span>/</span>
-            <span className="line-clamp-1 text-white/60">{post.title}</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-4 flex flex-wrap items-center gap-2"
-          >
-            <span
-              className="rounded-full px-3 py-1.5 text-xs font-semibold"
-              style={{
-                color: BLOG_ACCENT,
-                background: "rgba(var(--gd-accent-rgb), 0.12)",
-                border: "1px solid rgba(var(--gd-accent-rgb), 0.25)",
-              }}
-            >
-              {post.category}
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
-              {post.updated ?? post.date}
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
-              {post.readTime}
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.6 }}
-            className="mb-6 text-4xl font-black leading-tight text-white xl:text-5xl"
-          >
-            {post.title}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="border-l-2 border-[var(--gd-accent)] pl-5 text-xl leading-relaxed text-white/72"
-          >
-            {post.excerpt}
-          </motion.p>
-        </div>
-      </section>
+            {post.category}
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
+            {post.updated ?? post.date}
+          </span>
+          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
+            {post.readTime}
+          </span>
+        </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}

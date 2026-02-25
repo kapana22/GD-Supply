@@ -10,7 +10,13 @@ import { categories, type BlogPostMeta } from "@/lib/posts";
 const BLOG_ACCENT = "var(--gd-accent)";
 const BLOG_PANEL = "var(--gd-panel)";
 
-export default function BlogPageClient({ posts }: { posts: BlogPostMeta[] }) {
+export default function BlogPageClient({
+  posts,
+  hideTopHero = false,
+}: {
+  posts: BlogPostMeta[];
+  hideTopHero?: boolean;
+}) {
   const params = useParams();
   const locale = typeof params?.locale === "string" ? params.locale : "ka";
   const [activeCategory, setActiveCategory] = useState("ყველა");
@@ -27,7 +33,8 @@ export default function BlogPageClient({ posts }: { posts: BlogPostMeta[] }) {
   const rest = filtered.slice(1);
 
   return (
-    <main className="gd-page-shell min-h-screen bg-[var(--gd-bg)]">
+    <main className="gd-page-shell min-h-screen bg-transparent">
+      {hideTopHero ? null : (
       <section className="relative overflow-hidden px-6 pb-20 pt-32">
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -63,6 +70,7 @@ export default function BlogPageClient({ posts }: { posts: BlogPostMeta[] }) {
           </motion.div>
         </div>
       </section>
+      )}
 
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-6xl">

@@ -14,25 +14,17 @@ type ServiceItem = {
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
-  flat_roof:
-    "https://static.wixstatic.com/media/d7b296_bffa29332f054919b86edfeddc8c990a~mv2.jpg",
-  terrace:
-    "https://static.wixstatic.com/media/d7b296_6b8a962c24a34cb784b6b8ed0c422a9e~mv2.jpg",
-  foundation:
-    "https://static.wixstatic.com/media/d7b296_9d374e9e02774693981e6baa862508e2~mv2.jpg",
-  pool:
-    "https://static.wixstatic.com/media/d7b296_702406dd4a404d80b5a23fc94dffb385~mv2.jpg",
-  industrial_floor:
-    "https://static.wixstatic.com/media/d7b296_3ae08ec07f15496aa33aff2970bdd18f~mv2.jpg",
-  materials:
-    "https://static.wixstatic.com/media/d7b296_780357b87f4c4a3fbb3fd09f9be9d3c8~mv2.jpg",
+  flat_roof: "/assets/services/flat-roof.jpg",
+  terrace: "/assets/services/terrace.jpg",
+  foundation: "/assets/services/foundation.jpg",
+  industrial_floor: "/assets/services/industrial-floor.jpg",
+  materials: "/assets/services/materials.jpg",
 };
 
 const SERVICE_SLUG_MAP: Record<string, string> = {
   flat_roof: "flat-roof",
   terrace: "terrace",
   foundation: "foundation",
-  pool: "pool",
   industrial_floor: "industrial-floor",
   materials: "materials",
 };
@@ -41,7 +33,6 @@ const SHORT_SERVICE_BODIES: Record<string, string> = {
   flat_roof: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი დაცვა ნებისმიერ სეზონში.",
   terrace: "ელასტიური სისტემები ფილის ან ხის საფარის ქვეშ. სეზონური ტემპერატურის მდგრადი.",
   foundation: "ნეგატიური და პოზიტიური ჰიდროიზოლაცია. მიწისქვეშა ტენის სრული ბლოკირება.",
-  pool: "ეპოქსიდური, ცემენტური და PVC სისტემები. საცხოვრებელი და კომერციული ობიექტები.",
   industrial_floor: "ეპოქსიდური და პოლიურეთანის საფარი. ქიმიური და მექანიკური დატვირთვის მდგრადი.",
   materials: "ევროპული ბრენდების ოფიციალური იმპორტი. სამშენებლო ქიმია და სპეც. საფარები.",
 };

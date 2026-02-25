@@ -88,10 +88,10 @@ export function ContactSection() {
   const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
 
   return (
-    <section id="contact" className="gd-cv-auto bg-gd-surface py-[56px] md:py-[72px]">
+    <section id="contact" className="gd-cv-auto bg-transparent py-[56px] md:py-[72px]">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
         <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
-          <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-primary-navy/95 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-7">
+          <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-[color:var(--gd-panel)]/72 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
             <h2 className="tt-heading-lg text-3xl font-extrabold text-white md:text-4xl">
               {t("title")}
             </h2>
@@ -213,7 +213,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-gd-result p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] md:p-7">
+          <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-[color:var(--gd-panel)]/78 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
             <h3 className="tt-heading-md text-xl font-extrabold text-white md:text-2xl">
               გამოგვიგზავნე განცხადება
             </h3>
@@ -306,7 +306,7 @@ export function ContactSection() {
 }
 
 function filterContactServiceOptions(options: string[]) {
-  return options.filter((opt) => !/აუზ|pool|басс/i.test(opt));
+  return options;
 }
 
 function ServiceDropdown({
