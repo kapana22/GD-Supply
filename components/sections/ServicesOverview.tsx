@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
+import { useMemo } from "react";
 import TiltCard from "@/components/TiltCard";
 import FadeUp from "@/components/FadeUp";
 
@@ -47,14 +48,16 @@ export function ServicesOverview({
   items: ServiceItem[];
 }) {
   const locale = useLocale();
+  const coreItems = useMemo(() => items.filter((item) => item.key !== "materials"), [items]);
+  const materialsItem = useMemo(() => items.find((item) => item.key === "materials"), [items]);
 
   return (
-    <section id="services" className="gd-cv-auto relative py-[60px] md:py-[100px]">
+    <section id="services" className="gd-cv-auto relative border-t border-white/10 py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <div className="mb-10 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
+        <div className="mb-12 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
           <div>
             <FadeUp>
-              <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">სერვისები</p>
+              <p className="tt-label text-primary-green">სერვისები</p>
             </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className="tt-heading-lg mt-3 text-3xl font-extrabold text-white md:text-4xl">{title}</h2>
@@ -72,8 +75,8 @@ export function ServicesOverview({
           </Link>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((service, index) => {
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {coreItems.map((service, index) => {
             const serviceHref = SERVICE_SLUG_MAP[service.key]
               ? `/${locale}/services/${SERVICE_SLUG_MAP[service.key]}`
               : `/${locale}/services`;
@@ -128,6 +131,62 @@ export function ServicesOverview({
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-16 border-t border-white/10 pt-12 md:mt-20 md:pt-14 -mx-1 px-1 md:-mx-2 md:px-2 lg:-mx-4 lg:px-4">
+          <div className="mb-6 md:mb-8">
+            <p className="tt-label text-primary-green">
+              სამშენებლო მასალები
+            </p>
+            <h3 className="tt-heading-lg mt-2 text-2xl font-extrabold text-white md:text-3xl">
+              სამშენებლო მასალების იმპორტი
+            </h3>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Link
+              href={`/${locale}/products`}
+              className="group block rounded-2xl border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
+              aria-label="სამშენებლო მასალები - პროდუქტების ჩამონათვალი"
+            >
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-white/10">
+                  <Image
+                    src={SERVICE_IMAGES.materials}
+                    alt={materialsItem?.title ?? "სამშენებლო მასალები"}
+                    fill
+                    sizes="(min-width: 1024px) 52vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+                </div>
+
+                <div className="min-w-0">
+                  <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                    {materialsItem?.title ?? "სამშენებლო მასალები"}
+                  </p>
+                  <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">
+                    {SHORT_SERVICE_BODIES.materials}
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-white/85">
+                    <li>• სამშენებლო ქიმია</li>
+                    <li>• ჰიდროსაიზოლაციო მემბრანები</li>
+                    <li>• ხმის საიზოლაციო მასალები</li>
+                  </ul>
+
+                  <span className="tt-ui mt-6 inline-flex items-center gap-2 rounded-lg border border-primary-green/45 bg-primary-green/10 px-5 py-3 text-sm font-semibold text-primary-green transition group-hover:border-primary-green group-hover:bg-primary-green group-hover:text-white">
+                    პროდუქტების ჩამონათვალი
+                    <span className="transition group-hover:translate-x-0.5">→</span>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

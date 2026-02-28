@@ -4,7 +4,7 @@ import { posts } from "@/lib/posts";
 import { SERVICES_CATALOG } from "@/lib/servicesCatalog";
 
 const baseUrl = "https://gdsupply.ge";
-const staticRoutes = ["", "services", "portfolio", "about", "contact", "calculator"] as const;
+const staticRoutes = ["", "services", "portfolio", "products", "about", "contact", "calculator"] as const;
 
 function parseDate(value?: string) {
   if (!value) return null;

@@ -174,6 +174,7 @@ export function Navbar() {
           {links.map((item) => {
             const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
             const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
+            const label = item.key === "portfolio" ? "რეფერენსები" : tNav(item.key);
 
             return (
               <Link
@@ -184,8 +185,8 @@ export function Navbar() {
                     ? "text-white"
                     : "text-white/72 hover:bg-white/[0.03] hover:text-white"
                 }`}
-              >
-                <span className="translate-y-[0.5px]">{tNav(item.key)}</span>
+                >
+                <span className="translate-y-[0.5px]">{label}</span>
               </Link>
             );
           })}
@@ -226,6 +227,7 @@ export function Navbar() {
                 {links.map((item) => {
                   const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
                   const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
+                  const label = item.key === "portfolio" ? "რეფერენსები" : tNav(item.key);
 
                   return (
                     <Link
@@ -238,7 +240,7 @@ export function Navbar() {
                           : "text-white/75 hover:bg-white/5 hover:text-white"
                       }`}
                     >
-                      {tNav(item.key)}
+                      {label}
                     </Link>
                   );
                 })}

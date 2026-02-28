@@ -824,6 +824,61 @@ select.gd-select option:disabled {
 }
 
 /* =========================
+   Partners marquee
+========================= */
+@keyframes partners-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.partners-marquee-mask {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+}
+
+.partners-marquee-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  will-change: transform;
+  animation: partners-marquee var(--partners-marquee-duration, 48s) linear infinite;
+}
+
+.partners-marquee-mask:hover .partners-marquee-track {
+  animation-play-state: paused;
+}
+
+.partners-logo-tile {
+  width: 178px;
+  flex: 0 0 auto;
+}
+
+.partners-logo-frame {
+  position: relative;
+  height: 88px;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #ffffff;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.partners-logo-image {
+  object-fit: contain;
+  padding: 12px 16px;
+  filter: none;
+  opacity: 1;
+  transition: transform 0.28s ease;
+}
+
+.partners-logo-frame:hover .partners-logo-image {
+  transform: scale(1.03);
+}
+
+/* =========================
    Blog prose
 ========================= */
 .blog-content {

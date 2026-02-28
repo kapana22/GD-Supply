@@ -38,7 +38,7 @@ export function Footer() {
 
   const companyLinks = [
     { label: "ჩვენ შესახებ", href: `/${locale}/about` },
-    { label: "პორტფოლიო", href: `/${locale}/portfolio` },
+    { label: "რეფერენსები", href: `/${locale}/portfolio` },
     { label: "FAQ", href: `/${locale}/#faq` },
     { label: "ბლოგი", href: `/${locale}/blog` },
     { label: "კონტაქტი", href: `/${locale}/contact` },

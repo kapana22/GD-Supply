@@ -3,9 +3,10 @@ import { Hero } from "@/components/sections/Hero";
 import { Calculator } from "@/components/sections/Calculator";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
-import { Testimonials } from "@/components/sections/Testimonials";
+// import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
+import RoofVideoSection from "@/components/sections/RoofVideoSection";
 
 const KA_SERVICES = [
   { key: "flat_roof", title: "ბრტყელი სახურავი", body: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი დაცვა ნებისმიერ სეზონში." },
@@ -27,12 +28,6 @@ const KA_PROJECTS = [
   { name: "საჯარო რეესტრის ეროვნული სააგენტო", work: "საპარკინგე საფარი", area: "—", material: "ეპოქსიდური", duration: "12 დღე", tags: ["ინდუსტრიული იატაკი", "კომერციული"] },
 ];
 
-const KA_TESTIMONIALS = [
-  { quote: "GD Supply-მ სახურავი 3 კვირაში მოამუშავა — პროფესიონალურად და ვადაში.", author: "ნინო ბ.", meta: "ამბასადორი ჯგუფი" },
-  { quote: "წლების პრობლემა გვქონდა სახურავზე — ახლა სრულიად გამართულია.", author: "დავით კ.", meta: "კერძო სახლი" },
-  { quote: "სკოლის ეპოქსიდური იატაკი ზუსტად ის აღმოჩნდა, რაც გვჭირდებოდა.", author: "ირაკლი მ.", meta: "სკოლის ადმინისტრაცია" },
-];
-
 const KA_FAQ = [
   { q: "რამდენი ხნით გაძლებს ჰიდროიზოლაცია?", a: "სისტემის ტიპიდან გამომდინარე 10-დან 25 წლამდე." },
   { q: "რა ვადაში სრულდება სამუშაო?", a: "100–300 მ²: 3–5 დღე; 500–1000 მ²: 1–2 კვირა." },
@@ -45,7 +40,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
   const tHero = await getTranslations("hero");
   const tServices = await getTranslations("services");
   const tPortfolio = await getTranslations("portfolio");
-  const tTestimonials = await getTranslations("testimonials");
+  const tNav = await getTranslations("navigation");
+  // const tTestimonials = await getTranslations("testimonials");
   const tFaq = await getTranslations("faq");
   const isKa = params.locale === "ka";
 
@@ -67,9 +63,9 @@ export default async function HomePage({ params }: { params: { locale: string } 
         tags: string[];
       }>);
 
-  const testimonials = isKa
-    ? KA_TESTIMONIALS
-    : (tTestimonials.raw("items") as Array<{ quote: string; author: string; meta: string }>);
+  // const testimonials = isKa
+  //   ? KA_TESTIMONIALS
+  //   : (tTestimonials.raw("items") as Array<{ quote: string; author: string; meta: string }>);
 
   const faq = isKa ? KA_FAQ : (tFaq.raw("items") as Array<{ q: string; a: string }>);
 
@@ -79,7 +75,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
         title={isKa ? "წყალი შევაჩერეთ. სამუდამოდ." : tHero("title")}
         subtitle={isKa ? "GD Supply — საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია. ფუნდამენტიდან სახურავამდე." : tHero("subtitle")}
         ctaPrimary={isKa ? "დაგვიკავშირდით" : tHero("cta_estimate")}
-        ctaSecondary={isKa ? "ჩვენი პროექტები" : tHero("cta_projects")}
+        ctaSecondary={isKa ? "რეფერენსები" : tHero("cta_projects")}
         stats={heroStats}
       />
 
@@ -92,13 +88,16 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <Calculator />
 
       <PortfolioGrid
-        title={isKa ? "ჩვენი პროექტები" : tPortfolio("title")}
+        title={isKa ? "რეფერენსები" : tPortfolio("title")}
         subtitle={isKa ? "" : tPortfolio("subtitle")}
+        label={isKa ? "რეფერენსები" : tNav("portfolio")}
         filters={filters}
         projects={projects}
       />
 
-      <Testimonials title={isKa ? "კლიენტები ჩვენ შესახებ" : tTestimonials("title")} items={testimonials} />
+      <RoofVideoSection />
+
+      {/* <Testimonials title={isKa ? "კლიენტები ჩვენ შესახებ" : tTestimonials("title")} items={testimonials} /> */}
 
       <Faq title={isKa ? "ხშირად დასმული კითხვები" : tFaq("title")} items={faq} />
 

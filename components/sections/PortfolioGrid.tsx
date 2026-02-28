@@ -13,6 +13,7 @@ type Project = {
   material: string;
   duration: string;
   tags: string[];
+  image?: string;
 };
 
 type EnrichedProject = PortfolioProject & {
@@ -24,20 +25,33 @@ type EnrichedProject = PortfolioProject & {
 
 const PROJECT_CATEGORY_IMAGES: Record<string, string> = {
   "ბრტყელი სახურავი": "/assets/services/flat-roof.jpg",
-  "ტერასა": "/assets/services/terrace.jpg",
-  "საძირკველი": "/assets/portfolio/foundation.jpg",
+  ტერასა: "/assets/services/terrace.jpg",
+  საძირკველი: "/assets/portfolio/foundation.jpg",
   "ინდუსტრიული იატაკი": "/assets/services/industrial-floor.jpg",
-  "კომერციული": "/assets/services/materials.jpg",
+  კომერციული: "/assets/services/materials.jpg",
 };
 
-const PROJECT_NAME_IMAGES: Array<{ match: RegExp; image: string }> = [
-  { match: /ამბასადორი.*კახეთი|ambasadori.*kakheti/i, image: "/assets/portfolio/ambasodri.jpg" },
-  { match: /ამბასადორი.*თბილისი|ambasadori.*tbilisi/i, image: "/assets/portfolio/ambasadori.jpg" },
-  { match: /ნიუტონის.*სკოლა|niutoni/i, image: "/assets/portfolio/niutonisskola.jpg" },
-  { match: /ბაქსვუდის.*სკოლა|buqsvidi|buxswood|boxwood/i, image: "/assets/portfolio/buqsvidisskola.jpg" },
-  { match: /მერანი|merani/i, image: "/assets/portfolio/sajarocentrimerani.webp" },
-  { match: /როიალ პალასი|royal|roial/i, image: "/assets/portfolio/roialhoause.jpg" },
-  { match: /საჯარო რეესტრი|reestr/i, image: "/assets/portfolio/sajaroreestri.jpg" },
+const PROJECT_NAME_IMAGES: Array<{ name: RegExp; work?: RegExp; image: string }> = [
+  { name: /ამბასადორი.*კახეთი|ambasadori.*kakheti/i, image: "/assets/portfolio/ambasodri.jpg" },
+  { name: /ამბასადორი.*თბილისი|ambasadori.*tbilisi/i, image: "/assets/portfolio/ambasadori.jpg" },
+  { name: /ნიუტონის.*სკოლა|niutoni/i, image: "/assets/portfolio/niutonisskola.jpg" },
+  { name: /ბაქსვუდის.*სკოლა|buqsvidi|boxwood|buxswood/i, image: "/assets/portfolio/buqsvidisskola.jpg" },
+  { name: /მერანი|merani/i, image: "/assets/portfolio/sajarocentrimerani.webp" },
+  { name: /როიალ|royal|roial/i, image: "/assets/portfolio/roialhoause.jpg" },
+  { name: /საჯარო რეესტრი|reestr/i, image: "/assets/portfolio/sajaroreestri.jpg" },
+
+  { name: /თელავ/i, image: "/assets/portfolio/კერძო სახლი თელავში - 600კვ.მ.png" },
+  { name: /წყნეთ/i, work: /ტერას/i, image: "/assets/portfolio/კერძო სახლი წყნეთში-600კვ.მ.jpg" },
+  { name: /წყნეთ/i, image: "/assets/portfolio/კერძო სახლი წყნეთში - 500კვ.მ.jpg" },
+  { name: /ნუცუბიძ/i, image: "/assets/portfolio/ტერასა ნუცუბიძეზე.jpg" },
+  { name: /ოქროყანა/i, image: "/assets/portfolio/ტერასა ოქროყანაში.jpg" },
+  { name: /საგურამო/i, work: /ტერას/i, image: "/assets/portfolio/ტერასა საგურამოში.jpg" },
+  { name: /წავკის/i, work: /კერძო სახლის ტერასა/i, image: "/assets/portfolio/კერძო სახლის ტერასა წავკისში.jpg" },
+  { name: /წავკის/i, image: "/assets/portfolio/ტერასა წავკისში.jpg" },
+  { name: /ლისზე/i, image: "/assets/portfolio/სახურავი ლისზე.jpg" },
+  { name: /სკოლა.*დიღომ|საჯარო სკოლა/i, image: "/assets/portfolio/საჯარო სკოლა - 800 კვ.მ.png" },
+  { name: /ვერტმფრენის|ჰელიპად/i, image: "/assets/portfolio/ვერტმფრენის დასაჯდომი - 300კვ.მ.jpg" },
+  { name: /თხინვალ/i, image: "/assets/portfolio/14 ვილა თხინვალაში-პოლიურეთანი.png" },
 ];
 
 export function PortfolioGrid({
@@ -46,14 +60,17 @@ export function PortfolioGrid({
   filters,
   projects,
   showHeader = true,
+  label,
 }: {
   title: string;
   subtitle: string;
   filters: string[];
   projects: Project[];
   showHeader?: boolean;
+  label?: string;
 }) {
-  const [filter, setFilter] = useState(filters[0] ?? "ყველა");
+  const allFilter = filters[0] ?? "ყველა";
+  const [filter, setFilter] = useState(allFilter);
   const [activeProject, setActiveProject] = useState<EnrichedProject | null>(null);
 
   const enriched = useMemo<EnrichedProject[]>(
@@ -64,7 +81,7 @@ export function PortfolioGrid({
         type: project.work,
         area: project.area || "—",
         category: getPrimaryCategory(project.tags),
-        image: getProjectImage(project.name, project.tags),
+        image: project.image || getProjectImage(project.name, project.tags, project.work),
         tags: project.tags ?? [],
         material: project.material || "—",
         duration: project.duration || "—",
@@ -73,9 +90,11 @@ export function PortfolioGrid({
   );
 
   const visible = useMemo(() => {
-    if (!filter || filter === "ყველა") return enriched;
+    if (!filter || filter === allFilter) return enriched;
     return enriched.filter((project) => project.tags.includes(filter));
-  }, [enriched, filter]);
+  }, [allFilter, enriched, filter]);
+
+  const limited = useMemo(() => visible.slice(0, 6), [visible]);
 
   useEffect(() => {
     if (!activeProject) return;
@@ -95,13 +114,13 @@ export function PortfolioGrid({
   }, [activeProject]);
 
   return (
-    <section id="portfolio" className="gd-cv-auto relative py-[60px] md:py-[100px]">
+    <section id="portfolio" className="gd-cv-auto relative border-t border-white/10 py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-[1440px] px-5 md:px-10">
         {showHeader ? (
           <>
             <FadeUp>
-              <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-                პორტფოლიო
+              <p className="tt-label text-primary-green">
+                {label || title}
               </p>
             </FadeUp>
             <FadeUp delay={0.1}>
@@ -115,7 +134,7 @@ export function PortfolioGrid({
           </>
         ) : null}
 
-        <div className={`${showHeader ? "mt-8" : "mt-2"} flex flex-wrap gap-2`}>
+        <div className={`${showHeader ? "mt-10" : "mt-3"} flex flex-wrap gap-2.5`}>
           {filters.map((item) => {
             const active = item === filter;
             return (
@@ -134,8 +153,8 @@ export function PortfolioGrid({
           })}
         </div>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {visible.map((project, idx) => (
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {limited.map((project, idx) => (
             <PortfolioCard
               key={project.key}
               project={project}
@@ -186,7 +205,7 @@ export function PortfolioGrid({
 
               <div className="grid gap-4 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-6">
                 <div>
-                  <p className="tt-label text-xs font-semibold uppercase tracking-[0.08em] text-primary-green">
+                  <p className="tt-label text-primary-green">
                     {activeProject.type}
                   </p>
                   <h3 className="tt-heading-md mt-2 text-xl font-extrabold text-white md:text-2xl">
@@ -211,16 +230,16 @@ function getPrimaryCategory(tags: string[]) {
   return nonCommercial ?? tags[0];
 }
 
-function getProjectImage(name: string, tags: string[]) {
-  const byName = PROJECT_NAME_IMAGES.find((entry) => entry.match.test(name))?.image;
+function getProjectImage(name: string, tags: string[], work?: string) {
+  const byName = PROJECT_NAME_IMAGES.find((entry) => {
+    if (!entry.name.test(name)) return false;
+    if (!entry.work) return true;
+    return entry.work.test(work ?? "");
+  })?.image;
   if (byName) return byName;
 
   const primary = getPrimaryCategory(tags);
-  return (
-    PROJECT_CATEGORY_IMAGES[primary] ??
-    PROJECT_CATEGORY_IMAGES["კომერციული"] ??
-    "/assets/services/flat-roof.jpg"
-  );
+  return PROJECT_CATEGORY_IMAGES[primary] ?? PROJECT_CATEGORY_IMAGES["კომერციული"] ?? "/assets/services/flat-roof.jpg";
 }
 
 function CloseIcon() {

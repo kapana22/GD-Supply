@@ -88,11 +88,14 @@ export function ContactSection() {
   const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
 
   return (
-    <section id="contact" className="gd-cv-auto bg-transparent py-[56px] md:py-[72px]">
+    <section
+      id="contact"
+      className="gd-cv-auto bg-transparent border-t border-white/10 py-[56px] md:py-[72px]"
+    >
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
         <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
           <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-[color:var(--gd-panel)]/72 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
-            <h2 className="tt-heading-lg text-3xl font-extrabold text-white md:text-4xl">
+            <h2 className="tt-heading-lg text-3xl text-white md:text-4xl">
               {t("title")}
             </h2>
             <p className="tt-detail mt-3 text-base leading-relaxed text-white/70">
@@ -140,7 +143,7 @@ export function ContactSection() {
 
             <div className="mt-auto pt-5">
               <div>
-                <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                <span className="tt-label block text-primary-green">
                   WhatsApp
                 </span>
                 <div className="mt-2.5 grid gap-2">
@@ -182,7 +185,7 @@ export function ContactSection() {
               </div>
 
               <div className="mt-4">
-                <span className="tt-label block text-[11px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                <span className="tt-label block text-primary-green">
                   სოციალური
                 </span>
                 <div className="mt-2.5 grid gap-2 sm:grid-cols-2">

@@ -32,7 +32,7 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
     return { value, suffix, label: item.label };
   });
 
-  const statIcons = [
+const statIcons = [
     <BriefcaseBusiness key="briefcase" className="h-5 w-5" strokeWidth={1.8} />,
     <ShieldCheck key="shield" className="h-5 w-5" strokeWidth={1.8} />,
     <BadgeCheck key="badge" className="h-5 w-5" strokeWidth={1.8} />,
@@ -63,7 +63,7 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
       <div className="relative z-10 mx-auto max-w-[1440px] px-5 py-[60px] md:px-10 md:py-[100px]">
         <div className="max-w-3xl space-y-7">
           <motion.div {...fadeUp(0)}>
-            <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-white/85 backdrop-blur">
+            <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
               დაარსდა 2014 წელს • 300+ პროექტი
             </span>
           </motion.div>

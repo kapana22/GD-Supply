@@ -333,7 +333,7 @@ function IntroStat({
           {suffix}
         </span>
       </div>
-      <p className="tt-label mt-1.5 text-xs font-semibold uppercase tracking-[0.05em] text-white/88">{label}</p>
+      <p className="tt-label mt-1.5 text-white/88">{label}</p>
     </div>
   );
 }

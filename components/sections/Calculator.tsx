@@ -187,25 +187,25 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
   const animatedWarrantyMax = useCountTransition(result.warrantyMax, resultVisible, 850);
 
   return (
-    <section id="calculator" className="gd-cv-auto relative py-[60px] md:py-[100px]">
+    <section id="calculator" className="gd-cv-auto relative border-t border-white/10 py-[72px] md:py-[120px]">
       <div className="pointer-events-none absolute inset-0 gd-bg-main" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
         {showHeader ? (
           <>
             <FadeUp>
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">{tNav("calculator")}</p>
+              <p className="tt-label text-primary-green">{tNav("calculator")}</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-[40px] md:leading-[1.1]">{t("title")}</h2>
+              <h2 className="tt-heading-lg mt-3 text-3xl text-white md:text-[40px] md:leading-[1.1]">{t("title")}</h2>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <p className="mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
+              <p className="tt-detail mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{t("subtitle")}</p>
             </FadeUp>
           </>
         ) : null}
 
-        <div className={`${showHeader ? "mt-10" : "mt-2"} grid gap-6 lg:grid-cols-[1.05fr_0.95fr]`}>
+        <div className={`${showHeader ? "mt-12" : "mt-3"} grid gap-7 lg:grid-cols-[1.05fr_0.95fr]`}>
           <div className="rounded-xl border border-white/10 bg-[color:var(--gd-surface)]/55 p-6 shadow-elevated backdrop-blur md:p-8">
             <div className="grid gap-5">
               <Field label={localeLabels.fields.category}>

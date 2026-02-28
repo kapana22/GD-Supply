@@ -64,7 +64,7 @@ export function PageHero({
           ) : null}
 
           {showEyebrow ? (
-            <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-white/85 backdrop-blur">
+            <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
               {eyebrow}
             </span>
           ) : null}
