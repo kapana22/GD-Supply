@@ -26,8 +26,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-contractica)", "sans-serif"],
-        georgian: ["var(--font-contractica)", "sans-serif"],
+        sans: ["var(--font-noto-georgian)", "Helvetica", "Arial", "sans-serif"],
+        georgian: ["var(--font-noto-georgian)", "Helvetica", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "grid-faint":

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -57,7 +57,7 @@ export default function PostPageClient({
         ]}
       />
 
-      <div className="relative mx-auto max-w-3xl px-6 pb-4 pt-8">
+      <div className="relative gd-container-narrow pb-4 pt-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,12 +74,6 @@ export default function PostPageClient({
           >
             {post.category}
           </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
-            {post.updated ?? post.date}
-          </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/65">
-            {post.readTime}
-          </span>
         </motion.div>
       </div>
 
@@ -87,7 +81,7 @@ export default function PostPageClient({
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
-        className="mx-auto mb-12 max-w-3xl px-6"
+        className="gd-container-narrow mb-12"
       >
         <div
           className="relative h-72 overflow-hidden rounded-2xl md:h-80"
@@ -101,7 +95,7 @@ export default function PostPageClient({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="blog-content mx-auto max-w-3xl px-6 pb-16"
+        className="blog-content gd-container-narrow pb-16"
       >
         <MDXRemote {...source} />
 
@@ -121,7 +115,7 @@ export default function PostPageClient({
         </div>
       </motion.article>
 
-      <section className="mx-auto mb-20 max-w-3xl px-6">
+      <section className="gd-section-divider gd-container-narrow mb-20 pt-10">
         <div
           className="rounded-2xl p-8 text-center"
           style={{
@@ -142,12 +136,13 @@ export default function PostPageClient({
       </section>
 
       {related.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-6 pb-24">
+        <section className="gd-section-divider gd-container-blog pb-24 pt-10">
           <h2 className="mb-8 text-2xl font-black text-white">სხვა სტატიები</h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-3">
             {related.map((item, index) => (
               <motion.div
                 key={item.slug}
+                className="h-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

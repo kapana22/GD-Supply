@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { WhatsAppIcon as BrandWhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 type FormState = "idle" | "loading" | "sent" | "error";
-const GENERIC_ERROR_MESSAGE = "შეცდომა, სცადე თავიდან";
+const GENERIC_ERROR_MESSAGE = "ვწუხვართ, მოხდა შეცდომა";
 const WA_BUTTON_STYLE = {
   background:
     "linear-gradient(180deg, rgba(32,147,99,0.95) 0%, rgba(23,109,72,0.95) 100%)",
@@ -38,7 +38,7 @@ export function ContactSection() {
     const form = event.currentTarget;
 
     if (!selectedService) {
-      setError("აირჩიე სერვისის სახეობა");
+      setError(t("fields.service"));
       setState("error");
       return;
     }
@@ -84,18 +84,18 @@ export function ContactSection() {
   const whatsappNumber = t("alt.whatsapp");
   const hours = t.raw("hours") as string[];
   const submitLabel = t("fields.submit");
-  const waPrimaryHref = "https://wa.me/995599705697?text=გამარჯობა GD Supply";
-  const waSecondaryHref = "https://wa.me/995555656503?text=გამარჯობა GD Supply";
+  const waPrimaryHref = "https://wa.me/995599705697?text=Hello%20GD%20Supply";
+  const waSecondaryHref = "https://wa.me/995555656503?text=Hello%20GD%20Supply";
 
   return (
     <section
       id="contact"
-      className="gd-cv-auto bg-transparent border-t border-white/10 py-[56px] md:py-[72px]"
+      className="gd-cv-auto gd-section-divider bg-transparent py-[56px] md:py-[72px]"
     >
-      <div className="mx-auto max-w-[1200px] px-5 md:px-10">
+      <div className="gd-container">
         <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
           <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-[color:var(--gd-panel)]/72 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
-            <h2 className="tt-heading-lg text-3xl text-white md:text-4xl">
+            <h2 className="tt-heading-lg text-white">
               {t("title")}
             </h2>
             <p className="tt-detail mt-3 text-base leading-relaxed text-white/70">
@@ -105,23 +105,23 @@ export function ContactSection() {
             <div className="mt-5 divide-y divide-white/10">
               <ContactItem
                 icon={<PhoneIcon />}
-                label="ტელეფონი"
+                label={t("fields.phone")}
                 value={phone}
                 href={`tel:${phone.replaceAll(" ", "")}`}
               />
               <ContactItem
                 icon={<PhoneIcon />}
-                label="დამატებითი ნომერი"
+                label={t("alt.phone_secondary")}
                 value={phoneSecondary}
                 href={`tel:${phoneSecondary.replaceAll(" ", "")}`}
               />
               <ContactItem
                 icon={<MailIcon />}
-                label="ელ-ფოსტა"
+                label={t("fields.email")}
                 value={email}
                 href={`mailto:${email}`}
               />
-              <ContactItem icon={<PinIcon />} label="ლოკაცია" value={location} />
+              <ContactItem icon={<PinIcon />} label={t("alt.location")} value={location} />
               <div className="flex gap-4 py-4">
                 <div className="grid h-10 w-10 flex-none place-items-center rounded-[10px] border border-primary-green/30 bg-primary-green/15 text-white/85">
                   <ClockIcon />
@@ -185,8 +185,7 @@ export function ContactSection() {
               </div>
 
               <div className="mt-4">
-                <span className="tt-label block text-primary-green">
-                  სოციალური
+                <span className="tt-label block text-primary-green">სოციალური ქსელები?
                 </span>
                 <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
                   <a
@@ -217,18 +216,18 @@ export function ContactSection() {
           </div>
 
           <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-[color:var(--gd-panel)]/78 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
-            <h3 className="tt-heading-md text-xl font-extrabold text-white md:text-2xl">
-              გამოგვიგზავნე განცხადება
+            <h3 className="tt-heading-md font-extrabold text-white">
+              დაგვიტოვე შეტყობინება
             </h3>
 
             {state === "sent" ? (
               <div className="mt-4 grid min-h-[260px] flex-1 place-items-center rounded-xl border border-primary-green/25 bg-primary-green/10 p-6 text-center md:min-h-[320px]">
                 <div>
-                  <p className="tt-heading-md text-xl font-extrabold text-primary-green md:text-2xl">
-                    ✓ თქვენი განცხადება მიღებულია!
+                  <p className="tt-heading-md font-extrabold text-primary-green">
+                    შეტყობინება მიღებულია!
                   </p>
                   <p className="tt-detail mt-3 text-base font-semibold text-primary-green/90">
-                    ჩვენი სპეციალისტი 2 საათის განმავლობაში დაგიკავშირდებათ.
+                    დაგიკავშირდებით 2 სამუშაო დღეში.
                   </p>
                 </div>
               </div>
@@ -475,4 +474,9 @@ function FacebookIcon() {
 function LinkedInIcon() {
   return <LinkedinLogo size={16} weight="fill" aria-hidden="true" />;
 }
+
+
+
+
+
 

@@ -28,13 +28,13 @@ export default function ServicesPage({
 
       <ServicesHubPage locale={params.locale} services={coreServices} showHeader={false} />
 
-      <section className="gd-cv-auto relative border-t border-white/10 pb-[56px] pt-[32px] text-white md:pb-[88px] md:pt-[40px]">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-cv-auto gd-section-divider relative pb-[56px] pt-[32px] text-white md:pb-[88px] md:pt-[40px]">
+        <div className="gd-container">
           <div className="mb-6 md:mb-8">
             <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
               სამშენებლო პროდუქტები
             </p>
-            <h2 className="tt-heading-lg mt-2 text-2xl font-extrabold text-white md:text-3xl">
+            <h2 className="tt-heading-lg mt-2 font-extrabold text-white">
               სამშენებლო პროდუქტები
             </h2>
           </div>
@@ -75,3 +75,4 @@ export default function ServicesPage({
     </main>
   );
 }
+

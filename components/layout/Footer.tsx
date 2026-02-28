@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -31,9 +31,19 @@ export function Footer() {
   const email = tContact("alt.email");
   const whatsapp = tContact("alt.whatsapp");
 
+  const SERVICE_SLUG_MAP: Record<string, string> = {
+    flat_roof: "flat-roof",
+    terrace: "terrace",
+    foundation: "foundation",
+    industrial_floor: "industrial-floor",
+    materials: "materials",
+  };
+
   const services = (tServices.raw("items") as ServiceItem[]).map((service) => ({
     label: service.title,
-    href: `/${locale}/services#${service.key}`,
+    href: SERVICE_SLUG_MAP[service.key]
+      ? `/${locale}/services/${SERVICE_SLUG_MAP[service.key]}`
+      : `/${locale}/services`,
   }));
 
   const companyLinks = [
@@ -68,8 +78,8 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-white/10 bg-gd-surface">
-      <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-14 md:grid-cols-2 md:px-10 xl:grid-cols-4">
+    <footer className="gd-section-divider bg-gd-surface">
+      <div className="gd-container grid gap-10 py-14 md:grid-cols-2 xl:grid-cols-4">
         <div className="space-y-5">
           <div className="flex items-center gap-3">
             <Image src="/images/logo.png" alt="GD Supply" width={40} height={40} className="h-10 w-10 object-contain" />
@@ -84,7 +94,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-3">
             <a
               className="tt-ui inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 transition hover:border-primary-green/30 hover:bg-white/10 hover:text-white"
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/GDSupply1"
               target="_blank"
               rel="noreferrer"
             >
@@ -138,7 +148,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-5 text-center text-xs text-white/55">{tFooter("copyright")}</div>
+      <div className="gd-section-divider py-5 text-center text-xs text-white/55">{tFooter("copyright")}</div>
     </footer>
   );
 }

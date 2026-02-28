@@ -19,8 +19,8 @@ export function ServiceDetailPage({
     <main className="gd-page-shell bg-transparent text-white">
       {hideHero ? null : <ServiceHero locale={locale} service={service} />}
 
-      <section className="border-t border-white/10 py-12 md:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-section-divider py-12 md:py-16">
+        <div className="gd-container">
           <SectionHeading index="02" title="სად გამოიყენება" />
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {service.usage.map((usageKey) => {
@@ -46,8 +46,8 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-white/10 py-12 md:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-section-divider py-12 md:py-16">
+        <div className="gd-container">
           <SectionHeading index="03" title="გამოყენებული მასალები" />
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {service.materials.map((material) => (
@@ -58,7 +58,7 @@ export function ServiceDetailPage({
                 <div className="tt-label mb-3 inline-flex rounded-full border border-primary-green/30 bg-primary-green/10 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   მასალა
                 </div>
-                <h3 className="tt-heading-md text-lg font-extrabold text-white">
+                <h3 className="tt-heading-md font-extrabold text-white">
                   {material.name}
                 </h3>
                 <p className="tt-detail mt-3 text-sm text-gd-muted">
@@ -70,8 +70,8 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-white/10 py-12 md:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-section-divider py-12 md:py-16">
+        <div className="gd-container">
           <SectionHeading index="04" title="სამუშაოს ეტაპები" />
           <p className="tt-detail mt-3 max-w-3xl text-sm text-gd-muted md:text-base md:text-justify">
             პროექტის ყველა ეტაპი წინასწარ არის შეთანხმებული — შეფასებიდან საბოლოო ჩაბარებამდე.
@@ -99,17 +99,17 @@ export function ServiceDetailPage({
             </div>
           </div>
 
-          <div className="relative mt-8 hidden md:block">
-            <div className="absolute left-0 right-0 top-5 h-px bg-white/10" />
-            <div className="grid grid-cols-5 gap-4">
+          <div className="relative mt-10 hidden md:block">
+            <div className="absolute left-0 right-0 top-7 h-px bg-white/12" />
+            <div className="grid grid-cols-5 gap-6 2xl:gap-7">
               {SERVICE_PROCESS_STEPS.map((step) => (
-                <div key={`${service.slug}-desktop-step-${step.step}`} className="relative pt-10">
-                  <span className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border border-primary-green/40 bg-primary-navy text-sm font-extrabold text-primary-green">
+                <div key={`${service.slug}-desktop-step-${step.step}`} className="relative pt-12">
+                  <span className="absolute left-0 top-0 grid h-10 w-10 place-items-center rounded-full border border-primary-green/40 bg-primary-navy text-sm font-extrabold text-primary-green shadow-[0_4px_14px_rgba(23,109,72,0.28)]">
                     {step.step}
                   </span>
-                  <div className="rounded-xl border border-white/10 bg-gd-panel p-4">
-                    <p className="text-sm font-extrabold text-white">{step.title}</p>
-                    <p className="tt-detail mt-2 text-sm text-gd-muted">
+                  <div className="rounded-xl border border-white/10 bg-gd-panel/95 p-5 shadow-elevated">
+                    <p className="text-base font-extrabold text-white">{step.title}</p>
+                    <p className="tt-detail mt-2 text-sm leading-relaxed text-gd-muted">
                       {step.body}
                     </p>
                   </div>
@@ -120,8 +120,8 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="border-t border-white/10 py-12 md:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-section-divider py-12 md:py-16">
+        <div className="gd-container">
           <SectionHeading index="05" title="ფოტოგალერეა" />
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {service.gallery.map((image, idx) => (
@@ -143,15 +143,15 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="border-y border-white/10 py-12 md:py-16">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <section className="gd-section-divider-y py-12 md:py-16">
+        <div className="gd-container">
           <div className="rounded-2xl border border-primary-green/20 bg-gradient-to-br from-primary-green/10 via-gd-panel/60 to-transparent p-6 md:p-8 shadow-elevated">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-2xl">
                 <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   კონსულტაცია
                 </p>
-                <h2 className="tt-heading-lg mt-3 text-2xl font-extrabold text-white md:text-3xl">
+                <h2 className="tt-heading-lg mt-3 font-extrabold text-white">
                   უფასო კონსულტაცია გამოითხოვე
                 </h2>
                 <p className="tt-detail mt-3 text-base text-gd-muted">
@@ -183,7 +183,7 @@ export function ServiceDetailPage({
 
 function ServiceHero({ locale, service }: { locale: string; service: ServicePageData }) {
   return (
-    <section className="relative overflow-hidden border-b border-white/10">
+    <section className="gd-section-divider-bottom relative overflow-hidden">
       <div className="relative h-[360px] md:h-[440px] xl:h-[520px]">
         <Image
           src={service.heroImage}
@@ -198,7 +198,7 @@ function ServiceHero({ locale, service }: { locale: string; service: ServicePage
       </div>
 
       <div className="absolute inset-x-0 bottom-0">
-        <div className="mx-auto max-w-[1440px] px-5 pb-8 md:px-10 md:pb-12">
+        <div className="gd-container pb-8 md:pb-12">
           <div className="max-w-3xl rounded-2xl border border-white/10 bg-primary-navy/35 p-5 backdrop-blur-sm md:p-7">
             <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-white/70">
               <Link href={`/${locale}/services`} className="transition hover:text-white">
@@ -207,7 +207,7 @@ function ServiceHero({ locale, service }: { locale: string; service: ServicePage
               <span className="text-white/35">→</span>
               <span className="text-white">{service.title}</span>
             </div>
-            <h1 className="tt-heading-xl max-w-[16ch] text-3xl font-black text-white md:text-5xl">
+            <h1 className="tt-heading-xl max-w-[16ch] font-black text-white">
               {service.heroTitle}
             </h1>
             <p className="tt-detail mt-4 text-base text-white/85 md:text-lg md:text-justify">
@@ -226,7 +226,7 @@ function SectionHeading({ index, title }: { index: string; title: string }) {
       <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-primary-green/30 bg-primary-green/10 px-2 text-xs font-extrabold tracking-[0.08em] text-primary-green">
         {index}
       </span>
-      <h2 className="tt-heading-lg text-2xl font-extrabold text-white md:text-3xl">
+      <h2 className="tt-heading-lg font-extrabold text-white">
         {title}
       </h2>
     </div>
@@ -361,3 +361,5 @@ function HotelOutlineIcon() {
     </svg>
   );
 }
+
+

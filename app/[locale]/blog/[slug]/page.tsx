@@ -33,9 +33,15 @@ export default async function PostPage({
   if (!post) notFound();
 
   const source = await serialize(post.content);
-  const related = posts
+  const sameCategory = posts
     .filter((item) => item.slug !== post.slug && item.category === post.category)
-    .slice(0, 3);
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+  const fallback = posts
+    .filter((item) => item.slug !== post.slug && item.category !== post.category)
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+  const related = [...sameCategory, ...fallback].slice(0, 3);
 
   return (
     <PostPageClient post={post} related={related} locale={params.locale} source={source} />

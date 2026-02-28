@@ -18,7 +18,7 @@ export function Testimonials({
 }) {
   return (
     <section id="testimonials" className="gd-cv-auto relative py-[60px] md:py-[100px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <div className="gd-container">
         <FadeUp>
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">შეფასებები</p>
         </FadeUp>
@@ -33,3 +33,4 @@ export function Testimonials({
     </section>
   );
 }
+

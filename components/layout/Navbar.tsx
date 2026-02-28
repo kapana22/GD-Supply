@@ -53,6 +53,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const phone = tHeader("phone");
+  const languageLabel = locale === "ka" ? "ენა" : locale === "ru" ? "Язык" : "Language";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -143,7 +144,7 @@ export function Navbar() {
         }}
       />
       <div
-        className="relative mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 transition-[height,padding] duration-500 md:px-10"
+        className="relative gd-container flex items-center justify-between gap-4 transition-[height,padding] duration-500"
         style={{ height: scrolled ? 74 : 78 }}
       >
         <Link
@@ -174,7 +175,7 @@ export function Navbar() {
           {links.map((item) => {
             const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
             const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
-            const label = item.key === "portfolio" ? "რეფერენსები" : tNav(item.key);
+            const label = tNav(item.key);
 
             return (
               <Link
@@ -220,14 +221,14 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="mx-auto max-w-[1440px] px-5 pb-4 md:px-10 lg:hidden"
+            className="gd-container pb-4 lg:hidden"
           >
             <div className="rounded-xl border border-white/12 bg-[rgba(26,28,51,0.76)] p-4 shadow-[0_18px_40px_rgba(4,8,18,0.26),inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-blur-xl">
               <div className="grid gap-2">
                 {links.map((item) => {
                   const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
                   const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
-                  const label = item.key === "portfolio" ? "რეფერენსები" : tNav(item.key);
+                  const label = tNav(item.key);
 
                   return (
                     <Link
@@ -247,7 +248,9 @@ export function Navbar() {
               </div>
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/5 p-2">
-                <span className="tt-label px-2 text-xs font-semibold uppercase tracking-[0.08em] text-white/55">ენა</span>
+                <span className="tt-label px-2 text-xs font-semibold uppercase tracking-[0.08em] text-white/55">
+                  {languageLabel}
+                </span>
                 <LanguageDropdown locale={locale} onChange={setLocale} mobile />
               </div>
 
@@ -430,3 +433,4 @@ function FlagIcon({
     </span>
   );
 }
+

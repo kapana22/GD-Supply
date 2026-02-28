@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -65,9 +65,9 @@ const CALCULATOR_ROWS: CalculatorRow[] = [
 
 const CATEGORY_INCLUDES = {
   ka: {
-    roof: ["ქიმიური საფარი", "PVC/EPDM მემბრანა"],
-    terrace: ["აკრილ-ცემენტი", "პოლიურეთანი", "პოლიურეა"],
-    foundation: ["თხევადი ბიტუმი"],
+    roof: ["????????? ????????", "PVC/EPDM ????????"],
+    terrace: ["?????-???????", "???????????", "????????"],
+    foundation: ["??????? ??????"],
   },
   en: {
     roof: ["Coating insulation", "PVC/EPDM Membrane"],
@@ -75,9 +75,9 @@ const CATEGORY_INCLUDES = {
     foundation: ["Liquid bitumen"],
   },
   ru: {
-    roof: ["Покрытие", "PVC/EPDM мембрана"],
-    terrace: ["Акрил-цемент", "Полиуретан", "Полиуреа"],
-    foundation: ["Жидкий битум"],
+    roof: ["?????????? ????????", "PVC/EPDM ????????"],
+    terrace: ["?????-??????", "??????????", "????????????"],
+    foundation: ["?????? ?????"],
   },
 } as const satisfies Record<string, Record<CategoryKey, string[]>>;
 
@@ -88,20 +88,20 @@ const CATEGORY_PRICE_MIN_OVERRIDE: Partial<Record<CategoryKey, number>> = {
 const CALCULATOR_LABELS = {
   ka: {
     fields: {
-      category: "კატეგორია",
-      includes: "ფასი მოიცავს",
-      price: "ფასი",
-      total: "სრული თანხა",
-      warranty: "გარანტია",
-      categoryRange: "კატეგორიის დიაპაზონი",
-      variants: "ვარიანტები",
+      category: "?????????",
+      includes: "??? ??????? ?????????",
+      price: "????",
+      total: "????? ?????",
+      warranty: "????????",
+      categoryRange: "?????????? ?????????",
+      variants: "????????",
     },
     categories: {
-      roof: "სახურავი",
-      terrace: "ტერასა",
-      foundation: "საძირკველი",
+      roof: "????????",
+      terrace: "??????",
+      foundation: "??????????",
     } satisfies Record<CategoryKey, string>,
-    yearsSuffix: "წელი",
+    yearsSuffix: "????",
   },
   en: {
     fields: {
@@ -122,20 +122,20 @@ const CALCULATOR_LABELS = {
   },
   ru: {
     fields: {
-      category: "Категория",
-      includes: "Что входит в диапазон",
-      price: "Цена",
-      total: "Итого",
-      warranty: "Гарантия",
-      categoryRange: "Диапазон категории",
-      variants: "Варианты",
+      category: "?????????",
+      includes: "??? ?????? ? ????????",
+      price: "????",
+      total: "?????",
+      warranty: "????????",
+      categoryRange: "???????? ?????????",
+      variants: "???????",
     },
     categories: {
-      roof: "Кровля",
-      terrace: "Терраса",
-      foundation: "Фундамент",
+      roof: "?????",
+      terrace: "???????",
+      foundation: "?????????",
     } satisfies Record<CategoryKey, string>,
-    yearsSuffix: "лет",
+    yearsSuffix: "???",
   },
 } as const;
 
@@ -150,7 +150,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
 
   const localeLabels =
     CALCULATOR_LABELS[(locale as keyof typeof CALCULATOR_LABELS) ?? "ka"] ?? CALCULATOR_LABELS.ka;
-  const calculatorCtaLabel = locale === "ka" ? "გამოთვალე ღირებულება →" : t("cta");
+  const calculatorCtaLabel = locale === "ka" ? "???????????? ?????? ?" : t("cta");
   const includesLabels =
     CATEGORY_INCLUDES[(locale as keyof typeof CATEGORY_INCLUDES) ?? "ka"] ?? CATEGORY_INCLUDES.ka;
 
@@ -253,7 +253,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                       {localeLabels.fields.price}
                     </p>
                     <p className="mt-1 text-base font-extrabold text-white">
-                      {formatRange(result.perMin, result.perMax)} ₾/მ²
+                      {formatRange(result.perMin, result.perMax)} ?/?�
                     </p>
                   </div>
                   <div className="rounded-lg border border-white/10 bg-[color:var(--gd-surface)] px-3 py-2.5">
@@ -271,9 +271,9 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                 <div className="rounded-lg border border-white/15 bg-[color:var(--gd-surface-soft)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-extrabold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
-                      {formatNumber(area)} <span className="text-primary-green">m²</span>
+                      {formatNumber(area)} <span className="text-primary-green">?�</span>
                     </span>
-                    <span className="text-xs font-semibold text-white/65">10–2000</span>
+                    <span className="text-xs font-semibold text-white/65">10�2000</span>
                   </div>
                   <input
                     type="range"
@@ -284,8 +284,8 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                     className="gd-range mt-4 w-full"
                   />
                   <div className="mt-3 flex items-center justify-between text-[11px] font-semibold text-white/45">
-                    <span>Min: 10 m²</span>
-                    <span>Max: 2000 m²</span>
+                    <span>???: 10 ?�</span>
+                    <span>????: 2000 ?�</span>
                   </div>
                 </div>
               </Field>
@@ -298,13 +298,13 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{localeLabels.fields.price}</p>
             <p className="mt-2 font-sans text-4xl font-extrabold tracking-tight text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-[56px] md:leading-[1.02]">
-              {formatRange(animatedPerMin, animatedPerMax)} ₾ / მ²
+              {formatRange(animatedPerMin, animatedPerMax)} ? / ?�
             </p>
 
             <div className="mt-7">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{localeLabels.fields.total}</p>
               <span className="mt-2 block font-sans text-[28px] font-extrabold tracking-tight text-primary-green [text-shadow:0_2px_14px_rgba(23,109,72,0.2)] md:text-[34px] md:leading-[1.1]">
-                {formatRange(animatedTotalMin, animatedTotalMax, " ₾")}
+                {formatRange(animatedTotalMin, animatedTotalMax, " ?")}
               </span>
             </div>
 
@@ -338,7 +338,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                 href={`/${locale}/services`}
                 className="btn-secondary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
-                {tNav("services")} →
+                {tNav("services")} ?
               </Link>
             </div>
           </div>
@@ -350,7 +350,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
 
 function formatRange(min: number, max: number, suffix = "") {
   if (min === max) return `${formatNumber(min)}${suffix}`;
-  return `${formatNumber(min)} – ${formatNumber(max)}${suffix}`;
+  return `${formatNumber(min)} � ${formatNumber(max)}${suffix}`;
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {

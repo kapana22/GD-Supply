@@ -23,12 +23,12 @@ const MARQUEE_DURATION_S = Math.max(36, PARTNER_LOGOS.length * 3.8);
 
 export function PartnersMarquee() {
   return (
-    <section className="gd-cv-auto relative border-t border-white/10 py-10 md:py-12">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section className="gd-cv-auto gd-section-divider relative py-10 md:py-12">
+      <div className="gd-container">
         <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
           პარტნიორები
         </p>
-        <h2 className="tt-heading-lg mt-2 text-2xl font-extrabold text-white md:text-3xl">
+        <h2 className="tt-heading-lg mt-2 font-extrabold text-white">
           ჩვენი პარტნიორები
         </h2>
 
@@ -56,4 +56,5 @@ export function PartnersMarquee() {
     </section>
   );
 }
+
 

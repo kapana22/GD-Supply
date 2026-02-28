@@ -19,12 +19,20 @@ const SERVICE_IMAGE_MAP: Record<string, string> = {
   materials: "/assets/services/materials.jpg",
 };
 
+const SERVICE_SLUG_MAP: Record<string, string> = {
+  flat_roof: "flat-roof",
+  terrace: "terrace",
+  foundation: "foundation",
+  industrial_floor: "industrial-floor",
+  materials: "materials",
+};
+
 export function ServicesField({ items }: { items: ServiceItem[] }) {
   const locale = useLocale();
 
   return (
     <section className="relative py-[36px] md:py-[52px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <div className="gd-container">
         <FadeUp>
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">სერვისების ველი</p>
         </FadeUp>
@@ -36,7 +44,11 @@ export function ServicesField({ items }: { items: ServiceItem[] }) {
           {items.slice(0, 6).map((item) => (
             <Link
               key={item.key}
-              href={`/${locale}/services#${item.key}`}
+              href={
+                SERVICE_SLUG_MAP[item.key]
+                  ? `/${locale}/services/${SERVICE_SLUG_MAP[item.key]}`
+                  : `/${locale}/services`
+              }
               className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:-translate-y-0.5 hover:border-primary-green/60 hover:bg-white/10"
             >
               <div className="relative h-36 w-full">
@@ -62,3 +74,4 @@ export function ServicesField({ items }: { items: ServiceItem[] }) {
     </section>
   );
 }
+

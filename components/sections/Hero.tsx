@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -60,7 +60,7 @@ const statIcons = [
 
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-5 py-[60px] md:px-10 md:py-[100px]">
+      <div className="relative z-10 gd-container py-[60px] md:py-[100px]">
         <div className="max-w-3xl space-y-7">
           <motion.div {...fadeUp(0)}>
             <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
@@ -70,7 +70,7 @@ const statIcons = [
 
           <motion.h1
             {...fadeUp(0.15)}
-            className="tt-heading-xl max-w-[12ch] text-4xl font-extrabold text-white md:text-6xl lg:text-[72px]"
+            className="tt-heading-xl max-w-[12ch] font-extrabold text-white"
           >
             {title}
           </motion.h1>
@@ -98,7 +98,7 @@ const statIcons = [
 
         <motion.div
           {...fadeUp(0.55)}
-          className="relative mt-8 max-w-[1180px] overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.68))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.14)] backdrop-blur-xl"
+          className="relative mt-8 w-full overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.68))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.14)] backdrop-blur-xl"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(680px_240px_at_10%_0%,rgba(255,255,255,0.09),transparent_72%),radial-gradient(700px_260px_at_92%_2%,rgba(23,109,72,0.24),transparent_74%),linear-gradient(120deg,rgba(255,255,255,0.035)_0%,transparent_34%,transparent_60%,rgba(23,109,72,0.06)_100%)]" />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.40),transparent)]" />

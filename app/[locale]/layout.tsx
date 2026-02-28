@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { defaultLocale, locales } from "@/lib/i18n";
-import { contractica, contracticaCaps } from "@/lib/fonts";
+import { notoSansGeorgian } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/Navbar";
 import { SiteAmbientBackground } from "@/components/layout/SiteAmbientBackground";
 import { PartnersMarquee } from "@/components/layout/PartnersMarquee";
@@ -20,6 +20,7 @@ const StartupLoader = dynamic(
 );
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gdsupply.ge"),
   title: {
     default:
       "GD Supply — ჰიდროიზოლაცია თბილისი | სახურავი, ტერასა, საძირკველი",
@@ -68,7 +69,7 @@ export default async function LocaleLayout({
         `}
       </Script>
       <body
-        className={`${contractica.variable} ${contracticaCaps.variable} relative min-h-screen font-georgian antialiased`}
+        className={`${notoSansGeorgian.variable} relative min-h-screen font-sans antialiased`}
       >
         <StartupLoader />
         <SiteAmbientBackground />

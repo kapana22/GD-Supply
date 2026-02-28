@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const CONTACT_EMAIL = "info@gdsupply.ge";
+const CONTACT_EMAIL = "gdsupply.ge@gmail.com";
 const RESEND_FROM = process.env.RESEND_FROM_EMAIL || "GD Supply <onboarding@resend.dev>";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;

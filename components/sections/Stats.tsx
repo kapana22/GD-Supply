@@ -7,7 +7,7 @@ type Stat = { value: string; label: string };
 export function Stats({ title, items }: { title: string; items: Stat[] }) {
   return (
     <section className="relative py-[60px] md:py-[100px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <div className="gd-container">
         <div className="mb-10 md:mb-12">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
             სტატისტიკა
@@ -38,4 +38,5 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
     </section>
   );
 }
+
 

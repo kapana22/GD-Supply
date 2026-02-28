@@ -271,7 +271,7 @@ export default function ProductsPage({ params }: { params: { locale: string } })
       />
 
       <section className="gd-cv-auto relative py-[56px] md:py-[88px]">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+        <div className="gd-container">
           <div className="space-y-10">
             {t.categories.map((category) => (
               <section key={category.title} className="rounded-2xl border border-white/10 bg-gd-panel p-5 md:p-6">
@@ -300,7 +300,7 @@ export default function ProductsPage({ params }: { params: { locale: string } })
                         <p className="tt-label text-xs font-semibold uppercase tracking-[0.08em] text-white/55">
                           {t.itemLabel}
                         </p>
-                        <h2 className="tt-heading-md mt-1 text-base font-extrabold text-white">{item.name}</h2>
+                        <h2 className="tt-heading-md mt-1 font-extrabold text-white">{item.name}</h2>
                         <p className="tt-detail mt-2 text-sm leading-relaxed text-gd-muted">{item.description}</p>
                       </div>
                     </article>
@@ -323,4 +323,5 @@ export default function ProductsPage({ params }: { params: { locale: string } })
     </main>
   );
 }
+
 

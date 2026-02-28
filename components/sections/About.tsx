@@ -22,7 +22,7 @@ export function About({
 }) {
   return (
     <section className="relative py-[60px] md:py-[100px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+      <div className="gd-container">
         <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">ჩვენ შესახებ</p>
@@ -100,4 +100,5 @@ export function About({
     </section>
   );
 }
+
 

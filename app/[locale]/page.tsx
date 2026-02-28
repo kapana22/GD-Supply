@@ -10,7 +10,7 @@ import RoofVideoSection from "@/components/sections/RoofVideoSection";
 
 const KA_SERVICES = [
   { key: "flat_roof", title: "ბრტყელი სახურავი", body: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი დაცვა ნებისმიერ სეზონში." },
-  { key: "terrace", title: "ტერასა და ბალკონი", body: "ელასტიური სისტემები ფილის ან ხის საფარის ქვეშ. სეზონური ტემპერატურის მდგრადი." },
+  { key: "terrace", title: "ტერასა და აივანი", body: "ელასტიური სისტემები ფილის ან ხის საფარის ქვეშ. სეზონური ტემპერატურის მდგრადი." },
   { key: "foundation", title: "საძირკველი და სარდაფი", body: "ნეგატიური და პოზიტიური ჰიდროიზოლაცია. მიწისქვეშა ტენის სრული ბლოკირება." },
   { key: "industrial_floor", title: "ინდუსტრიული იატაკი", body: "ეპოქსიდური და პოლიურეთანის საფარი. ქიმიური და მექანიკური დატვირთვის მდგრადი." },
   { key: "materials", title: "სამშენებლო მასალები", body: "ევროპული ბრენდების ოფიციალური იმპორტი. სამშენებლო ქიმია და სპეციალიზებული საფარები." },
@@ -93,6 +93,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
         label={isKa ? "რეფერენსები" : tNav("portfolio")}
         filters={filters}
         projects={projects}
+        maxItems={6}
       />
 
       <RoofVideoSection />

@@ -19,24 +19,28 @@ type PageHeroProps = {
   title: string;
   subtitle?: string;
   eyebrow?: string;
+  showEyebrow?: boolean;
   breadcrumbs?: HeroCrumb[];
   primaryAction?: HeroAction;
   secondaryAction?: HeroAction;
   backgroundImage?: string;
   backgroundTheme?: PageHeroBackgroundTheme;
   compact?: boolean;
+  fullWidthTitle?: boolean;
 };
 
 export function PageHero({
   title,
   subtitle,
   eyebrow = "GD Supply",
+  showEyebrow = false,
   breadcrumbs = [],
   primaryAction,
   secondaryAction,
   compact = false,
+  fullWidthTitle = false,
 }: PageHeroProps) {
-  const showEyebrow = eyebrow.trim() && eyebrow.trim() !== title.trim();
+  const shouldShowEyebrow = showEyebrow && eyebrow.trim() && eyebrow.trim() !== title.trim();
 
   return (
     <section
@@ -44,7 +48,7 @@ export function PageHero({
     >
       <div className="absolute inset-0" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-5 py-[56px] md:px-10 md:py-[72px]">
+      <div className="relative z-10 gd-container py-[56px] md:py-[72px]">
         <div className="max-w-4xl">
           {breadcrumbs.length > 0 ? (
             <div className="mb-5 flex flex-wrap items-center gap-2 text-sm text-white/65">
@@ -63,13 +67,20 @@ export function PageHero({
             </div>
           ) : null}
 
-          {showEyebrow ? (
+          {shouldShowEyebrow ? (
             <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
               {eyebrow}
             </span>
           ) : null}
 
-          <h1 className={`tt-heading-xl ${showEyebrow ? "mt-5" : "mt-1"} font-extrabold text-white ${compact ? "max-w-[16ch] text-3xl md:text-5xl" : "max-w-[14ch] text-4xl md:text-6xl"}`}>
+          <h1
+            className={`tt-heading-xl ${shouldShowEyebrow ? "mt-5" : "mt-1"} ${
+              fullWidthTitle ? "max-w-none whitespace-nowrap" : "max-w-[16ch]"
+            } font-extrabold text-white`}
+            style={{
+              fontSize: compact ? "clamp(30px, 4.4vw, 54px)" : "clamp(34px, 5vw, 64px)",
+            }}
+          >
             {title}
           </h1>
 

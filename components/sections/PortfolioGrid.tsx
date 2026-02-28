@@ -61,6 +61,7 @@ export function PortfolioGrid({
   projects,
   showHeader = true,
   label,
+  maxItems = null,
 }: {
   title: string;
   subtitle: string;
@@ -68,6 +69,7 @@ export function PortfolioGrid({
   projects: Project[];
   showHeader?: boolean;
   label?: string;
+  maxItems?: number | null;
 }) {
   const allFilter = filters[0] ?? "ყველა";
   const [filter, setFilter] = useState(allFilter);
@@ -94,7 +96,7 @@ export function PortfolioGrid({
     return enriched.filter((project) => project.tags.includes(filter));
   }, [allFilter, enriched, filter]);
 
-  const limited = useMemo(() => visible.slice(0, 6), [visible]);
+  const limited = useMemo(() => (typeof maxItems === "number" ? visible.slice(0, maxItems) : visible), [maxItems, visible]);
 
   useEffect(() => {
     if (!activeProject) return;
@@ -114,8 +116,8 @@ export function PortfolioGrid({
   }, [activeProject]);
 
   return (
-    <section id="portfolio" className="gd-cv-auto relative border-t border-white/10 py-[72px] md:py-[120px]">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section id="portfolio" className="gd-cv-auto gd-section-divider relative py-[72px] md:py-[120px]">
+      <div className="gd-container">
         {showHeader ? (
           <>
             <FadeUp>
@@ -124,7 +126,7 @@ export function PortfolioGrid({
               </p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <h2 className="tt-heading-lg mt-3 text-3xl font-extrabold text-white md:text-4xl">{title}</h2>
+              <h2 className="tt-heading-lg mt-3 font-extrabold text-white">{title}</h2>
             </FadeUp>
             {subtitle?.trim() ? (
               <FadeUp delay={0.2}>
@@ -153,7 +155,7 @@ export function PortfolioGrid({
           })}
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {limited.map((project, idx) => (
             <PortfolioCard
               key={project.key}
@@ -208,7 +210,7 @@ export function PortfolioGrid({
                   <p className="tt-label text-primary-green">
                     {activeProject.type}
                   </p>
-                  <h3 className="tt-heading-md mt-2 text-xl font-extrabold text-white md:text-2xl">
+                  <h3 className="tt-heading-md mt-2 font-extrabold text-white">
                     {activeProject.title}
                   </h3>
                 </div>
@@ -254,3 +256,5 @@ function CloseIcon() {
     </svg>
   );
 }
+
+

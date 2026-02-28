@@ -103,15 +103,15 @@ export function StartupLoader() {
               transition={{ duration: reduceMotion ? 0.18 : 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col items-center"
             >
-              <div className="relative grid h-28 w-28 place-items-center rounded-[28px] border border-white/15 bg-white/[0.04] shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+              <div className="relative grid h-28 w-28 place-items-center rounded-[28px] border border-white/55 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.5)]">
                 <motion.div
                   className="absolute inset-0 rounded-[28px] border border-[#1CB879]/35"
                   animate={reduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.3, 0.9, 0.3] }}
                   transition={{ duration: 1.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 />
                 <motion.div
-                  className="absolute inset-[2px] rounded-[26px] bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(28,184,121,0.08))]"
-                  animate={reduceMotion ? undefined : { opacity: [0.7, 1, 0.7] }}
+                  className="absolute inset-[2px] rounded-[26px] bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(28,184,121,0.18))]"
+                  animate={reduceMotion ? undefined : { opacity: [0.85, 1, 0.85] }}
                   transition={{ duration: 1.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 />
                 <Image

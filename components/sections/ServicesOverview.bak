@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -31,11 +31,11 @@ const SERVICE_SLUG_MAP: Record<string, string> = {
 };
 
 const SHORT_SERVICE_BODIES: Record<string, string> = {
-  flat_roof: "ბიტუმური მემბრანა, TPO და PVC სისტემები. 15–20 წლიანი დაცვა ნებისმიერ სეზონში.",
-  terrace: "ელასტიური სისტემები ფილის ან ხის საფარის ქვეშ. სეზონური ტემპერატურის მდგრადი.",
-  foundation: "ნეგატიური და პოზიტიური ჰიდროიზოლაცია. მიწისქვეშა ტენის სრული ბლოკირება.",
-  industrial_floor: "ეპოქსიდური და პოლიურეთანის საფარი. ქიმიური და მექანიკური დატვირთვის მდგრადი.",
-  materials: "ევროპული ბრენდების ოფიციალური იმპორტი. სამშენებლო ქიმია და სპეც. საფარები.",
+  flat_roof: "???????? ????????, TPO ?? PVC ?????????. 15�20 ?????? ????? ????????? ???????.",
+  terrace: "????????? ????????? ????? ?? ??? ??????? ????. ???????? ???????????? ???????.",
+  foundation: "????????? ?? ????????? ?????????????. ?????????? ????? ????? ?????????.",
+  industrial_floor: "?????????? ?? ???????????? ??????. ??????? ?? ?????????? ?????????? ???????.",
+  materials: "???????? ????????? ?????????? ???????. ?????????? ????? ?? ????. ????????.",
 };
 
 export function ServicesOverview({
@@ -57,7 +57,7 @@ export function ServicesOverview({
         <div className="mb-12 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
           <div>
             <FadeUp>
-              <p className="tt-label text-primary-green">სერვისები</p>
+              <p className="tt-label text-primary-green">?????????</p>
             </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className="tt-heading-lg mt-3 font-extrabold text-white">{title}</h2>
@@ -71,11 +71,11 @@ export function ServicesOverview({
             href={`/${locale}/services`}
             className="btn-secondary tt-ui inline-flex w-fit items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
           >
-            სრული სერვისების სია →
+            ????? ?????????? ??? ?
           </Link>
         </div>
 
-        <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))]">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {coreItems.map((service, index) => {
             const serviceHref = SERVICE_SLUG_MAP[service.key]
               ? `/${locale}/services/${SERVICE_SLUG_MAP[service.key]}`
@@ -92,7 +92,7 @@ export function ServicesOverview({
                 <Link
                   href={serviceHref}
                   className="block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-navy"
-                  aria-label={`${service.title} - გაიგე მეტი`}
+                  aria-label={`${service.title} - ????? ????`}
                 >
                   <TiltCard
                     className="group h-full overflow-hidden rounded-2xl border border-white/10 bg-gd-result transition-[border-color,box-shadow] duration-300 hover:border-primary-green/40 hover:shadow-[0_16px_44px_rgba(23,109,72,0.16)]"
@@ -121,8 +121,8 @@ export function ServicesOverview({
 
                       <div className="mt-auto pt-5">
                         <span className="tt-ui inline-flex items-center gap-2 rounded-lg border border-primary-green/45 bg-primary-green/10 px-4 py-2 text-sm font-semibold text-primary-green shadow-[0_8px_24px_rgba(23,109,72,0.15)] transition group-hover:border-primary-green group-hover:bg-primary-green group-hover:text-white">
-                          გაიგე მეტი
-                          <span className="transition group-hover:translate-x-0.5">→</span>
+                          ????? ????
+                          <span className="transition group-hover:translate-x-0.5">?</span>
                         </span>
                       </div>
                     </div>
@@ -136,10 +136,10 @@ export function ServicesOverview({
         <div className="gd-section-divider mt-20 pt-14 md:mt-24 md:pt-16">
           <div className="mb-6 md:mb-8">
             <p className="tt-label text-primary-green">
-              სამშენებლო მასალები
+              ?????????? ????????
             </p>
             <h3 className="tt-heading-lg mt-2 font-extrabold text-white">
-              სამშენებლო მასალების იმპორტი
+              ?????????? ????????? ???????
             </h3>
           </div>
 
@@ -152,13 +152,13 @@ export function ServicesOverview({
             <Link
               href={`/${locale}/products`}
               className="group block rounded-2xl border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
-              aria-label="სამშენებლო მასალები - პროდუქტების ჩამონათვალი"
+              aria-label="?????????? ???????? - ??????????? ???????????"
             >
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-white/10">
                   <Image
                     src={SERVICE_IMAGES.materials}
-                    alt={materialsItem?.title ?? "სამშენებლო მასალები"}
+                    alt={materialsItem?.title ?? "?????????? ????????"}
                     fill
                     sizes="(min-width: 1024px) 52vw, 100vw"
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -168,20 +168,20 @@ export function ServicesOverview({
 
                 <div className="min-w-0">
                   <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                    {materialsItem?.title ?? "სამშენებლო მასალები"}
+                    {materialsItem?.title ?? "?????????? ????????"}
                   </p>
                   <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">
                     {SHORT_SERVICE_BODIES.materials}
                   </p>
                   <ul className="mt-4 space-y-2 text-sm text-white/85">
-                    <li>• სამშენებლო ქიმია</li>
-                    <li>• ჰიდროსაიზოლაციო მემბრანები</li>
-                    <li>• ხმის საიზოლაციო მასალები</li>
+                    <li>� ?????????? ?????</li>
+                    <li>� ??????????????? ??????????</li>
+                    <li>� ???? ?????????? ????????</li>
                   </ul>
 
                   <span className="tt-ui mt-6 inline-flex items-center gap-2 rounded-lg border border-primary-green/45 bg-primary-green/10 px-5 py-3 text-sm font-semibold text-primary-green transition group-hover:border-primary-green group-hover:bg-primary-green group-hover:text-white">
-                    პროდუქტების ჩამონათვალი
-                    <span className="transition group-hover:translate-x-0.5">→</span>
+                    ??????????? ???????????
+                    <span className="transition group-hover:translate-x-0.5">?</span>
                   </span>
                 </div>
               </div>
