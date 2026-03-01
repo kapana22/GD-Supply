@@ -8,7 +8,7 @@ import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
 import RoofVideoSection from "@/components/sections/RoofVideoSection";
 
-export default async function HomePage({ params }: { params: { locale: string } }) {
+export default async function HomePage() {
   const tHero = await getTranslations("hero");
   const tServices = await getTranslations("services");
   const tPortfolio = await getTranslations("portfolio");

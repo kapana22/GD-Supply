@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { serialize } from "next-mdx-remote/serialize";
-import { getTranslations } from "next-intl/server";
 import PostPageClient from "./PostPageClient";
 import { BLOG_SLUGS } from "@/lib/blogSlugs";
 import { getPost, getPostMeta } from "@/lib/blogPosts";
@@ -26,7 +25,6 @@ export async function generateMetadata({ params }: { params: { locale: string; s
 }
 
 export default async function PostPage({ params }: { params: { locale: string; slug: string } }) {
-  const t = await getTranslations("blog");
   const post = await getPost(params.locale, params.slug);
   if (!post) notFound();
 

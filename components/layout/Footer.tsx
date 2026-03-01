@@ -26,7 +26,6 @@ export function Footer() {
   const tContact = useTranslations("contact");
   const tServices = useTranslations("services");
   const tNav = useTranslations("navigation");
-  const tCommon = useTranslations("common");
 
   const phone = tContact("alt.phone");
   const phoneSecondary = tContact("alt.phone_secondary");
