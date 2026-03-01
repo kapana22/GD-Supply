@@ -711,7 +711,7 @@
     "title_form": "Leave us a message",
     "success": {
       "title": "Message received!",
-      "body": "We will contact you within 2 working days."
+      "body": "We will contact you shortly."
     },
     "placeholders": {
       "select": "Choose",
