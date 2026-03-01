@@ -961,7 +961,7 @@
           {
             "name": "Polyurethane waterproofing",
             "description": "Elastic liquid system for critical details.",
-            "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+            "image": "/assets/portfolio/villa-tkhinvali-polyurethane.webp"
           },
           {
             "name": "Epoxy system",
@@ -987,7 +987,7 @@
           {
             "name": "TPO membrane",
             "description": "Modern UV-resistant solution for flat roofs.",
-            "image": "/assets/portfolio/roof-lisi.jpg"
+            "image": "/assets/portfolio/roof-lisi.webp"
           }
         ]
       },
@@ -998,17 +998,17 @@
           {
             "name": "HDPE acoustic membrane",
             "description": "Under-screed layer to reduce impact noise.",
-            "image": "/assets/portfolio/public-school-800sqm.png"
+            "image": "/assets/portfolio/public-school-800sqm.webp"
           },
           {
             "name": "Vibration damping layer",
             "description": "Reduces vibration and structure-borne noise.",
-            "image": "/assets/portfolio/niutonisskola.jpg"
+            "image": "/assets/portfolio/niutonisskola.webp"
           },
           {
             "name": "Acoustic underlay",
             "description": "Additional insulation in floor and wall systems.",
-            "image": "/assets/portfolio/buqsvidisskola.jpg"
+            "image": "/assets/portfolio/buqsvidisskola.webp"
           }
         ]
       }
