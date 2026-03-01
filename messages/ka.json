@@ -463,90 +463,6 @@
     ],
     "projects": [
       {
-        "name": "სასტუმრო „ამბასადორი\" — კახეთი",
-        "work": "სახურავის ჰიდროიზოლაცია",
-        "area": "2,400 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ბრტყელი სახურავი",
-          "კომერციული"
-        ],
-        "image": "/assets/portfolio/ambasodri.webp"
-      },
-      {
-        "name": "სასტუმრო „ამბასადორი\" — თბილისი",
-        "work": "ტერასის ჰიდროიზოლაცია",
-        "area": "800 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ტერასა",
-          "კომერციული"
-        ],
-        "image": "/assets/portfolio/ambasadori.webp"
-      },
-      {
-        "name": "ნიუტონის თავისუფალი სკოლა",
-        "work": "ეპოქსიდური იატაკი",
-        "area": "1,200 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ინდუსტრიული იატაკი",
-          "განათლება"
-        ],
-        "image": "/assets/portfolio/niutonisskola.webp"
-      },
-      {
-        "name": "ბაქსვუდის საერთაშორისო სკოლა",
-        "work": "ბრტყელი სახურავის მოწყობა",
-        "area": "1,800 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ბრტყელი სახურავი",
-          "განათლება"
-        ],
-        "image": "/assets/portfolio/buqsvidisskola.webp"
-      },
-      {
-        "name": "სავაჭრო ცენტრი „მერანი\"",
-        "work": "სახურავის ჰიდროიზოლაცია",
-        "area": "3,500 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ბრტყელი სახურავი",
-          "კომერციული"
-        ],
-        "image": "/assets/portfolio/sajarocentrimerani.webp"
-      },
-      {
-        "name": "სასტუმრო „როიალ პალასი\"",
-        "work": "ტერასის ჰიდროიზოლაცია",
-        "area": "450 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ტერასა",
-          "კომერციული"
-        ],
-        "image": "/assets/portfolio/roialhoause.webp"
-      },
-      {
-        "name": "საჯარო რეესტრის ეროვნული სააგენტო",
-        "work": "საპარკინგე საფარი",
-        "area": "800 მ²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "ინდუსტრიული იატაკი",
-          "კომერციული"
-        ],
-        "image": "/assets/portfolio/sajaroreestri.webp"
-      },
-      {
         "name": "14 ვილა თხინვალაში",
         "work": "პოლიურეთანის ჰიდროიზოლაცია",
         "area": "300 მ²",
@@ -691,17 +607,6 @@
           "ტერასა"
         ],
         "image": "/assets/portfolio/terrace-tsavkisi.webp"
-      },
-      {
-        "name": "საძირკვლის ჰიდროიზოლაცია",
-        "work": "საძირკვლის ჰიდროიზოლაცია",
-        "area": "—",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "საძირკველი"
-        ],
-        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "პროექტი",
@@ -713,7 +618,12 @@
     "modal": {
       "close": "დახურვა"
     },
-    "filters_all": "ყველა"
+    "filters_all": "ყველა",
+    "video": {
+      "eyebrow": "",
+      "title": "მოკლე ვიდეო, როგორ ვამზადებთ და ვასრულებთ ჰიდროიზოლაციას ობიექტებზე.",
+      "subtitle": ""
+    }
   },
   "testimonials": {
     "title": "კლიენტები ჩვენ შესახებ",

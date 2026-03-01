@@ -463,90 +463,6 @@
     ],
     "projects": [
       {
-        "name": "Отель Ambassador — Кахети",
-        "work": "Гидроизоляция кровли",
-        "area": "2 400 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Плоская крыша",
-          "Коммерческий"
-        ],
-        "image": "/assets/portfolio/ambasodri.webp"
-      },
-      {
-        "name": "Отель Ambassador — Тбилиси",
-        "work": "Гидроизоляция террасы",
-        "area": "800 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Терраса",
-          "Коммерческий"
-        ],
-        "image": "/assets/portfolio/ambasadori.webp"
-      },
-      {
-        "name": "Школа Ньютона",
-        "work": "Эпоксидный пол",
-        "area": "1 200 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Промышленный пол",
-          "Образование"
-        ],
-        "image": "/assets/portfolio/niutonisskola.webp"
-      },
-      {
-        "name": "Международная школа Buckswood",
-        "work": "Устройство плоской кровли",
-        "area": "1 800 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Плоская крыша",
-          "Образование"
-        ],
-        "image": "/assets/portfolio/buqsvidisskola.webp"
-      },
-      {
-        "name": "ТЦ «Мерани»",
-        "work": "Гидроизоляция кровли",
-        "area": "3 500 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Плоская крыша",
-          "Коммерческий"
-        ],
-        "image": "/assets/portfolio/sajarocentrimerani.webp"
-      },
-      {
-        "name": "Отель Royal Palace",
-        "work": "Гидроизоляция террасы",
-        "area": "450 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Терраса",
-          "Коммерческий"
-        ],
-        "image": "/assets/portfolio/roialhoause.webp"
-      },
-      {
-        "name": "Нац. агентство публичного реестра",
-        "work": "Покрытие парковки",
-        "area": "800 м²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Промышленный пол",
-          "Коммерческий"
-        ],
-        "image": "/assets/portfolio/sajaroreestri.webp"
-      },
-      {
         "name": "14 вилл в Цхинвали",
         "work": "Полиуретановая гидроизоляция",
         "area": "300 м²",
@@ -691,17 +607,6 @@
           "Терраса"
         ],
         "image": "/assets/portfolio/terrace-tsavkisi.webp"
-      },
-      {
-        "name": "Гидроизоляция фундамента",
-        "work": "Гидроизоляция фундамента",
-        "area": "—",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Фундамент"
-        ],
-        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "Проект",
@@ -713,7 +618,12 @@
     "modal": {
       "close": "Закрыть"
     },
-    "filters_all": "Все"
+    "filters_all": "Все",
+    "video": {
+      "eyebrow": "",
+      "title": "Короткое видео: как мы готовим и завершаем гидроизоляцию на объектах.",
+      "subtitle": ""
+    }
   },
   "testimonials": {
     "title": "Что говорят клиенты",

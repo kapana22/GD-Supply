@@ -64,9 +64,11 @@ export function ServicesField({ items }: { items: ServiceItem[] }) {
               </div>
 
               <div className="p-4">
-                <p className="tt-heading-md text-white">{item.title}</p>
-                <p className="tt-small mt-1 line-clamp-2 text-white/70">{item.body}</p>
-                <p className="tt-ui mt-3 text-sm font-semibold text-primary-green transition group-hover:text-white">
+                <p className="tt-heading-md text-[17px] font-extrabold text-white sm:text-[18px] md:text-[20px]">
+                  {item.title}
+                </p>
+                <p className="tt-small mt-1 line-clamp-2 text-white/70 sm:text-[13px]">{item.body}</p>
+                <p className="tt-ui mt-3 text-sm font-semibold text-primary-green transition group-hover:text-white sm:text-[13px] md:text-sm">
                   {t("cta")}
                 </p>
               </div>

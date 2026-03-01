@@ -7,6 +7,7 @@ import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
 import RoofVideoSection from "@/components/sections/RoofVideoSection";
+import { ReferencesVideo } from "@/components/sections/ReferencesVideo";
 
 export default async function HomePage() {
   const tHero = await getTranslations("hero");
@@ -57,11 +58,13 @@ export default async function HomePage() {
         enableModal={false}
       />
 
+      <Faq title={tFaq("title")} items={faq} />
+
       <RoofVideoSection />
 
-      {/* <Testimonials title={tTestimonials("title")} items={testimonials} /> */}
+      <ReferencesVideo />
 
-      <Faq title={tFaq("title")} items={faq} />
+      {/* <Testimonials title={tTestimonials("title")} items={testimonials} /> */}
 
       <ContactSection />
     </main>

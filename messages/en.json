@@ -465,90 +465,6 @@
     ],
     "projects": [
       {
-        "name": "Hotel Ambassador — Kakheti",
-        "work": "Roof waterproofing",
-        "area": "2,400 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Flat roof",
-          "Commercial"
-        ],
-        "image": "/assets/portfolio/ambasodri.webp"
-      },
-      {
-        "name": "Hotel Ambassador — Tbilisi",
-        "work": "Terrace waterproofing",
-        "area": "800 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Terrace",
-          "Commercial"
-        ],
-        "image": "/assets/portfolio/ambasadori.webp"
-      },
-      {
-        "name": "Newton Free School",
-        "work": "Epoxy flooring",
-        "area": "1,200 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Industrial floor",
-          "Education"
-        ],
-        "image": "/assets/portfolio/niutonisskola.webp"
-      },
-      {
-        "name": "Buckswood International School",
-        "work": "Flat roof installation",
-        "area": "1,800 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Flat roof",
-          "Education"
-        ],
-        "image": "/assets/portfolio/buqsvidisskola.webp"
-      },
-      {
-        "name": "Merani Shopping Mall",
-        "work": "Roof waterproofing",
-        "area": "3,500 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Flat roof",
-          "Commercial"
-        ],
-        "image": "/assets/portfolio/sajarocentrimerani.webp"
-      },
-      {
-        "name": "Royal Palace Hotel",
-        "work": "Terrace waterproofing",
-        "area": "450 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Terrace",
-          "Commercial"
-        ],
-        "image": "/assets/portfolio/roialhoause.webp"
-      },
-      {
-        "name": "National Agency of Public Registry",
-        "work": "Parking deck coating",
-        "area": "800 m²",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Industrial floor",
-          "Commercial"
-        ],
-        "image": "/assets/portfolio/sajaroreestri.webp"
-      },
-      {
         "name": "14 Villas in Tskhinvali",
         "work": "Polyurethane waterproofing",
         "area": "300 m²",
@@ -693,17 +609,6 @@
           "Terrace"
         ],
         "image": "/assets/portfolio/terrace-tsavkisi.webp"
-      },
-      {
-        "name": "Foundation waterproofing",
-        "work": "Foundation waterproofing",
-        "area": "—",
-        "material": "",
-        "duration": "",
-        "tags": [
-          "Foundation"
-        ],
-        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "Project",
@@ -715,7 +620,12 @@
     "modal": {
       "close": "Close"
     },
-    "filters_all": "All"
+    "filters_all": "All",
+    "video": {
+      "eyebrow": "",
+      "title": "Short video: how we prepare and complete waterproofing on projects.",
+      "subtitle": ""
+    }
   },
   "testimonials": {
     "title": "Clients about us",
