@@ -78,8 +78,8 @@ export function AboutPage({ locale }: { locale: string }) {
             <span className="mx-2 text-white/35">/</span>
             <span className="text-white/85">{t("breadcrumbs.current")}</span>
           </p>
-          <h1 className="mt-4 text-4xl font-black text-white md:text-6xl">{t("hero.title")}</h1>
-          <p className="mt-4 max-w-4xl text-lg leading-relaxed text-white/65">{t("hero.subtitle")}</p>
+          <h1 className="tt-heading-xl mt-4 text-white">{t("hero.title")}</h1>
+          <p className="tt-detail mt-4 max-w-4xl text-white/80">{t("hero.subtitle")}</p>
         </div>
       </motion.section>
 
@@ -90,19 +90,19 @@ export function AboutPage({ locale }: { locale: string }) {
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.32),transparent)]" />
             <div className="pointer-events-none absolute inset-x-[12%] bottom-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(28,184,121,0.0),rgba(28,184,121,0.75),rgba(28,184,121,0.0),transparent)]" />
 
-            <p className="relative text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">
+            <p className="tt-label relative text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">
               {t("story.eyebrow")}
             </p>
-            <h2 className="relative mt-3 text-2xl font-black text-white md:text-3xl">{t("story.title")}</h2>
-            <p className="relative mt-4 text-base leading-relaxed text-white/82">{t("story.body")}</p>
+            <h2 className="tt-heading-lg relative mt-3 text-white">{t("story.title")}</h2>
+            <p className="tt-detail relative mt-4 text-white/82">{t("story.body")}</p>
 
             <div className="relative mt-6 grid gap-3 sm:grid-cols-3">
               {storyHighlights.map((item) => (
                 <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-white/60">
+                  <p className="tt-label text-[11px] font-extrabold uppercase tracking-[0.12em] text-white/60">
                     {item.label}
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-white/90">{item.value}</p>
+                  <p className="tt-ui mt-1 text-sm font-semibold text-white/90">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -116,10 +116,10 @@ export function AboutPage({ locale }: { locale: string }) {
               <div className="pointer-events-none absolute left-[18%] right-[18%] bottom-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(28,184,121,0.0),rgba(28,184,121,0.7),rgba(28,184,121,0.0),transparent)]" />
 
               <div className="relative px-5 pb-2 pt-4 md:px-6">
-                <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary-green">
+                <p className="tt-label text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary-green">
                   {t("intro_stats.eyebrow")}
                 </p>
-                <p className="mt-1 text-sm text-white/68">{t("intro_stats.subtitle")}</p>
+                <p className="tt-small mt-1 text-white/68">{t("intro_stats.subtitle")}</p>
               </div>
 
               <div className="relative grid grow grid-cols-2 md:grid-cols-4 xl:grid-cols-2">
@@ -141,8 +141,8 @@ export function AboutPage({ locale }: { locale: string }) {
 
       <motion.section id="about-values" {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("values.eyebrow")}</p>
-          <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">{t("values.title")}</h2>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("values.eyebrow")}</p>
+          <h2 className="tt-heading-lg mt-3 text-white">{t("values.title")}</h2>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {values.map((item) => {
@@ -160,8 +160,8 @@ export function AboutPage({ locale }: { locale: string }) {
                   <div className="text-white/90">
                     <Icon />
                   </div>
-                  <h3 className="mt-4 text-xl font-bold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">{item.body}</p>
+                  <h3 className="tt-heading-md mt-4 text-white">{item.title}</h3>
+                  <p className="tt-detail mt-3 text-white/70">{item.body}</p>
                 </motion.article>
               );
             })}
@@ -171,8 +171,8 @@ export function AboutPage({ locale }: { locale: string }) {
 
       <motion.section id="about-process" {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("process.eyebrow")}</p>
-          <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">{t("process.title")}</h2>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("process.eyebrow")}</p>
+          <h2 className="tt-heading-lg mt-3 text-white">{t("process.title")}</h2>
 
           <div className="relative mt-10 hidden md:block">
             <div className="absolute left-0 right-0 top-4 h-px bg-white/20" />
@@ -188,11 +188,11 @@ export function AboutPage({ locale }: { locale: string }) {
             <div className="grid gap-6" style={{ gridTemplateColumns: `repeat(${processSteps.length}, minmax(0, 1fr))` }}>
               {processSteps.map((step, index) => (
                 <div key={step.title} className="relative pt-10">
-                  <div className="absolute left-0 top-0 h-8 w-8 rounded-full border border-primary-green bg-[#1A1C33] text-center text-sm font-bold leading-8 text-white">
+                  <div className="tt-ui absolute left-0 top-0 h-8 w-8 rounded-full border border-primary-green bg-[#1A1C33] text-center text-sm font-bold leading-8 text-white">
                     {index + 1}
                   </div>
-                  <h3 className="text-lg font-bold text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/65">{step.body}</p>
+                  <h3 className="tt-heading-md text-white">{step.title}</h3>
+                  <p className="tt-detail mt-2 text-white/70">{step.body}</p>
                 </div>
               ))}
             </div>
@@ -212,11 +212,11 @@ export function AboutPage({ locale }: { locale: string }) {
             <div className="space-y-6">
               {processSteps.map((step, index) => (
                 <div key={step.title} className="relative pl-12">
-                  <div className="absolute left-0 top-0 h-8 w-8 rounded-full border border-primary-green bg-[#1A1C33] text-center text-sm font-bold leading-8 text-white">
+                  <div className="tt-ui absolute left-0 top-0 h-8 w-8 rounded-full border border-primary-green bg-[#1A1C33] text-center text-sm font-bold leading-8 text-white">
                     {index + 1}
                   </div>
-                  <h3 className="text-lg font-bold text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/65">{step.body}</p>
+                  <h3 className="tt-heading-md text-white">{step.title}</h3>
+                  <p className="tt-detail mt-2 text-white/70">{step.body}</p>
                 </div>
               ))}
             </div>
@@ -226,8 +226,8 @@ export function AboutPage({ locale }: { locale: string }) {
 
       <motion.section id="about-team" {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("team.eyebrow")}</p>
-          <h2 className="mt-3 text-3xl font-black text-white md:text-4xl">{t("team.title")}</h2>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-[#1CB879]">{t("team.eyebrow")}</p>
+          <h2 className="tt-heading-lg mt-3 text-white">{t("team.title")}</h2>
 
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {team.map((member) => (
@@ -242,8 +242,8 @@ export function AboutPage({ locale }: { locale: string }) {
                 <div className="grid h-14 w-14 place-items-center rounded-full border border-primary-green bg-primary-green/20 text-lg font-black text-white">
                   {member.initials}
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-white">{member.role}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{member.description}</p>
+                <h3 className="tt-heading-md mt-4 text-white">{member.role}</h3>
+                <p className="tt-detail mt-3 text-white/70">{member.description}</p>
               </motion.article>
             ))}
           </div>
@@ -252,7 +252,7 @@ export function AboutPage({ locale }: { locale: string }) {
 
       <motion.section {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#1CB879]">
+          <p className="tt-label text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#1CB879]">
             {t("partners.title")}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
@@ -271,18 +271,18 @@ export function AboutPage({ locale }: { locale: string }) {
       <motion.section {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
           <div className="rounded-3xl px-6 py-12 md:px-12" style={{ background: "linear-gradient(135deg, #176D48, #0f4d34)" }}>
-            <h2 className="text-3xl font-black text-white md:text-5xl">{t("cta.title")}</h2>
-            <p className="mt-4 max-w-2xl text-base text-white/85">{t("cta.body")}</p>
+            <h2 className="tt-heading-xl text-white">{t("cta.title")}</h2>
+            <p className="tt-detail mt-4 max-w-2xl text-white/85">{t("cta.body")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/contact`}
-                className="btn-primary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
+                className="btn-primary tt-ui inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
                 {t("cta.primary")}
               </Link>
               <Link
                 href={`/${locale}/services`}
-                className="btn-secondary inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
+                className="btn-secondary tt-ui inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold text-white"
               >
                 {t("cta.secondary")}
               </Link>
@@ -295,64 +295,64 @@ export function AboutPage({ locale }: { locale: string }) {
 }
 
 const FALLBACK_STORY_HIGHLIGHTS: StoryHighlight[] = [
-  { label: "გამოცდილება", value: "6+ წელი" },
-  { label: "პროექტები", value: "300+" },
-  { label: "გარანტია", value: "10 წელი" },
+  { label: "Experience", value: "6+ years" },
+  { label: "Projects", value: "300+" },
+  { label: "Warranty", value: "10 years" },
 ];
 
 const FALLBACK_INTRO_STATS: IntroStatItem[] = [
-  { value: 6, suffix: "+", label: "გამოცდილება" },
-  { value: 300, suffix: "+", label: "პროექტი" },
-  { value: 10, suffix: "+", label: "წელი გარანტია" },
-  { value: 100, suffix: "%", label: "კმაყოფილება" },
+  { value: 6, suffix: "+", label: "Years of experience" },
+  { value: 300, suffix: "+", label: "Completed projects" },
+  { value: 10, suffix: "+", label: "Years warranty" },
+  { value: 100, suffix: "%", label: "Client satisfaction" },
 ];
 
 const FALLBACK_VALUES: ValueItem[] = [
   {
-    title: "სისტემური მიდგომა",
-    body: "ვმუშაობთ სტანდარტებით და დეტალური კონტროლით.",
+    title: "Systematic approach",
+    body: "We work with documented standards and detailed quality control.",
     icon: "shield",
   },
   {
-    title: "პროფესიონალური გუნდი",
-    body: "მრავალწლიანი პრაქტიკა საცხოვრებელ და კომერციულ პროექტებში.",
+    title: "Professional team",
+    body: "Hands-on experience across residential and commercial projects.",
     icon: "medal",
   },
   {
-    title: "სრული გამჭვირვალობა",
-    body: "ეტაპები, ვადები და ბიუჯეტი შეთანხმებულია წინასწარ.",
+    title: "Full transparency",
+    body: "Stages, timelines and budget are agreed in advance.",
     icon: "eye",
   },
   {
-    title: "რეალური გარანტია",
-    body: "სამუშაოს ჩაბარების შემდეგ იღებთ ოფიციალურ 10-წლიან გარანტიას.",
+    title: "Real warranty",
+    body: "Official 10-year warranty after handover.",
     icon: "warranty",
   },
 ];
 
 const FALLBACK_PROCESS_STEPS: ProcessStep[] = [
-  { title: "ინსპექცია", body: "ობიექტის შეფასება და პრობლემის დიაგნოსტიკა." },
-  { title: "სისტემის შერჩევა", body: "ობიექტისთვის ოპტიმალური ტექნოლოგიის განსაზღვრა." },
-  { title: "მომზადება", body: "ზედაპირის ტექნოლოგიურად სწორი დამუშავება." },
-  { title: "შესრულება", body: "სისტემის მონტაჟი ხარისხის კონტროლით." },
-  { title: "ჩაბარება", body: "ფინალური ტესტირება და გარანტიის დოკუმენტაცია." },
+  { title: "Inspection", body: "Site assessment and problem diagnostics." },
+  { title: "System selection", body: "Choosing the optimal technology for the site." },
+  { title: "Preparation", body: "Technically correct surface preparation." },
+  { title: "Execution", body: "System installation with quality control." },
+  { title: "Handover", body: "Final testing and warranty documentation." },
 ];
 
 const FALLBACK_TEAM: TeamMember[] = [
   {
     initials: "GD",
-    role: "ტექნიკური გუნდი",
-    description: "პრაქტიკული გამოცდილება სხვადასხვა ტიპის ობიექტებზე.",
+    role: "Technical team",
+    description: "Practical experience across many project types.",
   },
   {
     initials: "PM",
-    role: "პროექტ მენეჯმენტი",
-    description: "ვადების, რესურსებისა და ხარისხის მკაცრი კონტროლი.",
+    role: "Project management",
+    description: "Strict control of timelines, resources and quality.",
   },
   {
     initials: "QA",
-    role: "ხარისხის კონტროლი",
-    description: "ფინალური შედეგის შემოწმება ჩაბარებამდე.",
+    role: "Quality control",
+    description: "Checking the final result before handover.",
   },
 ];
 

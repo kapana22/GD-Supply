@@ -1,9 +1,12 @@
 ﻿"use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { PhoneCall } from "@phosphor-icons/react";
 
 export function MobileCallBar() {
+  const t = useTranslations("mobile_call");
+  const phone = t("phone_number");
   const [ready, setReady] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -45,9 +48,13 @@ export function MobileCallBar() {
         .filter(Boolean)
         .join(" ")}
     >
-      <a href="tel:+995599705697" className="mobile-call-btn tt-ui" aria-label="დაგვიკავშირდით +995 599 705 697">
+      <a
+        href={`tel:${phone.replace(/\s+/g, "")}`}
+        className="mobile-call-btn tt-ui"
+        aria-label={t("aria_label", { phone })}
+      >
         <PhoneCall size={18} weight="duotone" aria-hidden="true" />
-        <span>დაგვიკავშირდით — +995 599 705 697</span>
+        <span>{t("cta", { phone })}</span>
       </a>
     </div>
   );

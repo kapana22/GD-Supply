@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const PARTNER_LOGOS = [
   { src: "/assets/partners/adjara-group.png", alt: "Adjara Group" },
@@ -22,14 +23,16 @@ const LOOP_LOGOS = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
 const MARQUEE_DURATION_S = Math.max(36, PARTNER_LOGOS.length * 3.8);
 
 export function PartnersMarquee() {
+  const t = useTranslations("partners");
+
   return (
     <section className="gd-cv-auto gd-section-divider relative py-10 md:py-12">
       <div className="gd-container">
         <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-          პარტნიორები
+          {t("eyebrow")}
         </p>
         <h2 className="tt-heading-lg mt-2 font-extrabold text-white">
-          ჩვენი პარტნიორები
+          {t("title")}
         </h2>
 
         <div className="partners-marquee-mask mt-6">
@@ -42,7 +45,7 @@ export function PartnersMarquee() {
                 <div className="partners-logo-frame">
                   <Image
                     src={logo.src}
-                    alt={logo.alt}
+                    alt={t("logo_alt", { name: logo.alt })}
                     fill
                     sizes="180px"
                     className="partners-logo-image"
@@ -56,5 +59,3 @@ export function PartnersMarquee() {
     </section>
   );
 }
-
-

@@ -2,46 +2,18 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type FaqItem = {
   q: string;
   a: string;
 };
 
-const DEFAULT_FAQS: FaqItem[] = [
-  {
-    q: "რამდენი ხნით გაძლებს ჰიდროიზოლაცია?",
-    a: "10-დან 25 წლამდე — სისტემის სახეობიდან გამომდინარე. ბიტუმური მემბრანა: 10–15 წელი. TPO/PVC: 20–25 წელი. ჩვენ ვიძლევით 10+ წლიან სამუშაო გარანტიას.",
-  },
-  {
-    q: "რა ვადაში სრულდება სამუშაო?",
-    a: "100–300 მ² — 3–5 სამუშაო დღე. 500–1000 მ² — 1–2 კვირა. მსხვილი კომერციული ობიექტები — ინდივიდუალურად.",
-  },
-  {
-    q: "შეგიძლიათ ასრულოთ სამუშაო ზამთარში?",
-    a: "დიახ. +5°C-ზე ქვევით ვირჩევთ სეზონზე ადაპტირებულ სპეციალურ მასალებს.",
-  },
-  {
-    q: "იმუშავებთ თბილისის გარეთ?",
-    a: "დიახ. ვასრულებთ სამუშაოებს საქართველოს მასშტაბით. ლოჯისტიკა ინდივიდუალურად შეთანხმდება.",
-  },
-  {
-    q: "რა განსხვავებაა ბიტუმსა და TPO-ს შორის?",
-    a: "ბიტუმი — კარგი ფასი/ხარისხი, კლასიკური გამოსავალი. TPO — გრძელვადიანი, UV-მდგრადი, ეკოლოგიური.",
-  },
-  {
-    q: "არის თუ არა საჭირო ნებართვა?",
-    a: "ჩვეულებრივ — არა. ისტორიული შენობები ან ახალი მშენებლობა შეიძლება საჭიროებდეს დამატებით შეთანხმებას.",
-  },
-  {
-    q: "რა ღირს ინსპექცია?",
-    a: "ობიექტის ინსპექცია და სავარაუდო ბიუჯეტი — სრულიად უფასოა.",
-  },
-];
-
 export default function FAQAccordion({ items }: { items?: FaqItem[] }) {
+  const t = useTranslations("faq");
+  const defaultFaqs = t.raw("items") as FaqItem[];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const faqs = items && items.length ? items : DEFAULT_FAQS;
+  const faqs = items && items.length ? items : defaultFaqs;
 
   return (
     <div className="w-full max-w-4xl space-y-3 xl:ml-auto">

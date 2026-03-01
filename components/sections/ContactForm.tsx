@@ -1,13 +1,15 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 type FormState = "idle" | "loading" | "sent" | "error";
 
 export function ContactForm() {
+  const locale = useLocale();
   const t = useTranslations("contact");
   const tCalc = useTranslations("calculator");
+  const tCommon = useTranslations("common");
 
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
@@ -22,6 +24,7 @@ export function ContactForm() {
       service: (form.elements.namedItem("service") as HTMLSelectElement).value,
       area: (form.elements.namedItem("area") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      locale,
     };
 
     setState("loading");
@@ -37,7 +40,7 @@ export function ContactForm() {
       form.reset();
     } else {
       const body = await res.json().catch(() => ({}));
-      setError(body?.error || "შეტყობინება ვერ გაიგზავნა");
+      setError(body?.error || tCommon("error_generic"));
       setState("error");
     }
   }
@@ -52,7 +55,7 @@ export function ContactForm() {
         <Input name="phone" label={t("fields.phone")} required />
         <Input name="email" label={t("fields.email")} type="email" />
         <div className="space-y-2">
-          <label className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+          <label className="tt-label text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
             {t("fields.service")}
           </label>
           <select
@@ -62,7 +65,7 @@ export function ContactForm() {
             required
           >
             <option value="" disabled>
-              აირჩიე
+              {t("placeholders.select")}
             </option>
             {(tCalc.raw("service_options") as string[]).map((opt) => (
               <option key={opt} value={opt}>
@@ -75,7 +78,7 @@ export function ContactForm() {
         <Input name="area" label={t("fields.area")} type="number" />
 
         <div className="space-y-2 md:col-span-2">
-          <label className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+          <label className="tt-label text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
             {t("fields.message")}
           </label>
           <textarea
@@ -83,26 +86,24 @@ export function ContactForm() {
             rows={5}
             required
             className="gd-input w-full px-4 py-3 text-sm text-white"
-            placeholder="მოგვწერე დეტალები: ობიექტი, პრობლემა, სასურველი ვადა…"
+            placeholder={t("placeholders.message")}
           />
         </div>
       </div>
 
-      {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+      {error && <p className="tt-small mt-4 text-red-400">{error}</p>}
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-white/55">
-          გაგზავნით ვადასტურებ, რომ შემიძლია დამიკავშირდეთ მითითებულ ნომერზე.
-        </p>
+        <p className="tt-small text-white/55">{t("disclaimer")}</p>
         <button
           type="submit"
           disabled={state === "loading"}
-        className="btn-primary inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white disabled:opacity-60"
+          className="btn-primary tt-ui inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white disabled:opacity-60"
         >
           {state === "loading"
-            ? "იგზავნება..."
+            ? tCommon("sending")
             : state === "sent"
-            ? "გაიგზავნა ✓"
+            ? t("states.sent")
             : t("fields.submit")}
         </button>
       </div>
@@ -123,7 +124,7 @@ function Input({
 }) {
   return (
     <div className="space-y-2">
-      <label className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+      <label className="tt-label text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
         {label}
       </label>
       <input
@@ -135,5 +136,3 @@ function Input({
     </div>
   );
 }
-
-

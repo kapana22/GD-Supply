@@ -25,6 +25,8 @@ export function Footer() {
   const tFooter = useTranslations("footer");
   const tContact = useTranslations("contact");
   const tServices = useTranslations("services");
+  const tNav = useTranslations("navigation");
+  const tCommon = useTranslations("common");
 
   const phone = tContact("alt.phone");
   const phoneSecondary = tContact("alt.phone_secondary");
@@ -46,13 +48,18 @@ export function Footer() {
       : `/${locale}/services`,
   }));
 
-  const companyLinks = [
-    { label: "ჩვენ შესახებ", href: `/${locale}/about` },
-    { label: "რეფერენსები", href: `/${locale}/portfolio` },
-    { label: "FAQ", href: `/${locale}/#faq` },
-    { label: "ბლოგი", href: `/${locale}/blog` },
-    { label: "კონტაქტი", href: `/${locale}/contact` },
-  ];
+  const footerLinks = tFooter.raw("links") as string[];
+  const companyLinks = footerLinks.map((label, idx) => {
+    const hrefs = [
+      `/${locale}`,
+      `/${locale}/services`,
+      `/${locale}/portfolio`,
+      `/${locale}/about`,
+      `/${locale}/blog`,
+      `/${locale}/contact`,
+    ];
+    return { label, href: hrefs[idx] ?? `/${locale}` };
+  });
 
   const contacts: FooterContact[] = [
     {
@@ -68,7 +75,7 @@ export function Footer() {
     {
       icon: <WhatsappLogo size={16} weight="fill" aria-hidden="true" />,
       text: whatsapp,
-      href: "https://wa.me/995555656503?text=გამარჯობა%20GD%20Supply",
+      href: "https://wa.me/995555656503?text=Hello%20GD%20Supply",
     },
     {
       icon: <EnvelopeSimple size={16} weight="duotone" aria-hidden="true" />,
@@ -97,24 +104,28 @@ export function Footer() {
               href="https://www.facebook.com/GDSupply1"
               target="_blank"
               rel="noreferrer"
+              aria-label={tFooter("social.0")}
             >
               <FacebookLogo size={14} weight="fill" aria-hidden="true" />
-              Facebook
+              {tFooter("social.0")}
             </a>
             <a
               className="tt-ui inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 transition hover:border-primary-green/30 hover:bg-white/10 hover:text-white"
               href="https://www.linkedin.com/"
               target="_blank"
               rel="noreferrer"
+              aria-label={tFooter("social.1")}
             >
               <LinkedinLogo size={14} weight="fill" aria-hidden="true" />
-              LinkedIn
+              {tFooter("social.1")}
             </a>
           </div>
         </div>
 
         <div className="space-y-4">
-          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">სერვისები</p>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">
+            {tNav("services")}
+          </p>
           <div className="grid gap-2 text-sm">
             {services.slice(0, 6).map((item) => (
               <Link key={item.href} href={item.href} className="text-white/75 hover:text-white">
@@ -125,7 +136,9 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">კომპანია</p>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">
+            {tNav("about")}
+          </p>
           <div className="grid gap-2 text-sm">
             {companyLinks.map((item) => (
               <Link key={item.href} href={item.href} className="text-white/75 hover:text-white">
@@ -136,7 +149,9 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">კონტაქტი</p>
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-white/60">
+            {tNav("contact")}
+          </p>
           <div className="grid gap-2 text-sm text-white/75">
             {contacts.map((item, index) => (
               <a key={index} href={item.href} className="footer-contact-item">

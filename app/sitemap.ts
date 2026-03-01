@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
-import { posts } from "@/lib/posts";
+import { BLOG_META } from "@/lib/blogMeta";
 import { SERVICES_CATALOG } from "@/lib/servicesCatalog";
 
 const baseUrl = "https://gdsupply.ge";
@@ -13,17 +13,14 @@ function parseDate(value?: string) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function getLatestContentDate() {
-  return posts.reduce<Date>((latest, post) => {
+const latestContentDate =
+  BLOG_META.reduce<Date>((latest, post) => {
     const nextDate = parseDate(post.updated ?? post.date);
     if (!nextDate) return latest;
     return nextDate > latest ? nextDate : latest;
-  }, new Date("2025-01-01"));
-}
+  }, new Date("2025-01-01")) ?? new Date("2025-01-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const latestContentDate = getLatestContentDate();
-
   const localizedStaticPages = locales.flatMap((locale) =>
     staticRoutes.map((route) => ({
       url: `${baseUrl}/${locale}${route ? `/${route}` : ""}`,
@@ -50,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogPosts = locales.flatMap((locale) =>
-    posts.map((post) => ({
+    BLOG_META.map((post) => ({
       url: `${baseUrl}/${locale}/blog/${post.slug}`,
       lastModified: parseDate(post.updated ?? post.date) ?? latestContentDate,
       changeFrequency: "monthly" as const,

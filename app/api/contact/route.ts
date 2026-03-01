@@ -31,15 +31,15 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: RESEND_FROM,
       to: [CONTACT_EMAIL],
-      subject: `GD Supply - ახალი მოთხოვნა: ${name}`,
+      subject: `GD Supply - New request: ${name}`,
       ...(email ? { replyTo: email } : {}),
-      text: `სახელი და გვარი: ${name}
-ტელეფონი: ${phone}
-ელ-ფოსტა: ${email || "-"}
-სერვისის სახეობა: ${service}
-ობიექტის ფართობი: ${area || "-"}
+      text: `Name: ${name}
+Phone: ${phone}
+Email: ${email || "-"}
+Service: ${service}
+Area: ${area || "-"}
 
-შეტყობინება:
+Message:
 ${message}`,
     });
 

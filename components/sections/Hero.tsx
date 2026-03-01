@@ -9,6 +9,7 @@ import StatCounter from "@/components/StatCounter";
 type HeroStat = { value: string; label: string };
 
 type HeroProps = {
+  eyebrow?: string;
   title: string;
   subtitle: string;
   ctaPrimary: string;
@@ -22,7 +23,7 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroProps) {
+export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroProps) {
   const locale = useLocale();
 
   const parsedStats = stats.slice(0, 4).map((item) => {
@@ -32,7 +33,7 @@ export function Hero({ title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroP
     return { value, suffix, label: item.label };
   });
 
-const statIcons = [
+  const statIcons = [
     <BriefcaseBusiness key="briefcase" className="h-5 w-5" strokeWidth={1.8} />,
     <ShieldCheck key="shield" className="h-5 w-5" strokeWidth={1.8} />,
     <BadgeCheck key="badge" className="h-5 w-5" strokeWidth={1.8} />,
@@ -40,7 +41,8 @@ const statIcons = [
   ] as const;
 
   return (
-    <section className="relative -mt-[84px] min-h-[680px] overflow-hidden pt-[84px] md:min-h-[720px]">
+    <section className="relative -mt-[84px] overflow-hidden pt-[84px] min-h-[640px] md:min-h-[740px]">
+      {/* Background video across all breakpoints */}
       <div className="hero-video-wrapper is-visible" aria-hidden="true">
         <video
           className="hero-video"
@@ -57,25 +59,29 @@ const statIcons = [
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,28,51,0)_0px,rgba(26,28,51,0)_96px,rgba(26,28,51,0.12)_160px,rgba(26,28,51,0.46)_52%,rgba(26,28,51,0.94))]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(980px_560px_at_74%_28%,rgba(28,184,121,0.14),transparent_62%),radial-gradient(760px_420px_at_14%_22%,rgba(255,255,255,0.07),transparent_70%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.14] bg-[linear-gradient(115deg,rgba(255,255,255,0.06)_0%,transparent_36%,transparent_64%,rgba(28,184,121,0.06)_100%)]" />
-
       </div>
 
-      <div className="relative z-10 gd-container py-[60px] md:py-[100px]">
+      <div className="relative z-10 gd-container py-[48px] md:py-[100px]">
         <div className="max-w-3xl space-y-7">
-          <motion.div {...fadeUp(0)}>
-            <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
-              დაარსდა 2014 წელს • 300+ პროექტი
-            </span>
-          </motion.div>
+          {eyebrow ? (
+            <motion.div {...fadeUp(0)}>
+              <span className="tt-label inline-flex items-center rounded-full border border-primary-green/70 bg-white/5 px-4 py-2 text-white/85 backdrop-blur">
+                {eyebrow}
+              </span>
+            </motion.div>
+          ) : null}
 
           <motion.h1
             {...fadeUp(0.15)}
-            className="tt-heading-xl max-w-[12ch] font-extrabold text-white"
+            className="tt-heading-xl hero-heading max-w-[12ch] font-extrabold text-white"
           >
             {title}
           </motion.h1>
 
-          <motion.p {...fadeUp(0.3)} className="tt-detail max-w-2xl text-base text-gd-muted md:text-lg">
+          <motion.p
+            {...fadeUp(0.3)}
+            className="tt-detail hero-subtitle max-w-2xl text-base text-gd-muted md:text-lg"
+          >
             {subtitle}
           </motion.p>
 
@@ -93,12 +99,11 @@ const statIcons = [
               {ctaSecondary}
             </Link>
           </motion.div>
-
         </div>
 
         <motion.div
           {...fadeUp(0.55)}
-          className="relative mt-8 w-full overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.68))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.14)] backdrop-blur-xl"
+          className="relative mt-8 hidden w-full overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.68))] shadow-[0_24px_60px_rgba(3,6,16,0.46),inset_0_1px_0_rgba(255,255,255,0.11),0_0_44px_rgba(23,109,72,0.14)] backdrop-blur-xl md:block"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(680px_240px_at_10%_0%,rgba(255,255,255,0.09),transparent_72%),radial-gradient(700px_260px_at_92%_2%,rgba(23,109,72,0.24),transparent_74%),linear-gradient(120deg,rgba(255,255,255,0.035)_0%,transparent_34%,transparent_60%,rgba(23,109,72,0.06)_100%)]" />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.40),transparent)]" />
@@ -129,6 +134,27 @@ const statIcons = [
             ))}
           </div>
         </motion.div>
+      </div>
+
+      {/* Mobile-only: stats stack below hero content */}
+      <div className="md:hidden px-4 pb-10">
+        <div className="overflow-hidden rounded-2xl border border-white/12 bg-[radial-gradient(140%_120%_at_20%_10%,rgba(28,184,121,0.22),transparent_46%),radial-gradient(160%_160%_at_80%_20%,rgba(23,109,72,0.18),transparent_62%),linear-gradient(180deg,rgba(11,16,31,0.86),rgba(11,16,31,0.78))] shadow-[0_18px_44px_rgba(3,6,16,0.38),inset_0_1px_0_rgba(255,255,255,0.06)]">
+          {parsedStats.map((item, index) => (
+            <div
+              key={item.label}
+              className={`px-4 py-5 ${index !== parsedStats.length - 1 ? "border-b border-white/12" : ""}`}
+            >
+              <StatCounter
+                value={item.value}
+                suffix={item.suffix}
+                label={item.label}
+                duration={1600}
+                icon={statIcons[index]}
+                variant="hero-strip"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

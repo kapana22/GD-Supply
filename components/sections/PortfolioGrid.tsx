@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import FadeUp from "@/components/FadeUp";
 import PortfolioCard, { PortfolioProject } from "@/components/PortfolioCard";
 
@@ -23,56 +24,32 @@ type EnrichedProject = PortfolioProject & {
   duration: string;
 };
 
-const PROJECT_CATEGORY_IMAGES: Record<string, string> = {
-  "ბრტყელი სახურავი": "/assets/services/flat-roof.jpg",
-  ტერასა: "/assets/services/terrace.jpg",
-  საძირკველი: "/assets/portfolio/foundation.jpg",
-  "ინდუსტრიული იატაკი": "/assets/services/industrial-floor.jpg",
-  კომერციული: "/assets/services/materials.jpg",
-};
-
-const PROJECT_NAME_IMAGES: Array<{ name: RegExp; work?: RegExp; image: string }> = [
-  { name: /ამბასადორი.*კახეთი|ambasadori.*kakheti/i, image: "/assets/portfolio/ambasodri.jpg" },
-  { name: /ამბასადორი.*თბილისი|ambasadori.*tbilisi/i, image: "/assets/portfolio/ambasadori.jpg" },
-  { name: /ნიუტონის.*სკოლა|niutoni/i, image: "/assets/portfolio/niutonisskola.jpg" },
-  { name: /ბაქსვუდის.*სკოლა|buqsvidi|boxwood|buxswood/i, image: "/assets/portfolio/buqsvidisskola.jpg" },
-  { name: /მერანი|merani/i, image: "/assets/portfolio/sajarocentrimerani.webp" },
-  { name: /როიალ|royal|roial/i, image: "/assets/portfolio/roialhoause.jpg" },
-  { name: /საჯარო რეესტრი|reestr/i, image: "/assets/portfolio/sajaroreestri.jpg" },
-
-  { name: /თელავ/i, image: "/assets/portfolio/კერძო სახლი თელავში - 600კვ.მ.png" },
-  { name: /წყნეთ/i, work: /ტერას/i, image: "/assets/portfolio/კერძო სახლი წყნეთში-600კვ.მ.jpg" },
-  { name: /წყნეთ/i, image: "/assets/portfolio/კერძო სახლი წყნეთში - 500კვ.მ.jpg" },
-  { name: /ნუცუბიძ/i, image: "/assets/portfolio/ტერასა ნუცუბიძეზე.jpg" },
-  { name: /ოქროყანა/i, image: "/assets/portfolio/ტერასა ოქროყანაში.jpg" },
-  { name: /საგურამო/i, work: /ტერას/i, image: "/assets/portfolio/ტერასა საგურამოში.jpg" },
-  { name: /წავკის/i, work: /კერძო სახლის ტერასა/i, image: "/assets/portfolio/კერძო სახლის ტერასა წავკისში.jpg" },
-  { name: /წავკის/i, image: "/assets/portfolio/ტერასა წავკისში.jpg" },
-  { name: /ლისზე/i, image: "/assets/portfolio/სახურავი ლისზე.jpg" },
-  { name: /სკოლა.*დიღომ|საჯარო სკოლა/i, image: "/assets/portfolio/საჯარო სკოლა - 800 კვ.მ.png" },
-  { name: /ვერტმფრენის|ჰელიპად/i, image: "/assets/portfolio/ვერტმფრენის დასაჯდომი - 300კვ.მ.jpg" },
-  { name: /თხინვალ/i, image: "/assets/portfolio/14 ვილა თხინვალაში-პოლიურეთანი.png" },
-];
-
 export function PortfolioGrid({
   title,
   subtitle,
-  filters,
+  filters: _filters = [],
   projects,
   showHeader = true,
   label,
   maxItems = null,
+  showFilters: _showFilters = false,
+  compact = false,
 }: {
   title: string;
   subtitle: string;
-  filters: string[];
+  filters?: string[];
   projects: Project[];
   showHeader?: boolean;
   label?: string;
   maxItems?: number | null;
+  showFilters?: boolean;
+  compact?: boolean;
 }) {
-  const allFilter = filters[0] ?? "ყველა";
-  const [filter, setFilter] = useState(allFilter);
+  const t = useTranslations("portfolio");
+  const filters = _filters ?? [];
+  const hasFilters = _showFilters && filters.length > 0;
+  const allFilter = hasFilters ? filters[0] ?? t("filters_all") : null;
+  const [filter, setFilter] = useState<string | null>(allFilter);
   const [activeProject, setActiveProject] = useState<EnrichedProject | null>(null);
 
   const enriched = useMemo<EnrichedProject[]>(
@@ -81,22 +58,25 @@ export function PortfolioGrid({
         key: `${idx}-${project.name}-${project.work}`,
         title: project.name,
         type: project.work,
-        area: project.area || "—",
-        category: getPrimaryCategory(project.tags),
-        image: project.image || getProjectImage(project.name, project.tags, project.work),
+        area: project.area || t("unknown.area"),
+        category: getPrimaryCategory(project.tags, t("default_category")),
+        image: project.image || "/assets/services/flat-roof.jpg",
         tags: project.tags ?? [],
-        material: project.material || "—",
-        duration: project.duration || "—",
+        material: project.material || t("unknown.material"),
+        duration: project.duration || t("unknown.duration"),
       })),
-    [projects],
+    [projects, t],
   );
 
   const visible = useMemo(() => {
-    if (!filter || filter === allFilter) return enriched;
+    if (!hasFilters || !filter || filter === allFilter) return enriched;
     return enriched.filter((project) => project.tags.includes(filter));
-  }, [allFilter, enriched, filter]);
+  }, [allFilter, enriched, filter, hasFilters]);
 
-  const limited = useMemo(() => (typeof maxItems === "number" ? visible.slice(0, maxItems) : visible), [maxItems, visible]);
+  const limited = useMemo(
+    () => (typeof maxItems === "number" ? visible.slice(0, maxItems) : visible),
+    [maxItems, visible],
+  );
 
   useEffect(() => {
     if (!activeProject) return;
@@ -116,14 +96,15 @@ export function PortfolioGrid({
   }, [activeProject]);
 
   return (
-    <section id="portfolio" className="gd-cv-auto gd-section-divider relative py-[72px] md:py-[120px]">
+    <section
+      id="portfolio"
+      className={`gd-cv-auto gd-section-divider relative ${compact ? "py-12 md:py-16" : "py-[72px] md:py-[120px]"}`}
+    >
       <div className="gd-container">
         {showHeader ? (
           <>
             <FadeUp>
-              <p className="tt-label text-primary-green">
-                {label || title}
-              </p>
+              <p className="tt-label text-primary-green">{label || title}</p>
             </FadeUp>
             <FadeUp delay={0.1}>
               <h2 className="tt-heading-lg mt-3 font-extrabold text-white">{title}</h2>
@@ -136,33 +117,30 @@ export function PortfolioGrid({
           </>
         ) : null}
 
-        <div className={`${showHeader ? "mt-10" : "mt-3"} flex flex-wrap gap-2.5`}>
-          {filters.map((item) => {
-            const active = item === filter;
-            return (
-              <button
-                key={item}
-                onClick={() => setFilter(item)}
-                className={`tt-ui rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] transition ${
-                  active
-                    ? "border-primary-green bg-primary-green/15 text-white"
-                    : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                }`}
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
+        {hasFilters ? (
+          <div className={`${showHeader ? "mt-10" : "mt-3"} flex flex-wrap gap-2.5`}>
+            {filters.map((item) => {
+              const active = item === filter;
+              return (
+                <button
+                  key={item}
+                  onClick={() => setFilter(item)}
+                  className={`tt-ui rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] transition ${
+                    active
+                      ? "border-primary-green bg-primary-green/15 text-white"
+                      : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        <div className={`${showHeader ? "mt-10" : "mt-3"} grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
           {limited.map((project, idx) => (
-            <PortfolioCard
-              key={project.key}
-              project={project}
-              index={idx}
-              onSelect={() => setActiveProject(project)}
-            />
+            <PortfolioCard key={project.key} project={project} index={idx} onSelect={() => setActiveProject(project)} />
           ))}
         </div>
       </div>
@@ -188,7 +166,7 @@ export function PortfolioGrid({
                 type="button"
                 onClick={() => setActiveProject(null)}
                 className="tt-ui absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55"
-                aria-label="დახურვა"
+                aria-label={t("modal.close")}
               >
                 <CloseIcon />
               </button>
@@ -207,12 +185,8 @@ export function PortfolioGrid({
 
               <div className="grid gap-4 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-6">
                 <div>
-                  <p className="tt-label text-primary-green">
-                    {activeProject.type}
-                  </p>
-                  <h3 className="tt-heading-md mt-2 font-extrabold text-white">
-                    {activeProject.title}
-                  </h3>
+                  <p className="tt-label text-primary-green">{activeProject.type}</p>
+                  <h3 className="tt-heading-md mt-2 font-extrabold text-white">{activeProject.title}</h3>
                 </div>
                 <div className="tt-ui rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85">
                   {activeProject.area}
@@ -226,35 +200,16 @@ export function PortfolioGrid({
   );
 }
 
-function getPrimaryCategory(tags: string[]) {
-  if (!tags || tags.length === 0) return "პროექტი";
-  const nonCommercial = tags.find((tag) => tag !== "კომერციული");
+function getPrimaryCategory(tags: string[], fallback: string) {
+  if (!tags || tags.length === 0) return fallback;
+  const nonCommercial = tags.find((tag) => tag.toLowerCase() !== "commercial");
   return nonCommercial ?? tags[0];
-}
-
-function getProjectImage(name: string, tags: string[], work?: string) {
-  const byName = PROJECT_NAME_IMAGES.find((entry) => {
-    if (!entry.name.test(name)) return false;
-    if (!entry.work) return true;
-    return entry.work.test(work ?? "");
-  })?.image;
-  if (byName) return byName;
-
-  const primary = getPrimaryCategory(tags);
-  return PROJECT_CATEGORY_IMAGES[primary] ?? PROJECT_CATEGORY_IMAGES["კომერციული"] ?? "/assets/services/flat-roof.jpg";
 }
 
 function CloseIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M6 6l12 12M18 6L6 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
-
-

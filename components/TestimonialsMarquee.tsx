@@ -1,35 +1,13 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Testimonial = {
   quote: string;
   author: string;
   meta?: string;
 };
-
-const DEFAULT_TESTIMONIALS: Testimonial[] = [
-  {
-    quote: "GD Supply-მ სრულად გაამართლა ჩვენი მოლოდინი. სახურავი ახლა სრულიად გამართულია. სამუშაო ჩავაბარეთ ვადაში.",
-    author: "დავით კ.",
-    meta: "კერძო სახლი, საბურთალო",
-  },
-  {
-    quote: "GD Supply-ს გუნდმა 2400 მ² სახურავი 3 კვირაში მოამუშავა — პროფესიონალურად და ხარისხიანად.",
-    author: "ნინო ბ.",
-    meta: "ამბასადორი სასტუმრო ჯგუფი",
-  },
-  {
-    quote: "ეპოქსიდური საფარი — ზუსტად ის, რაც გვჭირდებოდა. ბავშვებისთვის უსაფრთხო და ადვილად სარეცხი.",
-    author: "ირაკლი მ.",
-    meta: "სკოლის ადმინისტრაცია, დიღომი",
-  },
-  {
-    quote: "კომპანიამ შეასრულა სამუშაო, რომელზეც სხვა კონტრაქტორები უარს ამბობდნენ. შედეგი შესანიშნავია.",
-    author: "გიორგი ც.",
-    meta: "კერძო სახლი, წყნეთი",
-  },
-];
 
 function QuoteIcon() {
   return (
@@ -73,25 +51,26 @@ function TestimonialCard({ item }: { item: Testimonial }) {
 }
 
 export default function TestimonialsMarquee({ items }: { items?: Testimonial[] }) {
+  const t = useTranslations("testimonials");
+  const defaultTestimonials = t.raw("items") as Testimonial[];
   const [paused, setPaused] = useState(false);
-  const testimonials = items && items.length ? items : DEFAULT_TESTIMONIALS;
+  const testimonials = items && items.length ? items : defaultTestimonials;
   const loopItems = useMemo(() => [...testimonials, ...testimonials], [testimonials]);
 
   return (
     <div
-      className="group relative overflow-hidden"
+      className="relative overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#1A1C33] to-transparent md:w-16" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#1A1C33] to-transparent md:w-16" />
-
       <div
-        className={`testimonials-marquee-track flex ${paused ? "is-paused" : ""}`}
-        style={{ ["--marquee-duration" as string]: `${Math.max(22, testimonials.length * 7)}s` }}
+        className="flex w-max animate-marquee"
+        style={{
+          animationPlayState: paused ? "paused" : "running",
+        }}
       >
-        {loopItems.map((item, i) => (
-          <TestimonialCard key={`${item.author}-${i}`} item={item} />
+        {loopItems.map((item, index) => (
+          <TestimonialCard key={`${item.author}-${index}`} item={item} />
         ))}
       </div>
     </div>

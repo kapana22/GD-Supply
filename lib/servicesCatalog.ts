@@ -8,6 +8,7 @@ export type ServiceMaterial = {
 export type ServicePageData = {
   slug: string;
   order: number;
+  key: string;
   cardTitle: string;
   title: string;
   heroTitle: string;
@@ -22,226 +23,203 @@ export type ServicePageData = {
 
 export const SERVICE_USAGE_OPTIONS: Record<
   ServiceUsageKey,
-  { label: string; description: string }
+  { labelKey: string; descriptionKey: string }
 > = {
   home: {
-    label: "სახლი",
-    description: "კერძო სახლები, კოტეჯები და საცხოვრებელი ტერასები.",
+    labelKey: "usage.home.label",
+    descriptionKey: "usage.home.description",
   },
   commercial: {
-    label: "კომერციული",
-    description: "ოფისები, სავაჭრო ობიექტები და მრავალფუნქციური შენობები.",
+    labelKey: "usage.commercial.label",
+    descriptionKey: "usage.commercial.description",
   },
   industrial: {
-    label: "ინდუსტრიული",
-    description: "საწარმოო და მაღალი დატვირთვის მქონე ინდუსტრიული ობიექტები.",
+    labelKey: "usage.industrial.label",
+    descriptionKey: "usage.industrial.description",
   },
   hotel: {
-    label: "სასტუმრო",
-    description: "სასტუმროები, სპა-სივრცეები და პრემიუმ სტუმართმასპინძლობის პროექტები.",
+    labelKey: "usage.hotel.label",
+    descriptionKey: "usage.hotel.description",
   },
 };
 
 export const SERVICE_PROCESS_STEPS = [
   {
     step: "1",
-    title: "კონსულტაცია და ინსპექცია",
-    body: "ობიექტის ადგილზე შეფასება, უფასო ბიუჯეტი",
+    titleKey: "process.1.title",
+    bodyKey: "process.1.body",
   },
   {
     step: "2",
-    title: "სისტემის შერჩევა",
-    body: "ობიექტის ტიპისა და პირობების მიხედვით",
+    titleKey: "process.2.title",
+    bodyKey: "process.2.body",
   },
   {
     step: "3",
-    title: "ხელშეკრულება",
-    body: "ვადები, ფასი და გარანტია წერილობით",
+    titleKey: "process.3.title",
+    bodyKey: "process.3.body",
   },
   {
     step: "4",
-    title: "სამუშაოს შესრულება",
-    body: "გამოცდილი ბრიგადა, სტანდარტების დაცვით",
+    titleKey: "process.4.title",
+    bodyKey: "process.4.body",
   },
   {
     step: "5",
-    title: "ჩაბარება და გარანტია",
-    body: "საბოლოო ინსპექცია + 10+ წლიანი გარანტია",
+    titleKey: "process.5.title",
+    bodyKey: "process.5.body",
   },
 ] as const;
 
 export const SERVICES_CATALOG: ServicePageData[] = [
   {
     slug: "flat-roof",
+    key: "flat_roof",
     order: 1,
-    cardTitle: "ბრტყელი სახურავი",
-    title: "ბრტყელი სახურავი",
-    heroTitle: "ბრტყელი სახურავი",
-    subtitle:
-      "ბრტყელი სახურავი ყველაზე მოწყვლადი ადგილია. ვიყენებთ მრავალფენოვან სისტემებს — 15–20 წლიანი დაცვა.",
-    cardSummary:
-      "მრავალფენოვანი ჰიდროიზოლაცია ბრტყელი სახურავისთვის, გრძელვადიანი დაცვით და ობიექტზე მორგებული სისტემით.",
+    cardTitle: "flat_roof.cardTitle",
+    title: "flat_roof.title",
+    heroTitle: "flat_roof.heroTitle",
+    subtitle: "flat_roof.subtitle",
+    cardSummary: "flat_roof.cardSummary",
     heroImage: "/assets/services/flat-roof.jpg",
     cardImage: "/assets/services/flat-roof.jpg",
     usage: ["home", "commercial", "hotel"],
     materials: [
       {
-        name: "ბიტუმის ბაზაზე თხევადი მემბრანა",
-        description:
-          "ელასტიური ფენა, რომელიც რთულ კვანძებსა და არათანაბარ ზედაპირებზე უწყვეტ ჰიდროიზოლაციას ქმნის.",
+        name: "flat_roof.materials.0.name",
+        description: "flat_roof.materials.0.description",
       },
       {
-        name: "ცემენტ-აკრილი",
-        description:
-          "ცემენტური ბაზის ელასტიური სისტემა, რომელიც კარგად მუშაობს ბეტონზე და იცავს ზედაპირს ტენისგან.",
+        name: "flat_roof.materials.1.name",
+        description: "flat_roof.materials.1.description",
       },
       {
-        name: "PVC მემბრანა",
-        description:
-          "მაღალი გამძლეობის მემბრანული სისტემა დიდი ფართობების სწრაფი და საიმედო ჰიდროიზოლაციისთვის.",
+        name: "flat_roof.materials.2.name",
+        description: "flat_roof.materials.2.description",
       },
       {
-        name: "EPDM მემბრანა",
-        description:
-          "გამძლე სინთეზური მემბრანა, რომელიც გამოირჩევა ამინდისა და UV ზემოქმედების მიმართ მდგრადობით.",
+        name: "flat_roof.materials.3.name",
+        description: "flat_roof.materials.3.description",
       },
     ],
     gallery: ["/assets/services/flat-roof.jpg"],
   },
   {
     slug: "terrace",
+    key: "terrace",
     order: 2,
-    cardTitle: "ტერასა და ბალკონი",
-    title: "ტერასა და ბალკონი",
-    heroTitle: "ტერასა და ბალკონი",
-    subtitle:
-      "ტერასა მუდმივად ატმოსფერული გავლენის ქვეშაა. ვაყენებთ სისტემებს რომლებიც გაუძლებს სეზონურ ცვლილებებს.",
-    cardSummary:
-      "ტერასისა და ბალკონის ჰიდროიზოლაცია სეზონური ტემპერატურის ცვლილებებისა და ტენის გათვალისწინებით.",
+    cardTitle: "terrace.cardTitle",
+    title: "terrace.title",
+    heroTitle: "terrace.heroTitle",
+    subtitle: "terrace.subtitle",
+    cardSummary: "terrace.cardSummary",
     heroImage: "/assets/services/terrace.jpg",
     cardImage: "/assets/services/terrace.jpg",
     usage: ["home", "commercial", "hotel"],
     materials: [
       {
-        name: "ბიტუმის მემბრანა",
-        description:
-          "ტენგამძლე მემბრანული სისტემა ტერასის ზედაპირისთვის, რომელიც იცავს ნალექისა და ჩაჟონვისგან.",
+        name: "terrace.materials.0.name",
+        description: "terrace.materials.0.description",
       },
       {
-        name: "ცემენტ-აკრილი",
-        description:
-          "ელასტიური ცემენტური საფარი, რომელიც კარგად ერგება ბეტონისა და კერამიკული ზედაპირების კვანძებს.",
+        name: "terrace.materials.1.name",
+        description: "terrace.materials.1.description",
       },
       {
-        name: "PVC მემბრანა",
-        description:
-          "მდგრადი სისტემა ფართო ტერასების ჰიდროიზოლაციისთვის და სწრაფი მონტაჟისთვის.",
+        name: "terrace.materials.2.name",
+        description: "terrace.materials.2.description",
       },
       {
-        name: "EPDM მემბრანა",
-        description:
-          "ხანგრძლივი ექსპლუატაციის მქონე მემბრანა, რომელიც კარგად მუშაობს გარე კლიმატურ პირობებში.",
+        name: "terrace.materials.3.name",
+        description: "terrace.materials.3.description",
       },
     ],
     gallery: ["/assets/services/terrace.jpg"],
   },
   {
     slug: "foundation",
+    key: "foundation",
     order: 3,
-    cardTitle: "საძირკველი და სარდაფი",
-    title: "საძირკველი და სარდაფი",
-    heroTitle: "საძირკველი და სარდაფი",
-    subtitle:
-      "მიწისქვეშა ტენი და გრუნტის წყალი ყველაზე სერიოზული საფრთხეა. ნეგატიური და პოზიტიური სისტემები.",
-    cardSummary:
-      "საძირკვლისა და სარდაფის ჰიდროიზოლაცია ნეგატიური და პოზიტიური სისტემებით ახალი და არსებული შენობებისთვის.",
+    cardTitle: "foundation.cardTitle",
+    title: "foundation.title",
+    heroTitle: "foundation.heroTitle",
+    subtitle: "foundation.subtitle",
+    cardSummary: "foundation.cardSummary",
     heroImage: "/assets/services/foundation.jpg",
     cardImage: "/assets/services/foundation.jpg",
     usage: ["home", "commercial", "industrial"],
     materials: [
       {
-        name: "ცემენტ-აკრილი",
-        description:
-          "მინერალურ ზედაპირზე მჭიდროდ მიმაგრებადი ჰიდროიზოლაცია სარდაფისა და საძირკვლის კვანძებისთვის.",
+        name: "foundation.materials.0.name",
+        description: "foundation.materials.0.description",
       },
       {
-        name: "აკრილი",
-        description:
-          "დამცავი საფარი ტენისა და ზედაპირული წყლის ზემოქმედების შესამცირებლად.",
+        name: "foundation.materials.1.name",
+        description: "foundation.materials.1.description",
       },
       {
-        name: "პოლიურეთანი",
-        description:
-          "მაღალი ელასტიურობის მქონე მასალა ნაპრალებისა და დეფორმაციისადმი მგრძნობიარე ზონებისთვის.",
+        name: "foundation.materials.2.name",
+        description: "foundation.materials.2.description",
       },
       {
-        name: "PVC მემბრანა",
-        description:
-          "მემბრანული სისტემა მიწისქვეშა კონსტრუქციების მასშტაბური დაცვისთვის.",
+        name: "foundation.materials.3.name",
+        description: "foundation.materials.3.description",
       },
       {
-        name: "EPDM მემბრანა",
-        description:
-          "გრძელვადიანი ჰიდროიზოლაციის გადაწყვეტა მაღალი ტენიანობის პირობებში.",
+        name: "foundation.materials.4.name",
+        description: "foundation.materials.4.description",
       },
     ],
     gallery: ["/assets/services/foundation.jpg"],
   },
   {
     slug: "industrial-floor",
+    key: "industrial_floor",
     order: 5,
-    cardTitle: "ინდუსტრიული იატაკი",
-    title: "ინდუსტრიული იატაკი",
-    heroTitle: "ინდუსტრიული იატაკი",
-    subtitle:
-      "საწარმოო სახელოსნოები, სავაჭრო ცენტრები, საპარკინგეები. მაღალი მდგრადობა და ქიმიური მედეგობა.",
-    cardSummary:
-      "ეპოქსიდური და პოლიურეთანის იატაკის სისტემები ინდუსტრიული და კომერციული მაღალი დატვირთვისთვის.",
+    cardTitle: "industrial_floor.cardTitle",
+    title: "industrial_floor.title",
+    heroTitle: "industrial_floor.heroTitle",
+    subtitle: "industrial_floor.subtitle",
+    cardSummary: "industrial_floor.cardSummary",
     heroImage: "/assets/services/industrial-floor.jpg",
     cardImage: "/assets/services/industrial-floor.jpg",
     usage: ["commercial", "industrial", "hotel"],
     materials: [
       {
-        name: "ეპოქსიდური საფარი",
-        description:
-          "მაღალი მდგრადობა ქიმიური დატვირთვისას და სტაბილური ზედაპირი ინდუსტრიული/კომერციული გამოყენებისთვის.",
+        name: "industrial_floor.materials.0.name",
+        description: "industrial_floor.materials.0.description",
       },
       {
-        name: "პოლიურეთანის საფარი",
-        description:
-          "განსაკუთრებით მძიმე ფიზიკური დატვირთვისთვის და დინამიკური ექსპლუატაციის მქონე სივრცეებისთვის.",
+        name: "industrial_floor.materials.1.name",
+        description: "industrial_floor.materials.1.description",
       },
     ],
     gallery: ["/assets/services/industrial-floor.jpg"],
   },
   {
     slug: "materials",
+    key: "materials",
     order: 6,
-    cardTitle: "მასალები და იმპორტი",
-    title: "მასალები და იმპორტი",
-    heroTitle: "მასალები და იმპორტი",
-    subtitle:
-      "ევროპული ბრენდების ოფიციალური წარმომადგენელი. Hilton, Radisson, Holiday Inn პროექტებზე გამოყენებული მასალები.",
-    cardSummary:
-      "ევროპული მასალების იმპორტი: სამშენებლო ქიმია, HDPE ხმის იზოლაცია და პრემიუმ პროექტების კარები/ხალიჩები.",
+    cardTitle: "materials.cardTitle",
+    title: "materials.title",
+    heroTitle: "materials.heroTitle",
+    subtitle: "materials.subtitle",
+    cardSummary: "materials.cardSummary",
     heroImage: "/assets/services/materials.jpg",
     cardImage: "/assets/services/materials.jpg",
     usage: ["home", "commercial", "industrial", "hotel"],
     materials: [
       {
-        name: "სამშენებლო ქიმია",
-        description:
-          "აკრილი, პოლიურეთანი, ეპოქსიდი და ბეტონის ამღდგენები სხვადასხვა სამშენებლო ამოცანისთვის.",
+        name: "materials.materials.0.name",
+        description: "materials.materials.0.description",
       },
       {
-        name: "ხმის საიზოლაციო HDPE მემბრანა",
-        description:
-          "HDPE მემბრანა სტიაშკის ქვეშ ჩასაფენად, გამოყენებული Hilton, Radisson, Holiday Inn და სხვა პროექტებზე.",
+        name: "materials.materials.1.name",
+        description: "materials.materials.1.description",
       },
       {
-        name: "კარები და ხალიჩები",
-        description:
-          "სასტუმრო და პრემიუმ კლასის პროექტებისთვის შერჩეული გადაწყვეტილებები.",
+        name: "materials.materials.2.name",
+        description: "materials.materials.2.description",
       },
     ],
     gallery: ["/assets/services/materials.jpg"],

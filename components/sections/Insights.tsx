@@ -10,11 +10,11 @@ export function Insights({ items }: { items: Insight[] }) {
     <section className="rounded-3xl border border-primary-navy/8 bg-white px-6 py-10 shadow-xl shadow-primary-navy/5 md:px-10">
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-primary-green">Insights</p>
-          <h2 className="text-3xl font-semibold text-primary-navy md:text-4xl">
+          <p className="tt-label text-xs uppercase tracking-[0.2em] text-primary-green">Insights</p>
+          <h2 className="tt-heading-lg text-primary-navy">
             Waterproofing know-how
           </h2>
-          <p className="text-primary-navy/65">
+          <p className="tt-detail text-primary-navy/65">
             Case studies, failure modes, and details that keep structures dry.
           </p>
         </div>
@@ -33,11 +33,11 @@ export function Insights({ items }: { items: Insight[] }) {
               <Image src={item.image} alt={item.title} fill className="object-cover" />
             </div>
             <div className="space-y-2 px-4 py-4">
-              <span className="inline-flex rounded-full bg-primary-navy/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-navy/70">
+              <span className="tt-label inline-flex rounded-full bg-primary-navy/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-navy/70">
                 {item.tag}
               </span>
-              <h3 className="text-lg font-semibold text-primary-navy">{item.title}</h3>
-              <p className="text-sm text-primary-navy/70 leading-relaxed">{item.summary}</p>
+              <h3 className="tt-heading-md text-primary-navy">{item.title}</h3>
+              <p className="tt-small text-primary-navy/70 leading-relaxed">{item.summary}</p>
             </div>
           </motion.article>
         ))}

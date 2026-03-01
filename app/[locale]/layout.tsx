@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, createTranslator } from "next-intl";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { defaultLocale, locales } from "@/lib/i18n";
-import { notoSansGeorgian } from "@/lib/fonts";
+import { notoSansGeorgian, contractica, contracticaCaps } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/Navbar";
 import { SiteAmbientBackground } from "@/components/layout/SiteAmbientBackground";
 import { PartnersMarquee } from "@/components/layout/PartnersMarquee";
@@ -19,16 +19,29 @@ const StartupLoader = dynamic(
   { ssr: false },
 );
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://gdsupply.ge"),
-  title: {
-    default:
-      "GD Supply — ჰიდროიზოლაცია თბილისი | სახურავი, ტერასა, საძირკველი",
-    template: "%s | GD Supply",
-  },
-  description:
-    "GD Supply — 6+ წლიანი გამოცდილების მქონე ჰიდროიზოლაციის კომპანია საქართველოში. სახურავი, ტერასა, საძირკველი, ინდუსტრიული იატაკი. უფასო ინსპექცია. 10+ წლიანი გარანტია.",
-};
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const locale = params.locale ?? defaultLocale;
+  if (!locales.includes(locale as (typeof locales)[number])) return {};
+
+  const messages = await getMessages();
+  const t = createTranslator({ locale, messages, namespace: "seo" });
+
+  return {
+    metadataBase: new URL("https://gdsupply.ge"),
+    title: {
+      default: t("title"),
+      template: "%s | GD Supply",
+    },
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: "https://gdsupply.ge",
+      siteName: "GD Supply",
+      type: "website",
+    },
+  };
+}
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -39,10 +52,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: LocaleLayoutProps) {
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const locale = params.locale ?? defaultLocale;
 
   if (!locales.includes(locale as (typeof locales)[number])) {
@@ -51,7 +61,6 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  // Enable static rendering by setting the locale for this request
   setRequestLocale(locale);
 
   return (
@@ -69,7 +78,7 @@ export default async function LocaleLayout({
         `}
       </Script>
       <body
-        className={`${notoSansGeorgian.variable} relative min-h-screen font-sans antialiased`}
+        className={`${notoSansGeorgian.variable} ${contractica.variable} ${contracticaCaps.variable} relative min-h-screen font-sans antialiased`}
       >
         <StartupLoader />
         <SiteAmbientBackground />
@@ -87,4 +96,3 @@ export default async function LocaleLayout({
     </html>
   );
 }
-

@@ -1,26 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ServicesHubPage } from "@/components/services/ServicesHubPage";
 import { PageHero } from "@/components/sections/PageHero";
 import { SERVICES_CATALOG } from "@/lib/servicesCatalog";
 
-export default function ServicesPage({
-  params,
-}: {
-  params: { locale: string };
-}) {
+export default async function ServicesPage({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("servicesPage");
+  const tNav = await getTranslations("navigation");
+
   const coreServices = SERVICES_CATALOG.filter((service) => service.slug !== "materials");
 
   return (
     <main className="gd-page-shell relative">
       <PageHero
         locale={params.locale}
-        eyebrow="სერვისები"
-        title="რას ვაკეთებთ"
-        subtitle="ჰიდროიზოლაციის ძირითადი მიმართულებები ერთ სტრუქტურირებულ სექციაში."
+        eyebrow={t("hero.eyebrow")}
+        title={t("hero.title")}
+        subtitle={t("hero.subtitle")}
         breadcrumbs={[
-          { label: "მთავარი", href: `/${params.locale}` },
-          { label: "სერვისები" },
+          { label: tNav("home"), href: `/${params.locale}` },
+          { label: tNav("services") },
         ]}
         backgroundTheme="services"
         compact
@@ -32,10 +32,10 @@ export default function ServicesPage({
         <div className="gd-container">
           <div className="mb-6 md:mb-8">
             <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-              სამშენებლო პროდუქტები
+              {t("materials.badge")}
             </p>
             <h2 className="tt-heading-lg mt-2 font-extrabold text-white">
-              სამშენებლო პროდუქტები
+              {t("materials.title")}
             </h2>
           </div>
 
@@ -47,7 +47,7 @@ export default function ServicesPage({
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-white/10">
                 <Image
                   src="/assets/services/materials.jpg"
-                  alt="სამშენებლო მასალები"
+                  alt={t("materials.image_alt")}
                   fill
                   sizes="(min-width: 1024px) 52vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
@@ -57,14 +57,14 @@ export default function ServicesPage({
 
               <div className="min-w-0">
                 <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                  სამშენებლო პროდუქტები
+                  {t("materials.badge")}
                 </p>
                 <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">
-                  პროდუქტების ჩამონათვალი ცალკე გვერდზე: სამშენებლო ქიმია, ჰიდროსაიზოლაციო მემბრანები და ხმის საიზოლაციო მასალები.
+                  {t("materials.body")}
                 </p>
 
                 <span className="tt-ui mt-6 inline-flex items-center gap-2 rounded-lg border border-primary-green/45 bg-primary-green/10 px-5 py-3 text-sm font-semibold text-primary-green transition group-hover:border-primary-green group-hover:bg-primary-green group-hover:text-white">
-                  პროდუქტების ჩამონათვალი
+                  {t("materials.cta")}
                   <span className="transition group-hover:translate-x-0.5">→</span>
                 </span>
               </div>
@@ -75,4 +75,3 @@ export default function ServicesPage({
     </main>
   );
 }
-

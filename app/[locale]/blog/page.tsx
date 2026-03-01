@@ -1,34 +1,41 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
 import BlogPageClient from "./BlogPageClient";
-import { getSortedPosts } from "@/lib/posts";
+import { getPostMeta } from "@/lib/blogPosts";
 
-export const metadata: Metadata = {
-  title: "ბლოგი | GD Supply — ჰიდროიზოლაცია",
-  description: "სტატიები ჰიდროიზოლაციაზე, სახურავის ტიპებზე, მასალებსა და სამშენებლო ტექნოლოგიებზე.",
-  openGraph: {
-    title: "ბლოგი | GD Supply",
-    description: "სტატიები ჰიდროიზოლაციაზე",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("blog");
+  return {
+    title: t("meta.title"),
+    description: t("meta.description"),
+    openGraph: {
+      title: t("meta.title"),
+      description: t("meta.description"),
+      type: "website",
+    },
+  };
+}
 
-export default function BlogPage({ params }: { params: { locale: string } }) {
+export default async function BlogPage({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("blog");
+  const posts = await getPostMeta(params.locale);
+
   return (
     <>
       <PageHero
         locale={params.locale}
-        eyebrow="ბლოგი"
-        title="ბლოგი"
-        subtitle="სტატიები ჰიდროიზოლაციაზე, სახურავის ტიპებზე, მასალებსა და სამშენებლო ტექნოლოგიებზე."
+        eyebrow={t("eyebrow")}
+        title={t("title")}
+        subtitle={t("subtitle")}
         breadcrumbs={[
-          { label: "მთავარი", href: `/${params.locale}` },
-          { label: "ბლოგი" },
+          { label: t("breadcrumbs.home"), href: `/${params.locale}` },
+          { label: t("breadcrumbs.blog") },
         ]}
         backgroundTheme="blog"
         compact
       />
-      <BlogPageClient posts={getSortedPosts()} hideTopHero />
+      <BlogPageClient posts={posts} hideTopHero />
     </>
   );
 }

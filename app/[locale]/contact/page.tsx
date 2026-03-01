@@ -1,17 +1,20 @@
+import { getTranslations } from "next-intl/server";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PageHero } from "@/components/sections/PageHero";
 
 export default async function ContactPage({ params }: { params: { locale: string } }) {
+  const tPage = await getTranslations("contactPage");
+
   return (
     <main className="gd-page-shell relative">
       <PageHero
         locale={params.locale}
-        eyebrow="კონტაქტი"
-        title="დაგვიკავშირდით"
-        subtitle="უფასო კონსულტაცია, ინსპექციის დაგეგმვა და სწრაფი უკუკავშირი."
+        eyebrow={tPage("eyebrow")}
+        title={tPage("title")}
+        subtitle={tPage("subtitle")}
         breadcrumbs={[
-          { label: "მთავარი", href: `/${params.locale}` },
-          { label: "კონტაქტი" },
+          { label: tPage("breadcrumbs.home"), href: `/${params.locale}` },
+          { label: tPage("breadcrumbs.current") },
         ]}
         backgroundTheme="contact"
         compact

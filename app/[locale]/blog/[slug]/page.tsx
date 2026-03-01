@@ -1,15 +1,16 @@
-﻿import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import { serialize } from "next-mdx-remote/serialize";
-import { posts } from "@/lib/posts";
-import { getPostBySlug } from "@/lib/posts.server";
+import { getTranslations } from "next-intl/server";
 import PostPageClient from "./PostPageClient";
+import { BLOG_SLUGS } from "@/lib/blogSlugs";
+import { getPost, getPostMeta } from "@/lib/blogPosts";
 
-export async function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+export function generateStaticParams() {
+  return BLOG_SLUGS.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
+  const post = await getPost(params.locale, params.slug);
   if (!post) return {};
 
   return {
@@ -24,26 +25,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { locale: string; slug: string };
-}) {
-  const post = await getPostBySlug(params.slug);
+export default async function PostPage({ params }: { params: { locale: string; slug: string } }) {
+  const t = await getTranslations("blog");
+  const post = await getPost(params.locale, params.slug);
   if (!post) notFound();
 
-  const source = await serialize(post.content);
-  const sameCategory = posts
-    .filter((item) => item.slug !== post.slug && item.category === post.category)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  const source = await serialize(post.content ?? "");
+  const related = (await getPostMeta(params.locale))
+    .filter((item) => item.slug !== params.slug)
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
+    .slice(0, 3);
 
-  const fallback = posts
-    .filter((item) => item.slug !== post.slug && item.category !== post.category)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
-
-  const related = [...sameCategory, ...fallback].slice(0, 3);
-
-  return (
-    <PostPageClient post={post} related={related} locale={params.locale} source={source} />
-  );
+  return <PostPageClient post={post} related={related} source={source} />;
 }

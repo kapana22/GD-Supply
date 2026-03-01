@@ -44,6 +44,7 @@ const SYSTEM_CONTROL_FONT_STYLE = {
 export function Navbar() {
   const tNav = useTranslations("navigation");
   const tHeader = useTranslations("header");
+  const tCommon = useTranslations("common");
 
   const router = useRouter();
   const pathname = usePathname();
@@ -53,7 +54,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const phone = tHeader("phone");
-  const languageLabel = locale === "ka" ? "ენა" : locale === "ru" ? "Язык" : "Language";
+  const languageLabel = tCommon("language");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -150,7 +151,7 @@ export function Navbar() {
         <Link
           href={`/${locale}`}
           className="relative z-[1] flex shrink-0 items-center gap-2.5"
-          aria-label="GD Supply"
+          aria-label={tNav("brand")}
         >
           <span
             aria-hidden="true"
@@ -158,7 +159,7 @@ export function Navbar() {
           />
           <Image
             src="/images/logo.png"
-            alt="GD Supply"
+            alt={tNav("brand")}
             width={44}
             height={44}
             className="relative h-11 w-11 object-contain"
@@ -206,7 +207,7 @@ export function Navbar() {
         </div>
 
         <button
-          aria-label="Toggle menu"
+          aria-label={tNav("toggle_menu")}
           onClick={() => setOpen((value) => !value)}
           className="gd-control-icon relative z-[1] grid h-11 w-11 place-items-center rounded-lg text-white lg:hidden"
         >
@@ -280,6 +281,7 @@ function LanguageDropdown({
   onChange: (nextLocale: string) => void;
   mobile?: boolean;
 }) {
+  const tNav = useTranslations("navigation");
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -315,7 +317,7 @@ function LanguageDropdown({
         data-active={isOpen ? "true" : "false"}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="Select language"
+        aria-label={tNav("select_language")}
         style={SYSTEM_CONTROL_FONT_STYLE}
       >
         <span className="inline-flex items-center gap-1.5">
@@ -345,7 +347,7 @@ function LanguageDropdown({
             transition={{ duration: 0.16 }}
             className="gd-dropdown-panel absolute right-0 top-[calc(100%+8px)] z-[70] w-[132px] rounded-xl p-1.5"
           >
-            <div role="listbox" aria-label="Select language" className="space-y-1">
+            <div role="listbox" aria-label={tNav("select_language")} className="space-y-1">
               {LOCALE_OPTION_ORDER.map((loc) => {
                 const active = loc === locale;
                 const supported = locales.includes(loc);

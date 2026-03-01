@@ -1,20 +1,21 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 type Stat = { value: string; label: string };
 
 export function Stats({ title, items }: { title: string; items: Stat[] }) {
+  const t = useTranslations("stats");
+
   return (
     <section className="relative py-[60px] md:py-[100px]">
       <div className="gd-container">
         <div className="mb-10 md:mb-12">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-            სტატისტიკა
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
+            {t("eyebrow")}
           </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
-            {title}
-          </h2>
+          <h2 className="tt-heading-lg mt-3 text-white">{title}</h2>
         </div>
 
         <div className="grid gap-5 md:grid-cols-5">
@@ -27,9 +28,7 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
               transition={{ duration: 0.3, delay: idx * 0.04 }}
               className="rounded-xl border border-white/10 bg-gd-panel p-6 shadow-elevated"
             >
-              <p className="font-sans text-3xl font-extrabold text-primary-green md:text-4xl">
-                {s.value}
-              </p>
+              <p className="font-sans text-3xl font-extrabold text-primary-green md:text-4xl">{s.value}</p>
               <p className="mt-2 text-sm font-semibold text-gd-muted">{s.label}</p>
             </motion.div>
           ))}
@@ -38,5 +37,3 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
     </section>
   );
 }
-
-

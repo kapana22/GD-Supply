@@ -35,7 +35,7 @@ export default function PortfolioCard({
       transition={{ duration: 0.5, delay: index * 0.07 }}
       whileTap={{ scale: 0.992 }}
       className="group relative cursor-pointer overflow-hidden rounded-xl border border-white/10 transition-shadow duration-300"
-      style={{ aspectRatio: "4/3" }}
+      style={{ aspectRatio: "3 / 2" }}
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
       aria-pressed={interactive ? active : undefined}
@@ -63,7 +63,7 @@ export default function PortfolioCard({
         alt={project.title}
         className="block h-full w-full object-cover"
         animate={{
-          scale: active ? 1.09 : 1,
+          scale: active ? 1.09 : 1.03,
           filter: active
             ? "saturate(1.06) brightness(1.08)"
             : "saturate(0.95) brightness(0.94)",

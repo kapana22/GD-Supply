@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -19,140 +19,31 @@ type CalculatorRow = {
 const CATEGORY_KEYS: CategoryKey[] = ["roof", "terrace", "foundation"];
 
 const CALCULATOR_ROWS: CalculatorRow[] = [
-  {
-    category: "roof",
-    priceMin: 90,
-    priceMax: 120,
-    warrantyMin: 5,
-    warrantyMax: 7,
-  },
-  {
-    category: "roof",
-    priceMin: 80,
-    priceMax: 120,
-    warrantyMin: 10,
-    warrantyMax: 15,
-  },
-  {
-    category: "terrace",
-    priceMin: 80,
-    priceMax: 80,
-    warrantyMin: 3,
-    warrantyMax: 5,
-  },
-  {
-    category: "terrace",
-    priceMin: 100,
-    priceMax: 120,
-    warrantyMin: 7,
-    warrantyMax: 7,
-  },
-  {
-    category: "terrace",
-    priceMin: 150,
-    priceMax: 150,
-    warrantyMin: 10,
-    warrantyMax: 10,
-  },
-  {
-    category: "foundation",
-    priceMin: 75,
-    priceMax: 75,
-    warrantyMin: 5,
-    warrantyMax: 5,
-  },
+  { category: "roof", priceMin: 90, priceMax: 120, warrantyMin: 5, warrantyMax: 7 },
+  { category: "roof", priceMin: 80, priceMax: 120, warrantyMin: 10, warrantyMax: 15 },
+  { category: "terrace", priceMin: 80, priceMax: 80, warrantyMin: 3, warrantyMax: 5 },
+  { category: "terrace", priceMin: 100, priceMax: 120, warrantyMin: 7, warrantyMax: 7 },
+  { category: "terrace", priceMin: 150, priceMax: 150, warrantyMin: 10, warrantyMax: 10 },
+  { category: "foundation", priceMin: 75, priceMax: 75, warrantyMin: 5, warrantyMax: 5 },
 ];
-
-const CATEGORY_INCLUDES = {
-  ka: {
-    roof: ["ქიმიური საფარი", "PVC/EPDM მემბრანა"],
-    terrace: ["აკრილ-ცემენტი", "პოლიურეთანი", "პოლიურეა"],
-    foundation: ["თხევადი ბიტუმი"],
-  },
-  en: {
-    roof: ["Coating insulation", "PVC/EPDM Membrane"],
-    terrace: ["Acrylic-cement", "Polyurethane", "Polyurea"],
-    foundation: ["Liquid bitumen"],
-  },
-  ru: {
-    roof: ["Покрытие", "PVC/EPDM мембрана"],
-    terrace: ["Акрил-цемент", "Полиуретан", "Полиуреа"],
-    foundation: ["Жидкий битум"],
-  },
-} as const satisfies Record<string, Record<CategoryKey, string[]>>;
 
 const CATEGORY_PRICE_MIN_OVERRIDE: Partial<Record<CategoryKey, number>> = {
   roof: 70,
 };
 
-const CALCULATOR_LABELS = {
-  ka: {
-    fields: {
-      category: "კატეგორია",
-      includes: "ფასი მოიცავს",
-      price: "ფასი",
-      total: "სრული თანხა",
-      warranty: "გარანტია",
-      categoryRange: "კატეგორიის დიაპაზონი",
-      variants: "ვარიანტები",
-    },
-    categories: {
-      roof: "სახურავი",
-      terrace: "ტერასა",
-      foundation: "საძირკველი",
-    } satisfies Record<CategoryKey, string>,
-    yearsSuffix: "წელი",
-  },
-  en: {
-    fields: {
-      category: "Category",
-      includes: "Included in range",
-      price: "Price",
-      total: "Total",
-      warranty: "Warranty",
-      categoryRange: "Category range",
-      variants: "variant",
-    },
-    categories: {
-      roof: "Roof",
-      terrace: "Terrace",
-      foundation: "Foundation",
-    } satisfies Record<CategoryKey, string>,
-    yearsSuffix: "years",
-  },
-  ru: {
-    fields: {
-      category: "Категория",
-      includes: "Что входит в диапазон",
-      price: "Цена",
-      total: "Итого",
-      warranty: "Гарантия",
-      categoryRange: "Диапазон категории",
-      variants: "Варианты",
-    },
-    categories: {
-      roof: "Кровля",
-      terrace: "Терраса",
-      foundation: "Фундамент",
-    } satisfies Record<CategoryKey, string>,
-    yearsSuffix: "лет",
-  },
-} as const;
-
 function formatNumber(value: number) {
   return value.toLocaleString("en-US");
 }
 
-export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
+export function Calculator({ showHeader = true, compact = false }: { showHeader?: boolean; compact?: boolean }) {
   const t = useTranslations("calculator");
   const tNav = useTranslations("navigation");
   const locale = useLocale();
 
-  const localeLabels =
-    CALCULATOR_LABELS[(locale as keyof typeof CALCULATOR_LABELS) ?? "ka"] ?? CALCULATOR_LABELS.ka;
-  const calculatorCtaLabel = locale === "ka" ? "გამოთვალე ღირებულება →" : t("cta");
-  const includesLabels =
-    CATEGORY_INCLUDES[(locale as keyof typeof CATEGORY_INCLUDES) ?? "ka"] ?? CATEGORY_INCLUDES.ka;
+  const fieldLabels = t.raw("matrix.fields") as Record<string, string>;
+  const categoryLabels = t.raw("matrix.categories") as Record<CategoryKey, string>;
+  const includesLabels = t.raw("matrix.includes") as Record<CategoryKey, string[]>;
+  const yearsSuffix = t("matrix.years_suffix");
 
   const [category, setCategory] = useState<CategoryKey>("roof");
   const [area, setArea] = useState(250);
@@ -186,8 +77,10 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
   const animatedWarrantyMin = useCountTransition(result.warrantyMin, resultVisible, 700);
   const animatedWarrantyMax = useCountTransition(result.warrantyMax, resultVisible, 850);
 
+  const padding = compact ? "py-10 md:py-14" : "py-[72px] md:py-[120px]";
+
   return (
-    <section id="calculator" className="gd-cv-auto gd-section-divider relative py-[72px] md:py-[120px]">
+    <section id="calculator" className={`gd-cv-auto gd-section-divider relative ${padding}`}>
       <div className="pointer-events-none absolute inset-0 gd-bg-main" />
 
       <div className="relative gd-container">
@@ -208,7 +101,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
         <div className={`${showHeader ? "mt-12" : "mt-3"} grid gap-7 lg:grid-cols-[1.05fr_0.95fr]`}>
           <div className="rounded-xl border border-white/10 bg-[color:var(--gd-surface)]/55 p-6 shadow-elevated backdrop-blur md:p-8">
             <div className="grid gap-5">
-              <Field label={localeLabels.fields.category}>
+              <Field label={fieldLabels.category}>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                   {CATEGORY_KEYS.map((key) => (
                     <button
@@ -216,14 +109,14 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                       type="button"
                       onClick={() => setCategory(key)}
                       className={[
-                        "rounded-lg border px-4 py-3 text-sm font-semibold text-left transition",
+                        "tt-ui rounded-lg border px-4 py-3 text-sm font-semibold text-left transition",
                         category === key
                           ? "border-primary-green/80 bg-gradient-to-b from-primary-green/22 to-primary-green/10 text-white shadow-[0_8px_24px_rgba(23,109,72,0.18)]"
                           : "border-white/15 bg-[color:var(--gd-surface-soft)] text-white/90 hover:border-white/25 hover:bg-[color:var(--gd-surface)] hover:text-white",
                       ].join(" ")}
                       aria-pressed={category === key}
                     >
-                      {localeLabels.categories[key]}
+                      {categoryLabels[key]}
                     </button>
                   ))}
                 </div>
@@ -231,8 +124,8 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
 
               <div className="rounded-xl border border-white/12 bg-[color:var(--gd-surface-soft)]/95 p-4 shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">
-                    {localeLabels.fields.includes}
+                  <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">
+                    {fieldLabels.includes}
                   </p>
                 </div>
 
@@ -249,19 +142,19 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
 
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
                   <div className="rounded-lg border border-white/10 bg-[color:var(--gd-surface)] px-3 py-2.5">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
-                      {localeLabels.fields.price}
+                    <p className="tt-label text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
+                      {fieldLabels.price}
                     </p>
                     <p className="mt-1 text-base font-extrabold text-white">
-                      {formatRange(result.perMin, result.perMax)} ₾/მ²
+                      {formatRange(result.perMin, result.perMax)} ₾/m²
                     </p>
                   </div>
                   <div className="rounded-lg border border-white/10 bg-[color:var(--gd-surface)] px-3 py-2.5">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
-                      {localeLabels.fields.warranty}
+                    <p className="tt-label text-[11px] font-bold uppercase tracking-[0.16em] text-white/55">
+                      {fieldLabels.warranty}
                     </p>
                     <p className="mt-1 text-base font-extrabold text-primary-green">
-                      {formatRange(result.warrantyMin, result.warrantyMax)} {localeLabels.yearsSuffix}
+                      {formatRange(result.warrantyMin, result.warrantyMax)} {yearsSuffix}
                     </p>
                   </div>
                 </div>
@@ -273,7 +166,7 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                     <span className="text-lg font-extrabold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.45)]">
                       {formatNumber(area)} <span className="text-primary-green">m²</span>
                     </span>
-                    <span className="text-xs font-semibold text-white/65">10–2000</span>
+                    <span className="text-xs font-semibold text-white/65">{t("matrix.area_range")}</span>
                   </div>
                   <input
                     type="range"
@@ -282,10 +175,11 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
                     value={area}
                     onChange={(e) => setArea(Number(e.target.value))}
                     className="gd-range mt-4 w-full"
+                    aria-label={t("matrix.area_range")}
                   />
                   <div className="mt-3 flex items-center justify-between text-[11px] font-semibold text-white/45">
-                    <span>Min: 10 m²</span>
-                    <span>Max: 2000 m²</span>
+                    <span>{t("matrix.area_min")}</span>
+                    <span>{t("matrix.area_max")}</span>
                   </div>
                 </div>
               </Field>
@@ -296,13 +190,13 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
             ref={resultRef}
             className="rounded-xl border border-primary-green/70 bg-gd-result p-6 shadow-[0_10px_30px_rgba(0,0,0,0.35),0_0_0_1px_rgba(23,109,72,0.15)] md:p-8"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{localeLabels.fields.price}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{fieldLabels.price}</p>
             <p className="mt-2 font-sans text-4xl font-extrabold tracking-tight text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-[56px] md:leading-[1.02]">
-              {formatRange(animatedPerMin, animatedPerMax)} ₾ / მ²
+              {formatRange(animatedPerMin, animatedPerMax)} ₾/m²
             </p>
 
             <div className="mt-7">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{localeLabels.fields.total}</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{fieldLabels.total}</p>
               <span className="mt-2 block font-sans text-[28px] font-extrabold tracking-tight text-primary-green [text-shadow:0_2px_14px_rgba(23,109,72,0.2)] md:text-[34px] md:leading-[1.1]">
                 {formatRange(animatedTotalMin, animatedTotalMax, " ₾")}
               </span>
@@ -312,15 +206,15 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/65">
-                    {localeLabels.fields.warranty}
+                    {fieldLabels.warranty}
                   </p>
                   <p className="mt-1 text-xl font-extrabold tracking-tight text-white">
-                    {formatRange(animatedWarrantyMin, animatedWarrantyMax)} {localeLabels.yearsSuffix}
+                    {formatRange(animatedWarrantyMin, animatedWarrantyMax)} {yearsSuffix}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs font-medium text-white/65">{localeLabels.categories[category]}</p>
-                  <p className="text-sm font-bold text-white">{localeLabels.fields.categoryRange}</p>
+                  <p className="text-xs font-medium text-white/65">{categoryLabels[category]}</p>
+                  <p className="text-sm font-bold text-white">{fieldLabels.categoryRange}</p>
                 </div>
               </div>
             </div>
@@ -330,13 +224,13 @@ export function Calculator({ showHeader = true }: { showHeader?: boolean }) {
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <Link
                 href={`/${locale}/contact`}
-                className="btn-primary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
+                className="btn-primary tt-ui inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
-                {calculatorCtaLabel}
+                {t("cta")}
               </Link>
               <Link
                 href={`/${locale}/services`}
-                className="btn-secondary inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
+                className="btn-secondary tt-ui inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold"
               >
                 {tNav("services")} →
               </Link>
@@ -356,7 +250,7 @@ function formatRange(min: number, max: number, suffix = "") {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">{label}</p>
+      <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-white/75">{label}</p>
       {children}
     </div>
   );
@@ -396,5 +290,3 @@ function useCountTransition(target: number, enabled: boolean, duration = 900) {
 
   return value;
 }
-
-

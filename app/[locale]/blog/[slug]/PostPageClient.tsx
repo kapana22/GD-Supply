@@ -5,8 +5,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
+import { useLocale, useTranslations } from "next-intl";
 import { PageHero } from "@/components/sections/PageHero";
-import type { BlogPost, BlogPostMeta } from "@/lib/posts";
+
+type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  updated?: string;
+  category: string;
+  tags: string[];
+  image: string;
+  readTime: string;
+  author: string;
+  content: string;
+};
+
+type BlogPostMeta = Omit<BlogPost, "content">;
 
 const BLOG_ACCENT = "var(--gd-accent)";
 const BLOG_PANEL = "var(--gd-panel)";
@@ -14,15 +30,16 @@ const BLOG_PANEL = "var(--gd-panel)";
 export default function PostPageClient({
   post,
   related,
-  locale,
   source,
 }: {
   post: BlogPost;
   related: BlogPostMeta[];
-  locale: string;
   source: MDXRemoteSerializeResult;
 }) {
   const [progress, setProgress] = useState(0);
+  const locale = useLocale();
+  const t = useTranslations("blog.post");
+  const tBlog = useTranslations("blog");
 
   useEffect(() => {
     const onScroll = () => {
@@ -51,8 +68,8 @@ export default function PostPageClient({
         backgroundTheme="blog"
         compact
         breadcrumbs={[
-          { label: "მთავარი", href: `/${locale}` },
-          { label: "ბლოგი", href: `/${locale}/blog` },
+          { label: tBlog("breadcrumbs.home"), href: `/${locale}` },
+          { label: tBlog("breadcrumbs.blog"), href: `/${locale}/blog` },
           { label: post.title },
         ]}
       />
@@ -124,20 +141,20 @@ export default function PostPageClient({
             boxShadow: "0 14px 32px rgba(0,0,0,0.18)",
           }}
         >
-          <p className="mb-2 text-xl font-bold text-white">კითხვა გაქვს სტატიაზე?</p>
-          <p className="mb-6 text-sm text-white/66">ჩვენი სპეციალისტი 2 საათში გიპასუხებს.</p>
+          <p className="tt-heading-md mb-2 text-white">{t("ask_title")}</p>
+          <p className="tt-small mb-6 text-white/70">{t("ask_subtitle")}</p>
           <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 rounded-xl bg-[var(--gd-accent)] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1f8f61] hover:shadow-[0_0_20px_rgba(23,109,72,0.32)]"
+            className="tt-ui inline-flex items-center gap-2 rounded-xl bg-[var(--gd-accent)] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1f8f61] hover:shadow-[0_0_20px_rgba(23,109,72,0.32)]"
           >
-            უფასო კონსულტაცია →
+            {t("ask_cta")} →
           </Link>
         </div>
       </section>
 
       {related.length > 0 ? (
         <section className="gd-section-divider gd-container-blog pb-24 pt-10">
-          <h2 className="mb-8 text-2xl font-black text-white">სხვა სტატიები</h2>
+          <h2 className="tt-heading-md mb-8 text-white">{t("related")}</h2>
           <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-3">
             {related.map((item, index) => (
               <motion.div
@@ -148,7 +165,7 @@ export default function PostPageClient({
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <RelatedCard post={item} locale={locale} />
+                <RelatedCard post={item} locale={locale} readLabel={t("read_more")} />
               </motion.div>
             ))}
           </div>
@@ -158,7 +175,7 @@ export default function PostPageClient({
   );
 }
 
-function RelatedCard({ post, locale }: { post: BlogPostMeta; locale: string }) {
+function RelatedCard({ post, locale, readLabel }: { post: BlogPostMeta; locale: string; readLabel: string }) {
   return (
     <Link href={`/${locale}/blog/${post.slug}`} className="group block h-full">
       <article
@@ -170,9 +187,9 @@ function RelatedCard({ post, locale }: { post: BlogPostMeta; locale: string }) {
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--gd-panel)]/80 to-transparent" />
         </div>
         <div className="flex flex-1 flex-col p-5">
-          <h3 className="line-clamp-2 text-lg font-bold text-white transition group-hover:text-[var(--gd-accent)]">{post.title}</h3>
-          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/68">{post.excerpt}</p>
-          <p className="mt-4 text-sm font-semibold text-[var(--gd-accent)]">წაკითხვა →</p>
+          <h3 className="tt-heading-md line-clamp-2 text-white transition group-hover:text-[var(--gd-accent)]">{post.title}</h3>
+          <p className="tt-small mt-2 line-clamp-3 leading-relaxed text-white/68">{post.excerpt}</p>
+          <p className="tt-ui mt-4 text-sm font-semibold text-[var(--gd-accent)]">{readLabel}</p>
         </div>
       </article>
     </Link>

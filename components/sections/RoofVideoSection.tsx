@@ -1,18 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 const ROOF_SHOWCASE_VIDEO =
   "/assets/%E1%83%A1%E1%83%90%E1%83%AE%E1%83%A3%E1%83%A0%E1%83%90%E1%83%95%E1%83%94%E1%83%91%E1%83%98%E1%83%A1%E1%83%95%E1%83%98%E1%83%93%E1%83%94%E1%83%9D.mp4";
 
 export default function RoofVideoSection() {
-  const locale = useLocale();
   const t = useTranslations("roof_video");
-
-  const heading = locale === "ka" ? "სახურავისა და ტერასის ჰიდროიზოლაცია" : t("title");
-  const primaryCta = locale === "ka" ? "დაგვიკავშირდით!" : t("cta_primary");
-  const secondaryCta = locale === "ka" ? "იხილე სერვისები" : t("cta_secondary");
 
   return (
     <section className="gd-section-divider relative overflow-hidden">
@@ -40,20 +35,21 @@ export default function RoofVideoSection() {
 
         <div className="relative z-10 gd-container flex h-full flex-col items-center justify-center text-center">
           <h2 className="tt-heading-xl max-w-none text-white drop-shadow-[0_8px_24px_rgba(4,10,28,0.55)] md:whitespace-nowrap">
-            {heading}
+            {t("title")}
           </h2>
+          <p className="tt-detail mt-3 max-w-3xl text-white/80">{t("subtitle")}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
             <a
-              href={`/${locale}/contact`}
+              href={t("contact_href")}
               className="btn-primary tt-ui inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold"
             >
-              {primaryCta}
+              {t("cta_primary")}
             </a>
             <a
-              href={`/${locale}/services`}
+              href={t("services_href")}
               className="btn-secondary tt-ui inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold"
             >
-              {secondaryCta}
+              {t("cta_secondary")}
             </a>
           </div>
         </div>

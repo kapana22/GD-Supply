@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { ServicePageData } from "@/lib/servicesCatalog";
 
 export function ServicesHubPage({
@@ -14,14 +15,12 @@ export function ServicesHubPage({
   services: ServicePageData[];
   showHeader?: boolean;
 }) {
-  const isCompactGrid = services.length <= 4;
-  const gridClass = isCompactGrid
-    ? "grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-6 xl:gap-7"
-    : "grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3";
-  const imageAspectClass = isCompactGrid ? "aspect-[16/10]" : "aspect-[16/9]";
-  const imageSizes = isCompactGrid
-    ? "(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw"
-    : "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw";
+  const tHub = useTranslations("servicesHub");
+  const tCatalog = useTranslations("servicesCatalog");
+
+  const gridClass = "grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4";
+  const imageAspectClass = "aspect-[16/10]";
+  const imageSizes = "(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw";
 
   return (
     <section className="gd-cv-auto bg-transparent py-[56px] text-white md:py-[88px]">
@@ -29,13 +28,13 @@ export function ServicesHubPage({
         {showHeader ? (
           <div className="mb-10 md:mb-14">
             <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-              სერვისები
+              {tHub("badge")}
             </p>
             <h1 className="tt-heading-xl mt-3 max-w-[12ch] font-black">
-              რას ვაკეთებთ
+              {tHub("title")}
             </h1>
             <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
-              GD Supply — 2014 წლიდან, 300+ პროექტი, 10+ წლიანი გარანტია
+              {tHub("subtitle")}
             </p>
           </div>
         ) : null}
@@ -57,7 +56,7 @@ export function ServicesHubPage({
                 <div className={`relative ${imageAspectClass} overflow-hidden`}>
                   <Image
                     src={service.cardImage}
-                    alt={service.cardTitle}
+                    alt={tCatalog(service.cardTitle)}
                     fill
                     className="object-cover transition duration-500 group-hover:scale-[1.05]"
                     sizes={imageSizes}
@@ -65,25 +64,16 @@ export function ServicesHubPage({
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/90 via-primary-navy/20 to-transparent" />
                 </div>
 
-                <div className="p-5 md:p-6">
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-primary-green/30 bg-primary-green/10 px-2 text-xs font-extrabold tracking-[0.08em] text-primary-green">
-                      {String(service.order).padStart(2, "0")}
-                    </span>
-                    <span className="tt-label text-xs font-semibold uppercase tracking-[0.06em] text-white/45">
-                      სერვისი
-                    </span>
-                  </div>
-
-                  <h2 className="tt-heading-md font-extrabold text-white">
-                    {service.cardTitle}
+                <div className="flex h-full flex-col p-5 md:p-6">
+                  <h2 className="tt-heading-md text-[18px] font-extrabold text-white md:text-[20px]">
+                    {tCatalog(service.cardTitle)}
                   </h2>
-                  <p className="tt-detail mt-3 line-clamp-2 text-sm text-gd-muted">
-                    {service.cardSummary}
+                  <p className="tt-detail mt-3 line-clamp-3 text-[15px] leading-relaxed text-gd-muted">
+                    {tCatalog(service.cardSummary)}
                   </p>
 
-                  <span className="tt-ui mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-green transition group-hover:gap-3">
-                    დეტალურად →
+                  <span className="btn-secondary tt-ui mt-auto inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold">
+                    {tHub("cta")}
                   </span>
                 </div>
               </Link>

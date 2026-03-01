@@ -1,408 +1,1144 @@
 {
-    "navigation": {
-        "home": "მთავარი",
-        "services": "სერვისები",
-        "portfolio": "პორტფოლიო",
-        "about": "ჩვენ შესახებ",
-        "blog": "Blog",
-        "calculator": "კალკულატორი",
-        "contact": "კონტაქტი",
-        "free_consultation": "უფასო კონსულტაცია"
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "References",
+    "about": "About us",
+    "blog": "Blog",
+    "calculator": "Calculator",
+    "contact": "Contact",
+    "free_consultation": "Contact us",
+    "brand": "GD Supply",
+    "toggle_menu": "Toggle menu",
+    "select_language": "Select language"
+  },
+  "common": {
+    "language": "Language",
+    "sending": "Sending...",
+    "error_generic": "Sorry, something went wrong",
+    "hours": "Working hours",
+    "social": "Social networks",
+    "whatsapp": "WhatsApp",
+    "cta_estimate": "Contact us"
+  },
+  "header": {
+    "phone": "+995 599 705 697"
+  },
+  "hero": {
+    "title": "We stopped the water. For good.",
+    "subtitle": "GD Supply is Georgia's professional waterproofing company. From foundation to roof.",
+    "cta_estimate": "Contact us",
+    "cta_projects": "Our projects",
+    "badge": "Founded 2014 • 300+ projects",
+    "stats": [
+      {
+        "value": "6+",
+        "label": "Experience"
+      },
+      {
+        "value": "300+",
+        "label": "Projects"
+      },
+      {
+        "value": "10+",
+        "label": "Years warranty"
+      },
+      {
+        "value": "100%",
+        "label": "Client satisfaction"
+      }
+    ]
+  },
+  "services": {
+    "title": "What we do",
+    "subtitle": "We deliver the full spectrum — from first consultation to final handover",
+    "items": [
+      {
+        "key": "flat_roof",
+        "title": "Flat roof",
+        "body": "The flat roof is the most vulnerable part of any building. We use multi-layer waterproofing systems — bituminous membrane, TPO, PVC and liquid coatings — providing 15–20 years of protection.",
+        "includes": [
+          "Removal of old covering",
+          "Surface preparation and primer",
+          "Installing torch-applied membrane or liquid system",
+          "Detailing edges and penetrations",
+          "Quality control and handover"
+        ],
+        "summary": "Bituminous, TPO and PVC systems — 15–20 years of protection."
+      },
+      {
+        "key": "terrace",
+        "title": "Terrace and balcony",
+        "body": "A terrace is living space exposed to weather. We install waterproofing systems that tolerate seasonal temperature swings, repairs, and tile, stone or wood finishes.",
+        "includes": [
+          "Prepare concrete surface",
+          "Elastic waterproofing layer",
+          "Special treatment of cracks and joints",
+          "Integrate drainage system",
+          "Finish layer (tile, composite, wood)"
+        ],
+        "summary": "Elastic systems under tile or decking, tolerant to temperature swings."
+      },
+      {
+        "key": "foundation",
+        "title": "Foundation and basement",
+        "body": "Ground moisture and groundwater are the biggest threat to foundations. We waterproof both new builds and existing basements with specialized negative- and positive-side systems.",
+        "includes": [
+          "Geological assessment",
+          "Negative-side or curtain waterproofing",
+          "Install drainage",
+          "Use bentonite materials",
+          "Workmanship warranty"
+        ],
+        "summary": "Negative/positive waterproofing. Blocks ground moisture."
+      },
+      {
+        "key": "industrial_floor",
+        "title": "Industrial flooring",
+        "body": "Workshops, malls, hospitals, parking decks — each needs a different approach. We install epoxy and polyurethane coatings that resist mechanical loads, chemicals, and moisture.",
+        "variants": [
+          "Single- and multi-layer epoxy",
+          "Elastic polyurethane coating",
+          "Antistatic coating (IT and electronics)",
+          "Parking deck epoxy systems"
+        ],
+        "summary": "Epoxy and polyurethane coatings for heavy loads."
+      },
+      {
+        "key": "materials",
+        "title": "Materials and import",
+        "body": "We are official representatives of European brands in Georgia. We import premium construction chemicals, waterproofing materials, acoustic insulation, and specialized industrial coatings.",
+        "includes": [],
+        "summary": "Official import of European brands."
+      }
+    ],
+    "process": {
+      "title": "Process — stages",
+      "subtitle": "GD Supply delivers the full waterproofing cycle — from the first visit through a 3-year service guarantee",
+      "steps": [
+        {
+          "title": "Consultation and inspection",
+          "body": "Our specialist visits the site, assesses the scope, and prepares a detailed budget — free of charge."
+        },
+        {
+          "title": "System selection",
+          "body": "We choose the most suitable waterproofing system and materials based on the specifics of the site."
+        },
+        {
+          "title": "Contract",
+          "body": "Timeline, price, and warranty terms — all written in the contract."
+        },
+        {
+          "title": "Execution",
+          "body": "An experienced crew performs the work in full compliance with standards."
+        },
+        {
+          "title": "Handover and warranty",
+          "body": "We hand over after full inspection. Warranty — 10+ years."
+        }
+      ]
+    }
+  },
+  "servicesPage": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "What we do",
+      "subtitle": "All core waterproofing directions on one page with detailed descriptions."
     },
-    "header": {
-        "phone": "+995 599 705 697"
+    "materials": {
+      "badge": "Building products",
+      "title": "Building products",
+      "body": "See the full list on the products page: construction chemicals, waterproofing membranes, and acoustic materials.",
+      "cta": "View products",
+      "image_alt": "Building materials"
+    }
+  },
+  "servicesHub": {
+    "badge": "Services",
+    "title": "What we do",
+    "subtitle": "GD Supply — founded in 2014, 300+ projects, 10+ years of warranty",
+    "cta": "View details"
+  },
+  "servicesCatalog": {
+    "sections": {
+      "details": "Service details",
+      "usage": "Where it’s used",
+      "materials": "Materials we use",
+      "process": "Work stages",
+      "gallery": "Photo gallery"
+    },
+    "labels": {
+      "material": "Material",
+      "photo": "Photo"
+    },
+    "cta": {
+      "badge": "Consultation",
+      "title": "Request a free consultation",
+      "body": "A specialist will contact you within 2 hours.",
+      "primary": "Consultation",
+      "secondary": "Price calculator"
+    },
+    "processIntro": "Every project step is agreed upfront — from assessment to final handover.",
+    "process": {
+      "1": {
+        "title": "Consultation & inspection",
+        "body": "On-site assessment and a free budget."
+      },
+      "2": {
+        "title": "System selection",
+        "body": "Based on object type and conditions."
+      },
+      "3": {
+        "title": "Contract",
+        "body": "Timeline, price, and warranty in writing."
+      },
+      "4": {
+        "title": "Execution",
+        "body": "Experienced crew, standards followed."
+      },
+      "5": {
+        "title": "Handover & warranty",
+        "body": "Final inspection + 10+ year warranty."
+      }
+    },
+    "usage": {
+      "home": {
+        "label": "Residential",
+        "description": "Houses, cottages, and residential terraces."
+      },
+      "commercial": {
+        "label": "Commercial",
+        "description": "Offices, retail sites, and mixed-use buildings."
+      },
+      "industrial": {
+        "label": "Industrial",
+        "description": "Factories and high-load industrial facilities."
+      },
+      "hotel": {
+        "label": "Hospitality",
+        "description": "Hotels, spa areas, and premium hospitality projects."
+      }
+    },
+    "flat_roof": {
+      "cardTitle": "Flat roof",
+      "title": "Flat roof",
+      "heroTitle": "Flat roof",
+      "subtitle": "The flat roof is the most vulnerable area. We use multi-layer systems — 15–20 years of protection.",
+      "cardSummary": "Multi-layer waterproofing for flat roofs, with long-term protection and system tailored to the site.",
+      "materials": [
+        {
+          "name": "Bitumen-based liquid membrane",
+          "description": "Elastic layer that creates seamless waterproofing on complex details and uneven surfaces."
+        },
+        {
+          "name": "Cement-acrylic",
+          "description": "Elastic cement-based system that works well on concrete and protects against moisture."
+        },
+        {
+          "name": "PVC membrane",
+          "description": "High-durability membrane system for fast and reliable waterproofing of large areas."
+        },
+        {
+          "name": "EPDM membrane",
+          "description": "Durable synthetic membrane resistant to weather and UV exposure."
+        }
+      ]
+    },
+    "terrace": {
+      "cardTitle": "Terrace and balcony",
+      "title": "Terrace and balcony",
+      "heroTitle": "Terrace and balcony",
+      "subtitle": "A terrace is constantly under weather exposure. We install systems that withstand seasonal changes.",
+      "cardSummary": "Terrace and balcony waterproofing adapted to seasonal temperature shifts and moisture.",
+      "materials": [
+        {
+          "name": "Bitumen membrane",
+          "description": "Moisture-resistant membrane system for terraces that protects from rain and leaks."
+        },
+        {
+          "name": "Cement-acrylic",
+          "description": "Elastic cement coating that fits concrete and ceramic surface joints."
+        },
+        {
+          "name": "PVC membrane",
+          "description": "Durable system for large terraces and fast installation."
+        },
+        {
+          "name": "EPDM membrane",
+          "description": "Long-lasting membrane performing well in outdoor climatic conditions."
+        }
+      ]
+    },
+    "foundation": {
+      "cardTitle": "Foundation and basement",
+      "title": "Foundation and basement",
+      "heroTitle": "Foundation and basement",
+      "subtitle": "Ground moisture and groundwater are the biggest threats. Negative and positive systems.",
+      "cardSummary": "Foundation and basement waterproofing with negative and positive systems for new and existing buildings.",
+      "materials": [
+        {
+          "name": "Cement-acrylic",
+          "description": "Tightly bonded waterproofing for basement and foundation details on mineral surfaces."
+        },
+        {
+          "name": "Acrylic",
+          "description": "Protective coating to reduce moisture and surface water impact."
+        },
+        {
+          "name": "Polyurethane",
+          "description": "Highly elastic material for crack-prone and movement-sensitive zones."
+        },
+        {
+          "name": "PVC membrane",
+          "description": "Membrane system for large-scale protection of underground structures."
+        },
+        {
+          "name": "EPDM membrane",
+          "description": "Long-term waterproofing solution for high humidity conditions."
+        }
+      ]
+    },
+    "industrial_floor": {
+      "cardTitle": "Industrial floor",
+      "title": "Industrial floor",
+      "heroTitle": "Industrial floor",
+      "subtitle": "Workshops, malls, parking decks. High durability and chemical resistance.",
+      "cardSummary": "Epoxy and polyurethane floor systems for heavy-duty industrial and commercial use.",
+      "materials": [
+        {
+          "name": "Epoxy coating",
+          "description": "High resistance to chemicals and stable surface for industrial/commercial use."
+        },
+        {
+          "name": "Polyurethane coating",
+          "description": "For very heavy physical loads and dynamic spaces."
+        }
+      ]
+    },
+    "materials": {
+      "cardTitle": "Materials and import",
+      "title": "Materials and import",
+      "heroTitle": "Materials and import",
+      "subtitle": "Official representative of European brands. Materials used on Hilton, Radisson, Holiday Inn projects.",
+      "cardSummary": "Importing European materials: construction chemicals, HDPE acoustic insulation, and premium doors/carpets.",
+      "materials": [
+        {
+          "name": "Construction chemicals",
+          "description": "Acrylics, polyurethane, epoxy, and concrete restorers for various construction tasks."
+        },
+        {
+          "name": "HDPE acoustic membrane",
+          "description": "HDPE underlayment for screeds, used in Hilton, Radisson, Holiday Inn and others."
+        },
+        {
+          "name": "Doors and carpets",
+          "description": "Selected solutions for hotel and premium-class projects."
+        }
+      ]
+    }
+  },
+  "about": {
+    "eyebrow": "About us",
+    "media": {
+      "team_alt": "GD Supply team",
+      "work_alt": "Waterproofing work",
+      "inspection_alt": "Inspection and quality control"
+    }
+  },
+  "stats": {
+    "title": "In numbers",
+    "items": [
+      {
+        "value": "6+",
+        "label": "Years of experience"
+      },
+      {
+        "value": "300+",
+        "label": "Completed projects"
+      },
+      {
+        "value": "50+",
+        "label": "Commercial sites"
+      },
+      {
+        "value": "10+",
+        "label": "Years warranty"
+      },
+      {
+        "value": "100%",
+        "label": "Client satisfaction"
+      }
+    ],
+    "eyebrow": "Statistics"
+  },
+  "calculator": {
+    "title": "Estimate the cost",
+    "subtitle": "Fill the fields to get an approximate budget",
+    "fields": {
+      "service": "Service type",
+      "area": "Area (m²)",
+      "object": "Object type",
+      "deadline": "Desired timeline",
+      "location": "Location"
+    },
+    "service_options": [
+      "Flat roof",
+      "Terrace",
+      "Foundation",
+      "Industrial floor"
+    ],
+    "object_options": [
+      "Residential",
+      "Commercial",
+      "Industrial"
+    ],
+    "deadline_options": [
+      "Urgent (1–2 weeks)",
+      "Standard (3–4 weeks)"
+    ],
+    "location_options": [
+      "Tbilisi",
+      "Regions (+10%)",
+      "Highland / complex (+20%)"
+    ],
+    "note": "This is an approximate calculation. For an exact price, request our specialist for a free inspection.",
+    "cta": "Request a specialist →",
+    "matrix": {
+      "fields": {
+        "category": "Category",
+        "includes": "Included in range",
+        "price": "Price",
+        "total": "Total",
+        "warranty": "Warranty",
+        "categoryRange": "Category range"
+      },
+      "categories": {
+        "roof": "Flat roof",
+        "terrace": "Terrace",
+        "foundation": "Foundation"
+      },
+      "includes": {
+        "roof": [
+          "Coating insulation",
+          "PVC/EPDM membrane"
+        ],
+        "terrace": [
+          "Acrylic-cement",
+          "Polyurethane",
+          "Polyurea"
+        ],
+        "foundation": [
+          "Liquid bitumen"
+        ]
+      },
+      "years_suffix": "years",
+      "area_range": "10–2000 m²",
+      "area_min": "Min: 10 m²",
+      "area_max": "Max: 2000 m²"
+    }
+  },
+  "portfolio": {
+    "title": "References",
+    "subtitle": "Every project is a named piece of our work",
+    "breadcrumb_home": "Home",
+    "filters": [
+      "All",
+      "Flat roof",
+      "Terrace",
+      "Foundation",
+      "Industrial floor",
+      "Commercial"
+    ],
+    "projects": [
+      {
+        "name": "Hotel Ambassador — Kakheti",
+        "work": "Roof waterproofing",
+        "area": "2,400 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof",
+          "Commercial"
+        ],
+        "image": "/assets/portfolio/ambasodri.jpg"
+      },
+      {
+        "name": "Hotel Ambassador — Tbilisi",
+        "work": "Terrace waterproofing",
+        "area": "800 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace",
+          "Commercial"
+        ],
+        "image": "/assets/portfolio/ambasadori.jpg"
+      },
+      {
+        "name": "Newton Free School",
+        "work": "Epoxy flooring",
+        "area": "1,200 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Industrial floor",
+          "Education"
+        ],
+        "image": "/assets/portfolio/niutonisskola.jpg"
+      },
+      {
+        "name": "Buckswood International School",
+        "work": "Flat roof installation",
+        "area": "1,800 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof",
+          "Education"
+        ],
+        "image": "/assets/portfolio/buqsvidisskola.jpg"
+      },
+      {
+        "name": "Merani Shopping Mall",
+        "work": "Roof waterproofing",
+        "area": "3,500 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof",
+          "Commercial"
+        ],
+        "image": "/assets/portfolio/sajarocentrimerani.webp"
+      },
+      {
+        "name": "Royal Palace Hotel",
+        "work": "Terrace waterproofing",
+        "area": "450 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace",
+          "Commercial"
+        ],
+        "image": "/assets/portfolio/roialhoause.jpg"
+      },
+      {
+        "name": "National Agency of Public Registry",
+        "work": "Parking deck coating",
+        "area": "800 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Industrial floor",
+          "Commercial"
+        ],
+        "image": "/assets/portfolio/sajaroreestri.jpg"
+      },
+      {
+        "name": "14 Villas in Tskhinvali",
+        "work": "Polyurethane waterproofing",
+        "area": "300 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof"
+        ],
+        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+      },
+      {
+        "name": "Roof in Lisi",
+        "work": "Roof waterproofing",
+        "area": "600 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof"
+        ],
+        "image": "/assets/portfolio/roof-lisi.jpg"
+      },
+      {
+        "name": "Public school — 800 m²",
+        "work": "Roof waterproofing",
+        "area": "800 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof",
+          "Education"
+        ],
+        "image": "/assets/portfolio/public-school-800sqm.png"
+      },
+      {
+        "name": "Buckswood School — 600 m²",
+        "work": "Polyurethane flat roof",
+        "area": "600 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof",
+          "Education"
+        ],
+        "image": "/assets/portfolio/buckswood-school-600sqm.jpg"
+      },
+      {
+        "name": "Helicopter landing pad",
+        "work": "Polyurethane coating",
+        "area": "300 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Industrial floor",
+          "Special"
+        ],
+        "image": "/assets/portfolio/helicopter-pad-300sqm.jpg"
+      },
+      {
+        "name": "Private house in Telavi",
+        "work": "Roof waterproofing",
+        "area": "600 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof"
+        ],
+        "image": "/assets/portfolio/private-house-telavi-600sqm.png"
+      },
+      {
+        "name": "Private house in Tskneti — 500 m²",
+        "work": "Terrace waterproofing",
+        "area": "500 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/private-house-tskneti-500sqm.jpg"
+      },
+      {
+        "name": "Private house in Tskneti — 600 m²",
+        "work": "Roof waterproofing",
+        "area": "600 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Flat roof"
+        ],
+        "image": "/assets/portfolio/private-house-tskneti-600sqm.jpg"
+      },
+      {
+        "name": "Private house terrace in Tsavkisi",
+        "work": "Terrace waterproofing",
+        "area": "200 m²",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/terrace-tsavkisi-house.jpg"
+      },
+      {
+        "name": "Terrace in Nutsubidze",
+        "work": "Terrace waterproofing",
+        "area": "—",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/terrace-nutsubidze.jpg"
+      },
+      {
+        "name": "Terrace in Okrokana",
+        "work": "Terrace waterproofing",
+        "area": "—",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/terrace-okrokana.jpg"
+      },
+      {
+        "name": "Terrace in Saguramo",
+        "work": "Terrace waterproofing",
+        "area": "—",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/terrace-saguramo.jpg"
+      },
+      {
+        "name": "Terrace in Tsavkisi",
+        "work": "Terrace waterproofing",
+        "area": "—",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Terrace"
+        ],
+        "image": "/assets/portfolio/terrace-tsavkisi.jpg"
+      },
+      {
+        "name": "Foundation waterproofing",
+        "work": "Foundation waterproofing",
+        "area": "—",
+        "material": "",
+        "duration": "",
+        "tags": [
+          "Foundation"
+        ],
+        "image": "/assets/portfolio/foundation.jpg"
+      }
+    ],
+    "default_category": "Project",
+    "unknown": {
+      "area": "—",
+      "material": "—",
+      "duration": "—"
+    },
+    "modal": {
+      "close": "Close"
+    },
+    "filters_all": "All"
+  },
+  "testimonials": {
+    "title": "Clients about us",
+    "items": [
+      {
+        "quote": "GD Supply fully met our expectations. The flat roof we had issues with for years is now perfect. Work was delivered on time, cleanly, with no extra costs.",
+        "author": "David K.",
+        "meta": "Private house, Saburtalo"
+      },
+      {
+        "quote": "For our hotel we needed a company experienced with commercial sites. GD Supply's team handled 2,400 m² of roof in 3 weeks — professionally and with high quality.",
+        "author": "Nino B.",
+        "meta": "Ambassador Hotel Group"
+      },
+      {
+        "quote": "Our school's yard and halls now have fully renewed floors. The epoxy coating is exactly what we needed. Safe for children and easy to clean.",
+        "author": "Irakli M.",
+        "meta": "School administration, Dighomi"
+      },
+      {
+        "quote": "The company completed work that other contractors refused — terrace waterproofing in a mountain region. The result is excellent.",
+        "author": "Giorgi Ts.",
+        "meta": "Private house, Tskneti"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Answers to your questions",
+    "items": [
+      {
+        "q": "How long does waterproofing last?",
+        "a": "Depending on the system — from 10 to 25 years. Bituminous membrane serves 10–15 years, TPO/PVC systems — 20–25 years. We provide a 10+ year workmanship warranty."
+      },
+      {
+        "q": "What is the project timeline?",
+        "a": "It depends on area and complexity. 100–300 m²: 3–5 working days. 500–1000 m²: 1–2 weeks. Commercial sites — individually."
+      },
+      {
+        "q": "Can you work in winter?",
+        "a": "Yes. We use systems adapted for all seasons. Some work types need temperatures above +5°C — in that case we select another material."
+      },
+      {
+        "q": "Do you work outside Tbilisi?",
+        "a": "Yes, across Georgia. Logistics are discussed based on the location."
+      },
+      {
+        "q": "What is the difference between bitumen and TPO?",
+        "a": "Bituminous membrane offers a good price/quality ratio and is a classic solution. TPO is longer-lasting, eco-friendly, and UV-resistant. Our specialist will choose the optimal system for your site."
+      },
+      {
+        "q": "Is a permit required for the work?",
+        "a": "Normally waterproofing does not require permits. In some cases (heritage site, new build) it may be needed — we will advise."
+      },
+      {
+        "q": "What does inspection and estimation cost?",
+        "a": "Site inspection and preliminary budgeting are completely free."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Our specialist will reply within 2 hours",
+    "fields": {
+      "name": "Full name",
+      "phone": "Phone",
+      "email": "Email",
+      "service": "Service type",
+      "area": "Object area (m²)",
+      "message": "Message / additional info",
+      "submit": "Send request →"
+    },
+    "alt": {
+      "phone": "+995 599 705 697",
+      "phone_secondary": "+995 599 705 837",
+      "email": "gdsupply.ge@gmail.com",
+      "location": "Tbilisi, Georgia",
+      "whatsapp": "+995 555 656 503"
+    },
+    "hours": [
+      "Mon–Fri: 09:00 – 18:00",
+      "Saturday: 10:00 – 15:00"
+    ],
+    "title_form": "Leave us a message",
+    "success": {
+      "title": "Message received!",
+      "body": "We will contact you within 2 working days."
+    },
+    "placeholders": {
+      "select": "Choose",
+      "message": "Share project details: site, issue, desired timing…"
+    },
+    "disclaimer": "By sending, you confirm we can contact you at the provided number.",
+    "states": {
+      "sent": "Sent ✓"
+    }
+  },
+  "whatsapp": {
+    "label": "Message us on WhatsApp",
+    "subtext": "We reply within 15 minutes"
+  },
+  "footer": {
+    "tagline": "Georgia's professional waterproofing company",
+    "links": [
+      "Home",
+      "Services",
+      "Portfolio",
+      "About us",
+      "Blog",
+      "Contact"
+    ],
+    "social": [
+      "Facebook",
+      "LinkedIn",
+      "Instagram"
+    ],
+    "copyright": "© 2025 GD Supply. All rights reserved."
+  },
+  "roof_video": {
+    "cta_primary": "Flat roof services",
+    "title": "How we waterproof flat roofs",
+    "badge": "Roof showcase",
+    "subtitle": "Real footage from our process — safety, detailing, and the final membrane finish on flat roofs.",
+    "cta_secondary": "Get consultation",
+    "contact_href": "/en/contact",
+    "services_href": "/en/services"
+  },
+  "seo": {
+    "title": "GD Supply — Waterproofing in Georgia | Roof, terrace, foundation",
+    "description": "GD Supply is a waterproofing contractor with 6+ years of experience in Georgia. Flat roofs, terraces, foundations, industrial floors. Free inspection. 10+ year warranty."
+  },
+  "mobile_call": {
+    "phone_number": "+995 599 705 697",
+    "cta": "Call us — {phone}",
+    "aria_label": "Call us at {phone}"
+  },
+  "partners": {
+    "eyebrow": "Partners",
+    "title": "Our partners",
+    "logo_alt": "Logo of {name}"
+  },
+  "contact_cta": {
+    "eyebrow": "Contact",
+    "cta_form": "Contact form →",
+    "cta_whatsapp": "WhatsApp →",
+    "whatsapp_prefill_link": "https://wa.me/{phone}?text=Hello%20GD%20Supply",
+    "labels": {
+      "phone": "Phone",
+      "email": "Email",
+      "location": "Location",
+      "hours": "Working hours"
+    }
+  },
+  "servicesField": {
+    "eyebrow": "Service fields",
+    "title": "Choose a direction",
+    "cta": "Details →"
+  },
+  "calculatorPage": {
+    "eyebrow": "Calculator",
+    "title": "Pricing calculator",
+    "subtitle": "Quick ranges by service type with relevant references.",
+    "breadcrumbs": {
+      "home": "Home",
+      "current": "Calculator"
+    }
+  },
+  "contactPage": {
+    "eyebrow": "Contact",
+    "title": "Get in touch",
+    "subtitle": "Free consultation, inspection and a quick follow-up.",
+    "breadcrumbs": {
+      "home": "Home",
+      "current": "Contact"
+    }
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Blog",
+    "subtitle": "Articles about waterproofing, roof types and construction technologies.",
+    "meta": {
+      "title": "Blog | GD Supply",
+      "description": "Articles about waterproofing"
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "blog": "Blog"
+    },
+    "empty": "No articles found in this category",
+    "cta": {
+      "title": "Have a question? Ask our specialist.",
+      "subtitle": "We reply within 2 hours.",
+      "primary": "Free consultation",
+      "phone": "+995 599 705 697"
+    },
+    "list": {
+      "read_more": "Read more",
+      "read": "Read"
+    },
+    "post": {
+      "ask_title": "Have a question about the article?",
+      "ask_subtitle": "Our specialist will respond within 2 hours.",
+      "ask_cta": "Free consultation",
+      "related": "Other articles",
+      "read_more": "Read →"
+    }
+  },
+  "servicesOverview": {
+    "eyebrow": "Services",
+    "cta_all": "Full services list",
+    "materials": {
+      "eyebrow": "Materials",
+      "title": "Construction materials import",
+      "body": "Official import of European brands. Construction chemicals, membranes and acoustic solutions.",
+      "bullets": [
+        "Construction chemicals",
+        "Waterproofing membranes",
+        "Acoustic insulation"
+      ],
+      "cta": "Products list",
+      "aria_label": "Construction materials — products list"
+    }
+  },
+  "products": {
+    "eyebrow": "Materials",
+    "title": "Product list",
+    "subtitle": "Main categories and products with images.",
+    "breadcrumbs": {
+      "home": "Home",
+      "current": "Products"
+    },
+    "item_label": "Product",
+    "cta": "Consultation",
+    "categories": [
+      {
+        "title": "Construction chemicals",
+        "description": "Repair, protective and waterproofing chemical systems.",
+        "items": [
+          {
+            "name": "Cement-acrylic system",
+            "description": "High-adhesion layer for mineral surfaces.",
+            "image": "/assets/services/materials.jpg"
+          },
+          {
+            "name": "Polyurethane waterproofing",
+            "description": "Elastic liquid system for critical details.",
+            "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+          },
+          {
+            "name": "Epoxy system",
+            "description": "Durable layer for chemical and mechanical loads.",
+            "image": "/assets/services/industrial-floor.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Waterproofing membranes",
+        "description": "Membrane systems for roofs and terraces.",
+        "items": [
+          {
+            "name": "PVC membrane",
+            "description": "Weldable system for large areas.",
+            "image": "/assets/services/flat-roof.jpg"
+          },
+          {
+            "name": "EPDM membrane",
+            "description": "Elastic long-life membrane solution.",
+            "image": "/assets/services/terrace.jpg"
+          },
+          {
+            "name": "TPO membrane",
+            "description": "Modern UV-resistant solution for flat roofs.",
+            "image": "/assets/portfolio/roof-lisi.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Sound insulation materials",
+        "description": "For acoustic comfort and noise reduction.",
+        "items": [
+          {
+            "name": "HDPE acoustic membrane",
+            "description": "Under-screed layer to reduce impact noise.",
+            "image": "/assets/portfolio/public-school-800sqm.png"
+          },
+          {
+            "name": "Vibration damping layer",
+            "description": "Reduces vibration and structure-borne noise.",
+            "image": "/assets/portfolio/niutonisskola.jpg"
+          },
+          {
+            "name": "Acoustic underlay",
+            "description": "Additional insulation in floor and wall systems.",
+            "image": "/assets/portfolio/buqsvidisskola.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  "about_page": {
+    "breadcrumbs": {
+      "home": "Home",
+      "current": "About"
     },
     "hero": {
-        "title": "წყალი შევაჩერეთ. სამუდამოდ.",
-        "subtitle": "GD Supply — საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია. ფუნდამენტიდან სახურავამდე.",
-        "cta_estimate": "უფასო შეფასება გამოითხოვე",
-        "cta_projects": "ჩვენი პროექტები",
-        "stats": [
-            {
-                "value": "6+",
-                "label": "Experience"
-            },
-            {
-                "value": "300+",
-                "label": "პროექტი"
-            },
-            {
-                "value": "10+",
-                "label": "წლ. გარანტია"
-            },
-            {
-                "value": "100%",
-                "label": "კმაყოფილება"
-            }
-        ]
+      "title": "About us",
+      "subtitle": "GD Supply was founded in 2014 as a specialised waterproofing company in Georgia."
     },
-    "services": {
-        "title": "რას ვაკეთებთ",
-        "subtitle": "ჩვენ ვთავაზობთ სრულ სპექტრს — პირველი კონსულტაციიდან საბოლოო ჩაბარებამდე",
-        "items": [
-            {
-                "key": "flat_roof",
-                "title": "ბრტყელი სახურავი",
-                "body": "ბრტყელი სახურავი ყველაზე მოწყვლადი ადგილია ნებისმიერ შენობაში. ჩვენ ვიყენებთ მრავალფენოვან ჰიდროიზოლაციის სისტემებს — ბიტუმური მემბრანა, TPO, PVC და სითხური გადაფარვები — რომლებიც უზრუნველყოფს 15–20 წლიან დაცვას.",
-                "includes": [
-                    "ძველი საფარის დემონტაჟი",
-                    "ზედაპირის მომზადება და პრაიმერი",
-                    "სათბობი მემბრანის ან სითხური სისტემის გამოყენება",
-                    "კიდეებისა და გამსვლელების დამუშავება",
-                    "ხარისხის კონტროლი და ჩაბარება"
-                ]
-            },
-            {
-                "key": "terrace",
-                "title": "ტერასა და ბალკონი",
-                "body": "ტერასა — ეს არის ცხოვრების სივრცე, რომელიც მუდმივად ატმოსფერული გავლენის ქვეშაა. ჩვენ ვაყენებთ ჰიდროიზოლაციის სისტემებს, რომლებიც გაუძლებს სეზონურ ტემპერატურულ ცვლილებებს, სარემონტო სამუშაოებს და ქვის, ფილების თუ ხის საფარს.",
-                "includes": [
-                    "ბეტონის ზედაპირის მომზადება",
-                    "ელასტიური ჰიდროიზოლაციური ფენა",
-                    "ხვრელების და ნაპრალების სპეციალური დამუშავება",
-                    "სადრენაჟო სისტემის ინტეგრაცია",
-                    "მორთულობის საფარი (ფილა, კომპოზიტი, ხე)"
-                ]
-            },
-            {
-                "key": "foundation",
-                "title": "საძირკველი და სარდაფი",
-                "body": "მიწისქვეშა ტენი და გრუნტის წყალი — ყველაზე სერიოზული საფრთხეა საძირკვლისთვის. ჩვენ ვასრულებთ როგორც ახალი მშენებლობის, ასევე არსებული შენობების საძირკვლის ჰიდროიზოლაციას სპეციალიზებული ნეგატიური და პოზიტიური სისტემებით.",
-                "includes": [
-                    "გეოლოგიური შეფასება",
-                    "ეკრანული ან ნეგატიური ჰიდროიზოლაცია",
-                    "დრენაჟის მოწყობა",
-                    "ბენტონიტური მასალების გამოყენება",
-                    "გარანტია სამუშაოზე"
-                ]
-            },
-            {
-                "key": "industrial_floor",
-                "title": "ინდუსტრიული იატაკი",
-                "body": "საწარმოო სახელოსნოები, სავაჭრო ცენტრები, საავადმყოფოები, საპარკინგეები — ყველა მათგანს სჭირდება განსხვავებული მიდგომა. ვასრულებთ ეპოქსიდური და პოლიურეთანის საფარების მოწყობას, რომლებიც მდგრადია მექანიკური დატვირთვის, ქიმიური ზემოქმედებისა და ტენის მიმართ.",
-                "variants": [
-                    "ეპოქსიდური ერთფენიანი და მრავალფენიანი",
-                    "პოლიურეთანის ელასტიური საფარი",
-                    "ანტისტატიკური საფარი (IT და ელ.ინდუსტრია)",
-                    "საპარკინგე ეპოქსიდური სისტემები"
-                ]
-            },
-            {
-                "key": "materials",
-                "title": "მასალები და იმპორტი",
-                "body": "ჩვენ ვართ ევროპული ბრენდების ოფიციალური წარმომადგენელი საქართველოში. ვახორციელებთ პრემიუმ კლასის სამშენებლო ქიმიის, ჰიდროიზოლაციური მასალების, ხმოვანი იზოლაციისა და სპეციალიზებული ინდუსტრიული საფარების იმპორტს.",
-                "includes": []
-            }
-        ],
-        "process": {
-            "title": "პროცესი — ეტაპები",
-            "subtitle": "GD Supply გთავაზობთ ჰიდროიზოლაციის სისტემების სრულ ციკლს — პირველი ნახვიდან 3 წლიანი გარანტიის ჩათვლით",
-            "steps": [
-                {
-                    "title": "კონსულტაცია და ინსპექცია",
-                    "body": "ჩვენი სპეციალისტი ეწვევა ობიექტს, შეაფასებს სამუშაოს მოცულობას, გაგიკეთებთ დეტალურ ბიუჯეტს — უფასოდ."
-                },
-                {
-                    "title": "სისტემის შერჩევა",
-                    "body": "ობიექტის სპეციფიკიდან გამომდინარე, ვირჩევთ ყველაზე შესაფერის ჰიდროიზოლაციურ სისტემას და მასალებს."
-                },
-                {
-                    "title": "ხელშეკრულება",
-                    "body": "ვადები, ფასი და საგარანტიო პირობები — ყველაფერი ჩაწერილია ხელშეკრულებაში."
-                },
-                {
-                    "title": "სამუშაოს შესრულება",
-                    "body": "გამოცდილი ბრიგადა ასრულებს სამუშაოს სტანდარტების სრული დაცვით."
-                },
-                {
-                    "title": "ჩაბარება და გარანტია",
-                    "body": "ობიექტს ვაბარებთ სრული ინსპექციის შემდეგ. გარანტია — 10+ წელი."
-                }
-            ]
+    "story": {
+      "eyebrow": "GD SUPPLY",
+      "title": "Your end-to-end waterproofing partner",
+      "body": "We provide full-cycle waterproofing: inspection, system design, installation and warranty.",
+      "highlights": [
+        {
+          "label": "Experience",
+          "value": "6+ years"
+        },
+        {
+          "label": "Projects",
+          "value": "300+"
+        },
+        {
+          "label": "Warranty",
+          "value": "10 years"
         }
+      ]
     },
-    "about": {
-        "title": "GD Supply — ვინ ვართ ჩვენ",
-        "body": "GD Supply დაარსდა 2014 წელს, როგორც სპეციალიზებული ჰიდროიზოლაციის კომპანია. დღეს ჩვენ ვართ საქართველოს ერთ-ერთი ყველაზე გამოცდილი კონტრაქტორი ამ სფეროში — 300-ზე მეტი დასრულებული პროექტით, კომერციული და კერძო ობიექტების ფართო სპექტრით.",
-        "team_title": "ჩვენი გუნდი",
-        "team_body": "ჩვენი სპეციალისტები გადიან რეგულარულ ტრენინგებს ევროპულ მწარმოებლებთან. ყოველ პროექტზე მუშაობს გამოცდილი პროექტის მენეჯერი, რომელიც უზრუნველყოფს ვადების და ხარისხის სრულ კონტროლს.",
-        "values_title": "ჩვენი ფასეულობები",
-        "values": [
-            {
-                "title": "სანდოობა",
-                "body": "ვასრულებთ იმას, რასაც დავპირდებით"
-            },
-            {
-                "title": "ხარისხი",
-                "body": "ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს"
-            },
-            {
-                "title": "გამჭვირვალობა",
-                "body": "ვაწარმოებთ ღია კომუნიკაციას ყველა ეტაპზე"
-            },
-            {
-                "title": "გარანტია",
-                "body": "10+ წლიანი გარანტია ყველა სამუშაოზე"
-            }
-        ]
-    },
-    "stats": {
-        "title": "რიცხვებში",
-        "items": [
-            {
-                "value": "6+",
-                "label": "წლიანი გამოცდილება"
-            },
-            {
-                "value": "300+",
-                "label": "დასრულებული პროექტი"
-            },
-            {
-                "value": "50+",
-                "label": "კომერციული ობიექტი"
-            },
-            {
-                "value": "10+",
-                "label": "წლიანი გარანტია"
-            },
-            {
-                "value": "100%",
-                "label": "კლიენტთა კმაყოფილება"
-            }
-        ]
-    },
-    "calculator": {
-        "title": "გამოიანგარიშე სავარაუდო ღირებულება",
-        "subtitle": "შეავსე ველები და მიიღე სავარაუდო ბიუჯეტი",
-        "fields": {
-            "service": "სერვისის სახეობა",
-            "area": "ფართობი (მ²)",
-            "object": "ობიექტის სახეობა",
-            "deadline": "სასურველი ვადა",
-            "location": "ადგილმდებარეობა"
+    "intro_stats": {
+      "eyebrow": "Key numbers",
+      "subtitle": "Team, projects and warranty",
+      "items": [
+        {
+          "value": 6,
+          "suffix": "+",
+          "label": "Years of experience"
         },
-        "service_options": [
-            "ბრტყელი სახურავი",
-            "ტერასა",
-            "საძირკველი",
-            "ინდუსტრიული იატაკი"
-        ],
-        "object_options": [
-            "კერძო",
-            "კომერციული",
-            "ინდუსტრიული"
-        ],
-        "deadline_options": [
-            "სასწრაფო (1–2 კვირა)",
-            "სტანდარტული (3–4 კვირა)"
-        ],
-        "location_options": [
-            "თბილისი",
-            "რეგიონები (+10%)",
-            "მაღალმთიანი/რთული (+20%)"
-        ],
-        "note": "ეს არის სავარაუდო გათვლა. ზუსტი ფასისთვის გამოიძახე ჩვენი სპეციალისტი უფასო ინსპექციისთვის.",
-        "cta": "გამოიძახე სპეციალისტი →"
-    },
-    "portfolio": {
-        "title": "ჩვენი პროექტები",
-        "subtitle": "ყოველი პროექტი — ეს არის ჩვენი ნამუშევარი, რომელსაც სახელი ადევს",
-        "filters": [
-            "ყველა",
-            "ბრტყელი სახურავი",
-            "ტერასა",
-            "საძირკველი",
-            "ინდუსტრიული იატაკი",
-            "კომერციული"
-        ],
-        "projects": [
-            {
-                "name": "სასტუმრო „ამბასადორი\" — კახეთი",
-                "work": "სახურავის ჰიდროიზოლაცია",
-                "area": "2,400 მ²",
-                "material": "ბიტუმური მემბრანა + სითხური საფარი",
-                "duration": "3 კვირა",
-                "tags": [
-                    "ბრტყელი სახურავი",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "სასტუმრო „ამბასადორი\" — თბილისი",
-                "work": "ტერასის ჰიდროიზოლაცია",
-                "area": "800 მ²",
-                "material": "TPO მემბრანა",
-                "duration": "",
-                "tags": [
-                    "ტერასა",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "ნიუტონის თავისუფალი სკოლა",
-                "work": "ეპოქსიდური იატაკი",
-                "area": "1,200 მ²",
-                "material": "2-კომპონენტიანი ეპოქსიდი",
-                "duration": "",
-                "tags": [
-                    "ინდუსტრიული იატაკი",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "ბაქსვუდის საერთაშორისო სკოლა",
-                "work": "ბრტყელი სახურავის მოწყობა",
-                "area": "1,800 მ²",
-                "material": "",
-                "duration": "",
-                "tags": [
-                    "ბრტყელი სახურავი",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "სავაჭრო ცენტრი „მერანი\"",
-                "work": "სახურავის ჰიდროიზოლაცია",
-                "area": "3,500 მ²",
-                "material": "",
-                "duration": "",
-                "tags": [
-                    "ბრტყელი სახურავი",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "სასტუმრო „როიალ პალასი\"",
-                "work": "ტერასის ჰიდროიზოლაცია",
-                "area": "450 მ²",
-                "material": "",
-                "duration": "",
-                "tags": [
-                    "ტერასა",
-                    "კომერციული"
-                ]
-            },
-            {
-                "name": "საჯარო რეესტრის ეროვნული სააგენტო",
-                "work": "საპარკინგე საფარი",
-                "area": "",
-                "material": "ეპოქსიდური",
-                "duration": "",
-                "tags": [
-                    "ინდუსტრიული იატაკი",
-                    "კომერციული"
-                ]
-            }
-        ]
-    },
-    "testimonials": {
-        "title": "კლიენტები ჩვენ შესახებ",
-        "items": [
-            {
-                "quote": "GD Supply-მ სრულად გაამართლა ჩვენი მოლოდინი. ბრტყელი სახურავი, რომელზეც წლების განმავლობაში პრობლემა გვქონდა, ახლა სრულიად გამართულია. სამუშაო ჩავაბარეთ ვადაში, სუფთად და ყოველგვარი დამატებითი ხარჯის გარეშე.",
-                "author": "დავით კ.",
-                "meta": "კერძო სახლი, საბურთალო"
-            },
-            {
-                "quote": "სასტუმრო ობიექტისთვის ვეძებდით კომპანიას, რომელსაც ჰქონდა გამოცდილება კომერციულ ობიექტებზე. GD Supply-ს გუნდმა 2400 მ² სახურავი 3 კვირაში მოამუშავა — პროფესიონალურად და ხარისხიანად.",
-                "author": "ნინო ბ.",
-                "meta": "ამბასადორი სასტუმრო ჯგუფი"
-            },
-            {
-                "quote": "ჩვენი სკოლის ეზოს და დარბაზების იატაკი ახლა სრულიად განახლებულია. ეპოქსიდური საფარი — ზუსტად ის, რაც გვჭირდებოდა. ბავშვებისთვის უსაფრთხო და ადვილად სარეცხი.",
-                "author": "ირაკლი მ.",
-                "meta": "სკოლის ადმინისტრაცია, დიღომი"
-            },
-            {
-                "quote": "კომპანიამ შეასრულა სამუშაო, რომელზეც სხვა კონტრაქტორები უარს ამბობდნენ — მაღალმთიანი რეგიონის პირობებში ტერასის ჰიდროიზოლაცია. შედეგი შესანიშნავია.",
-                "author": "გიორგი ც.",
-                "meta": "კერძო სახლი, წყნეთი"
-            }
-        ]
-    },
-    "faq": {
-        "title": "პასუხები თქვენს კითხვებზე",
-        "items": [
-            {
-                "q": "რამდენი ხნით გაძლებს ჰიდროიზოლაცია?",
-                "a": "სისტემის სახეობიდან გამომდინარე — 10-დან 25 წლამდე. ბიტუმური მემბრანა ემსახურება 10–15 წელს, TPO/PVC სისტემები — 20–25 წელს. ჩვენ ვიძლევით 10+ წლიან სამუშაო გარანტიას."
-            },
-            {
-                "q": "რა ვადაში სრულდება სამუშაო?",
-                "a": "ეს დამოკიდებულია ფართობსა და სამუშაოს სირთულეზე. 100–300 მ² — 3–5 სამუშაო დღე. 500–1000 მ² — 1–2 კვირა. კომერციული ობიექტები — ინდივიდუალურად."
-            },
-            {
-                "q": "შეგიძლიათ ასრულოთ სამუშაო ზამთარში?",
-                "a": "დიახ. ჩვენ ვიყენებთ ყველა სეზონზე ადაპტირებულ სისტემებს. ზოგიერთი ტიპის სამუშაო მოითხოვს +5°C-ზე მეტ ტემპერატურას — ამ შემთხვევაში ვირჩევთ სხვა ტიპის მასალას."
-            },
-            {
-                "q": "იმუშავებთ თბილისის გარეთ?",
-                "a": "დიახ. ვასრულებთ სამუშაოებს საქართველოს მასშტაბით. ობიექტის ადგილმდებარეობიდან გამომდინარე, ვმსჯელობთ ლოჯისტიკაზე."
-            },
-            {
-                "q": "რა განსხვავებაა ბიტუმსა და TPO-ს შორის?",
-                "a": "ბიტუმური მემბრანა — კარგი ფასი/ხარისხის თანაფარდობა, კლასიკური გამოსავალი. TPO — უფრო გრძელვადიანი, ეკოლოგიური, UV-მდგრადი. ჩვენი სპეციალისტი შეარჩევს თქვენი ობიექტისთვის ოპტიმალურ სისტემას."
-            },
-            {
-                "q": "არის თუ არა საჭირო ნებართვა სამუშაოს შესასრულებლად?",
-                "a": "ჩვეულებრივ, ჰიდროიზოლაციაზე ნებართვა არ მოითხოვება. თუმცა ზოგიერთ შემთხვევაში (ისტორიული ობიექტი, ახალი მშენებლობა) — შეიძლება საჭირო გახდეს. ჩვენ გიწევთ კონსულტაციას."
-            },
-            {
-                "q": "რა ღირს ინსპექცია და კოსტიმაცია?",
-                "a": "ობიექტის ინსპექცია და სავარაუდო ბიუჯეტის გამოთვლა — სრულიად უფასოა."
-            }
-        ]
-    },
-    "contact": {
-        "title": "დაგვიკავშირდით",
-        "subtitle": "ჩვენი სპეციალისტი გიპასუხებს 2 საათის განმავლობაში",
-        "fields": {
-            "name": "სახელი და გვარი",
-            "phone": "ტელეფონი",
-            "email": "ელ-ფოსტა",
-            "service": "სერვისის სახეობა",
-            "area": "ობიექტის ფართობი (მ²)",
-            "message": "შეტყობინება / დამატებითი ინფორმაცია",
-            "submit": "გამოგვიგზავნე განცხადება →"
+        {
+          "value": 300,
+          "suffix": "+",
+          "label": "Projects"
         },
-        "alt": {
-            "phone": "+995 599 705 697",
-            "phone_secondary": "+995 599 705 837",
-            "email": "gdsupply.ge@gmail.com",
-            "location": "თბილისი, საქართველო",
-            "whatsapp": "+995 555 656 503"
+        {
+          "value": 10,
+          "suffix": "+",
+          "label": "Years warranty"
         },
-        "hours": [
-            "ორშ – პარ: 09:00 – 18:00",
-            "შაბათი: 10:00 – 15:00"
-        ]
+        {
+          "value": 100,
+          "suffix": "%",
+          "label": "Client satisfaction"
+        }
+      ]
     },
-    "whatsapp": {
-        "label": "გვწერე WhatsApp-ზე",
-        "subtext": "ვპასუხობთ 15 წუთში"
+    "values": {
+      "eyebrow": "Values",
+      "title": "What guides us",
+      "items": [
+        {
+          "title": "System approach",
+          "body": "We work with standards and detailed control."
+        },
+        {
+          "title": "Professional team",
+          "body": "Many years of practice on residential and commercial sites."
+        },
+        {
+          "title": "Transparency",
+          "body": "Stages, timelines and budget are agreed in advance."
+        },
+        {
+          "title": "Real warranty",
+          "body": "Official 10-year warranty after handover."
+        }
+      ]
     },
-    "footer": {
-        "tagline": "საქართველოს პროფესიონალური ჰიდროიზოლაციის კომპანია",
-        "links": [
-            "მთავარი",
-            "სერვისები",
-            "პორტფოლიო",
-            "ჩვენ შესახებ",
-            "ბლოგი",
-            "კონტაქტი"
-        ],
-        "social": [
-            "Facebook",
-            "LinkedIn",
-            "Instagram"
-        ],
-        "copyright": "© 2025 GD Supply. ყველა უფლება დაცულია."
+    "process": {
+      "eyebrow": "Process",
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Inspection",
+          "body": "Site assessment and diagnostics."
+        },
+        {
+          "title": "System selection",
+          "body": "Choose optimal technology for the site."
+        },
+        {
+          "title": "Preparation",
+          "body": "Correct surface preparation."
+        },
+        {
+          "title": "Execution",
+          "body": "Installation with quality control."
+        },
+        {
+          "title": "Handover",
+          "body": "Final testing and warranty papers."
+        }
+      ]
     },
-    "roof_video": {
-        "cta_primary": "Flat roof services",
-        "title": "How we waterproof flat roofs",
-        "badge": "Roof showcase",
-        "subtitle": "Real footage from our process ? safety, detailing, and final membrane finish on flat roofs.",
-        "cta_secondary": "Get consultation"
+    "team": {
+      "eyebrow": "Team",
+      "title": "People behind the projects",
+      "items": [
+        {
+          "initials": "PM",
+          "role": "Project management",
+          "description": "Planning, coordination and communication."
+        },
+        {
+          "initials": "QC",
+          "role": "Quality control",
+          "description": "Checks details before handover."
+        },
+        {
+          "initials": "OPS",
+          "role": "Operations",
+          "description": "Crew and logistics throughout the job."
+        }
+      ]
+    },
+    "partners": {
+      "title": "Brands and partners",
+      "items": [
+        "Sika",
+        "Tekno",
+        "Baumit",
+        "Mapei",
+        "Ceresit",
+        "Weber"
+      ]
+    },
+    "cta": {
+      "title": "Make your project watertight",
+      "body": "Contact us today!",
+      "primary": "Contact",
+      "secondary": "Services"
     }
+  }
 }

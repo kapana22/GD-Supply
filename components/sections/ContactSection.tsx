@@ -15,7 +15,6 @@ import { useTranslations } from "next-intl";
 import { WhatsAppIcon as BrandWhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 type FormState = "idle" | "loading" | "sent" | "error";
-const GENERIC_ERROR_MESSAGE = "ვწუხვართ, მოხდა შეცდომა";
 const WA_BUTTON_STYLE = {
   background:
     "linear-gradient(180deg, rgba(32,147,99,0.95) 0%, rgba(23,109,72,0.95) 100%)",
@@ -24,6 +23,7 @@ const WA_BUTTON_STYLE = {
 export function ContactSection() {
   const t = useTranslations("contact");
   const tCalc = useTranslations("calculator");
+  const tCommon = useTranslations("common");
 
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
@@ -69,10 +69,10 @@ export function ContactSection() {
         return;
       }
 
-      setError(GENERIC_ERROR_MESSAGE);
+      setError(tCommon("error_generic"));
       setState("error");
     } catch {
-      setError(GENERIC_ERROR_MESSAGE);
+      setError(tCommon("error_generic"));
       setState("error");
     }
   }
@@ -128,7 +128,7 @@ export function ContactSection() {
                 </div>
                 <div className="min-w-0">
                   <span className="block text-[10px] font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                    სამუშაო საათები
+                    {tCommon("hours")}
                   </span>
                   <div className="mt-1 space-y-0.5 text-sm font-semibold text-white/90">
                     {hours.map((h) => (
@@ -144,7 +144,7 @@ export function ContactSection() {
             <div className="mt-auto pt-5">
               <div>
                 <span className="tt-label block text-primary-green">
-                  WhatsApp
+                  {tCommon("whatsapp")}
                 </span>
                 <div className="mt-2.5 grid gap-2">
                   <a
@@ -158,7 +158,7 @@ export function ContactSection() {
                       <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
                         <WhatsAppIcon />
                       </span>
-                      <span>WhatsApp</span>
+                      <span>{tCommon("whatsapp")}</span>
                     </span>
                     <span className="font-sans text-[13px] font-bold tabular-nums whitespace-nowrap">
                       {phone}
@@ -175,7 +175,7 @@ export function ContactSection() {
                       <span className="grid h-6 w-6 place-items-center rounded-full bg-white/12 ring-1 ring-white/10">
                         <WhatsAppIcon />
                       </span>
-                      <span>WhatsApp</span>
+                      <span>{tCommon("whatsapp")}</span>
                     </span>
                     <span className="font-sans text-[13px] font-bold tabular-nums whitespace-nowrap">
                       {whatsappNumber}
@@ -185,7 +185,7 @@ export function ContactSection() {
               </div>
 
               <div className="mt-4">
-                <span className="tt-label block text-primary-green">სოციალური ქსელები?
+                <span className="tt-label block text-primary-green">{tCommon("social")}
                 </span>
                 <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
                   <a
@@ -217,17 +217,17 @@ export function ContactSection() {
 
           <div className="flex h-full flex-col rounded-[22px] border border-primary-green/20 bg-[color:var(--gd-panel)]/78 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
             <h3 className="tt-heading-md font-extrabold text-white">
-              დაგვიტოვე შეტყობინება
+              {t("title_form")}
             </h3>
 
             {state === "sent" ? (
               <div className="mt-4 grid min-h-[260px] flex-1 place-items-center rounded-xl border border-primary-green/25 bg-primary-green/10 p-6 text-center md:min-h-[320px]">
                 <div>
                   <p className="tt-heading-md font-extrabold text-primary-green">
-                    შეტყობინება მიღებულია!
+                    {t("success.title")}
                   </p>
                   <p className="tt-detail mt-3 text-base font-semibold text-primary-green/90">
-                    დაგიკავშირდებით 2 სამუშაო დღეში.
+                    {t("success.body")}
                   </p>
                 </div>
               </div>
@@ -295,7 +295,7 @@ export function ContactSection() {
                     disabled={state === "loading"}
                     className="btn-primary tt-ui w-full rounded-xl px-6 py-3.5 text-base font-semibold text-white shadow-glow-green disabled:opacity-60"
                   >
-                    {state === "loading" ? "იგზავნება..." : submitLabel}
+                    {state === "loading" ? tCommon("sending") : submitLabel}
                   </button>
                 </div>
               </form>

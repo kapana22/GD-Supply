@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
 import { ServiceDetailPage } from "@/components/services/ServiceDetailPage";
 import { SERVICES_CATALOG, getServiceBySlug } from "@/lib/servicesCatalog";
@@ -16,9 +17,7 @@ export function generateMetadata({
   const service = getServiceBySlug(params.slug);
 
   if (!service) {
-    return {
-      title: "სერვისი | GD Supply",
-    };
+    return { title: "Service | GD Supply" };
   }
 
   return {
@@ -32,30 +31,37 @@ export function generateMetadata({
   };
 }
 
-export default function ServiceSlugPage({
+export default async function ServiceSlugPage({
   params,
 }: {
   params: { slug: string; locale: string };
 }) {
   const service = getServiceBySlug(params.slug);
+  const tNav = await getTranslations("navigation");
+  const tServices = await getTranslations("servicesPage");
+  const tCatalog = await getTranslations("servicesCatalog");
 
   if (!service) {
     notFound();
   }
 
+  const heroTitle = tCatalog(service.heroTitle);
+  const subtitle = tCatalog(service.subtitle);
+  const title = tCatalog(service.title);
+
   return (
     <>
       <PageHero
         locale={params.locale}
-        eyebrow="სერვისი"
-        title={service.heroTitle}
-        subtitle={service.subtitle}
+        eyebrow={tServices("hero.eyebrow")}
+        title={heroTitle}
+        subtitle={subtitle}
         backgroundImage={service.heroImage}
         backgroundTheme="services"
         breadcrumbs={[
-          { label: "მთავარი", href: `/${params.locale}` },
-          { label: "სერვისები", href: `/${params.locale}/services` },
-          { label: service.title },
+          { label: tNav("home"), href: `/${params.locale}` },
+          { label: tNav("services"), href: `/${params.locale}/services` },
+          { label: title },
         ]}
         compact
       />
