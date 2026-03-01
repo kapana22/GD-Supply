@@ -145,7 +145,19 @@
       "usage": "სად გამოიყენება",
       "materials": "გამოყენებული მასალები",
       "process": "სამუშაოს ეტაპები",
-      "gallery": "ფოტოგალერეა"
+      "gallery": [
+        "ფ",
+        "ო",
+        "ტ",
+        "ო",
+        "გ",
+        "ა",
+        "ლ",
+        "ე",
+        "რ",
+        "ე",
+        "ა"
+      ]
     },
     "labels": {
       "material": "მასალა",
@@ -460,7 +472,7 @@
           "ბრტყელი სახურავი",
           "კომერციული"
         ],
-        "image": "/assets/portfolio/ambasodri.jpg"
+        "image": "/assets/portfolio/ambasodri.webp"
       },
       {
         "name": "სასტუმრო „ამბასადორი\" — თბილისი",
@@ -472,7 +484,7 @@
           "ტერასა",
           "კომერციული"
         ],
-        "image": "/assets/portfolio/ambasadori.jpg"
+        "image": "/assets/portfolio/ambasadori.webp"
       },
       {
         "name": "ნიუტონის თავისუფალი სკოლა",
@@ -484,7 +496,7 @@
           "ინდუსტრიული იატაკი",
           "განათლება"
         ],
-        "image": "/assets/portfolio/niutonisskola.jpg"
+        "image": "/assets/portfolio/niutonisskola.webp"
       },
       {
         "name": "ბაქსვუდის საერთაშორისო სკოლა",
@@ -496,7 +508,7 @@
           "ბრტყელი სახურავი",
           "განათლება"
         ],
-        "image": "/assets/portfolio/buqsvidisskola.jpg"
+        "image": "/assets/portfolio/buqsvidisskola.webp"
       },
       {
         "name": "სავაჭრო ცენტრი „მერანი\"",
@@ -520,7 +532,7 @@
           "ტერასა",
           "კომერციული"
         ],
-        "image": "/assets/portfolio/roialhoause.jpg"
+        "image": "/assets/portfolio/roialhoause.webp"
       },
       {
         "name": "საჯარო რეესტრის ეროვნული სააგენტო",
@@ -532,7 +544,7 @@
           "ინდუსტრიული იატაკი",
           "კომერციული"
         ],
-        "image": "/assets/portfolio/sajaroreestri.jpg"
+        "image": "/assets/portfolio/sajaroreestri.webp"
       },
       {
         "name": "14 ვილა თხინვალაში",
@@ -543,7 +555,7 @@
         "tags": [
           "ბრტყელი სახურავი"
         ],
-        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.webp"
       },
       {
         "name": "სახურავი ლისზე",
@@ -554,7 +566,7 @@
         "tags": [
           "ბრტყელი სახურავი"
         ],
-        "image": "/assets/portfolio/roof-lisi.jpg"
+        "image": "/assets/portfolio/roof-lisi.webp"
       },
       {
         "name": "საჯარო სკოლა — 800 მ²",
@@ -566,7 +578,7 @@
           "ბრტყელი სახურავი",
           "განათლება"
         ],
-        "image": "/assets/portfolio/public-school-800sqm.png"
+        "image": "/assets/portfolio/public-school-800sqm.webp"
       },
       {
         "name": "ბაქსვუდის სკოლა — 600 მ²",
@@ -578,7 +590,7 @@
           "ბრტყელი სახურავი",
           "განათლება"
         ],
-        "image": "/assets/portfolio/buckswood-school-600sqm.jpg"
+        "image": "/assets/portfolio/buckswood-school-600sqm.webp"
       },
       {
         "name": "ვერტმფრენის დასაჯდომი",
@@ -590,7 +602,7 @@
           "ინდუსტრიული იატაკი",
           "სპეცობიექტი"
         ],
-        "image": "/assets/portfolio/helicopter-pad-300sqm.jpg"
+        "image": "/assets/portfolio/helicopter-pad-300sqm.webp"
       },
       {
         "name": "კერძო სახლი თელავში",
@@ -601,7 +613,7 @@
         "tags": [
           "ბრტყელი სახურავი"
         ],
-        "image": "/assets/portfolio/private-house-telavi-600sqm.png"
+        "image": "/assets/portfolio/private-house-telavi-600sqm.webp"
       },
       {
         "name": "კერძო სახლი წყნეთში — 500 მ²",
@@ -612,7 +624,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-500sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-500sqm.webp"
       },
       {
         "name": "კერძო სახლი წყნეთში — 600 მ²",
@@ -623,7 +635,7 @@
         "tags": [
           "ბრტყელი სახურავი"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-600sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-600sqm.webp"
       },
       {
         "name": "კერძო სახლის ტერასა წავკისში",
@@ -634,7 +646,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi-house.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi-house.webp"
       },
       {
         "name": "ტერასა ნუცუბიძეზე",
@@ -645,7 +657,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/terrace-nutsubidze.jpg"
+        "image": "/assets/portfolio/terrace-nutsubidze.webp"
       },
       {
         "name": "ტერასა ოქროყანაში",
@@ -656,7 +668,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/terrace-okrokana.jpg"
+        "image": "/assets/portfolio/terrace-okrokana.webp"
       },
       {
         "name": "ტერასა საგურამოში",
@@ -667,7 +679,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/terrace-saguramo.jpg"
+        "image": "/assets/portfolio/terrace-saguramo.webp"
       },
       {
         "name": "ტერასა წავკისში",
@@ -678,7 +690,7 @@
         "tags": [
           "ტერასა"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi.webp"
       },
       {
         "name": "საძირკვლის ჰიდროიზოლაცია",
@@ -689,7 +701,7 @@
         "tags": [
           "საძირკველი"
         ],
-        "image": "/assets/portfolio/foundation.jpg"
+        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "პროექტი",

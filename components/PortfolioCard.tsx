@@ -76,6 +76,8 @@ export default function PortfolioCard({
           className="object-cover"
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
           priority={index < 3}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYGBgAAAABQABDQottAAAAABJRU5ErkJggg=="
         />
       </motion.div>
 

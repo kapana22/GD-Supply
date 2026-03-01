@@ -165,7 +165,21 @@
       "usage": "Where it’s used",
       "materials": "Materials we use",
       "process": "Work stages",
-      "gallery": "Photo gallery"
+      "gallery": [
+        "P",
+        "h",
+        "o",
+        "t",
+        "o",
+        " ",
+        "g",
+        "a",
+        "l",
+        "l",
+        "e",
+        "r",
+        "y"
+      ]
     },
     "labels": {
       "material": "Material",
@@ -460,7 +474,7 @@
           "Flat roof",
           "Commercial"
         ],
-        "image": "/assets/portfolio/ambasodri.jpg"
+        "image": "/assets/portfolio/ambasodri.webp"
       },
       {
         "name": "Hotel Ambassador — Tbilisi",
@@ -472,7 +486,7 @@
           "Terrace",
           "Commercial"
         ],
-        "image": "/assets/portfolio/ambasadori.jpg"
+        "image": "/assets/portfolio/ambasadori.webp"
       },
       {
         "name": "Newton Free School",
@@ -484,7 +498,7 @@
           "Industrial floor",
           "Education"
         ],
-        "image": "/assets/portfolio/niutonisskola.jpg"
+        "image": "/assets/portfolio/niutonisskola.webp"
       },
       {
         "name": "Buckswood International School",
@@ -496,7 +510,7 @@
           "Flat roof",
           "Education"
         ],
-        "image": "/assets/portfolio/buqsvidisskola.jpg"
+        "image": "/assets/portfolio/buqsvidisskola.webp"
       },
       {
         "name": "Merani Shopping Mall",
@@ -520,7 +534,7 @@
           "Terrace",
           "Commercial"
         ],
-        "image": "/assets/portfolio/roialhoause.jpg"
+        "image": "/assets/portfolio/roialhoause.webp"
       },
       {
         "name": "National Agency of Public Registry",
@@ -532,7 +546,7 @@
           "Industrial floor",
           "Commercial"
         ],
-        "image": "/assets/portfolio/sajaroreestri.jpg"
+        "image": "/assets/portfolio/sajaroreestri.webp"
       },
       {
         "name": "14 Villas in Tskhinvali",
@@ -543,7 +557,7 @@
         "tags": [
           "Flat roof"
         ],
-        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.webp"
       },
       {
         "name": "Roof in Lisi",
@@ -554,7 +568,7 @@
         "tags": [
           "Flat roof"
         ],
-        "image": "/assets/portfolio/roof-lisi.jpg"
+        "image": "/assets/portfolio/roof-lisi.webp"
       },
       {
         "name": "Public school — 800 m²",
@@ -566,7 +580,7 @@
           "Flat roof",
           "Education"
         ],
-        "image": "/assets/portfolio/public-school-800sqm.png"
+        "image": "/assets/portfolio/public-school-800sqm.webp"
       },
       {
         "name": "Buckswood School — 600 m²",
@@ -578,7 +592,7 @@
           "Flat roof",
           "Education"
         ],
-        "image": "/assets/portfolio/buckswood-school-600sqm.jpg"
+        "image": "/assets/portfolio/buckswood-school-600sqm.webp"
       },
       {
         "name": "Helicopter landing pad",
@@ -590,7 +604,7 @@
           "Industrial floor",
           "Special"
         ],
-        "image": "/assets/portfolio/helicopter-pad-300sqm.jpg"
+        "image": "/assets/portfolio/helicopter-pad-300sqm.webp"
       },
       {
         "name": "Private house in Telavi",
@@ -601,7 +615,7 @@
         "tags": [
           "Flat roof"
         ],
-        "image": "/assets/portfolio/private-house-telavi-600sqm.png"
+        "image": "/assets/portfolio/private-house-telavi-600sqm.webp"
       },
       {
         "name": "Private house in Tskneti — 500 m²",
@@ -612,7 +626,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-500sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-500sqm.webp"
       },
       {
         "name": "Private house in Tskneti — 600 m²",
@@ -623,7 +637,7 @@
         "tags": [
           "Flat roof"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-600sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-600sqm.webp"
       },
       {
         "name": "Private house terrace in Tsavkisi",
@@ -634,7 +648,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi-house.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi-house.webp"
       },
       {
         "name": "Terrace in Nutsubidze",
@@ -645,7 +659,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/terrace-nutsubidze.jpg"
+        "image": "/assets/portfolio/terrace-nutsubidze.webp"
       },
       {
         "name": "Terrace in Okrokana",
@@ -656,7 +670,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/terrace-okrokana.jpg"
+        "image": "/assets/portfolio/terrace-okrokana.webp"
       },
       {
         "name": "Terrace in Saguramo",
@@ -667,7 +681,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/terrace-saguramo.jpg"
+        "image": "/assets/portfolio/terrace-saguramo.webp"
       },
       {
         "name": "Terrace in Tsavkisi",
@@ -678,7 +692,7 @@
         "tags": [
           "Terrace"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi.webp"
       },
       {
         "name": "Foundation waterproofing",
@@ -689,7 +703,7 @@
         "tags": [
           "Foundation"
         ],
-        "image": "/assets/portfolio/foundation.jpg"
+        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "Project",

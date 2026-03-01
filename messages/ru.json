@@ -165,7 +165,19 @@
       "usage": "Где применяется",
       "materials": "Используемые материалы",
       "process": "Этапы работы",
-      "gallery": "Фотогалерея"
+      "gallery": [
+        "Ф",
+        "о",
+        "т",
+        "о",
+        "г",
+        "а",
+        "л",
+        "е",
+        "р",
+        "е",
+        "я"
+      ]
     },
     "labels": {
       "material": "Материал",
@@ -460,7 +472,7 @@
           "Плоская крыша",
           "Коммерческий"
         ],
-        "image": "/assets/portfolio/ambasodri.jpg"
+        "image": "/assets/portfolio/ambasodri.webp"
       },
       {
         "name": "Отель Ambassador — Тбилиси",
@@ -472,7 +484,7 @@
           "Терраса",
           "Коммерческий"
         ],
-        "image": "/assets/portfolio/ambasadori.jpg"
+        "image": "/assets/portfolio/ambasadori.webp"
       },
       {
         "name": "Школа Ньютона",
@@ -484,7 +496,7 @@
           "Промышленный пол",
           "Образование"
         ],
-        "image": "/assets/portfolio/niutonisskola.jpg"
+        "image": "/assets/portfolio/niutonisskola.webp"
       },
       {
         "name": "Международная школа Buckswood",
@@ -496,7 +508,7 @@
           "Плоская крыша",
           "Образование"
         ],
-        "image": "/assets/portfolio/buqsvidisskola.jpg"
+        "image": "/assets/portfolio/buqsvidisskola.webp"
       },
       {
         "name": "ТЦ «Мерани»",
@@ -520,7 +532,7 @@
           "Терраса",
           "Коммерческий"
         ],
-        "image": "/assets/portfolio/roialhoause.jpg"
+        "image": "/assets/portfolio/roialhoause.webp"
       },
       {
         "name": "Нац. агентство публичного реестра",
@@ -532,7 +544,7 @@
           "Промышленный пол",
           "Коммерческий"
         ],
-        "image": "/assets/portfolio/sajaroreestri.jpg"
+        "image": "/assets/portfolio/sajaroreestri.webp"
       },
       {
         "name": "14 вилл в Цхинвали",
@@ -543,7 +555,7 @@
         "tags": [
           "Плоская крыша"
         ],
-        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.png"
+        "image": "/assets/portfolio/villa-tkhinvali-polyurethane.webp"
       },
       {
         "name": "Крыша на Лиси",
@@ -554,7 +566,7 @@
         "tags": [
           "Плоская крыша"
         ],
-        "image": "/assets/portfolio/roof-lisi.jpg"
+        "image": "/assets/portfolio/roof-lisi.webp"
       },
       {
         "name": "Публичная школа — 800 м²",
@@ -566,7 +578,7 @@
           "Плоская крыша",
           "Образование"
         ],
-        "image": "/assets/portfolio/public-school-800sqm.png"
+        "image": "/assets/portfolio/public-school-800sqm.webp"
       },
       {
         "name": "Школа Buckswood — 600 м²",
@@ -578,7 +590,7 @@
           "Плоская крыша",
           "Образование"
         ],
-        "image": "/assets/portfolio/buckswood-school-600sqm.jpg"
+        "image": "/assets/portfolio/buckswood-school-600sqm.webp"
       },
       {
         "name": "Вертолетная площадка",
@@ -590,7 +602,7 @@
           "Промышленный пол",
           "Спецобъект"
         ],
-        "image": "/assets/portfolio/helicopter-pad-300sqm.jpg"
+        "image": "/assets/portfolio/helicopter-pad-300sqm.webp"
       },
       {
         "name": "Частный дом в Телави",
@@ -601,7 +613,7 @@
         "tags": [
           "Плоская крыша"
         ],
-        "image": "/assets/portfolio/private-house-telavi-600sqm.png"
+        "image": "/assets/portfolio/private-house-telavi-600sqm.webp"
       },
       {
         "name": "Частный дом в Цкнети — 500 м²",
@@ -612,7 +624,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-500sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-500sqm.webp"
       },
       {
         "name": "Частный дом в Цкнети — 600 м²",
@@ -623,7 +635,7 @@
         "tags": [
           "Плоская крыша"
         ],
-        "image": "/assets/portfolio/private-house-tskneti-600sqm.jpg"
+        "image": "/assets/portfolio/private-house-tskneti-600sqm.webp"
       },
       {
         "name": "Терраса дома в Цавкиси",
@@ -634,7 +646,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi-house.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi-house.webp"
       },
       {
         "name": "Терраса на Нуцубидзе",
@@ -645,7 +657,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/terrace-nutsubidze.jpg"
+        "image": "/assets/portfolio/terrace-nutsubidze.webp"
       },
       {
         "name": "Терраса в Окрокане",
@@ -656,7 +668,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/terrace-okrokana.jpg"
+        "image": "/assets/portfolio/terrace-okrokana.webp"
       },
       {
         "name": "Терраса в Сагурамо",
@@ -667,7 +679,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/terrace-saguramo.jpg"
+        "image": "/assets/portfolio/terrace-saguramo.webp"
       },
       {
         "name": "Терраса в Цавкиси",
@@ -678,7 +690,7 @@
         "tags": [
           "Терраса"
         ],
-        "image": "/assets/portfolio/terrace-tsavkisi.jpg"
+        "image": "/assets/portfolio/terrace-tsavkisi.webp"
       },
       {
         "name": "Гидроизоляция фундамента",
@@ -689,7 +701,7 @@
         "tags": [
           "Фундамент"
         ],
-        "image": "/assets/portfolio/foundation.jpg"
+        "image": "/assets/portfolio/foundation.webp"
       }
     ],
     "default_category": "Проект",
