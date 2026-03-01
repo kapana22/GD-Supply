@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
@@ -33,7 +33,6 @@ export function Gallery() {
   }, [items]);
 
   const [filter, setFilter] = useState<string>("all");
-  const [active, setActive] = useState<GalleryItem | null>(null);
 
   const visible = useMemo(
     () => (filter === "all" ? items : items.filter((i) => i.tag === filter)),
@@ -68,21 +67,21 @@ export function Gallery() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {visible.map((item, idx) => (
-          <motion.button
+          <motion.div
             key={`${item.title}-${idx}`}
-            onClick={() => setActive(item)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.4, delay: idx * 0.05 }}
-            className="group overflow-hidden rounded-2xl border border-primary-navy/10 bg-primary-navy/5 text-left shadow hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-navy/15"
+            className="overflow-hidden rounded-2xl border border-primary-navy/10 bg-primary-navy/5 text-left shadow"
           >
             <div className="relative h-56 w-full">
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
-                className="object-cover transition duration-500 group-hover:scale-105"
+                className="object-cover"
+                sizes="(min-width: 1280px) 45vw, (min-width: 768px) 50vw, 100vw"
               />
             </div>
             <div className="flex items-center justify-between px-4 py-3">
@@ -91,52 +90,9 @@ export function Gallery() {
                 {item.tag}
               </span>
             </div>
-          </motion.button>
+          </motion.div>
         ))}
       </div>
-
-      <AnimatePresence>
-        {active && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-6"
-            onClick={() => setActive(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative h-[420px] w-full">
-                <Image
-                  src={active.image}
-                  alt={active.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex items-center justify-between px-5 py-4">
-                <div>
-                  <p className="tt-heading-md text-primary-navy">{active.title}</p>
-                  <p className="tt-label text-sm uppercase tracking-[0.18em] text-primary-navy/70">
-                    {active.tag}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setActive(null)}
-                  className="tt-ui rounded-full border border-primary-navy/20 px-3 py-1 text-sm font-semibold text-primary-navy"
-                >
-                  {tPortfolio("modal.close")}
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

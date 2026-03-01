@@ -37,6 +37,7 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
         projects={projects}
         showHeader={false}
         compact
+        enableModal={false}
       />
     </main>
   );

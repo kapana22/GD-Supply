@@ -54,6 +54,7 @@ export default async function HomePage() {
         projects={projects}
         maxItems={6}
         showFilters={false}
+        enableModal={false}
       />
 
       <RoofVideoSection />

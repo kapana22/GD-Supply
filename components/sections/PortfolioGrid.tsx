@@ -34,6 +34,7 @@ export function PortfolioGrid({
   maxItems = null,
   showFilters: _showFilters = false,
   compact = false,
+  enableModal = true,
 }: {
   title: string;
   subtitle: string;
@@ -44,6 +45,7 @@ export function PortfolioGrid({
   maxItems?: number | null;
   showFilters?: boolean;
   compact?: boolean;
+  enableModal?: boolean;
 }) {
   const t = useTranslations("portfolio");
   const filters = _filters ?? [];
@@ -140,62 +142,69 @@ export function PortfolioGrid({
 
         <div className={`${showHeader ? "mt-10" : "mt-3"} grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
           {limited.map((project, idx) => (
-            <PortfolioCard key={project.key} project={project} index={idx} onSelect={() => setActiveProject(project)} />
+            <PortfolioCard
+              key={project.key}
+              project={project}
+              index={idx}
+              onSelect={enableModal ? () => setActiveProject(project) : undefined}
+            />
           ))}
         </div>
       </div>
 
-      <AnimatePresence>
-        {activeProject ? (
-          <motion.div
-            className="fixed inset-0 z-[70] grid place-items-center bg-[#06080f]/85 p-4 md:p-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveProject(null)}
-          >
+      {enableModal ? (
+        <AnimatePresence>
+          {activeProject ? (
             <motion.div
-              className="relative w-full max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-[#12162a] shadow-[0_30px_100px_rgba(0,0,0,0.55)]"
-              initial={{ opacity: 0, scale: 0.94, y: 18 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.97, y: 8 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(event) => event.stopPropagation()}
+              className="fixed inset-0 z-[70] grid place-items-center bg-[#06080f]/85 p-4 md:p-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveProject(null)}
             >
-              <button
-                type="button"
-                onClick={() => setActiveProject(null)}
-                className="tt-ui absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55"
-                aria-label={t("modal.close")}
+              <motion.div
+                className="relative w-full max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-[#12162a] shadow-[0_30px_100px_rgba(0,0,0,0.55)]"
+                initial={{ opacity: 0, scale: 0.94, y: 18 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: 8 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                onClick={(event) => event.stopPropagation()}
               >
-                <CloseIcon />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveProject(null)}
+                  className="tt-ui absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55"
+                  aria-label={t("modal.close")}
+                >
+                  <CloseIcon />
+                </button>
 
-              <div className="relative aspect-[16/10] w-full md:aspect-[16/9]">
-                <Image
-                  src={activeProject.image}
-                  alt={activeProject.title}
-                  fill
-                  sizes="(min-width: 1280px) 1200px, 95vw"
-                  className="object-cover"
-                  priority
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0f1124]/90 via-[#0f1124]/30 to-transparent" />
-              </div>
+                <div className="relative aspect-[16/10] w-full md:aspect-[16/9]">
+                  <Image
+                    src={activeProject.image}
+                    alt={activeProject.title}
+                    fill
+                    sizes="(min-width: 1280px) 1200px, 95vw"
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0f1124]/90 via-[#0f1124]/30 to-transparent" />
+                </div>
 
-              <div className="grid gap-4 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-6">
-                <div>
-                  <p className="tt-label text-primary-green">{activeProject.type}</p>
-                  <h3 className="tt-heading-md mt-2 font-extrabold text-white">{activeProject.title}</h3>
+                <div className="grid gap-4 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-6">
+                  <div>
+                    <p className="tt-label text-primary-green">{activeProject.type}</p>
+                    <h3 className="tt-heading-md mt-2 font-extrabold text-white">{activeProject.title}</h3>
+                  </div>
+                  <div className="tt-ui rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85">
+                    {activeProject.area}
+                  </div>
                 </div>
-                <div className="tt-ui rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85">
-                  {activeProject.area}
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+          ) : null}
+        </AnimatePresence>
+      ) : null}
     </section>
   );
 }

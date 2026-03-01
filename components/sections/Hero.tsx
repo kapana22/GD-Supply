@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { BadgeCheck, BriefcaseBusiness, Clock3, ShieldCheck } from "lucide-react";
 import { useLocale } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import StatCounter from "@/components/StatCounter";
 
 type HeroStat = { value: string; label: string };
@@ -25,6 +26,39 @@ const fadeUp = (delay: number) => ({
 
 export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroProps) {
   const locale = useLocale();
+  const [isMobile, setIsMobile] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile once on client
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Start loading video when hero enters viewport (especially for mobile)
+  useEffect(() => {
+    if (!isMobile) {
+      setShouldLoadVideo(true);
+      return;
+    }
+    const el = videoWrapperRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isMobile]);
 
   const parsedStats = stats.slice(0, 4).map((item) => {
     const match = item.value.match(/(\d+)(.*)/);
@@ -43,18 +77,25 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
   return (
     <section className="relative -mt-[84px] overflow-hidden pt-[84px] min-h-[640px] md:min-h-[740px]">
       {/* Background video across all breakpoints */}
-      <div className="hero-video-wrapper is-visible" aria-hidden="true">
-        <video
-          className="hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/assets/hero-poster.jpg"
-        >
-          <source src="/assets/hero-video.mp4" type="video/mp4" />
-        </video>
+      <div ref={videoWrapperRef} className="hero-video-wrapper is-visible" aria-hidden="true">
+        {shouldLoadVideo ? (
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload={isMobile ? "none" : "metadata"}
+            poster="/assets/hero-poster.jpg"
+          >
+            <source src="/assets/hero-video.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <div
+            className="hero-video hero-video-poster"
+            style={{ backgroundImage: "url(/assets/hero-poster.jpg)" }}
+          />
+        )}
 
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,28,51,0)_0px,rgba(26,28,51,0)_96px,rgba(26,28,51,0.12)_160px,rgba(26,28,51,0.46)_52%,rgba(26,28,51,0.94))]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(980px_560px_at_74%_28%,rgba(28,184,121,0.14),transparent_62%),radial-gradient(760px_420px_at_14%_22%,rgba(255,255,255,0.07),transparent_70%)]" />

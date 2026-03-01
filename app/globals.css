@@ -719,6 +719,12 @@ select.gd-select option:disabled {
   transform: scale(1.03);
 }
 
+.hero-video-poster {
+  background: #0f1124;
+  background-size: cover;
+  background-position: center;
+}
+
 .hero-video-wrapper {
   background: #0f1124;
 }

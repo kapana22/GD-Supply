@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 export interface PortfolioProject {
@@ -58,18 +59,25 @@ export default function PortfolioCard({
           : "0 8px 24px rgba(0,0,0,0.16)",
       }}
     >
-      <motion.img
-        src={project.image}
-        alt={project.title}
-        className="block h-full w-full object-cover"
+      <motion.div
+        className="absolute inset-0"
         animate={{
-          scale: active ? 1.09 : 1.03,
+          scale: active ? 1.03 : 1,
           filter: active
-            ? "saturate(1.06) brightness(1.08)"
+            ? "saturate(1.06) brightness(1.06)"
             : "saturate(0.95) brightness(0.94)",
         }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      />
+      >
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover"
+          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+          priority={index < 3}
+        />
+      </motion.div>
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1A1C33]/90 via-[#1A1C33]/30 to-transparent" />
 
