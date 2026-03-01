@@ -1210,8 +1210,8 @@ select.gd-select option:disabled {
 
 /* Extra perf: disable marquees on mid-size screens too */
 @media (max-width: 1024px) {
-  .testimonials-marquee-track,
-  .partners-marquee-track {
+  /* შევაჩეროთ მხოლოდ testimonials მობილურზე; პარტნიორების ლოგოები მაინც იარო */
+  .testimonials-marquee-track {
     animation: none !important;
     transform: none !important;
   }

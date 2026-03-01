@@ -20,7 +20,7 @@ const PARTNER_LOGOS = [
 ];
 
 const LOOP_LOGOS = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
-const MARQUEE_DURATION_S = Math.max(36, PARTNER_LOGOS.length * 3.8);
+const MARQUEE_DURATION_S = Math.max(42, PARTNER_LOGOS.length * 4.2);
 
 export function PartnersMarquee() {
   const t = useTranslations("partners");
