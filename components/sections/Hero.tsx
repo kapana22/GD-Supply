@@ -85,17 +85,11 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
             muted
             loop
             playsInline
-            preload={isMobile ? "none" : "metadata"}
-            poster="/assets/hero-poster.jpg"
+            preload="auto"
           >
             <source src="/assets/hero-video.mp4" type="video/mp4" />
           </video>
-        ) : (
-          <div
-            className="hero-video hero-video-poster"
-            style={{ backgroundImage: "url(/assets/hero-poster.jpg)" }}
-          />
-        )}
+        ) : null}
 
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,28,51,0)_0px,rgba(26,28,51,0)_96px,rgba(26,28,51,0.12)_160px,rgba(26,28,51,0.46)_52%,rgba(26,28,51,0.94))]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(980px_560px_at_74%_28%,rgba(28,184,121,0.14),transparent_62%),radial-gradient(760px_420px_at_14%_22%,rgba(255,255,255,0.07),transparent_70%)]" />
