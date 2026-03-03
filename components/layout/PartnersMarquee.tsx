@@ -1,29 +1,17 @@
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+"use client";
 
-const PARTNER_LOGOS = [
-  { src: "/assets/partners/adjara-group.png", alt: "Adjara Group" },
-  { src: "/assets/partners/ambassadori_logo_gold.png", alt: "Ambassadori" },
-  { src: "/assets/partners/brand-logo.png", alt: "Partner Brand" },
-  { src: "/assets/partners/greenox-logo-01-1-1.png", alt: "Greenox" },
-  { src: "/assets/partners/lukoil-logo-brandlogo.net_.png", alt: "Lukoil" },
-  { src: "/assets/partners/logo.png", alt: "Partner Logo" },
-  { src: "/assets/partners/logo (1).png", alt: "Partner Logo" },
-  { src: "/assets/partners/logo_signature.png", alt: "Partner Signature" },
-  { src: "/assets/partners/images.png", alt: "Partner Logo" },
-  { src: "/assets/partners/images (1).png", alt: "Partner Logo" },
-  { src: "/assets/partners/images (2).png", alt: "Partner Logo" },
-  { src: "/assets/partners/images.jpg", alt: "Partner Logo" },
-  { src: "/assets/partners/images (1).jpg", alt: "Partner Logo" },
-  { src: "/assets/partners/images (2).jpg", alt: "Partner Logo" },
-  { src: "/assets/partners/images (3).jpg", alt: "Partner Logo" },
-];
+import Image from "next/image";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { PARTNER_LOGOS } from "@/components/data/partners";
 
 const LOOP_LOGOS = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
 const MARQUEE_DURATION_S = Math.max(42, PARTNER_LOGOS.length * 4.2);
 
 export function PartnersMarquee() {
   const t = useTranslations("partners");
+  const { locale } = useParams() as { locale: string };
 
   return (
     <section className="gd-cv-auto gd-section-divider relative py-10 md:py-12">
@@ -42,7 +30,7 @@ export function PartnersMarquee() {
           >
             {LOOP_LOGOS.map((logo, index) => (
               <div key={`${logo.src}-${index}`} className="partners-logo-tile">
-                <div className="partners-logo-frame">
+                <div className="partners-logo-frame bg-white">
                   <Image
                     src={logo.src}
                     alt={t("logo_alt", { name: logo.alt })}
@@ -54,6 +42,15 @@ export function PartnersMarquee() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-6 flex justify-start">
+          <Link
+            href={`/${locale}/partners`}
+            className="btn-secondary tt-ui inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold"
+          >
+            {t("view_all")}
+          </Link>
         </div>
       </div>
     </section>

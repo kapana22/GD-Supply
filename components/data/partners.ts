@@ -1,0 +1,17 @@
+export const PARTNER_LOGOS = [
+  { src: "/assets/partners/adjara-group.png", alt: "Adjara Group" },
+  { src: "/assets/partners/ambassadori_logo_gold.png", alt: "Ambassadori" },
+  { src: "/assets/partners/brand-logo.png", alt: "Partner Brand" },
+  { src: "/assets/partners/greenox-logo-01-1-1.png", alt: "Greenox" },
+  { src: "/assets/partners/lukoil-logo-brandlogo.net_.png", alt: "Lukoil" },
+  { src: "/assets/partners/logo.png", alt: "Partner Logo" },
+  { src: "/assets/partners/logo (1).png", alt: "Partner Logo" },
+  { src: "/assets/partners/logo_signature.png", alt: "Partner Signature" },
+  { src: "/assets/partners/images.png", alt: "Partner Logo" },
+  { src: "/assets/partners/images (1).png", alt: "Partner Logo" },
+  { src: "/assets/partners/images (2).png", alt: "Partner Logo" },
+  { src: "/assets/partners/images.jpg", alt: "Partner Logo" },
+  { src: "/assets/partners/images (1).jpg", alt: "Partner Logo" },
+  { src: "/assets/partners/images (2).jpg", alt: "Partner Logo" },
+  { src: "/assets/partners/images (3).jpg", alt: "Partner Logo" },
+];

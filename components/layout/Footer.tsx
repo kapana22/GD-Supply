@@ -53,6 +53,7 @@ export function Footer() {
       `/${locale}`,
       `/${locale}/services`,
       `/${locale}/portfolio`,
+      `/${locale}/partners`,
       `/${locale}/about`,
       `/${locale}/blog`,
       `/${locale}/contact`,

@@ -10,7 +10,8 @@
     "free_consultation": "Contact us",
     "brand": "GD Supply",
     "toggle_menu": "Toggle menu",
-    "select_language": "Select language"
+    "select_language": "Select language",
+    "partners": "Partners"
   },
   "common": {
     "language": "Language",
@@ -732,6 +733,7 @@
       "Home",
       "Services",
       "Portfolio",
+      "Partners",
       "About us",
       "Blog",
       "Contact"
@@ -764,7 +766,8 @@
   "partners": {
     "eyebrow": "Partners",
     "title": "Our partners",
-    "logo_alt": "Logo of {name}"
+    "logo_alt": "Logo of {name}",
+    "view_all": "View our partners"
   },
   "contact_cta": {
     "eyebrow": "Contact",
@@ -1063,6 +1066,13 @@
       "body": "Contact us today!",
       "primary": "Contact",
       "secondary": "Services"
+    }
+  },
+  "partnersPage": {
+    "hero": {
+      "eyebrow": "Partners",
+      "title": "Our Partners",
+      "subtitle": "Meet the brands we collaborate and build with."
     }
   }
 }

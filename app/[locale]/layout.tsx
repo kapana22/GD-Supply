@@ -8,7 +8,6 @@ import { defaultLocale, locales } from "@/lib/i18n";
 import { notoSansGeorgian, contractica, contracticaCaps } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/Navbar";
 import { SiteAmbientBackground } from "@/components/layout/SiteAmbientBackground";
-import { PartnersMarquee } from "@/components/layout/PartnersMarquee";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { MobileCallBar } from "@/components/ui/MobileCallBar";
@@ -86,7 +85,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <div className="relative z-10">
             <Navbar />
             <div className="relative pt-[84px]">{children}</div>
-            <PartnersMarquee />
             <Footer />
             <WhatsAppButton />
             <MobileCallBar />

@@ -8,6 +8,7 @@ import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
 import RoofVideoSection from "@/components/sections/RoofVideoSection";
 import { ReferencesVideo } from "@/components/sections/ReferencesVideo";
+import { PartnersMarquee } from "@/components/layout/PartnersMarquee";
 
 export default async function HomePage() {
   const tHero = await getTranslations("hero");
@@ -61,6 +62,8 @@ export default async function HomePage() {
       <Faq title={tFaq("title")} items={faq} />
 
       <RoofVideoSection />
+
+      <PartnersMarquee />
 
       <ReferencesVideo />
 
