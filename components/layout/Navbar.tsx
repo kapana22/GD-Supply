@@ -419,7 +419,7 @@ function FlagIcon({
     >
       <Image
         src={src}
-        alt=""
+        alt={`${locale} flag`}
         width={20}
         height={14}
         className="h-full w-full object-cover"

@@ -1,6 +1,26 @@
 import { getTranslations } from "next-intl/server";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PageHero } from "@/components/sections/PageHero";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+const buildAlternates = (locale: string) => ({
+  canonical: `${baseUrl}/${locale}/contact`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}/contact`] )),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const tPage = await getTranslations("contactPage");
+  return {
+    title: tPage("title"),
+    description: tPage("subtitle"),
+    alternates: buildAlternates(params.locale),
+    openGraph: {
+      title: tPage("title"),
+      description: tPage("subtitle"),
+    },
+  };
+}
 
 export default async function ContactPage({ params }: { params: { locale: string } }) {
   const tPage = await getTranslations("contactPage");

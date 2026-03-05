@@ -2,6 +2,26 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { PARTNER_LOGOS } from "@/components/data/partners";
 import { PageHero } from "@/components/sections/PageHero";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+const buildAlternates = (locale: string) => ({
+  canonical: `${baseUrl}/${locale}/partners`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}/partners`] )),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const tPage = await getTranslations("partnersPage");
+  return {
+    title: tPage("hero.title"),
+    description: tPage("hero.subtitle"),
+    alternates: buildAlternates(params.locale),
+    openGraph: {
+      title: tPage("hero.title"),
+      description: tPage("hero.subtitle"),
+    },
+  };
+}
 
 export default async function PartnersPage({ params }: { params: { locale: string } }) {
   const tPage = await getTranslations("partnersPage");
@@ -45,6 +65,19 @@ export default async function PartnersPage({ params }: { params: { locale: strin
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: tPage("hero.title"),
+            description: tPage("hero.subtitle"),
+            url: `${baseUrl}/${params.locale}/partners`,
+          }),
+        }}
+      />
     </main>
   );
 }

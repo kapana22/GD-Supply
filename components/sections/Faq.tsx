@@ -6,6 +6,19 @@ import FAQAccordion from "@/components/FAQAccordion";
 type QA = { q: string; a: string };
 
 export function Faq({ title, items }: { title: string; items: QA[] }) {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <section
       id="faq"
@@ -27,7 +40,11 @@ export function Faq({ title, items }: { title: string; items: QA[] }) {
           <FAQAccordion items={items} />
         </div>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
     </section>
   );
 }
-

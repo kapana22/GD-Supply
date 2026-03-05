@@ -1,6 +1,27 @@
 import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+
+const buildAlternates = (locale: string, path = "") => ({
+  canonical: `${baseUrl}/${locale}${path}`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}${path}`])),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("portfolio");
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: buildAlternates(params.locale, "/portfolio"),
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+    },
+  };
+}
 
 export default async function PortfolioPage({ params }: { params: { locale: string } }) {
   const t = await getTranslations("portfolio");
@@ -38,6 +59,26 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
         showHeader={false}
         compact
         enableModal={false}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: t("title"),
+            description: t("subtitle"),
+            url: `${baseUrl}/${params.locale}/portfolio`,
+            itemListElement: projects.map((project, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: project.name,
+              description: `${project.work}${project.area ? ` • ${project.area}` : ""}`,
+              url: `${baseUrl}/${params.locale}/portfolio#project-${index + 1}`,
+            })),
+          }),
+        }}
       />
     </main>
   );

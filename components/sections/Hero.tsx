@@ -87,8 +87,8 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
             playsInline
             preload={isMobile ? "metadata" : "auto"}
           >
-            <source src="/assets/hero-video480.mp4" type="video/mp4" media="(max-width: 768px)" />
-            <source src="/assets/hero-video1080.mp4" type="video/mp4" />
+            <source src="/assets/hero-video480-opt.mp4" type="video/mp4" media="(max-width: 768px)" />
+            <source src="/assets/hero-video1080-opt.mp4" type="video/mp4" />
           </video>
         ) : null}
 

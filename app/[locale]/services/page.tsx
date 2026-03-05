@@ -4,6 +4,26 @@ import { getTranslations } from "next-intl/server";
 import { ServicesHubPage } from "@/components/services/ServicesHubPage";
 import { PageHero } from "@/components/sections/PageHero";
 import { SERVICES_CATALOG } from "@/lib/servicesCatalog";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+const buildAlternates = (locale: string) => ({
+  canonical: `${baseUrl}/${locale}/services`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}/services`] )),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("servicesPage");
+  return {
+    title: t("hero.title"),
+    description: t("hero.subtitle"),
+    alternates: buildAlternates(params.locale),
+    openGraph: {
+      title: t("hero.title"),
+      description: t("hero.subtitle"),
+    },
+  };
+}
 
 export default async function ServicesPage({ params }: { params: { locale: string } }) {
   const t = await getTranslations("servicesPage");

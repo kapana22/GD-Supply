@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { BLOG_META } from "@/lib/blogMeta";
 import { SERVICES_CATALOG } from "@/lib/servicesCatalog";
+import { BLOG_SLUGS } from "@/lib/blogSlugs";
 
 const baseUrl = "https://gdsupply.ge";
 const staticRoutes = ["", "services", "portfolio", "partners", "products", "about", "contact", "calculator"] as const;
@@ -47,12 +48,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogPosts = locales.flatMap((locale) =>
-    BLOG_META.map((post) => ({
-      url: `${baseUrl}/${locale}/blog/${post.slug}`,
-      lastModified: parseDate(post.updated ?? post.date) ?? latestContentDate,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
+    BLOG_SLUGS.map((slug) => {
+      const post = BLOG_META.find((p) => p.slug === slug);
+      const last = post ? parseDate(post.updated ?? post.date) ?? latestContentDate : latestContentDate;
+      return {
+        url: `${baseUrl}/${locale}/blog/${slug}`,
+        lastModified: last,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      };
+    }),
   );
 
   return [...localizedStaticPages, ...servicePages, ...blogIndex, ...blogPosts];

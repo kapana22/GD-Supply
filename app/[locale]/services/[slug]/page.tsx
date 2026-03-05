@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
 import { ServiceDetailPage } from "@/components/services/ServiceDetailPage";
 import { SERVICES_CATALOG, getServiceBySlug } from "@/lib/servicesCatalog";
+import { locales } from "@/lib/i18n";
 
 export function generateStaticParams() {
   return SERVICES_CATALOG.map((service) => ({ slug: service.slug }));
@@ -15,9 +16,18 @@ export function generateMetadata({
   params: { slug: string; locale: string };
 }): Metadata {
   const service = getServiceBySlug(params.slug);
+  const base = "https://gdsupply.ge";
+  const canonical = `${base}/${params.locale}/services/${params.slug}`;
+  const languages = locales.reduce<Record<string, string>>((acc, loc) => {
+    acc[loc] = `${base}/${loc}/services/${params.slug}`;
+    return acc;
+  }, {});
 
   if (!service) {
-    return { title: "Service | GD Supply" };
+    return {
+      title: "Service | GD Supply",
+      alternates: { canonical, languages },
+    };
   }
 
   return {
@@ -27,6 +37,10 @@ export function generateMetadata({
       title: `${service.title} | GD Supply`,
       description: service.subtitle,
       images: [service.heroImage],
+    },
+    alternates: {
+      canonical,
+      languages,
     },
   };
 }
@@ -48,6 +62,40 @@ export default async function ServiceSlugPage({
   const heroTitle = tCatalog(service.heroTitle);
   const subtitle = tCatalog(service.subtitle);
   const title = tCatalog(service.title);
+  const base = "https://gdsupply.ge";
+  const canonical = `${base}/${params.locale}/services/${service.slug}`;
+
+  const serviceLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: heroTitle,
+    description: subtitle,
+    serviceType: title,
+    provider: {
+      "@type": "Organization",
+      name: "GD Supply",
+      url: base,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: title,
+      itemListElement: service.materials?.map((mat, idx) => ({
+        "@type": "Offer",
+        position: idx + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: mat.name,
+          description: mat.description,
+        },
+      })),
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Georgia",
+    },
+    url: canonical,
+    image: service.heroImage ? `${base}${service.heroImage}` : undefined,
+  };
 
   return (
     <>
@@ -66,6 +114,7 @@ export default async function ServiceSlugPage({
         compact
       />
       <ServiceDetailPage locale={params.locale} service={service} hideHero />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
     </>
   );
 }

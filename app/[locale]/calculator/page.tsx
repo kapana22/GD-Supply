@@ -2,6 +2,26 @@ import { getTranslations } from "next-intl/server";
 import { Calculator } from "@/components/sections/Calculator";
 import { PageHero } from "@/components/sections/PageHero";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+const buildAlternates = (locale: string) => ({
+  canonical: `${baseUrl}/${locale}/calculator`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}/calculator`] )),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("calculatorPage");
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: buildAlternates(params.locale),
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+    },
+  };
+}
 
 export default async function CalculatorPage({ params }: { params: { locale: string } }) {
   const tPortfolio = await getTranslations("portfolio");

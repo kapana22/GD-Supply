@@ -2,6 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
+import { locales } from "@/lib/i18n";
+
+const baseUrl = "https://gdsupply.ge";
+const buildAlternates = (locale: string) => ({
+  canonical: `${baseUrl}/${locale}/products`,
+  languages: Object.fromEntries(locales.map((loc) => [loc, `${baseUrl}/${loc}/products`] )),
+});
+
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const t = await getTranslations("products");
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: buildAlternates(params.locale),
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+    },
+  };
+}
 
 type ProductItem = {
   name: string;
@@ -84,6 +104,30 @@ export default async function ProductsPage({ params }: { params: { locale: strin
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: t("title"),
+            description: t("subtitle"),
+            url: `${baseUrl}/${params.locale}/products`,
+            itemListElement: categories.flatMap((category, catIndex) =>
+              category.items.map((item, idx) => ({
+                "@type": "ListItem",
+                position: catIndex * 100 + idx + 1,
+                name: item.name,
+                description: item.description,
+                url: `${baseUrl}/${params.locale}/products#${encodeURIComponent(
+                  `${category.title}-${item.name}`,
+                )}`,
+              })),
+            ),
+          }),
+        }}
+      />
     </main>
   );
 }

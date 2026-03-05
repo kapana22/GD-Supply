@@ -24,6 +24,12 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 
   const messages = await getMessages();
   const t = createTranslator({ locale, messages, namespace: "seo" });
+  const base = "https://gdsupply.ge";
+  const canonical = `${base}/${locale}`;
+  const languages = locales.reduce<Record<string, string>>((acc, loc) => {
+    acc[loc] = `${base}/${loc}`;
+    return acc;
+  }, {});
 
   return {
     metadataBase: new URL("https://gdsupply.ge"),
@@ -38,6 +44,10 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       url: "https://gdsupply.ge",
       siteName: "GD Supply",
       type: "website",
+    },
+    alternates: {
+      canonical,
+      languages,
     },
   };
 }
@@ -75,6 +85,22 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           gtag('js', new Date());
           gtag('config', 'G-LRNX71WTRT');
         `}
+      </Script>
+      <Script id="gd-ld-json" type="application/ld+json" strategy="beforeInteractive">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "GD Supply",
+          url: "https://gdsupply.ge",
+          logo: "https://gdsupply.ge/images/logo.png",
+          telephone: "+995 599 705 697",
+          sameAs: ["https://www.facebook.com/GDSupply1", "https://www.linkedin.com/"],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Tbilisi",
+            addressCountry: "GE",
+          },
+        })}
       </Script>
       <body
         className={`${notoSansGeorgian.variable} ${contractica.variable} ${contracticaCaps.variable} relative min-h-screen font-sans antialiased`}
