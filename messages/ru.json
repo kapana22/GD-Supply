@@ -1048,17 +1048,10 @@
         }
       ]
     },
-    "partners": {
-      "title": "Бренды и партнеры",
-      "items": [
-        "Sika",
-        "Tekno",
-        "Baumit",
-        "Mapei",
-        "Ceresit",
-        "Weber"
-      ]
-    },
+  "partners": {
+    "title": "Бренды и партнеры",
+    "items": []
+  },
     "cta": {
       "title": "Сделаем объект герметичным",
       "body": "Свяжитесь с нами сегодня!",

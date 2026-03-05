@@ -1050,17 +1050,10 @@
         }
       ]
     },
-    "partners": {
-      "title": "Brands and partners",
-      "items": [
-        "Sika",
-        "Tekno",
-        "Baumit",
-        "Mapei",
-        "Ceresit",
-        "Weber"
-      ]
-    },
+  "partners": {
+    "title": "Brands and partners",
+    "items": []
+  },
     "cta": {
       "title": "Make your project watertight",
       "body": "Contact us today!",

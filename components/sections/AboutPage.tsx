@@ -250,23 +250,25 @@ export function AboutPage({ locale }: { locale: string }) {
         </div>
       </motion.section>
 
-      <motion.section {...fadeUp} className="gd-section-divider py-16 md:py-24">
-        <div className="gd-container">
-          <p className="tt-label text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#1CB879]">
-            {t("partners.title")}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            {partners.map((brand) => (
-              <span
-                key={brand}
-                className="text-lg font-semibold text-white/35 grayscale transition hover:text-white hover:grayscale-0"
-              >
-                {brand}
-              </span>
-            ))}
+      {partners.length > 0 && (
+        <motion.section {...fadeUp} className="gd-section-divider py-16 md:py-24">
+          <div className="gd-container">
+            <p className="tt-label text-center text-sm font-semibold uppercase tracking-[0.2em] text-[#1CB879]">
+              {t("partners.title")}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+              {partners.map((brand) => (
+                <span
+                  key={brand}
+                  className="text-lg font-semibold text-white/35 grayscale transition hover:text-white hover:grayscale-0"
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </motion.section>
+        </motion.section>
+      )}
 
       <motion.section {...fadeUp} className="gd-section-divider py-16 md:py-24">
         <div className="gd-container">
@@ -355,8 +357,6 @@ const FALLBACK_TEAM: TeamMember[] = [
     description: "Checking the final result before handover.",
   },
 ];
-
-const FALLBACK_PARTNERS = ["Tekno", "Sika", "Baumit", "Mapei", "Ceresit", "Weber"];
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -452,10 +452,9 @@ function normalizeTeamMembers(raw: unknown): TeamMember[] {
 }
 
 function normalizePartnerNames(raw: unknown): string[] {
-  if (!Array.isArray(raw)) return FALLBACK_PARTNERS;
+  if (!Array.isArray(raw)) return [];
 
-  const next = raw.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
-  return next.length > 0 ? next : FALLBACK_PARTNERS;
+  return raw.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
 }
 
 function IntroStat({
