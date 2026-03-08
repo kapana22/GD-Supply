@@ -32,8 +32,7 @@ export default async function PartnersPage({ params }: { params: { locale: strin
     <main className="gd-page-shell relative">
       <PageHero
         locale={params.locale}
-        eyebrow={tPage("hero.eyebrow")}
-        showEyebrow
+        eyebrow=""
         title={tPage("hero.title")}
         subtitle={tPage("hero.subtitle")}
         breadcrumbs={[
@@ -43,9 +42,9 @@ export default async function PartnersPage({ params }: { params: { locale: strin
         backgroundTheme="portfolio"
       />
 
-      <section className="gd-cv-auto gd-section-divider relative py-[64px] md:py-[96px]">
+      <section className="gd-cv-auto gd-section gd-section-divider relative">
         <div className="gd-container">
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             {PARTNER_LOGOS.map((logo) => (
               <div
                 key={logo.src}

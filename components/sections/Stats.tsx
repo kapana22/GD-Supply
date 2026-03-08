@@ -9,13 +9,11 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
   const t = useTranslations("stats");
 
   return (
-    <section className="relative py-[60px] md:py-[100px]">
+    <section className="relative gd-section gd-section-divider">
       <div className="gd-container">
-        <div className="mb-10 md:mb-12">
-          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.18em] text-primary-green">
-            {t("eyebrow")}
-          </p>
-          <h2 className="tt-heading-lg mt-3 text-white">{title}</h2>
+        <div className="gd-heading-stack mb-10 md:mb-12">
+          <p className="tt-label text-primary-green">{t("eyebrow")}</p>
+          <h2 className="tt-heading-lg text-white">{title}</h2>
         </div>
 
         <div className="grid gap-5 md:grid-cols-5">
@@ -26,7 +24,7 @@ export function Stats({ title, items }: { title: string; items: Stat[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.3, delay: idx * 0.04 }}
-              className="rounded-xl border border-white/10 bg-gd-panel p-6 shadow-elevated"
+              className="gd-card gd-card-padding shadow-elevated"
             >
               <p className="font-sans text-3xl font-extrabold text-primary-green md:text-4xl">{s.value}</p>
               <p className="mt-2 text-sm font-semibold text-gd-muted">{s.label}</p>

@@ -26,39 +26,8 @@ const fadeUp = (delay: number) => ({
 
 export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats }: HeroProps) {
   const locale = useLocale();
-  const [isMobile, setIsMobile] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoWrapperRef = useRef<HTMLDivElement>(null);
-
-  // Detect mobile once on client
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  // Start loading video when hero enters viewport (especially for mobile)
-  useEffect(() => {
-    if (!isMobile) {
-      setShouldLoadVideo(true);
-      return;
-    }
-    const el = videoWrapperRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoadVideo(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [isMobile]);
 
   const parsedStats = stats.slice(0, 4).map((item) => {
     const match = item.value.match(/(\d+)(.*)/);
@@ -74,6 +43,17 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
     <Clock3 key="clock" className="h-5 w-5" strokeWidth={1.8} />,
   ] as const;
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = navigator.connection?.saveData;
+    setShouldLoadVideo(!(reduceMotion || saveData));
+  }, []);
+
+  const preloadMode =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches ? "metadata" : "auto";
+
   return (
     <section className="relative -mt-[84px] overflow-hidden pt-[84px] min-h-[640px] md:min-h-[740px]">
       {/* Background video across all breakpoints */}
@@ -85,12 +65,14 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
             muted
             loop
             playsInline
-            preload={isMobile ? "metadata" : "auto"}
+            preload={preloadMode}
           >
             <source src="/assets/hero-video480-opt.mp4" type="video/mp4" media="(max-width: 768px)" />
             <source src="/assets/hero-video1080-opt.mp4" type="video/mp4" />
           </video>
-        ) : null}
+        ) : (
+          <div className="hero-video bg-[radial-gradient(90%_70%_at_50%_40%,rgba(31,143,97,0.25),transparent_60%),linear-gradient(180deg,#11152c_0%,#0c0f26_100%)]" />
+        )}
 
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,28,51,0)_0px,rgba(26,28,51,0)_96px,rgba(26,28,51,0.12)_160px,rgba(26,28,51,0.46)_52%,rgba(26,28,51,0.94))]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(980px_560px_at_74%_28%,rgba(28,184,121,0.14),transparent_62%),radial-gradient(760px_420px_at_14%_22%,rgba(255,255,255,0.07),transparent_70%)]" />
@@ -109,14 +91,14 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
 
           <motion.h1
             {...fadeUp(0.15)}
-            className="tt-heading-xl hero-heading max-w-[12ch] font-extrabold text-white"
+            className="tt-heading-xl max-w-[12ch] font-extrabold text-white"
           >
             {title}
           </motion.h1>
 
           <motion.p
             {...fadeUp(0.3)}
-            className="tt-detail hero-subtitle max-w-2xl text-base text-gd-muted md:text-lg"
+            className="tt-detail max-w-2xl text-base text-gd-muted md:text-lg"
           >
             {subtitle}
           </motion.p>

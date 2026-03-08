@@ -43,14 +43,13 @@ export default async function ServicesPage({ params }: { params: { locale: strin
           { label: tNav("services") },
         ]}
         backgroundTheme="services"
-        compact
       />
 
       <ServicesHubPage locale={params.locale} services={coreServices} showHeader={false} />
 
-      <section className="gd-cv-auto gd-section-divider relative pb-[56px] pt-[32px] text-white md:pb-[88px] md:pt-[40px]">
+      <section className="gd-cv-auto gd-section relative text-white">
         <div className="gd-container">
-          <div className="mb-6 md:mb-8">
+          <div className="gd-stack-sm mb-6 md:mb-8">
             <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
               {t("materials.badge")}
             </p>
@@ -61,10 +60,10 @@ export default async function ServicesPage({ params }: { params: { locale: strin
 
           <Link
             href={`/${params.locale}/products`}
-            className="group block rounded-2xl border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
+            className="gd-card group block border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
           >
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-white/10">
+              <div className="gd-img-frame relative aspect-[16/9] w-full">
                 <Image
                   src="/assets/services/materials.jpg"
                   alt={t("materials.image_alt")}
@@ -79,7 +78,7 @@ export default async function ServicesPage({ params }: { params: { locale: strin
                 <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
                   {t("materials.badge")}
                 </p>
-                <p className="tt-detail mt-3 text-base leading-relaxed text-gd-muted">
+                <p className="tt-detail mt-3 text-gd-muted">
                   {t("materials.body")}
                 </p>
 

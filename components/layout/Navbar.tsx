@@ -13,6 +13,7 @@ const links = [
   { href: "", key: "home" },
   { href: "services", key: "services" },
   { href: "portfolio", key: "portfolio" },
+  { href: "partners", key: "partners" },
   { href: "about", key: "about" },
   { href: "blog", key: "blog" },
   { href: "calculator", key: "calculator" },
@@ -85,7 +86,7 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed left-0 right-0 top-0 z-50 transition-all duration-500"
+      className="fixed left-0 right-0 top-0 z-50 transition-all duration-500 relative"
       style={{
         background: scrolled ? "rgba(26,28,51,0.72)" : "rgba(26,28,51,0.42)",
         backdropFilter: scrolled ? "blur(20px) saturate(1.35)" : "blur(16px) saturate(1.15)",
@@ -145,7 +146,7 @@ export function Navbar() {
         }}
       />
       <div
-        className="relative gd-container flex items-center justify-between gap-4 transition-[height,padding] duration-500"
+        className="relative gd-container flex items-center justify-between gap-3 lg:grid lg:grid-cols-[auto,1fr,auto] lg:gap-5 lg:pr-0 transition-[height,padding] duration-500"
         style={{ height: scrolled ? 74 : 78 }}
       >
         <Link
@@ -165,14 +166,9 @@ export function Navbar() {
             className="relative h-11 w-11 object-contain"
             priority
           />
-          <div className="relative leading-tight">
-            <p className="tt-label text-sm font-black leading-none tracking-[0.02em] text-white">
-              GD SUPPLY
-            </p>
-          </div>
         </Link>
 
-        <nav className="relative z-[1] hidden min-w-0 items-center justify-center gap-1 lg:flex">
+        <nav className="relative z-[1] hidden min-w-0 flex items-center justify-center gap-2.5 xl:gap-3 px-1.5 lg:flex overflow-x-auto scrollbar-none mx-auto max-w-[1180px]">
           {links.map((item) => {
             const isActive = item.href === "" ? activeHref === "" : activeHref === item.href;
             const href = item.href ? `/${locale}/${item.href}` : `/${locale}`;
@@ -182,7 +178,7 @@ export function Navbar() {
               <Link
                 key={item.key}
                 href={href}
-                className={`tt-ui inline-flex h-10 items-center rounded-md px-3 text-sm font-semibold leading-none transition ${
+                className={`tt-ui inline-flex h-10 items-center rounded-md px-2 text-[12.5px] xl:px-2.5 xl:text-[13px] font-semibold leading-none transition ${
                   isActive
                     ? "text-white"
                     : "text-white/72 hover:bg-white/[0.03] hover:text-white"
@@ -194,12 +190,11 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="relative z-[1] hidden shrink-0 items-center gap-3 lg:flex">
+        <div className="relative z-[1] hidden shrink-0 items-center justify-end gap-3 lg:flex">
           <LanguageDropdown locale={locale} onChange={setLocale} />
-
           <a
             href={`tel:${phone.replaceAll(" ", "")}`}
-            className="btn-primary tt-ui relative inline-flex h-11 items-center justify-center rounded-full px-5 py-0 text-sm font-bold leading-none tracking-normal tabular-nums text-white whitespace-nowrap"
+            className="btn-primary tt-ui relative inline-flex h-11 min-w-[140px] items-center justify-center rounded-full px-4 xl:px-5 py-0 text-sm font-bold leading-none tracking-normal tabular-nums text-white whitespace-nowrap"
             style={SYSTEM_CONTROL_FONT_STYLE}
           >
             {phone}

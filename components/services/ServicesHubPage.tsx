@@ -23,21 +23,15 @@ export function ServicesHubPage({
   const imageSizes = "(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw";
 
   return (
-    <section className="gd-cv-auto bg-transparent py-[56px] text-white md:py-[88px]">
-      <div className="gd-container">
-        {showHeader ? (
-          <div className="mb-10 md:mb-14">
-            <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-              {tHub("badge")}
-            </p>
-            <h1 className="tt-heading-xl mt-3 max-w-[12ch] font-black">
-              {tHub("title")}
-            </h1>
-            <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-lg md:text-justify">
-              {tHub("subtitle")}
-            </p>
-          </div>
-        ) : null}
+    <section className="gd-cv-auto gd-section gd-section-divider bg-transparent text-white">
+        <div className="gd-container">
+          {showHeader ? (
+            <div className="gd-section-header">
+              <p className="tt-label text-primary-green">{tHub("badge")}</p>
+              <h1 className="tt-heading-xl max-w-[16ch] font-black">{tHub("title")}</h1>
+              <p className="tt-detail max-w-3xl text-gd-muted">{tHub("subtitle")}</p>
+            </div>
+          ) : null}
 
         <div className={gridClass}>
           {services.map((service, index) => (
@@ -51,9 +45,9 @@ export function ServicesHubPage({
             >
               <Link
                 href={`/${locale}/services/${service.slug}`}
-                className="group block h-full overflow-hidden rounded-2xl border border-white/10 bg-gd-panel shadow-elevated transition duration-300 hover:border-primary-green/70"
+                className="gd-card group block h-full overflow-hidden shadow-elevated transition duration-300 hover:border-primary-green/70"
               >
-                <div className={`relative ${imageAspectClass} overflow-hidden`}>
+                <div className={`gd-img-frame relative ${imageAspectClass}`}>
                   <Image
                     src={service.cardImage}
                     alt={tCatalog(service.cardTitle)}
@@ -65,10 +59,10 @@ export function ServicesHubPage({
                 </div>
 
                 <div className="flex h-full flex-col p-5 md:p-6">
-                  <h2 className="tt-heading-md text-[18px] font-extrabold text-white md:text-[20px]">
+                  <h2 className="tt-heading-md font-extrabold text-white">
                     {tCatalog(service.cardTitle)}
                   </h2>
-                  <p className="tt-detail mt-3 line-clamp-3 text-[15px] leading-relaxed text-gd-muted">
+                  <p className="tt-detail mt-3 line-clamp-3 text-gd-muted">
                     {tCatalog(service.cardSummary)}
                   </p>
 

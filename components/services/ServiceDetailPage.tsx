@@ -39,7 +39,7 @@ export function ServiceDetailPage({
         />
       )}
 
-      <section className="gd-section-divider py-12 md:py-16">
+      <section className="gd-section gd-section-divider">
         <div className="gd-container">
           <SectionHeading index="02" title={tCatalog("sections.usage")} />
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -66,7 +66,7 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="gd-section-divider py-12 md:py-16">
+      <section className="gd-section gd-section-divider">
         <div className="gd-container">
           <SectionHeading index="03" title={tCatalog("sections.materials")} />
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -90,7 +90,7 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="gd-section-divider py-12 md:py-16">
+      <section className="gd-section gd-section-divider">
         <div className="gd-container">
           <SectionHeading index="04" title={tCatalog("sections.process")} />
           <p className="tt-detail mt-3 max-w-3xl text-sm text-gd-muted md:text-base md:text-justify">
@@ -126,7 +126,7 @@ export function ServiceDetailPage({
                   <span className="grid h-10 w-10 place-items-center rounded-full border border-primary-green/45 bg-primary-green/10 text-sm font-extrabold text-primary-green shadow-[0_6px_16px_rgba(23,109,72,0.30)]">
                     {step.step}
                   </span>
-                  <div className="h-px flex-1 rounded-full bg-white/12" />
+                  <div className="gd-divider-inline flex-1 opacity-80" />
                 </div>
                 <div className="flex flex-1 flex-col rounded-2xl border border-white/12 bg-gradient-to-br from-[#1f243a] via-[#1a1d33] to-[#141729] p-5 shadow-[0_14px_32px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:-translate-y-1">
                   <p className="text-base font-extrabold text-white">{tCatalog(step.titleKey)}</p>
@@ -140,20 +140,22 @@ export function ServiceDetailPage({
         </div>
       </section>
 
-      <section className="gd-section-divider-y py-12 md:py-16">
+      <section className="gd-section gd-section-divider-y">
         <div className="gd-container">
           <div className="rounded-2xl border border-primary-green/20 bg-gradient-to-br from-primary-green/10 via-gd-panel/60 to-transparent p-6 md:p-8 shadow-elevated">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="max-w-2xl">
-                <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                  {tCatalog("cta.badge")}
-                </p>
-                <h2 className="tt-heading-lg mt-3 font-extrabold text-white">
-                  {tCatalog("cta.title")}
-                </h2>
-                <p className="tt-detail mt-3 text-base text-gd-muted">
-                  {tCatalog("cta.body")}
-                </p>
+                <div className="gd-section-header-tight">
+                  <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                    {tCatalog("cta.badge")}
+                  </p>
+                  <h2 className="tt-heading-lg font-extrabold text-white">
+                    {tCatalog("cta.title")}
+                  </h2>
+                  <p className="tt-detail text-base text-gd-muted">
+                    {tCatalog("cta.body")}
+                  </p>
+                </div>
               </div>
 
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -224,12 +226,14 @@ function ServiceHero({
               <span className="text-white/35">→</span>
               <span className="text-white">{title}</span>
             </div>
-            <h1 className="tt-heading-xl max-w-full font-black text-white">
-              {heroTitle}
-            </h1>
-            <p className="tt-detail mt-4 text-base text-white/85 md:text-lg md:text-justify">
-              {subtitle}
-            </p>
+            <div className="gd-section-header">
+              <h1 className="tt-heading-xl max-w-full font-black text-white">
+                {heroTitle}
+              </h1>
+              <p className="tt-detail text-base text-white/85 md:text-lg md:text-justify">
+                {subtitle}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -376,3 +380,5 @@ function HotelOutlineIcon() {
     </svg>
   );
 }
+
+

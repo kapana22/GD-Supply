@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type TouchEvent } from "react";
 import { useTranslations } from "next-intl";
 import FadeUp from "@/components/FadeUp";
 import PortfolioCard, { PortfolioProject } from "@/components/PortfolioCard";
@@ -53,6 +53,8 @@ export function PortfolioGrid({
   const allFilter = hasFilters ? filters[0] ?? t("filters_all") : null;
   const [filter, setFilter] = useState<string | null>(allFilter);
   const [activeProject, setActiveProject] = useState<EnrichedProject | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const enriched = useMemo<EnrichedProject[]>(
     () =>
@@ -80,11 +82,42 @@ export function PortfolioGrid({
     [maxItems, visible],
   );
 
+  const lightboxItems = limited;
+
+  const goNext = useCallback(() => {
+    if (activeIndex === null || lightboxItems.length === 0) return;
+    const next = (activeIndex + 1) % lightboxItems.length;
+    setActiveIndex(next);
+    setActiveProject(lightboxItems[next]);
+  }, [activeIndex, lightboxItems]);
+
+  const goPrev = useCallback(() => {
+    if (activeIndex === null || lightboxItems.length === 0) return;
+    const prev = (activeIndex - 1 + lightboxItems.length) % lightboxItems.length;
+    setActiveIndex(prev);
+    setActiveProject(lightboxItems[prev]);
+  }, [activeIndex, lightboxItems]);
+
   useEffect(() => {
-    if (!activeProject) return;
+    if (activeIndex === null) return;
+    if (activeIndex >= lightboxItems.length) {
+      setActiveIndex(null);
+      setActiveProject(null);
+      return;
+    }
+    setActiveProject(lightboxItems[activeIndex]);
+  }, [activeIndex, lightboxItems]);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveProject(null);
+      if (event.key === "Escape") {
+        setActiveIndex(null);
+        setActiveProject(null);
+      }
+      if (event.key === "ArrowRight") goNext();
+      if (event.key === "ArrowLeft") goPrev();
     };
 
     const originalOverflow = document.body.style.overflow;
@@ -95,12 +128,42 @@ export function PortfolioGrid({
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [activeProject]);
+  }, [activeIndex, goNext, goPrev]);
+
+  const handleSelect = (idx: number) => {
+    if (!enableModal) return;
+    setActiveIndex(idx);
+    setActiveProject(lightboxItems[idx]);
+  };
+
+  const handleClose = () => {
+    setActiveIndex(null);
+    setActiveProject(null);
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    setTouchStartX(event.changedTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStartX === null) return;
+    const delta = touchStartX - event.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) {
+        goNext();
+      } else {
+        goPrev();
+      }
+    }
+    setTouchStartX(null);
+  };
+
+  const sectionSpacing = compact ? "gd-section-tight" : "gd-section";
 
   return (
     <section
       id="portfolio"
-      className={`gd-cv-auto gd-section-divider relative ${compact ? "py-12 md:py-16" : "py-[72px] md:py-[120px]"}`}
+      className={`gd-cv-auto gd-section-divider relative ${sectionSpacing}`}
     >
       <div className="gd-container">
         {showHeader ? (
@@ -109,18 +172,18 @@ export function PortfolioGrid({
               <p className="tt-label text-primary-green">{label || title}</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <h2 className="tt-heading-lg mt-3 font-extrabold text-white">{title}</h2>
+              <div className="gd-section-header-tight">
+                <h2 className="tt-heading-lg font-extrabold text-white">{title}</h2>
+                {subtitle?.trim() ? (
+                  <p className="tt-detail max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
+                ) : null}
+              </div>
             </FadeUp>
-            {subtitle?.trim() ? (
-              <FadeUp delay={0.2}>
-                <p className="tt-detail mt-4 max-w-3xl text-base leading-relaxed text-gd-muted">{subtitle}</p>
-              </FadeUp>
-            ) : null}
           </>
         ) : null}
 
         {hasFilters ? (
-          <div className={`${showHeader ? "mt-10" : "mt-3"} flex flex-wrap gap-2.5`}>
+          <div className={`${showHeader ? "mt-10" : "mt-6"} flex flex-wrap gap-2.5`}>
             {filters.map((item) => {
               const active = item === filter;
               return (
@@ -140,13 +203,13 @@ export function PortfolioGrid({
           </div>
         ) : null}
 
-        <div className={`${showHeader ? "mt-10" : "mt-3"} grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
+        <div className={`${showHeader ? "mt-10" : "mt-6 sm:mt-8"} grid gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
           {limited.map((project, idx) => (
             <PortfolioCard
               key={project.key}
               project={project}
               index={idx}
-              onSelect={enableModal ? () => setActiveProject(project) : undefined}
+              onSelect={enableModal ? () => handleSelect(idx) : undefined}
             />
           ))}
         </div>
@@ -160,7 +223,7 @@ export function PortfolioGrid({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setActiveProject(null)}
+              onClick={handleClose}
             >
               <motion.div
                 className="relative w-full max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-[#12162a] shadow-[0_30px_100px_rgba(0,0,0,0.55)]"
@@ -172,14 +235,41 @@ export function PortfolioGrid({
               >
                 <button
                   type="button"
-                  onClick={() => setActiveProject(null)}
+                  onClick={handleClose}
                   className="tt-ui absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55"
                   aria-label={t("modal.close")}
                 >
                   <CloseIcon />
                 </button>
 
-                <div className="relative aspect-[16/10] w-full md:aspect-[16/9]">
+                <button
+                  type="button"
+                  aria-label="Previous project"
+                  className="tt-ui absolute left-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55 sm:flex"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    goPrev();
+                  }}
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next project"
+                  className="tt-ui absolute right-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur transition hover:bg-black/55 sm:flex"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    goNext();
+                  }}
+                >
+                  ›
+                </button>
+
+                <div
+                  className="relative aspect-[16/10] w-full md:aspect-[16/9]"
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
                   <Image
                     src={activeProject.image}
                     alt={activeProject.title}
@@ -199,6 +289,29 @@ export function PortfolioGrid({
                   <div className="tt-ui rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/85">
                     {activeProject.area}
                   </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 p-4 sm:hidden">
+                  <button
+                    type="button"
+                    className="tt-ui inline-flex min-w-[88px] items-center justify-center rounded-full border border-white/15 bg-black/35 px-4 py-2 text-white backdrop-blur transition hover:bg-black/55"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      goPrev();
+                    }}
+                  >
+                    ‹ Prev
+                  </button>
+                  <button
+                    type="button"
+                    className="tt-ui inline-flex min-w-[88px] items-center justify-center rounded-full border border-white/15 bg-black/35 px-4 py-2 text-white backdrop-blur transition hover:bg-black/55"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      goNext();
+                    }}
+                  >
+                    Next ›
+                  </button>
                 </div>
               </motion.div>
             </motion.div>

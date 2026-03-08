@@ -8,9 +8,9 @@ export function ReferencesVideo() {
   const t = useTranslations("portfolio");
 
   return (
-    <section className="gd-section-divider py-[68px] md:py-[96px]">
-      <div className="gd-container space-y-6 md:space-y-8">
-        <div className="space-y-3 md:space-y-4">
+    <section className="gd-section gd-section-divider">
+      <div className="gd-container gd-stack-md">
+        <div className="gd-section-header-tight">
           <h2 className="tt-heading-lg font-extrabold text-white">{t("video.title")}</h2>
         </div>
 

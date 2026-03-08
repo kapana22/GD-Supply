@@ -90,17 +90,15 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="gd-cv-auto gd-section-divider bg-transparent py-[56px] md:py-[72px]"
+      className="gd-cv-auto gd-section gd-section-divider bg-transparent"
     >
       <div className="gd-container">
         <div className="grid items-stretch gap-5 lg:grid-cols-[430px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[460px_minmax(0,1fr)] xl:gap-8">
-          <div className="flex h-full flex-col rounded-[22px] border border-white/12 bg-[color:var(--gd-panel)]/72 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl md:p-7">
-            <h2 className="tt-heading-lg text-white">
-              {t("title")}
-            </h2>
-            <p className="tt-detail mt-3 text-base leading-relaxed text-white/70">
-              {t("subtitle")}
-            </p>
+          <div className="gd-card gd-card-padding flex h-full flex-col gap-4">
+            <div className="gd-section-header">
+              <h2 className="tt-heading-lg text-white">{t("title")}</h2>
+              <p className="tt-detail text-white/70">{t("subtitle")}</p>
+            </div>
 
             <div className="mt-5 divide-y divide-white/10">
               <ContactItem
@@ -354,7 +352,7 @@ function ServiceDropdown({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className={`gd-input w-full px-4 py-3 text-left text-[15px] font-semibold transition ${
+        className={`gd-input relative w-full px-4 py-3 pr-10 text-left text-[15px] font-semibold transition ${
           open
             ? "border-primary-green/80 bg-primary-green/5 text-white shadow-[0_0_0_2px_rgba(23,109,72,0.14)]"
             : value
@@ -364,7 +362,7 @@ function ServiceDropdown({
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span className="block truncate pr-8">{value || placeholder}</span>
+        <span className="block truncate">{value || placeholder}</span>
         <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-white/70">
           <CaretDown
             size={16}

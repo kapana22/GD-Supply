@@ -24,9 +24,11 @@ const BLOG_PANEL = "var(--gd-panel)";
 export default function BlogPageClient({
   posts,
   hideTopHero = false,
+  disableDividers = false,
 }: {
   posts: BlogPostMeta[];
   hideTopHero?: boolean;
+  disableDividers?: boolean;
 }) {
   const locale = useLocale();
   const t = useTranslations("blog");
@@ -36,12 +38,14 @@ export default function BlogPageClient({
 
   const emptyText = t("empty");
 
+  const mainClass = `blog-page ${
+    hideTopHero ? "min-h-screen bg-transparent" : "gd-page-shell min-h-screen bg-transparent"
+  }${disableDividers ? " no-dividers" : ""}`;
+
   return (
-    <main
-      className={`blog-page ${hideTopHero ? "min-h-screen bg-transparent" : "gd-page-shell min-h-screen bg-transparent"}`}
-    >
+    <main className={mainClass}>
       {hideTopHero ? null : (
-        <section className="relative overflow-hidden pb-20 pt-32">
+        <section className="gd-section-compact relative overflow-hidden">
           <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
@@ -61,7 +65,7 @@ export default function BlogPageClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-6 flex items-center justify-center gap-2 text-sm text-white/55">
+              <div className="mb-4 flex items-center justify-center gap-2 text-sm text-white/55">
                 <Link href={`/${locale}`} className="transition-colors hover:text-white">
                   {t("breadcrumbs.home")}
                 </Link>
@@ -69,14 +73,16 @@ export default function BlogPageClient({
                 <span className="text-[var(--gd-accent)]">{t("breadcrumbs.blog")}</span>
               </div>
 
-              <h1 className="tt-heading-xl mb-4 font-black text-white">{t("title")}</h1>
-              <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/66">{t("subtitle")}</p>
+              <div className="gd-section-header mx-auto max-w-3xl text-center">
+                <h1 className="tt-heading-xl font-black text-white">{t("title")}</h1>
+                <p className="text-lg leading-relaxed text-white/66">{t("subtitle")}</p>
+              </div>
             </motion.div>
           </div>
         </section>
       )}
 
-      <section className="gd-section-divider pb-24 pt-10 md:pt-12">
+      <section className="gd-section-compact gd-section-divider">
         <div className="gd-container-blog">
           <AnimatePresence mode="wait">
             <motion.div
@@ -88,7 +94,7 @@ export default function BlogPageClient({
               {filtered.length === 0 ? (
                 <div className="py-20 text-center text-lg text-white/45">{emptyText}</div>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-5">
                   {largePosts.length > 0 ? (
                     <div className="grid auto-rows-fr gap-6 lg:grid-cols-2">
                       {largePosts.map((post, index) => (
@@ -127,17 +133,19 @@ export default function BlogPageClient({
         </div>
       </section>
 
-      <section className="gd-section-divider pb-24 pt-12 md:pt-14">
+      <section className="gd-section-compact gd-section-divider">
         <div
-          className="gd-container-narrow rounded-3xl p-8 text-center md:p-12"
+          className="gd-container-narrow rounded-3xl p-7 text-center md:p-10"
           style={{
             background: "linear-gradient(135deg, rgba(var(--gd-accent-rgb),0.12) 0%, rgba(26,28,51,0.88) 100%)",
             border: "1px solid rgba(var(--gd-accent-rgb),0.20)",
             boxShadow: "0 16px 38px rgba(0,0,0,0.2)",
           }}
         >
-          <h2 className="tt-heading-lg mb-4 text-white">{t("cta.title")}</h2>
-          <p className="tt-detail mb-8 text-white/70">{t("cta.subtitle")}</p>
+          <div className="gd-section-header-tight text-center">
+            <h2 className="tt-heading-lg text-white">{t("cta.title")}</h2>
+            <p className="tt-detail text-white/70">{t("cta.subtitle")}</p>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href={`/${locale}/contact`}

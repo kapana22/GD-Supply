@@ -77,10 +77,10 @@ export function Calculator({ showHeader = true, compact = false }: { showHeader?
   const animatedWarrantyMin = useCountTransition(result.warrantyMin, resultVisible, 700);
   const animatedWarrantyMax = useCountTransition(result.warrantyMax, resultVisible, 850);
 
-  const padding = compact ? "py-10 md:py-14" : "py-[72px] md:py-[120px]";
+  const sectionSpacing = compact ? "gd-section-tight" : "gd-section";
 
   return (
-    <section id="calculator" className={`gd-cv-auto gd-section-divider relative ${padding}`}>
+    <section id="calculator" className={`gd-cv-auto gd-section-divider relative ${sectionSpacing}`}>
       <div className="pointer-events-none absolute inset-0 gd-bg-main" />
 
       <div className="relative gd-container">
@@ -99,7 +99,7 @@ export function Calculator({ showHeader = true, compact = false }: { showHeader?
         ) : null}
 
         <div className={`${showHeader ? "mt-12" : "mt-3"} grid gap-7 lg:grid-cols-[1.05fr_0.95fr]`}>
-          <div className="rounded-xl border border-white/10 bg-[color:var(--gd-surface)]/55 p-6 shadow-elevated backdrop-blur md:p-8">
+          <div className="gd-card gd-card-padding shadow-elevated">
             <div className="grid gap-5">
               <Field label={fieldLabels.category}>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
@@ -188,7 +188,7 @@ export function Calculator({ showHeader = true, compact = false }: { showHeader?
 
           <div
             ref={resultRef}
-            className="rounded-xl border border-primary-green/70 bg-gd-result p-6 shadow-[0_10px_30px_rgba(0,0,0,0.35),0_0_0_1px_rgba(23,109,72,0.15)] md:p-8"
+            className="gd-card gd-card-padding border border-primary-green/70 bg-gd-result shadow-[0_10px_30px_rgba(0,0,0,0.35),0_0_0_1px_rgba(23,109,72,0.15)]"
           >
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{fieldLabels.price}</p>
             <p className="mt-2 font-sans text-4xl font-extrabold tracking-tight text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] md:text-[56px] md:leading-[1.02]">

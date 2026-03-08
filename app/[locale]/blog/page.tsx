@@ -39,9 +39,8 @@ export default async function BlogPage({ params }: { params: { locale: string } 
         breadcrumbs={[
           { label: t("breadcrumbs.home"), href: `/${params.locale}` },
           { label: t("breadcrumbs.blog") },
-        ]}
+        ]} 
         backgroundTheme="blog"
-        compact
       />
       <BlogPageClient posts={posts} hideTopHero />
     </>

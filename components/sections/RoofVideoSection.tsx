@@ -10,7 +10,7 @@ export default function RoofVideoSection() {
   const t = useTranslations("roof_video");
 
   return (
-    <section className="gd-section-divider relative overflow-hidden">
+    <section className="gd-section-divider gd-section-tight relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -34,10 +34,12 @@ export default function RoofVideoSection() {
         <div className="absolute inset-0 bg-[radial-gradient(56%_54%_at_14%_18%,rgba(130,193,255,0.18),transparent_72%)]" />
 
         <div className="relative z-10 gd-container flex h-full flex-col items-center justify-center text-center">
-          <h2 className="tt-heading-xl max-w-none text-white drop-shadow-[0_8px_24px_rgba(4,10,28,0.55)] md:whitespace-nowrap">
-            {t("title")}
-          </h2>
-          <p className="tt-detail mt-3 max-w-3xl text-white/80">{t("subtitle")}</p>
+          <div className="gd-section-header-tight items-center justify-center">
+            <h2 className="tt-heading-xl max-w-none text-white drop-shadow-[0_8px_24px_rgba(4,10,28,0.55)] md:whitespace-nowrap">
+              {t("title")}
+            </h2>
+            <p className="tt-detail max-w-3xl text-white/80">{t("subtitle")}</p>
+          </div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
             <a
               href={t("contact_href")}

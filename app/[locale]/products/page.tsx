@@ -51,18 +51,19 @@ export default async function ProductsPage({ params }: { params: { locale: strin
           { label: t("breadcrumbs.current") },
         ]}
         backgroundTheme="services"
-        compact
       />
 
-      <section className="gd-cv-auto relative py-[56px] md:py-[88px]">
+      <section className="gd-cv-auto gd-section gd-section-divider relative">
         <div className="gd-container">
           <div className="space-y-10">
             {categories.map((category) => (
               <section key={category.title} className="rounded-2xl border border-white/10 bg-gd-panel p-5 md:p-6">
-                <p className="tt-label inline-flex rounded-full border border-primary-green/30 bg-primary-green/10 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-                  {category.title}
-                </p>
-                <p className="tt-detail mt-3 max-w-4xl text-sm leading-relaxed text-gd-muted">{category.description}</p>
+                <div className="gd-section-header-tight">
+                  <p className="tt-label inline-flex rounded-full border border-primary-green/30 bg-primary-green/10 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+                    {category.title}
+                  </p>
+                  <p className="tt-detail max-w-4xl text-sm leading-relaxed text-gd-muted">{category.description}</p>
+                </div>
 
                 <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                   {category.items.map((item) => (

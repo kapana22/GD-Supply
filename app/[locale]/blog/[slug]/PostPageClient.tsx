@@ -66,7 +66,6 @@ export default function PostPageClient({
         subtitle={post.excerpt}
         backgroundImage={post.image}
         backgroundTheme="blog"
-        compact
         breadcrumbs={[
           { label: tBlog("breadcrumbs.home"), href: `/${locale}` },
           { label: tBlog("breadcrumbs.blog"), href: `/${locale}/blog` },
@@ -74,7 +73,7 @@ export default function PostPageClient({
         ]}
       />
 
-      <div className="relative gd-container-narrow pb-4 pt-8">
+      <div className="relative gd-container-narrow pb-2 pt-5">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +97,7 @@ export default function PostPageClient({
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
-        className="gd-container-narrow mb-12"
+        className="gd-container-narrow mb-8"
       >
         <div
           className="relative h-72 overflow-hidden rounded-2xl md:h-80"
@@ -112,7 +111,7 @@ export default function PostPageClient({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="blog-content gd-container-narrow pb-16"
+        className="blog-content gd-container-narrow pb-10"
       >
         <MDXRemote {...source} />
 
@@ -132,42 +131,50 @@ export default function PostPageClient({
         </div>
       </motion.article>
 
-      <section className="gd-section-divider gd-container-narrow mb-20 pt-10">
-        <div
-          className="rounded-2xl p-8 text-center"
-          style={{
-            background: "rgba(var(--gd-accent-rgb),0.09)",
-            border: "1px solid rgba(var(--gd-accent-rgb),0.20)",
-            boxShadow: "0 14px 32px rgba(0,0,0,0.18)",
-          }}
-        >
-          <p className="tt-heading-md mb-2 text-white">{t("ask_title")}</p>
-          <p className="tt-small mb-6 text-white/70">{t("ask_subtitle")}</p>
-          <Link
-            href={`/${locale}/contact`}
-            className="tt-ui inline-flex items-center gap-2 rounded-xl bg-[var(--gd-accent)] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1f8f61] hover:shadow-[0_0_20px_rgba(23,109,72,0.32)]"
+      <section className="gd-section-compact gd-section-divider">
+        <div className="gd-container-narrow">
+          <div
+            className="rounded-2xl p-8 text-center"
+            style={{
+              background: "rgba(var(--gd-accent-rgb),0.09)",
+              border: "1px solid rgba(var(--gd-accent-rgb),0.20)",
+              boxShadow: "0 14px 32px rgba(0,0,0,0.18)",
+            }}
           >
-            {t("ask_cta")} →
-          </Link>
+            <div className="gd-section-header-tight text-center">
+              <p className="tt-heading-md text-white">{t("ask_title")}</p>
+              <p className="tt-small text-white/70">{t("ask_subtitle")}</p>
+            </div>
+            <Link
+              href={`/${locale}/contact`}
+              className="tt-ui inline-flex items-center gap-2 rounded-xl bg-[var(--gd-accent)] px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1f8f61] hover:shadow-[0_0_20px_rgba(23,109,72,0.32)]"
+            >
+              {t("ask_cta")} →
+            </Link>
+          </div>
         </div>
       </section>
 
       {related.length > 0 ? (
-        <section className="gd-section-divider gd-container-blog pb-24 pt-10">
-          <h2 className="tt-heading-md mb-8 text-white">{t("related")}</h2>
-          <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-3">
-            {related.map((item, index) => (
-              <motion.div
-                key={item.slug}
-                className="h-full"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <RelatedCard post={item} locale={locale} readLabel={t("read_more")} />
-              </motion.div>
-            ))}
+        <section className="gd-section gd-section-divider">
+          <div className="gd-container-blog">
+            <div className="gd-section-header-tight">
+              <h2 className="tt-heading-md text-white">{t("related")}</h2>
+            </div>
+            <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-3">
+              {related.map((item, index) => (
+                <motion.div
+                  key={item.slug}
+                  className="h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <RelatedCard post={item} locale={locale} readLabel={t("read_more")} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
@@ -195,3 +202,5 @@ function RelatedCard({ post, locale, readLabel }: { post: BlogPostMeta; locale: 
     </Link>
   );
 }
+
+

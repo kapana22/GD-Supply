@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Calculator } from "@/components/sections/Calculator";
 import { PageHero } from "@/components/sections/PageHero";
-import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
 import { locales } from "@/lib/i18n";
 
 const baseUrl = "https://gdsupply.ge";
@@ -24,19 +23,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 }
 
 export default async function CalculatorPage({ params }: { params: { locale: string } }) {
-  const tPortfolio = await getTranslations("portfolio");
   const tPage = await getTranslations("calculatorPage");
-
-  const filters = tPortfolio.raw("filters") as string[];
-  const projects = tPortfolio.raw("projects") as Array<{
-    name: string;
-    work: string;
-    area: string;
-    material: string;
-    duration: string;
-    tags: string[];
-    image?: string;
-  }>;
 
   return (
     <main className="gd-page-shell relative">
@@ -50,18 +37,9 @@ export default async function CalculatorPage({ params }: { params: { locale: str
           { label: tPage("breadcrumbs.current") },
         ]}
         backgroundTheme="calculator"
-        compact
         fullWidthTitle
       />
-      <Calculator showHeader={false} compact />
-      <PortfolioGrid
-        title={tPortfolio("title")}
-        subtitle={tPortfolio("subtitle")}
-        filters={filters}
-        projects={projects}
-        showHeader={false}
-        compact
-      />
+      <Calculator showHeader={false} />
     </main>
   );
 }

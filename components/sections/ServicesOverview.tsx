@@ -46,18 +46,18 @@ export function ServicesOverview({
   const materialsItem = useMemo(() => items.find((item) => item.key === "materials"), [items]);
 
   return (
-    <section id="services" className="gd-cv-auto gd-section-divider relative py-[72px] md:py-[120px]">
-      <div className="gd-container">
-        <div className="mb-12 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
-          <div>
+    <section id="services" className="gd-cv-auto gd-section gd-section-divider relative">
+        <div className="gd-container">
+        <div className="mb-10 grid gap-5 md:mb-12 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <div className="gd-section-header">
             <FadeUp>
               <p className="tt-label text-primary-green">{t("eyebrow")}</p>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <h2 className="tt-heading-lg mt-3 font-extrabold text-white">{title}</h2>
+              <h2 className="tt-heading-lg font-extrabold text-white">{title}</h2>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <p className="tt-detail mt-4 max-w-3xl text-base text-gd-muted md:text-justify">{subtitle}</p>
+              <p className="tt-detail max-w-3xl text-gd-muted">{subtitle}</p>
             </FadeUp>
           </div>
 
@@ -85,13 +85,13 @@ export function ServicesOverview({
               >
                 <Link
                   href={serviceHref}
-                  className="block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-navy"
+                  className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-navy"
                   aria-label={service.title}
                 >
                   <TiltCard
-                    className="group h-full overflow-hidden rounded-2xl border border-white/10 bg-gd-result transition-[border-color,box-shadow] duration-300 hover:border-primary-green/40 hover:shadow-[0_16px_44px_rgba(23,109,72,0.16)]"
+                    className="gd-card group h-full overflow-hidden transition-[border-color,box-shadow] duration-300 hover:border-primary-green/45 hover:shadow-[0_18px_44px_rgba(23,109,72,0.18)]"
                   >
-                    <div className="relative h-[150px] w-full overflow-hidden bg-gd-result md:h-[170px]">
+                    <div className="gd-img-frame relative h-[150px] w-full md:h-[170px]">
                       <div className="absolute inset-0 transition duration-500 will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] group-hover:scale-[1.02]">
                         <Image
                           src={SERVICE_IMAGES[service.key] ?? "/assets/hero-poster.jpg"}
@@ -102,14 +102,11 @@ export function ServicesOverview({
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
                       </div>
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gd-result" />
                     </div>
 
-                    <div className="relative -mt-px flex min-h-[150px] flex-col bg-gd-result p-5 md:p-6 before:pointer-events-none before:absolute before:-top-[2px] before:inset-x-0 before:h-[3px] before:bg-gd-result md:min-h-[170px]">
-                      <h3 className="tt-heading-md text-[18px] font-extrabold text-white md:text-[20px]">
-                        {service.title}
-                      </h3>
-                      <p className="tt-detail mt-2 line-clamp-3 text-[15px] leading-relaxed text-gd-muted">
+                    <div className="relative flex min-h-[150px] flex-col gap-3 bg-gd-result p-5 md:min-h-[170px] md:p-6">
+                      <h3 className="tt-heading-md font-extrabold text-white">{service.title}</h3>
+                      <p className="tt-detail line-clamp-3 text-[15px] leading-relaxed text-gd-muted">
                         {service.summary || service.body}
                       </p>
                     </div>
@@ -120,12 +117,10 @@ export function ServicesOverview({
           })}
         </div>
 
-        <div className="gd-section-divider mt-20 pt-14 md:mt-24 md:pt-16">
-          <div className="mb-6 md:mb-8">
+        <div className="gd-section-divider mt-16 pt-12 md:mt-20 md:pt-14">
+          <div className="gd-stack-sm mb-6 md:mb-8">
             <p className="tt-label text-primary-green">{t("materials.eyebrow")}</p>
-            <h3 className="tt-heading-lg mt-2 font-extrabold text-white">
-              {t("materials.title")}
-            </h3>
+            <h3 className="tt-heading-lg font-extrabold text-white">{t("materials.title")}</h3>
           </div>
 
           <motion.div
@@ -136,11 +131,11 @@ export function ServicesOverview({
           >
             <Link
               href={`/${locale}/products`}
-              className="group block rounded-2xl border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
+              className="gd-card group block border border-primary-green/35 bg-gradient-to-r from-gd-panel via-gd-result to-gd-panel p-6 transition hover:border-primary-green/60 hover:shadow-[0_18px_42px_rgba(23,109,72,0.22)] md:p-8"
               aria-label={t("materials.aria_label")}
             >
               <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-white/10">
+                <div className="gd-img-frame relative aspect-[16/9] w-full">
                   <Image
                     src={SERVICE_IMAGES.materials}
                     alt={materialsItem?.title ?? t("materials.title")}

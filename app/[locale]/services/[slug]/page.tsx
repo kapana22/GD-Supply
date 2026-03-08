@@ -98,7 +98,7 @@ export default async function ServiceSlugPage({
   };
 
   return (
-    <>
+    <main>
       <PageHero
         locale={params.locale}
         eyebrow={tServices("hero.eyebrow")}
@@ -111,10 +111,9 @@ export default async function ServiceSlugPage({
           { label: tNav("services"), href: `/${params.locale}/services` },
           { label: title },
         ]}
-        compact
       />
       <ServiceDetailPage locale={params.locale} service={service} hideHero />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
-    </>
+    </main>
   );
 }

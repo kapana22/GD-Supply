@@ -37,7 +37,6 @@ export default async function ContactPage({ params }: { params: { locale: string
           { label: tPage("breadcrumbs.current") },
         ]}
         backgroundTheme="contact"
-        compact
       />
       <ContactSection />
     </main>

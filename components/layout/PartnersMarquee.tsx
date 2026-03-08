@@ -14,14 +14,16 @@ export function PartnersMarquee() {
   const { locale } = useParams() as { locale: string };
 
   return (
-    <section className="gd-cv-auto gd-section-divider relative py-10 md:py-12">
+    <section className="gd-cv-auto gd-section-tight gd-section-divider relative">
       <div className="gd-container">
-        <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
-          {t("eyebrow")}
-        </p>
-        <h2 className="tt-heading-lg mt-2 font-extrabold text-white">
-          {t("title")}
-        </h2>
+        <div className="gd-section-header-tight">
+          <p className="tt-label text-xs font-extrabold uppercase tracking-[0.08em] text-primary-green">
+            {t("eyebrow")}
+          </p>
+          <h2 className="tt-heading-lg font-extrabold text-white">
+            {t("title")}
+          </h2>
+        </div>
 
         <div className="partners-marquee-mask mt-6">
           <div

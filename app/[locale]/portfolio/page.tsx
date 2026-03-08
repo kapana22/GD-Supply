@@ -49,7 +49,6 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
           { label: t("title") },
         ]}
         backgroundTheme="portfolio"
-        compact
       />
       <PortfolioGrid
         title={t("title")}
@@ -57,7 +56,6 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
         filters={filters}
         projects={projects}
         showHeader={false}
-        compact
         enableModal={false}
       />
 
