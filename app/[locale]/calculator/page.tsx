@@ -37,6 +37,7 @@ export default async function CalculatorPage({ params }: { params: { locale: str
           { label: tPage("breadcrumbs.current") },
         ]}
         backgroundTheme="calculator"
+        compact
         fullWidthTitle
       />
       <Calculator showHeader={false} />

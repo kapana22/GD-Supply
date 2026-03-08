@@ -43,6 +43,7 @@ export default async function ServicesPage({ params }: { params: { locale: strin
           { label: tNav("services") },
         ]}
         backgroundTheme="services"
+        compact
       />
 
       <ServicesHubPage locale={params.locale} services={coreServices} showHeader={false} />

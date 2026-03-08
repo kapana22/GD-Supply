@@ -40,6 +40,7 @@ export default async function PartnersPage({ params }: { params: { locale: strin
           { label: tNav("partners") },
         ]}
         backgroundTheme="portfolio"
+        compact
       />
 
       <section className="gd-cv-auto gd-section gd-section-divider relative">

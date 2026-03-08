@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
@@ -42,6 +41,8 @@ export default function BlogPageClient({
     hideTopHero ? "min-h-screen bg-transparent" : "gd-page-shell min-h-screen bg-transparent"
   }${disableDividers ? " no-dividers" : ""}`;
 
+  const contentSectionClass = hideTopHero ? "gd-section-tight gd-section-divider" : "gd-section-compact gd-section-divider";
+
   return (
     <main className={mainClass}>
       {hideTopHero ? null : (
@@ -60,11 +61,7 @@ export default function BlogPageClient({
           />
 
           <div className="relative gd-container-blog text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <div className="mb-4 flex items-center justify-center gap-2 text-sm text-white/55">
                 <Link href={`/${locale}`} className="transition-colors hover:text-white">
                   {t("breadcrumbs.home")}
@@ -77,59 +74,38 @@ export default function BlogPageClient({
                 <h1 className="tt-heading-xl font-black text-white">{t("title")}</h1>
                 <p className="text-lg leading-relaxed text-white/66">{t("subtitle")}</p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
 
-      <section className="gd-section-compact gd-section-divider">
+      <section className={contentSectionClass}>
         <div className="gd-container-blog">
-          <AnimatePresence mode="wait">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {filtered.length === 0 ? (
-                <div className="py-20 text-center text-lg text-white/45">{emptyText}</div>
-              ) : (
-                <div className="space-y-5">
-                  {largePosts.length > 0 ? (
-                    <div className="grid auto-rows-fr gap-6 lg:grid-cols-2">
-                      {largePosts.map((post, index) => (
-                        <motion.div
-                          key={`large-${post.slug}`}
-                          className="h-full"
-                          initial={{ opacity: 0, y: 24 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.45, delay: index * 0.08 }}
-                        >
-                          <LargePostCard post={post} locale={locale} readLabel={t("list.read_more")} />
-                        </motion.div>
-                      ))}
+          {filtered.length === 0 ? (
+            <div className="py-20 text-center text-lg text-white/45">{emptyText}</div>
+          ) : (
+            <div className="space-y-5">
+              {largePosts.length > 0 ? (
+                <div className="grid auto-rows-fr gap-6 lg:grid-cols-2">
+                  {largePosts.map((post) => (
+                    <div key={`large-${post.slug}`} className="h-full">
+                      <LargePostCard post={post} locale={locale} readLabel={t("list.read_more")} />
                     </div>
-                  ) : null}
-
-                  {smallPosts.length > 0 ? (
-                    <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                      {smallPosts.map((post, index) => (
-                        <motion.div
-                          key={`small-${post.slug}`}
-                          className="h-full"
-                          initial={{ opacity: 0, y: 24 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.45, delay: index * 0.06 }}
-                        >
-                          <PostCard post={post} locale={locale} readLabel={t("list.read")} />
-                        </motion.div>
-                      ))}
-                    </div>
-                  ) : null}
+                  ))}
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+              ) : null}
+
+              {smallPosts.length > 0 ? (
+                <div className="grid auto-rows-fr grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                  {smallPosts.map((post) => (
+                    <div key={`small-${post.slug}`} className="h-full">
+                      <PostCard post={post} locale={locale} readLabel={t("list.read")} />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          )}
         </div>
       </section>
 

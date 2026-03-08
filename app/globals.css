@@ -38,12 +38,12 @@
     --space-8: 80px;
 
     /* Heading + section rhythm */
-    --gd-heading-gap: clamp(8px, 1.8vw, 14px);
-    --gd-heading-gap-tight: clamp(6px, 1.6vw, 12px);
-    --gd-heading-bottom: clamp(12px, 2vw, 20px);
-    --gd-heading-bottom-tight: clamp(10px, 1.8vw, 18px);
-    --gd-section-gap: clamp(40px, 7vw, 72px);
-    --gd-section-gap-tight: clamp(30px, 6vw, 60px);
+    --gd-heading-gap: clamp(8px, 1.5vw, 12px);
+    --gd-heading-gap-tight: clamp(6px, 1.3vw, 10px);
+    --gd-heading-bottom: clamp(8px, 1.6vw, 14px);
+    --gd-heading-bottom-tight: clamp(6px, 1.4vw, 12px);
+    --gd-section-gap: clamp(28px, 5.5vw, 56px);
+    --gd-section-gap-tight: clamp(22px, 5vw, 42px);
 
     /* Radii */
     --radius-sm: 10px;

@@ -49,6 +49,7 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
           { label: t("title") },
         ]}
         backgroundTheme="portfolio"
+        compact
       />
       <PortfolioGrid
         title={t("title")}

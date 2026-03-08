@@ -64,7 +64,7 @@ export function PageHero({
 
   return (
     <section
-      className={`relative -mt-[72px] overflow-hidden pt-[72px] ${compact ? "pb-8 md:pb-10" : "pb-9 md:pb-12"} ${
+      className={`relative -mt-[72px] overflow-hidden pt-[72px] ${compact ? "pb-5 md:pb-7" : "pb-7 md:pb-9"} ${
         compact ? "min-h-[240px] md:min-h-[320px]" : "min-h-[300px] md:min-h-[400px]"
       }`}
     >
