@@ -47,7 +47,7 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
     if (typeof window === "undefined") return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const saveData = navigator.connection?.saveData;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
     setShouldLoadVideo(!(reduceMotion || saveData));
   }, []);
 
