@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { NextIntlClientProvider, createTranslator } from "next-intl";
