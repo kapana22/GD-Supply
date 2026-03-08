@@ -8,7 +8,7 @@ export function WhatsAppButton() {
   const href = "https://wa.me/995555656503?text=%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90%20GD%20Supply";
 
   return (
-    <div className="whatsapp-float fixed bottom-6 right-6 z-50">
+    <div className="whatsapp-float fixed right-6 z-50 bottom-20 sm:bottom-6">
       <a href={href} className="group relative block" aria-label={t("label")}>
         <span
           aria-hidden="true"
