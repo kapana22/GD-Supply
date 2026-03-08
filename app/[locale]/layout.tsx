@@ -130,6 +130,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <MobileCallBar />
           </div>
         </NextIntlClientProvider>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <noscript>
           <img
             height="1"
