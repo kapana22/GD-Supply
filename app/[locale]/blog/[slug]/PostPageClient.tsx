@@ -103,7 +103,14 @@ export default function PostPageClient({
           className="relative h-72 overflow-hidden rounded-2xl md:h-80"
           style={{ boxShadow: "0 0 0 1px rgba(var(--gd-accent-rgb),0.16), 0 20px 48px rgba(0,0,0,0.32)" }}
         >
-          <Image src={post.image} alt={post.title} fill className="object-cover" />
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            quality={72}
+            className="object-cover"
+          />
         </div>
       </motion.div>
 
@@ -190,7 +197,14 @@ function RelatedCard({ post, locale, readLabel }: { post: BlogPostMeta; locale: 
         style={{ background: BLOG_PANEL }}
       >
         <div className="relative h-44 overflow-hidden">
-          <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(min-width: 768px) 33vw, 100vw"
+            quality={70}
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--gd-panel)]/80 to-transparent" />
         </div>
         <div className="flex flex-1 flex-col p-5">

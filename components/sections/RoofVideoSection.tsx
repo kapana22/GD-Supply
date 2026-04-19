@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 const ROOF_SHOWCASE_VIDEO =
-  "/assets/%E1%83%A1%E1%83%90%E1%83%AE%E1%83%A3%E1%83%A0%E1%83%90%E1%83%95%E1%83%94%E1%83%91%E1%83%98%E1%83%A1%E1%83%95%E1%83%98%E1%83%93%E1%83%94%E1%83%9D.mp4";
+  "/assets/roof-video1080-opt.mp4";
+const ROOF_SHOWCASE_VIDEO_MOBILE =
+  "/assets/roof-video480-opt.mp4";
 
 export default function RoofVideoSection() {
   const t = useTranslations("roof_video");
@@ -27,6 +29,7 @@ export default function RoofVideoSection() {
           preload="metadata"
           poster="/assets/hero-poster.jpg"
         >
+          <source src={ROOF_SHOWCASE_VIDEO_MOBILE} type="video/mp4" media="(max-width: 768px)" />
           <source src={ROOF_SHOWCASE_VIDEO} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,20,52,0.26)_0%,rgba(7,29,78,0.48)_44%,rgba(8,18,46,0.9)_100%)]" />

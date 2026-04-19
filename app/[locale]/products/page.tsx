@@ -77,6 +77,7 @@ export default async function ProductsPage({ params }: { params: { locale: strin
                           alt={item.name}
                           fill
                           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+                          quality={70}
                           className="object-cover"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />

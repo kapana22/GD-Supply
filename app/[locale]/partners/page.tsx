@@ -57,6 +57,7 @@ export default async function PartnersPage({ params }: { params: { locale: strin
                     alt={tPartners("logo_alt", { name: logo.alt })}
                     fill
                     sizes="(min-width: 1280px) 220px, (min-width: 768px) 28vw, 45vw"
+                    quality={70}
                     className="object-contain"
                   />
                 </div>

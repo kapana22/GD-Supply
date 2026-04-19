@@ -82,6 +82,7 @@ export function Gallery() {
                 fill
                 className="object-cover"
                 sizes="(min-width: 1280px) 45vw, (min-width: 768px) 50vw, 100vw"
+                quality={70}
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYGBgAAAABQABDQottAAAAABJRU5ErkJggg=="
               />

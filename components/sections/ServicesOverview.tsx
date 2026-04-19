@@ -97,7 +97,8 @@ export function ServicesOverview({
                           src={SERVICE_IMAGES[service.key] ?? "/assets/hero-poster.jpg"}
                           alt={service.title}
                           fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                          quality={70}
                           className="object-cover"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
@@ -141,6 +142,7 @@ export function ServicesOverview({
                     alt={materialsItem?.title ?? t("materials.title")}
                     fill
                     sizes="(min-width: 1024px) 52vw, 100vw"
+                    quality={70}
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />

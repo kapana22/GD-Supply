@@ -54,6 +54,7 @@ export function ServicesHubPage({
                     fill
                     className="object-cover transition duration-500 group-hover:scale-[1.05]"
                     sizes={imageSizes}
+                    quality={70}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/90 via-primary-navy/20 to-transparent" />
                 </div>

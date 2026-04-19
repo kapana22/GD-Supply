@@ -150,7 +150,14 @@ function LargePostCard({ post, locale, readLabel }: { post: BlogPostMeta; locale
         style={{ background: BLOG_PANEL }}
       >
         <div className="relative h-56 overflow-hidden md:h-64">
-          <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            quality={70}
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--gd-panel)]/75 via-[var(--gd-panel)]/10 to-transparent" />
           <div
             className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs font-semibold"
@@ -188,7 +195,14 @@ function PostCard({ post, locale, readLabel }: { post: BlogPostMeta; locale: str
         style={{ background: BLOG_PANEL, border: "1px solid rgba(255,255,255,0.09)" }}
       >
         <div className="relative h-48 overflow-hidden">
-          <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+            quality={70}
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--gd-panel)]/78 to-transparent" />
 
           <div

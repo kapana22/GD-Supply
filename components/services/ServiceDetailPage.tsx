@@ -207,6 +207,7 @@ function ServiceHero({
           priority
           className="object-cover"
           sizes="100vw"
+          quality={75}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-primary-navy" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(23,109,72,0.18),transparent_45%)]" />

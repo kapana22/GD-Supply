@@ -30,7 +30,14 @@ export function Insights({ items }: { items: Insight[] }) {
             className="overflow-hidden rounded-2xl border border-primary-navy/10 bg-gradient-to-b from-white to-[#f7f9fc] shadow-sm hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-navy/10 transition"
           >
             <div className="relative h-40 w-full">
-              <Image src={item.image} alt={item.title} fill className="object-cover" />
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                quality={70}
+                className="object-cover"
+              />
             </div>
             <div className="space-y-2 px-4 py-4">
               <span className="tt-label inline-flex rounded-full bg-primary-navy/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-navy/70">

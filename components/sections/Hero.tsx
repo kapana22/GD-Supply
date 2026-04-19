@@ -51,9 +51,6 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
     setShouldLoadVideo(!(reduceMotion || saveData));
   }, []);
 
-  const preloadMode =
-    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches ? "metadata" : "auto";
-
   return (
     <section className="relative -mt-[84px] overflow-hidden pt-[84px] min-h-[640px] md:min-h-[740px]">
       {/* Background video across all breakpoints */}
@@ -65,7 +62,7 @@ export function Hero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, stats
             muted
             loop
             playsInline
-            preload={preloadMode}
+            preload="metadata"
           >
             <source src="/assets/hero-video480-opt.mp4" type="video/mp4" media="(max-width: 768px)" />
             <source src="/assets/hero-video1080-opt.mp4" type="video/mp4" />
