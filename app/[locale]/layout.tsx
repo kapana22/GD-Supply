@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     metadataBase: new URL("https://gdsupply.ge"),
     title: {
       default: t("title"),
-      template: "%s | GD Supply",
+      template: "%s",
     },
     description: t("description"),
     openGraph: {
