@@ -11,14 +11,15 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("products");
+  const t = await getTranslations("products.meta");
   return {
     title: t("title"),
-    description: t("subtitle"),
+    description: t("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
       title: t("title"),
-      description: t("subtitle"),
+      description: t("description"),
+      url: `${baseUrl}/${params.locale}/products`,
     },
   };
 }
@@ -49,8 +50,9 @@ export default async function ProductsPage({ params }: { params: { locale: strin
         breadcrumbs={[
           { label: t("breadcrumbs.home"), href: `/${params.locale}` },
           { label: t("breadcrumbs.current") },
-        ]}
+        ]} 
         backgroundTheme="services"
+        currentPath={`/${params.locale}/products`}
       />
 
       <section className="gd-cv-auto gd-section gd-section-divider relative">

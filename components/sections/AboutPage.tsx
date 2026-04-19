@@ -71,6 +71,7 @@ export function AboutPage({ locale }: { locale: string }) {
           { label: t("breadcrumbs.current") },
         ]}
         compact
+        currentPath={`/${locale}/about`}
       />
 
       <section id="about-story" className="gd-section-tight gd-section-divider">

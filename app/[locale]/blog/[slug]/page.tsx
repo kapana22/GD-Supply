@@ -18,6 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
   const post = await getPost(params.locale, params.slug);
   if (!post) return {};
+  const canonical = `${baseUrl}/${params.locale}/blog/${post.slug}`;
 
   return {
     title: `${post.title} | GD Supply`,
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: { params: { locale: string; s
       description: post.excerpt,
       images: [post.image],
       type: "article",
+      url: canonical,
     },
     alternates: buildAlternates(params.locale, params.slug),
   };

@@ -37,6 +37,7 @@ export function generateMetadata({
       title: `${service.title} | GD Supply`,
       description: service.subtitle,
       images: [service.heroImage],
+      url: canonical,
     },
     alternates: {
       canonical,
@@ -111,6 +112,7 @@ export default async function ServiceSlugPage({
           { label: tNav("services"), href: `/${params.locale}/services` },
           { label: title },
         ]}
+        currentPath={`/${params.locale}/services/${service.slug}`}
       />
       <ServiceDetailPage locale={params.locale} service={service} hideHero />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />

@@ -152,6 +152,10 @@
       "body": "See the full list on the products page: construction chemicals, waterproofing membranes, and acoustic materials.",
       "cta": "View products",
       "image_alt": "Building materials"
+    },
+    "meta": {
+      "title": "Waterproofing Services in Georgia | Roofs, Terraces & Foundations",
+      "description": "Explore waterproofing services for flat roofs, terraces, foundations, industrial floors, and building materials across Georgia."
     }
   },
   "servicesHub": {
@@ -626,6 +630,10 @@
       "eyebrow": "",
       "title": "Short video: how we prepare and complete waterproofing on projects.",
       "subtitle": ""
+    },
+    "meta": {
+      "title": "Waterproofing Projects in Georgia | 300+ Completed Works",
+      "description": "Browse completed waterproofing projects, roof works, terraces, foundations, and industrial surfaces across Georgia."
     }
   },
   "testimonials": {
@@ -755,8 +763,8 @@
     "services_href": "/en/services"
   },
   "seo": {
-    "title": "GD Supply — Waterproofing in Georgia | Roof, terrace, foundation",
-    "description": "GD Supply is a waterproofing contractor with 6+ years of experience in Georgia. Flat roofs, terraces, foundations, industrial floors. Free inspection. 10+ year warranty."
+    "title": "GD Supply | Waterproofing Contractor in Georgia",
+    "description": "Waterproofing for roofs, terraces, foundations, and industrial floors in Georgia. Free inspection, fast estimate, and 10+ year warranty."
   },
   "mobile_call": {
     "phone_number": "+995 599 705 697",
@@ -793,6 +801,10 @@
     "breadcrumbs": {
       "home": "Home",
       "current": "Calculator"
+    },
+    "meta": {
+      "title": "Waterproofing Price Calculator | Fast Estimate | GD Supply",
+      "description": "Estimate waterproofing costs by service type and project size with GD Supply calculator."
     }
   },
   "contactPage": {
@@ -802,6 +814,10 @@
     "breadcrumbs": {
       "home": "Home",
       "current": "Contact"
+    },
+    "meta": {
+      "title": "Free Waterproofing Consultation in Georgia | GD Supply",
+      "description": "Request a free waterproofing inspection, consultation, or quote from GD Supply in Georgia."
     }
   },
   "blog": {
@@ -809,8 +825,8 @@
     "title": "Blog",
     "subtitle": "Articles about waterproofing, roof types and construction technologies.",
     "meta": {
-      "title": "Blog | GD Supply",
-      "description": "Articles about waterproofing"
+      "title": "Waterproofing Blog & Guides | GD Supply",
+      "description": "Articles on waterproofing, roof types, terrace solutions, foundations, materials, and construction best practices in Georgia."
     },
     "breadcrumbs": {
       "home": "Home",
@@ -925,7 +941,11 @@
           }
         ]
       }
-    ]
+    ],
+    "meta": {
+      "title": "Waterproofing Products & Materials | GD Supply",
+      "description": "See construction chemicals, membranes, and acoustic materials supplied by GD Supply in Georgia."
+    }
   },
   "about_page": {
     "breadcrumbs": {
@@ -1050,15 +1070,19 @@
         }
       ]
     },
-  "partners": {
-    "title": "Brands and partners",
-    "items": []
-  },
+    "partners": {
+      "title": "Brands and partners",
+      "items": []
+    },
     "cta": {
       "title": "Make your project watertight",
       "body": "Contact us today!",
       "primary": "Contact",
       "secondary": "Services"
+    },
+    "meta": {
+      "title": "About GD Supply | Waterproofing Contractor in Georgia Since 2014",
+      "description": "Learn about GD Supply, a Georgian waterproofing contractor since 2014. Projects, warranty, and full-cycle roof, terrace, and foundation waterproofing."
     }
   },
   "partnersPage": {
@@ -1066,6 +1090,10 @@
       "eyebrow": "Partners",
       "title": "Our Partners",
       "subtitle": "Meet the brands we collaborate and build with."
+    },
+    "meta": {
+      "title": "Trusted Waterproofing Brands & Partners | GD Supply",
+      "description": "Meet the brands and suppliers GD Supply works with on waterproofing and construction projects in Georgia."
     }
   }
 }

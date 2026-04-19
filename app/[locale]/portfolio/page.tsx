@@ -11,14 +11,15 @@ const buildAlternates = (locale: string, path = "") => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("portfolio");
+  const t = await getTranslations("portfolio.meta");
   return {
     title: t("title"),
-    description: t("subtitle"),
+    description: t("description"),
     alternates: buildAlternates(params.locale, "/portfolio"),
     openGraph: {
       title: t("title"),
-      description: t("subtitle"),
+      description: t("description"),
+      url: `${baseUrl}/${params.locale}/portfolio`,
     },
   };
 }
@@ -47,9 +48,10 @@ export default async function PortfolioPage({ params }: { params: { locale: stri
         breadcrumbs={[
           { label: t("breadcrumb_home"), href: `/${params.locale}` },
           { label: t("title") },
-        ]}
+        ]} 
         backgroundTheme="portfolio"
         compact
+        currentPath={`/${params.locale}/portfolio`}
       />
       <PortfolioGrid
         title={t("title")}

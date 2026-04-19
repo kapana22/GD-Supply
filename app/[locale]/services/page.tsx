@@ -13,14 +13,15 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("servicesPage");
+  const t = await getTranslations("servicesPage.meta");
   return {
-    title: t("hero.title"),
-    description: t("hero.subtitle"),
+    title: t("title"),
+    description: t("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
-      title: t("hero.title"),
-      description: t("hero.subtitle"),
+      title: t("title"),
+      description: t("description"),
+      url: `${baseUrl}/${params.locale}/services`,
     },
   };
 }
@@ -41,9 +42,10 @@ export default async function ServicesPage({ params }: { params: { locale: strin
         breadcrumbs={[
           { label: tNav("home"), href: `/${params.locale}` },
           { label: tNav("services") },
-        ]}
+        ]} 
         backgroundTheme="services"
         compact
+        currentPath={`/${params.locale}/services`}
       />
 
       <ServicesHubPage locale={params.locale} services={coreServices} showHeader={false} />

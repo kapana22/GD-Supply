@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     acc[loc] = `${base}/${loc}`;
     return acc;
   }, {});
+  languages["x-default"] = `${base}/${defaultLocale}`;
 
   return {
     metadataBase: new URL("https://gdsupply.ge"),
@@ -42,9 +43,25 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: "https://gdsupply.ge",
+      url: canonical,
       siteName: "GD Supply",
       type: "website",
+      locale,
+      alternateLocale: locales.filter((loc) => loc !== locale),
+      images: [
+        {
+          url: "/images/logo.png",
+          width: 512,
+          height: 512,
+          alt: "GD Supply",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: ["/images/logo.png"],
     },
     alternates: {
       canonical,
@@ -104,20 +121,47 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             fbq('track', 'PageView');
           `}
         </Script>
-        <Script id="gd-ld-json" type="application/ld+json" strategy="beforeInteractive">
+        <Script id="gd-organization-json" type="application/ld+json" strategy="beforeInteractive">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
+            "@type": ["Organization", "HomeAndConstructionBusiness"],
+            "@id": "https://gdsupply.ge/#organization",
             name: "GD Supply",
             url: "https://gdsupply.ge",
             logo: "https://gdsupply.ge/images/logo.png",
             telephone: "+995 599 705 697",
-            sameAs: ["https://www.facebook.com/GDSupply1", "https://www.linkedin.com/"],
+            sameAs: ["https://www.facebook.com/GDSupply1"],
+            areaServed: {
+              "@type": "Country",
+              name: "Georgia",
+            },
+            contactPoint: [
+              {
+                "@type": "ContactPoint",
+                telephone: "+995 599 705 697",
+                contactType: "customer service",
+                areaServed: "GE",
+                availableLanguage: ["ka", "en"],
+              },
+            ],
             address: {
               "@type": "PostalAddress",
               addressLocality: "Tbilisi",
               addressCountry: "GE",
             },
+          })}
+        </Script>
+        <Script id="gd-website-json" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://gdsupply.ge/#website",
+            url: "https://gdsupply.ge",
+            name: "GD Supply",
+            publisher: {
+              "@id": "https://gdsupply.ge/#organization",
+            },
+            inLanguage: locales,
           })}
         </Script>
         <StartupLoader />

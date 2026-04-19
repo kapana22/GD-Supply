@@ -71,6 +71,7 @@ export default function PostPageClient({
           { label: tBlog("breadcrumbs.blog"), href: `/${locale}/blog` },
           { label: post.title },
         ]}
+        currentPath={`/${locale}/blog/${post.slug}`}
       />
 
       <div className="relative gd-container-narrow pb-2 pt-5">

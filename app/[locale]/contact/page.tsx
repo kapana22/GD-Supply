@@ -10,14 +10,15 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const tPage = await getTranslations("contactPage");
+  const tPage = await getTranslations("contactPage.meta");
   return {
     title: tPage("title"),
-    description: tPage("subtitle"),
+    description: tPage("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
       title: tPage("title"),
-      description: tPage("subtitle"),
+      description: tPage("description"),
+      url: `${baseUrl}/${params.locale}/contact`,
     },
   };
 }
@@ -35,9 +36,10 @@ export default async function ContactPage({ params }: { params: { locale: string
         breadcrumbs={[
           { label: tPage("breadcrumbs.home"), href: `/${params.locale}` },
           { label: tPage("breadcrumbs.current") },
-        ]}
+        ]} 
         backgroundTheme="contact"
         compact
+        currentPath={`/${params.locale}/contact`}
       />
       <ContactSection />
     </main>

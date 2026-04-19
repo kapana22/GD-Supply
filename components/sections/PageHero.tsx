@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 type HeroCrumb = {
   label: string;
@@ -28,7 +27,10 @@ type PageHeroProps = {
   backgroundTheme?: PageHeroBackgroundTheme;
   compact?: boolean;
   fullWidthTitle?: boolean;
+  currentPath?: string;
 };
+
+const SITE_ORIGIN = "https://gdsupply.ge";
 
 export function PageHero({
   title,
@@ -40,27 +42,27 @@ export function PageHero({
   secondaryAction,
   compact = false,
   fullWidthTitle = false,
+  currentPath,
 }: PageHeroProps) {
   const shouldShowEyebrow = showEyebrow && eyebrow.trim() && eyebrow.trim() !== title.trim();
-  const [breadcrumbLd, setBreadcrumbLd] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (breadcrumbs.length === 0) return;
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://gdsupply.ge";
-    const items = breadcrumbs.map((crumb, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: crumb.label,
-      item: crumb.href ? `${origin}${crumb.href}` : `${origin}${typeof window !== "undefined" ? window.location.pathname : ""}`,
-    }));
-    setBreadcrumbLd(
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: items,
-      }),
-    );
-  }, [breadcrumbs]);
+  const breadcrumbLd =
+    breadcrumbs.length > 0
+      ? JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: breadcrumbs.map((crumb, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: crumb.label,
+            item:
+              crumb.href != null
+                ? `${SITE_ORIGIN}${crumb.href}`
+                : currentPath
+                  ? `${SITE_ORIGIN}${currentPath}`
+                  : SITE_ORIGIN,
+          })),
+        })
+      : null;
 
   return (
     <section

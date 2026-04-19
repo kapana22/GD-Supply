@@ -9,14 +9,15 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("about_page.hero");
+  const t = await getTranslations("about_page.meta");
   return {
     title: t("title"),
-    description: t("subtitle"),
+    description: t("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
       title: t("title"),
-      description: t("subtitle"),
+      description: t("description"),
+      url: `${baseUrl}/${params.locale}/about`,
     },
   };
 }

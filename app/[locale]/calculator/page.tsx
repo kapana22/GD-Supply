@@ -10,14 +10,15 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const t = await getTranslations("calculatorPage");
+  const t = await getTranslations("calculatorPage.meta");
   return {
     title: t("title"),
-    description: t("subtitle"),
+    description: t("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
       title: t("title"),
-      description: t("subtitle"),
+      description: t("description"),
+      url: `${baseUrl}/${params.locale}/calculator`,
     },
   };
 }
@@ -39,6 +40,7 @@ export default async function CalculatorPage({ params }: { params: { locale: str
         backgroundTheme="calculator"
         compact
         fullWidthTitle
+        currentPath={`/${params.locale}/calculator`}
       />
       <Calculator showHeader={false} />
     </main>

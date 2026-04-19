@@ -12,15 +12,16 @@ const buildAlternates = (locale: string) => ({
 });
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
-  const t = await getTranslations("blog");
+  const t = await getTranslations("blog.meta");
   return {
-    title: t("meta.title"),
-    description: t("meta.description"),
+    title: t("title"),
+    description: t("description"),
     alternates: buildAlternates(params.locale),
     openGraph: {
-      title: t("meta.title"),
-      description: t("meta.description"),
+      title: t("title"),
+      description: t("description"),
       type: "website",
+      url: `${baseUrl}/${params.locale}/blog`,
     },
   };
 }
@@ -42,6 +43,7 @@ export default async function BlogPage({ params }: { params: { locale: string } 
         ]} 
         backgroundTheme="blog"
         compact
+        currentPath={`/${params.locale}/blog`}
       />
       <BlogPageClient posts={posts} hideTopHero />
     </>
